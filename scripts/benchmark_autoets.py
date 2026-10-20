@@ -94,17 +94,19 @@ def evaluate_area(workbook, area, stride, seasonality, context_weeks):
         prediction, variant = forecast_autoets(history, seasonality)
         variants[variant] = variants.get(variant, 0) + 1
 
-        # For each test YEAR, define the high-case cutoff using data observed
-        # before that year, never including test outcomes.
-        year = future_dates[0].year
-        year_start = pd.Timestamp(f"{year}-01-01")
-        past_year = continuous_history(data, year_start - pd.Timedelta(days=7), context_weeks)
-        if len(past_year) < 80:
-            continue
-        threshold = float(past_year.quantile(0.9))
+        # Derive high-case cutoffs from history preceding each target ISO year.
+        # ISO week 1 can begin in late December of the previous calendar year.
         last_observed = float(history.iloc[-1])
         year_ago = cases.shift(52)
         for h, target_date in enumerate(future_dates, start=1):
+            year = int(target_date.isocalendar().year)
+            first_week = pd.Timestamp.fromisocalendar(year, 1, 1)
+            past_year = continuous_history(
+                data, first_week - pd.Timedelta(days=7), context_weeks
+            )
+            if len(past_year) < 80:
+                continue
+            threshold = float(past_year.quantile(0.9))
             observed = float(cases.loc[target_date])
             old = year_ago.loc[target_date]
             rows.append({
