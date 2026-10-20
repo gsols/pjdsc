@@ -118,7 +118,7 @@ def main():
     parser.add_argument("workbook", type=Path)
     a=parser.parse_args()
     reports=[train_area(a.workbook,area) for area in AREAS]
-    (OUTPUT/"validation_report.json").write_text(json.dumps(reports,indent=2)+"\n")
+    (OUTPUT/"validation_report.json").write_text(json.dumps(reports,indent=2)+"\n")\n    web_output = ROOT / "apps/web/public/data/forecast-validation.json"\n    web_output.parent.mkdir(parents=True, exist_ok=True)\n    web_output.write_text(json.dumps(reports,indent=2)+"\n")
     for report in reports:
         print(json.dumps(report,indent=2))
     print("Models saved. Compare MAE against seasonal naive before presentation.")
