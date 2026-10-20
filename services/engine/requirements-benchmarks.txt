@@ -1,0 +1,4 @@
+# Optional time-series benchmarking dependencies.
+# Install after installing services/engine/requirements.txt.
+# The main FastAPI server does not require these packages.
+statsforecast>=2.0,<3
