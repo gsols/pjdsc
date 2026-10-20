@@ -27,7 +27,7 @@ export default function NCRMap({selectedArea,onAreaSelect,facilities,onFacilityS
  },[]);
  useEffect(()=>{const map=mapRef.current;if(!map)return;const update=()=>{if(map.getLayer('ncr-fill'))map.setPaintProperty('ncr-fill','fill-color',['case',['==',['get','area_id'],selectedArea],'#2ac8b0',['==',['get','area_id'],'QUEZON_CITY'],'#2c9e91','#566a7a']);};if(map.isStyleLoaded())update();else map.once('load',update);},[selectedArea]);
  useEffect(()=>{const map=mapRef.current;if(!map)return;markers.current.forEach(m=>m.remove());markers.current=[];
-  for(const f of facilities){if(!Number.isFinite(f.longitude)||!Number.isFinite(f.latitude))continue;
+  for(const f of facilities){if(f.longitude===null||f.latitude===null||!Number.isFinite(f.longitude)||!Number.isFinite(f.latitude))continue;
    const res=result?.facilityResults.find(r=>r.facilityId===f.id&&r.week===activeWeek);
    const color=res?.capacityGap&&res.capacityGap>0?'#ef6666':res?.availablePct!==null&&res?.availablePct!==undefined&&res.availablePct<=20?'#f6ad55':'#51d0bb';
    const el=document.createElement('button');el.type='button';el.title=f.name;el.setAttribute('aria-label',f.name);Object.assign(el.style,{width:'15px',height:'15px',borderRadius:'50%',background:color,border:'2px solid #ffffff',boxShadow:'0 2px 10px #111b29'});el.addEventListener('click',(e)=>{e.stopPropagation();onFacility.current(f)});
