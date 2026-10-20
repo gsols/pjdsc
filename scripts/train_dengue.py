@@ -48,7 +48,12 @@ def load_series(source: Path, area: str):
             c: df[c].value_counts(dropna=False).to_dict()
             for c in ("FLAG_DEKADAL_APPROX", "FLAG_PLAUSIBILITY") if c in df.columns
         })
-    # Reindex on real ISO-week dates: prevents the 2019-to-2022 gap in NCR\n    # from being treated as adjacent weeks (and leaking invalid lag relationships).\n    dates = pd.to_datetime([__import__("datetime").date.fromisocalendar(int(y),int(w),1)\n                            for y,w in zip(df["YR"],df["WN"])])\n    df.index = pd.DatetimeIndex(dates)\n    df = df.reindex(pd.date_range(df.index.min(), df.index.max(), freq="W-MON"))\n    df["YR"] = df.index.isocalendar().year.astype(int).to_numpy()\n    df["WN"] = df.index.isocalendar().week.astype(int).to_numpy()\n    return df, spec
+    # Reindex on real ISO-week dates: prevents the 2019-to-2022 gap in NCR 
+    # from being treated as adjacent weeks (and leaking invalid lag relationships).
+    dates = pd.to_datetime([__import__("datetime").date.fromisocalendar(int(y),int(w),1)
+                            for y,w in zip(df["YR"],df["WN"])])
+    df.index = pd.DatetimeIndex(dates)\n    df = df.reindex(pd.date_range(df.index.min(), df.index.max(), freq="W-MON"))\n    df["YR"] = df.index.isocalendar().year.astype(int).to_numpy()\n    df["WN"] = df.index.isocalendar().week.astype(int).to_numpy()
+    return df, spec
 
 def features(df, weather):
     x = pd.DataFrame(index=df.index)
@@ -100,7 +105,8 @@ def train_area(source, area):
     # Refit on the full historical series only after scoring the held-out model.
     model.fit(x.loc[eligible], df.loc[eligible, "cases"])
     OUTPUT.mkdir(parents=True, exist_ok=True)
-    observed = df.loc[df["cases"].notna(), ["YR","WN","cases",*spec["weather"]]]\n    joblib.dump({
+    observed = df.loc[df["cases"].notna(), ["YR","WN","cases",*spec["weather"]]]
+    joblib.dump({
         "model":model, "weather":spec["weather"], "case_column":spec["case"],
         "history":observed.to_dict(orient="records"),
         "feature_names":x.columns.tolist(), "validation":report
