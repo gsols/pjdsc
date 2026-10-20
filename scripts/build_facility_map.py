@@ -72,7 +72,7 @@ def main(source):
         out.append(item)
     if len(out) != 165:
         raise ValueError(f"Expected 165 DOH NCR hospital records, got {len(out)}")
-    OUT.write_text(json.dumps(out,ensure_ascii=False,indent=2)+"\\n",encoding="utf-8")
+    OUT.write_text(json.dumps(out,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
     print(f"Wrote {len(out)} DOH hospital records to {OUT}; {provisional} QC provisional coordinates.")
     print("Provisional coordinates are NOT independently verified. Remaining locations stay null.")
 if __name__ == "__main__":
