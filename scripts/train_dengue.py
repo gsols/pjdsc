@@ -29,6 +29,54 @@ AREAS = {
                 weather=["RF_HDX", "Temp_ERA5-Land", "SH_ERA5-Land"]),
 }
 
+def inspect_workbook(source):
+    book = pd.ExcelFile(source)
+    required_sheets = {v["sheet"] for v in AREAS.values()}
+    missing = required_sheets - set(book.sheet_names)
+    if missing:
+        raise ValueError(f"Missing required sheets: {sorted(missing)}; found: {book.sheet_names}")
+    results = {}
+    for area, spec in AREAS.items():
+        cols = ["YR", "WN", spec["case"], *spec["weather"]]
+        if area == "NCR":
+            cols.append("REGION")
+        df = pd.read_excel(book, sheet_name=spec["sheet"])
+        missing_cols = set(cols) - set(df.columns)
+        if missing_cols:
+            raise ValueError(f"{area} sheet '{spec['sheet']}' missing columns: {sorted(missing_cols)}")
+        if area == "NCR":
+            df = df.loc[df["REGION"].astype(str).str.upper().str.strip() == "NCR"].copy()
+        if df.empty:
+            raise ValueError(f"{area}: no observations found")
+        if df[["YR", "WN"]].isna().any().any():
+            raise ValueError(f"{area}: missing year/week")
+        if df.duplicated(["YR", "WN"]).any():
+            raise ValueError(f"{area}: duplicate year/week records")
+        try:
+            dates = [__import__("datetime").date.fromisocalendar(int(y), int(w), 1)
+                     for y, w in zip(df["YR"], df["WN"])]
+        except (ValueError, TypeError) as exc:
+            raise ValueError(f"{area}: invalid ISO year/week: {exc}") from exc
+        case_values = pd.to_numeric(df[spec["case"]], errors="coerce")
+        if case_values.isna().any() or (case_values < 0).any():
+            raise ValueError(f"{area}: case counts missing, nonnumeric, or negative")
+        report = {
+            "sheet":spec["sheet"], "case_column":spec["case"],
+            "weather_columns":spec["weather"], "source_rows":len(df),
+            "first_week":min(dates).isoformat(), "last_week":max(dates).isoformat(),
+            "weather_missing_values":{
+                col:int(pd.to_numeric(df[col], errors="coerce").isna().sum())
+                for col in spec["weather"]
+            },
+            "flags":{
+                col:{str(k):int(v) for k,v in df[col].value_counts(dropna=False).items()}
+                for col in ["FLAG_DEKADAL_APPROX","FLAG_PLAUSIBILITY"]
+                if col in df.columns
+            },
+        }
+        results[area] = report
+    return results
+
 def load_series(source: Path, area: str):
     spec = AREAS[area]
     df = pd.read_excel(source, sheet_name=spec["sheet"])
@@ -120,7 +168,10 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("workbook", type=Path)
     a=parser.parse_args()
+    checks = inspect_workbook(a.workbook)
+    print('Dataset validation:', json.dumps(checks, indent=2))
     reports=[train_area(a.workbook,area) for area in AREAS]
+    (OUTPUT/"data_quality_report.json").write_text(json.dumps(checks,indent=2)+"\n")
     (OUTPUT/"validation_report.json").write_text(json.dumps(reports,indent=2)+"\n")
     web_output = ROOT / "apps/web/public/data/forecast-validation.json"
     web_output.parent.mkdir(parents=True, exist_ok=True)
