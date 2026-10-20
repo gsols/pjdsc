@@ -1,0 +1,114 @@
+[
+  {
+    "area": "QUEZON_CITY",
+    "evaluation": "direct horizon-specific historical holdout; training target < 2024; test target 2024-2025",
+    "future_weather_used": false,
+    "four_week_forecast_live": false,
+    "metrics": [
+      {
+        "horizon_week": 1,
+        "training_samples": 662,
+        "testing_samples": 104,
+        "forecast_target_start": "2024-01-01",
+        "forecast_target_end": "2025-12-22",
+        "persistence_mae": 33.6,
+        "seasonal_naive_mae": 109.83,
+        "with_weather_mae": 34.99,
+        "cases_only_mae": 34.48,
+        "weather_improved_mae": false
+      },
+      {
+        "horizon_week": 2,
+        "training_samples": 659,
+        "testing_samples": 104,
+        "forecast_target_start": "2024-01-01",
+        "forecast_target_end": "2025-12-22",
+        "persistence_mae": 46.47,
+        "seasonal_naive_mae": 109.83,
+        "with_weather_mae": 45.85,
+        "cases_only_mae": 46.93,
+        "weather_improved_mae": true
+      },
+      {
+        "horizon_week": 3,
+        "training_samples": 658,
+        "testing_samples": 104,
+        "forecast_target_start": "2024-01-01",
+        "forecast_target_end": "2025-12-22",
+        "persistence_mae": 59.27,
+        "seasonal_naive_mae": 109.83,
+        "with_weather_mae": 58.48,
+        "cases_only_mae": 58.56,
+        "weather_improved_mae": true
+      },
+      {
+        "horizon_week": 4,
+        "training_samples": 657,
+        "testing_samples": 104,
+        "forecast_target_start": "2024-01-01",
+        "forecast_target_end": "2025-12-22",
+        "persistence_mae": 69.71,
+        "seasonal_naive_mae": 109.83,
+        "with_weather_mae": 76.66,
+        "cases_only_mae": 74.3,
+        "weather_improved_mae": false
+      }
+    ]
+  },
+  {
+    "area": "NCR",
+    "evaluation": "direct horizon-specific historical holdout; training target < 2024; test target 2024-2025",
+    "future_weather_used": false,
+    "four_week_forecast_live": false,
+    "metrics": [
+      {
+        "horizon_week": 1,
+        "training_samples": 208,
+        "testing_samples": 104,
+        "forecast_target_start": "2024-01-01",
+        "forecast_target_end": "2025-12-22",
+        "persistence_mae": 113.06,
+        "seasonal_naive_mae": 502.42,
+        "with_weather_mae": 134.08,
+        "cases_only_mae": 132.39,
+        "weather_improved_mae": false
+      },
+      {
+        "horizon_week": 2,
+        "training_samples": 206,
+        "testing_samples": 104,
+        "forecast_target_start": "2024-01-01",
+        "forecast_target_end": "2025-12-22",
+        "persistence_mae": 156.49,
+        "seasonal_naive_mae": 502.42,
+        "with_weather_mae": 175.98,
+        "cases_only_mae": 184.12,
+        "weather_improved_mae": true
+      },
+      {
+        "horizon_week": 3,
+        "training_samples": 204,
+        "testing_samples": 104,
+        "forecast_target_start": "2024-01-01",
+        "forecast_target_end": "2025-12-22",
+        "persistence_mae": 220.25,
+        "seasonal_naive_mae": 502.42,
+        "with_weather_mae": 267.5,
+        "cases_only_mae": 282.95,
+        "weather_improved_mae": true
+      },
+      {
+        "horizon_week": 4,
+        "training_samples": 202,
+        "testing_samples": 104,
+        "forecast_target_start": "2024-01-01",
+        "forecast_target_end": "2025-12-22",
+        "persistence_mae": 264.63,
+        "seasonal_naive_mae": 502.42,
+        "with_weather_mae": 314.01,
+        "cases_only_mae": 334.62,
+        "weather_improved_mae": true
+      }
+    ]
+  }
+]
