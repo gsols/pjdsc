@@ -14,7 +14,6 @@ Output: services/engine/models/autoets_backtest.json
 """
 import argparse
 import json
-import warnings
 from pathlib import Path
 
 import numpy as np
@@ -43,17 +42,24 @@ def forecast_autoets(values, seasonality):
     # Test nonseasonal otherwise; do not interpolate missing cases.
     seasonal = seasonality == "auto" and len(values) >= 3 * SEASON_LENGTH
     from statsforecast.models import AutoETS
-    model = AutoETS(
-        season_length=SEASON_LENGTH if seasonal else 1,
-        model="ZZZ" if seasonal else "ZZN",
-    )
-    with warnings.catch_warnings():
-        warnings.simplefilter("ignore", RuntimeWarning)
-        prediction = model.fit(y=values.to_numpy(dtype=np.float64)).predict(h=4)["mean"]
-    prediction = np.maximum(0, np.asarray(prediction, dtype=float))
-    if prediction.shape != (4,) or not np.isfinite(prediction).all():
-        raise ValueError("AutoETS returned an invalid four-week forecast")
-    return prediction, ("seasonal_52" if seasonal else "nonseasonal")
+    def fit_predict(period, model_spec):
+        model = AutoETS(season_length=period, model=model_spec)
+        forecast = model.fit(y=values.to_numpy(dtype=np.float64)).predict(h=4)["mean"]
+        prediction = np.maximum(0, np.asarray(forecast, dtype=float))
+        if prediction.shape != (4,) or not np.isfinite(prediction).all():
+            raise ValueError("AutoETS returned an invalid four-week forecast")
+        return prediction
+
+    if seasonal:
+        try:
+            return fit_predict(SEASON_LENGTH, "ZZZ"), "seasonal_52"
+        except Exception as exc:
+            # A failed optimization must not be silently accepted as a
+            # seasonal forecast. Explicitly disclose the fallback.
+            print(f"Warning: seasonal AutoETS failed ({type(exc).__name__}: {exc}); "
+                  "using nonseasonal fallback", flush=True)
+            return fit_predict(1, "ZZN"), "nonseasonal_fallback"
+    return fit_predict(1, "ZZN"), "nonseasonal"
 
 
 def metrics(rows, method, outbreak_only=False):
