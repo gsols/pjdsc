@@ -36,7 +36,8 @@ def main(source):
         if r.get("Region PSGC", "").strip() != "1300000000" or r.get("Health Facility Type", "").strip().lower() != "hospital":
             continue
         code = r["Health Facility Code"].strip()
-        city = CITY_BY_PSGC.get(r["City/Municipality PSGC"].strip())
+        city_code = r["City/Municipality PSGC"].strip()
+        city = "MANILA" if city_code.startswith("13806") else "PATEROS" if city_code.startswith("13817") else CITY_BY_PSGC.get(city_code)
         if not city:
             raise ValueError("Unknown NCR city PSGC " + r["City/Municipality PSGC"])
         beds = r.get("Bed Capacity","").strip()
