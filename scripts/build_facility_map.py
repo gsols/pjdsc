@@ -41,7 +41,7 @@ def main(source):
         if not city:
             raise ValueError("Unknown NCR city PSGC " + r["City/Municipality PSGC"])
         beds = r.get("Bed Capacity","").strip()
-        capacity = int(float(beds)) if re.fullmatch(r"\\d+(?:\\.0+)?", beds) else None
+        capacity = int(float(beds)) if re.fullmatch(r"\d+(?:\.0+)?", beds) else None
         item = {
             "id":code, "name":r["Facility Name"].strip(), "city":city,
             "latitude":None, "longitude":None, "authorizedBeds":capacity,
