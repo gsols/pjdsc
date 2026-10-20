@@ -8,10 +8,7 @@
     "rows_total": 834,
     "train_rows": 662,
     "test_rows": 104,
-    "holdout_years": [
-      2024,
-      2025
-    ],
+    "holdout_years": [2024, 2025],
     "model_mae": 34.99,
     "seasonal_naive_mae": 109.83,
     "better_than_seasonal_naive": true,
@@ -28,10 +25,7 @@
     "rows_total": 521,
     "train_rows": 208,
     "test_rows": 104,
-    "holdout_years": [
-      2024,
-      2025
-    ],
+    "holdout_years": [2024, 2025],
     "model_mae": 134.08,
     "seasonal_naive_mae": 502.42,
     "better_than_seasonal_naive": true,
