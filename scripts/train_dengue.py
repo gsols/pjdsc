@@ -52,7 +52,8 @@ def load_series(source: Path, area: str):
     # from being treated as adjacent weeks (and leaking invalid lag relationships).
     dates = pd.to_datetime([__import__("datetime").date.fromisocalendar(int(y),int(w),1)
                             for y,w in zip(df["YR"],df["WN"])])
-    df.index = pd.DatetimeIndex(dates)\n    df = df.reindex(pd.date_range(df.index.min(), df.index.max(), freq="W-MON"))\n    df["YR"] = df.index.isocalendar().year.astype(int).to_numpy()\n    df["WN"] = df.index.isocalendar().week.astype(int).to_numpy()
+    df.index = pd.DatetimeIndex(dates)
+    df = df.reindex(pd.date_range(df.index.min(), df.index.max(), freq="W-MON"))\n    df["YR"] = df.index.isocalendar().year.astype(int).to_numpy()\n    df["WN"] = df.index.isocalendar().week.astype(int).to_numpy()
     return df, spec
 
 def features(df, weather):
@@ -118,7 +119,10 @@ def main():
     parser.add_argument("workbook", type=Path)
     a=parser.parse_args()
     reports=[train_area(a.workbook,area) for area in AREAS]
-    (OUTPUT/"validation_report.json").write_text(json.dumps(reports,indent=2)+"\n")\n    web_output = ROOT / "apps/web/public/data/forecast-validation.json"\n    web_output.parent.mkdir(parents=True, exist_ok=True)\n    web_output.write_text(json.dumps(reports,indent=2)+"\n")
+    (OUTPUT/"validation_report.json").write_text(json.dumps(reports,indent=2)+"\n")
+    web_output = ROOT / "apps/web/public/data/forecast-validation.json"
+    web_output.parent.mkdir(parents=True, exist_ok=True)
+    web_output.write_text(json.dumps(reports,indent=2)+"\n")
     for report in reports:
         print(json.dumps(report,indent=2))
     print("Models saved. Compare MAE against seasonal naive before presentation.")
