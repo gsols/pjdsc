@@ -89,7 +89,9 @@ def evaluate_area(workbook, area, stride, seasonality, context_weeks):
     )
     rows = []
     variants = {}
-    for origin in origins:
+    for origin_index, origin in enumerate(origins, start=1):
+        if origin_index == 1 or origin_index % 4 == 0:
+            print(f"  {area}: origin {origin_index}/{len(origins)} ({origin.date()})", flush=True)
         history = continuous_history(data, origin, context_weeks)
         if len(history) < 80 or history.isna().any():
             continue
