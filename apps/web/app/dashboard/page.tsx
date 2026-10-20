@@ -8,7 +8,9 @@ export default function Dashboard(){
  const [facilities,setFacilities]=useState<Facility[]>([]);const [surge,setSurge]=useState(0);const [hospitalization,setHospitalization]=useState(15);
  const [occupancy,setOccupancy]=useState(75);const [stay,setStay]=useState(4);const [week,setWeek]=useState(1);
  const [result,setResult]=useState<ScenarioResult|null>(null);const [error,setError]=useState('');
+ const [validation,setValidation]=useState<Array<{area:string;model_mae:number;seasonal_naive_mae:number;better_than_seasonal_naive:boolean}>>([]);
  useEffect(()=>{fetch('/data/facilities.json').then(r=>r.json()).then(x=>setFacilities(Array.isArray(x)?x:[])).catch(()=>setError('Facility registry could not be loaded.'));},[]);
+ useEffect(()=>{fetch('/data/forecast-validation.json').then(r=>r.ok?r.json():[]).then(x=>setValidation(Array.isArray(x)?x:[])).catch(()=>{});},[]);
  const supportsForecast=area==='NCR'||area==='QUEZON_CITY';
  async function run(){setError('');setResult(null);
   if(!supportsForecast)return;
@@ -25,6 +27,7 @@ export default function Dashboard(){
  </section><aside className="panel"><h1>Scenario Workspace</h1><div className="subtle">Choose location, review availability, configure assumptions</div>
  <div className="field"><label>Selected geography</label><select value={area} onChange={e=>selectArea(e.target.value)}><option value="NCR">National Capital Region</option><option value="QUEZON_CITY">Quezon City</option>{!['NCR','QUEZON_CITY'].includes(area)&&<option value={area}>{area}</option>}</select></div>
  <div className="notice">{supportsForecast?area==='NCR'?'NCR historical weekly series available; model integration pending.':'Quezon City historical weekly series available; model integration pending.':'Dedicated city-level case forecasting is unavailable. NCR facilities remain explorable.'}</div>
+ {validation.filter(v=>v.area===area).map(v=><section className="notice" key={v.area}><strong>Historical forecast validation (2024–2025)</strong><p>One-week-ahead error: {v.model_mae.toFixed(1)} cases/week (seasonal baseline: {v.seasonal_naive_mae.toFixed(1)}). {v.better_than_seasonal_naive?'Outperformed baseline.':'Did not beat baseline.'} Not a live forecast.</p></section>)}
  <h2>Baseline configuration</h2>
  <div className="field"><label>Case surge (stress test only)</label><div className="range-row"><span>Additional cases</span><strong>+{surge}%</strong></div><input aria-label="Case surge" type="range" min="0" max="100" step="10" value={surge} onChange={e=>{setSurge(Number(e.target.value));setResult(null)}}/></div>
  <div className="field"><label>Hospitalization assumption</label><div className="range-row"><span>Reported cases admitted</span><strong>{hospitalization}%</strong></div><input aria-label="Hospitalization rate" type="range" min="5" max="40" step="5" value={hospitalization} onChange={e=>{setHospitalization(Number(e.target.value));setResult(null)}}/></div>
