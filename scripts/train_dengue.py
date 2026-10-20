@@ -73,7 +73,7 @@ def features(df, weather):
 def train_area(source, area):
     df, spec = load_series(source, area)
     x = features(df, spec["weather"])
-    eligible = x.dropna().index
+    eligible = x.dropna().index.intersection(df.index[df["cases"].notna()])
     if len(eligible) < 140:
         raise ValueError(f"{area}: insufficient complete lagged rows ({len(eligible)})")
     # 2024-2025 are strictly out-of-time holdout years; do not shuffle.
