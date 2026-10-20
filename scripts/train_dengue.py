@@ -53,7 +53,9 @@ def load_series(source: Path, area: str):
     dates = pd.to_datetime([__import__("datetime").date.fromisocalendar(int(y),int(w),1)
                             for y,w in zip(df["YR"],df["WN"])])
     df.index = pd.DatetimeIndex(dates)
-    df = df.reindex(pd.date_range(df.index.min(), df.index.max(), freq="W-MON"))\n    df["YR"] = df.index.isocalendar().year.astype(int).to_numpy()\n    df["WN"] = df.index.isocalendar().week.astype(int).to_numpy()
+    df = df.reindex(pd.date_range(df.index.min(), df.index.max(), freq="W-MON"))
+    df["YR"] = df.index.isocalendar().year.astype(int).to_numpy()
+    df["WN"] = df.index.isocalendar().week.astype(int).to_numpy()
     return df, spec
 
 def features(df, weather):
