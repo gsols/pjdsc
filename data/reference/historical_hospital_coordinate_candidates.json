@@ -1,0 +1,1716 @@
+{
+  "source": "https://github.com/ljyflores/facility-location-philippines/blob/master/data/Hospitals.csv",
+  "caution": "Historical candidate coordinates only, not verified current DOH facility locations",
+  "records": [
+    {
+      "name": "ALABANG MEDICAL CENTER",
+      "city": "CITY OF MUNTINLUPA",
+      "barangay": "ALABANG",
+      "street": "ALABANG-ZAPOTE ROAD",
+      "latitude": 14.4278964,
+      "longitude": 121.0246318,
+      "historicalBeds": "50.0",
+      "historicalCode": "403"
+    },
+    {
+      "name": "ASIAN HOSPITAL AND MEDICAL CENTER",
+      "city": "CITY OF MUNTINLUPA",
+      "barangay": "ALABANG",
+      "street": "2205 CIVIC DRIVE, FILINVEST CORPORATE CITY",
+      "latitude": 14.4134655,
+      "longitude": 121.0435335,
+      "historicalBeds": null,
+      "historicalCode": "410"
+    },
+    {
+      "name": "BERMUDEZ POLYCLINIC HOSPITAL, INC",
+      "city": "CALOOCAN CITY",
+      "barangay": "BARANGAY 185",
+      "street": "391 MALARIA ROAD, ZONE 6 DISTRICT 1 TALA",
+      "latitude": 14.7700605,
+      "longitude": 121.0782644,
+      "historicalBeds": "20.0",
+      "historicalCode": "429"
+    },
+    {
+      "name": "BERNARDINO GENERAL HOSPITAL II",
+      "city": "QUEZON CITY",
+      "barangay": "KALIGAYAHAN",
+      "street": "BLOCK 1, LOT 2, NORTH OLYMPUS SUBDIVISION, ZABARTE ROAD",
+      "latitude": 14.7401285,
+      "longitude": 121.0467876,
+      "historicalBeds": "35.0",
+      "historicalCode": "430"
+    },
+    {
+      "name": "CHINESE GENERAL HOSPITAL AND MEDICAL CENTER",
+      "city": "SANTA CRUZ",
+      "barangay": "BARANGAY 372",
+      "street": "286 BLUMENTRITT STREET",
+      "latitude": 14.625592,
+      "longitude": 120.9886131,
+      "historicalBeds": "592.0",
+      "historicalCode": "446"
+    },
+    {
+      "name": "CHRIST THE KING MEDICAL CENTER UNIHEALTH LAS PIÑAS, INC.",
+      "city": "CITY OF LAS PI?AS",
+      "barangay": "PAMPLONA UNO",
+      "street": "130 REAL STREET",
+      "latitude": 14.4589076,
+      "longitude": 120.9700045,
+      "historicalBeds": "20.0",
+      "historicalCode": "447"
+    },
+    {
+      "name": "DE OCAMPO MEMORIAL MEDICAL CENTER",
+      "city": "CITY OF MANILA",
+      "barangay": "",
+      "street": "2921 NAGTAHAN STREET SANTA MESA",
+      "latitude": 14.599814,
+      "longitude": 120.9997413,
+      "historicalBeds": "20.0",
+      "historicalCode": "469"
+    },
+    {
+      "name": "DR. FE DEL MUNDO MEDICAL CENTER",
+      "city": "QUEZON CITY",
+      "barangay": "DOÑA JOSEFA",
+      "street": "11 BANAWE STREET",
+      "latitude": 14.6204717,
+      "longitude": 121.009294,
+      "historicalBeds": "107.0",
+      "historicalCode": "493"
+    },
+    {
+      "name": "DR. JESUS C. DELGADO MEMORIAL HOSPITAL",
+      "city": "QUEZON CITY",
+      "barangay": "KAMUNING",
+      "street": "7 KAMUNING ROAD",
+      "latitude": 14.627742,
+      "longitude": 121.03478,
+      "historicalBeds": "65.0",
+      "historicalCode": "496"
+    },
+    {
+      "name": "DR. JOSE FABELLA MEMORIAL HOSPITAL",
+      "city": "SANTA CRUZ",
+      "barangay": "BARANGAY 311",
+      "street": "LOPE DE VEGA STREET",
+      "latitude": 14.6062156,
+      "longitude": 120.9842759,
+      "historicalBeds": "700.0",
+      "historicalCode": "499"
+    },
+    {
+      "name": "DR. JOSE N. RODRIGUEZ MEMORIAL HOSPITAL",
+      "city": "CALOOCAN CITY",
+      "barangay": "BARANGAY 188",
+      "street": "DR. UYGUANCO STREET",
+      "latitude": 14.7667237,
+      "longitude": 121.0648419,
+      "historicalBeds": "200.0",
+      "historicalCode": "502"
+    },
+    {
+      "name": "DR. MONTANO G. RAMOS  GENERAL HOSPITAL CORPORATION",
+      "city": "QUEZON CITY",
+      "barangay": "RAMON MAGSAYSAY",
+      "street": "46 BUKIDNON STREET",
+      "latitude": 14.6703361,
+      "longitude": 121.0322334,
+      "historicalBeds": "25.0",
+      "historicalCode": "508"
+    },
+    {
+      "name": "DR. SABILI HEALTH SERVICES CORPORATION",
+      "city": "TAGUIG CITY",
+      "barangay": "LOWER BICUTAN",
+      "street": "313 GENERAL SANTOS AVENUE",
+      "latitude": 14.4887255,
+      "longitude": 121.0604299,
+      "historicalBeds": "40.0",
+      "historicalCode": "519"
+    },
+    {
+      "name": "DR. VICTOR R. POTENCIANO MEDICAL CENTER",
+      "city": "CITY OF MANDALUYONG",
+      "barangay": "HIGHWAY HILLS",
+      "street": "163 EDSA",
+      "latitude": 14.57698,
+      "longitude": 121.050013,
+      "historicalBeds": "178.0",
+      "historicalCode": "523"
+    },
+    {
+      "name": "D.T. PROTACIO HOSPITAL",
+      "city": "CITY OF PARA?AQUE",
+      "barangay": "TAMBO",
+      "street": "484 QUIRINO AVENUE",
+      "latitude": 14.5242343,
+      "longitude": 120.9967928,
+      "historicalBeds": "30.0",
+      "historicalCode": "533"
+    },
+    {
+      "name": "EAST AVENUE MEDICAL CENTER",
+      "city": "QUEZON CITY",
+      "barangay": "CENTRAL",
+      "street": "EAST AVENUE, DILIMAN",
+      "latitude": 14.6421672,
+      "longitude": 121.0478702,
+      "historicalBeds": "600.0",
+      "historicalCode": "540"
+    },
+    {
+      "name": "FAIRVIEW GENERAL HOSPITAL, INC.",
+      "city": "QUEZON CITY",
+      "barangay": "FAIRVIEW",
+      "street": "LOT 20 FAIRVIEW AVENUE, CORNER MERCURY STREET",
+      "latitude": 14.7056295,
+      "longitude": 121.0719849,
+      "historicalBeds": "30.0",
+      "historicalCode": "546"
+    },
+    {
+      "name": "GEN. MIGUEL MALVAR MEDICAL RESEARCH FOUNDATION, INC.",
+      "city": "QUEZON CITY",
+      "barangay": "MATANDANG BALARA",
+      "street": "531 COMMONWEALTH AVENUE",
+      "latitude": 14.6673133,
+      "longitude": 121.0727363,
+      "historicalBeds": "46.0",
+      "historicalCode": "550"
+    },
+    {
+      "name": "HOSPITAL OF THE INFANT JESUS",
+      "city": "SAMPALOC",
+      "barangay": "",
+      "street": "1556 LAON - LAAN STREET",
+      "latitude": 14.6141841,
+      "longitude": 120.9891977,
+      "historicalBeds": "140.0",
+      "historicalCode": "572"
+    },
+    {
+      "name": "JESUS IMMACULATE CONCEPCION HOSPITAL",
+      "city": "CITY OF MARIKINA",
+      "barangay": "MARIKINA HEIGHTS (CONCEPCION)",
+      "street": "KATIPUNAN AVE., MARIKINA HEIGHTS. SUBD.",
+      "latitude": 14.6382441,
+      "longitude": 121.1091564,
+      "historicalBeds": "15.0",
+      "historicalCode": "582"
+    },
+    {
+      "name": "JOSE R. REYES MEMORIAL MEDICAL CENTER",
+      "city": "SANTA CRUZ",
+      "barangay": "BARANGAY 311",
+      "street": "SAN LAZARO COMPOUND, RIZAL AVENUE",
+      "latitude": 14.6140183,
+      "longitude": 120.9818106,
+      "historicalBeds": "450.0",
+      "historicalCode": "586"
+    },
+    {
+      "name": "LAS PIÑAS DOCTORS HOSPITAL, INC.",
+      "city": "CITY OF LAS PI?AS",
+      "barangay": "PULANG LUPA DOS",
+      "street": "8009 J.I. AGUILAR AVENUE, CAA ROAD",
+      "latitude": 14.4558998,
+      "longitude": 120.9942669,
+      "historicalBeds": "130.0",
+      "historicalCode": "614"
+    },
+    {
+      "name": "LAS PIÑAS GENERAL HOSPITAL AND SATELLITE TRAUMA CENTER",
+      "city": "CITY OF LAS PI?AS",
+      "barangay": "PULANG LUPA UNO",
+      "street": "BERNABE COMPOUND",
+      "latitude": 14.4716706,
+      "longitude": 120.973806,
+      "historicalBeds": "200.0",
+      "historicalCode": "615"
+    },
+    {
+      "name": "MAKATI MEDICAL CENTER",
+      "city": "CITY OF MAKATI",
+      "barangay": "SAN LORENZO",
+      "street": "2 AMORSOLO STREET, LEGASPI VILLAGE",
+      "latitude": 14.5590246,
+      "longitude": 121.0146013,
+      "historicalBeds": "600.0",
+      "historicalCode": "637"
+    },
+    {
+      "name": "MARIKINA VALLEY MEDICAL CENTER",
+      "city": "CITY OF MARIKINA",
+      "barangay": "SANTO NIÑO",
+      "street": "SUMULONG HIGHWAY, COR. AGUINALDO STREET",
+      "latitude": 14.6347295,
+      "longitude": 121.1039907,
+      "historicalBeds": "110.0",
+      "historicalCode": "648"
+    },
+    {
+      "name": "MARY CHILES GENERAL HOSPITAL, INC.",
+      "city": "SAMPALOC",
+      "barangay": "BARANGAY 404",
+      "street": "667 GASTAMBIDE STREET",
+      "latitude": 14.603269,
+      "longitude": 120.989761,
+      "historicalBeds": "100.0",
+      "historicalCode": "650"
+    },
+    {
+      "name": "MCPC ST THERESE OF LISIEUX DOCTORS HOSPITAL",
+      "city": "CITY OF PASIG",
+      "barangay": "MAYBUNGA",
+      "street": "ARMAL BLDG. C. RAYMUNDO AVENUE",
+      "latitude": 14.5767065,
+      "longitude": 121.0854242,
+      "historicalBeds": "25.0",
+      "historicalCode": "654"
+    },
+    {
+      "name": "MEDICAL CENTER MANILA INC.",
+      "city": "ERMITA",
+      "barangay": "",
+      "street": "850 UNITED NATIONS AVE",
+      "latitude": 14.5824171,
+      "longitude": 120.9841712,
+      "historicalBeds": "250.0",
+      "historicalCode": "655"
+    },
+    {
+      "name": "MEDICAL CENTER PARAÑAQUE, INC.",
+      "city": "CITY OF PARA?AQUE",
+      "barangay": "SAN ANTONIO",
+      "street": "DR. A. SANTOS AVENUE, SUCAT",
+      "latitude": 14.4588293,
+      "longitude": 121.0308482,
+      "historicalBeds": "95.0",
+      "historicalCode": "656"
+    },
+    {
+      "name": "FOUNDATION OF OUR LADY OF PEACE MISSION, INC.-OUR LADY OF PEACE HOSPITAL",
+      "city": "CITY OF PARA?AQUE",
+      "barangay": "SAN DIONISIO",
+      "street": "COSTAL ROAD",
+      "latitude": 14.4933666,
+      "longitude": 120.9874412,
+      "historicalBeds": "90.0",
+      "historicalCode": "690"
+    },
+    {
+      "name": "UHBI-PARAÑAQUE DOCTORS HOSPITAL, INC.",
+      "city": "CITY OF PARA?AQUE",
+      "barangay": "DON BOSCO",
+      "street": "175 DOÑA SOLEDAD AVENUE BETTER LIVING SUBDIVISION",
+      "latitude": 14.485867,
+      "longitude": 121.028415,
+      "historicalBeds": "94.0",
+      "historicalCode": "698"
+    },
+    {
+      "name": "PASAY CITY GENERAL HOSPITAL",
+      "city": "PASAY CITY",
+      "barangay": "BARANGAY  60",
+      "street": "P. BURGOS STREET",
+      "latitude": 14.5492385,
+      "longitude": 121.0008331,
+      "historicalBeds": "150.0",
+      "historicalCode": "699"
+    },
+    {
+      "name": "PASIG CITY GENERAL HOSPITAL",
+      "city": "CITY OF PASIG",
+      "barangay": "MAYBUNGA",
+      "street": "M. EUSEBIO AVENUE",
+      "latitude": 14.5724679,
+      "longitude": 121.0992201,
+      "historicalBeds": "200.0",
+      "historicalCode": "700"
+    },
+    {
+      "name": "PERPETUAL SUCCOR HOSPITAL AND MATERNITY INC.",
+      "city": "SAMPALOC",
+      "barangay": "BARANGAY 457",
+      "street": "836 FLORENTINO CAYCO STREET",
+      "latitude": 14.6082716,
+      "longitude": 120.9923991,
+      "historicalBeds": "65.0",
+      "historicalCode": "711"
+    },
+    {
+      "name": "PHILIPPINE CHILDREN'S MEDICAL CENTER",
+      "city": "QUEZON CITY",
+      "barangay": "BAGONG PAG-ASA",
+      "street": "QUEZON AVENUE CORNER AGHAM ROAD",
+      "latitude": 14.6476963,
+      "longitude": 121.0411248,
+      "historicalBeds": "200.0",
+      "historicalCode": "713"
+    },
+    {
+      "name": "PHILIPPINE HEART CENTER",
+      "city": "QUEZON CITY",
+      "barangay": "CENTRAL",
+      "street": "EAST AVENUE, DILIMAN",
+      "latitude": 14.6440237,
+      "longitude": 121.0481304,
+      "historicalBeds": "454.0",
+      "historicalCode": "714"
+    },
+    {
+      "name": "PHILIPPINE ORTHOPEDIC CENTER",
+      "city": "QUEZON CITY",
+      "barangay": "SANTA TERESITA",
+      "street": "MA. CLARA STREET CORNER BANAWE STREET",
+      "latitude": 14.6280361,
+      "longitude": 121.0033881,
+      "historicalBeds": "700.0",
+      "historicalCode": "715"
+    },
+    {
+      "name": "CALOOCAN CITY MEDICAL CENTER",
+      "city": "CALOOCAN CITY",
+      "barangay": "BARANGAY  15",
+      "street": "450 A.MABINI STREET",
+      "latitude": 14.6483052,
+      "longitude": 120.9734505,
+      "historicalBeds": "82.0",
+      "historicalCode": "719"
+    },
+    {
+      "name": "RIZAL MEDICAL CENTER",
+      "city": "CITY OF PASIG",
+      "barangay": "BAGONG ILOG",
+      "street": "PASIG BOULEVARD",
+      "latitude": 14.5642422,
+      "longitude": 121.0659489,
+      "historicalBeds": "300.0",
+      "historicalCode": "727"
+    },
+    {
+      "name": "ST. CLARE'S MEDICAL CENTER, INC.",
+      "city": "CITY OF MAKATI",
+      "barangay": "PALANAN",
+      "street": "1838 DIAN STREET",
+      "latitude": 14.5629508,
+      "longitude": 121.0012987,
+      "historicalBeds": "75.0",
+      "historicalCode": "758"
+    },
+    {
+      "name": "ST. JUDE GENERAL HOSPITAL AND MEDICAL CENTER",
+      "city": "SAMPALOC",
+      "barangay": "",
+      "street": "DIMASALANG CORNER DON QUIJOTE STREET",
+      "latitude": 14.615786,
+      "longitude": 120.989022,
+      "historicalBeds": "50.0",
+      "historicalCode": "768"
+    },
+    {
+      "name": "ST. VICTORIA HOSPITAL",
+      "city": "CITY OF MARIKINA",
+      "barangay": "MALANDAY",
+      "street": "444 J.P. RIZAL STREET LAMUAN",
+      "latitude": 14.642167,
+      "longitude": 121.094607,
+      "historicalBeds": "55.0",
+      "historicalCode": "774"
+    },
+    {
+      "name": "ST. MARTIN DE PORRES CHARITY HOSPITAL",
+      "city": "CITY OF SAN JUAN",
+      "barangay": "KABAYANAN",
+      "street": "70 A. BONIFACIO STREET",
+      "latitude": 14.5991149,
+      "longitude": 121.0316903,
+      "historicalBeds": "121.0",
+      "historicalCode": "778"
+    },
+    {
+      "name": "TAGUIG-PATEROS DISTRICT HOSPITAL",
+      "city": "TAGUIG CITY",
+      "barangay": "WESTERN BICUTAN",
+      "street": "EAST SERVICE ROAD",
+      "latitude": 14.5108121,
+      "longitude": 121.0341273,
+      "historicalBeds": "110.0",
+      "historicalCode": "788"
+    },
+    {
+      "name": "UNCIANO GENERAL HOSPITAL",
+      "city": "CITY OF MANDALUYONG",
+      "barangay": "MALAMIG",
+      "street": "393 BONI AVENUE",
+      "latitude": 14.573961,
+      "longitude": 121.044197,
+      "historicalBeds": "25.0",
+      "historicalCode": "795"
+    },
+    {
+      "name": "UNITED DOCTORS MEDICAL CENTER",
+      "city": "QUEZON CITY",
+      "barangay": "DON MANUEL",
+      "street": "290 ESPANA CORNER 6TH N. RAMIREZ STREET",
+      "latitude": 14.6170544,
+      "longitude": 121.0019352,
+      "historicalBeds": "100.0",
+      "historicalCode": "797"
+    },
+    {
+      "name": "UNIVERSITY OF PERPETUAL HELP DALTA MEDICAL CENTER, INC.",
+      "city": "CITY OF LAS PI?AS",
+      "barangay": "PAMPLONA UNO",
+      "street": "ALABANG-ZAPOTE RD",
+      "latitude": 14.4480913,
+      "longitude": 120.9858845,
+      "historicalBeds": "215.0",
+      "historicalCode": "798"
+    },
+    {
+      "name": "VALENZUELA MEDICAL CENTER",
+      "city": "CITY OF VALENZUELA",
+      "barangay": "KARUHATAN",
+      "street": "",
+      "latitude": 14.6898788,
+      "longitude": 120.978154,
+      "historicalBeds": "150.0",
+      "historicalCode": "802"
+    },
+    {
+      "name": "WORD OF HOPE GENERAL HOSPITAL FOUNDATION, INC.",
+      "city": "QUEZON CITY",
+      "barangay": "NOVALICHES PROPER",
+      "street": "23 BUENAMAR STREET, BUENAMAR SUBDIVISION",
+      "latitude": 14.719285,
+      "longitude": 121.0390189,
+      "historicalBeds": "30.0",
+      "historicalCode": "806"
+    },
+    {
+      "name": "CARDINAL SANTOS MEDICAL CENTER",
+      "city": "CITY OF SAN JUAN",
+      "barangay": "GREENHILLS",
+      "street": "WILSON STREET",
+      "latitude": 14.5977862,
+      "longitude": 121.0455347,
+      "historicalBeds": "245.0",
+      "historicalCode": "1919"
+    },
+    {
+      "name": "NATIONAL KIDNEY AND TRANSPLANT INSTITUTE",
+      "city": "QUEZON CITY",
+      "barangay": "CENTRAL",
+      "street": "EAST AVENUE, DILIMAN",
+      "latitude": 14.6472814,
+      "longitude": 121.0473344,
+      "historicalBeds": "315.0",
+      "historicalCode": "1981"
+    },
+    {
+      "name": "OLIVAREZ GENERAL HOSPITAL",
+      "city": "CITY OF PARA?AQUE",
+      "barangay": "SAN DIONISIO",
+      "street": "DR. A. SANTOS AVENUE, SUCAT ROAD",
+      "latitude": 14.4790661,
+      "longitude": 120.9972636,
+      "historicalBeds": "50.0",
+      "historicalCode": "2174"
+    },
+    {
+      "name": "RESEARCH INSTITUTE FOR TROPICAL MEDICINE",
+      "city": "CITY OF MUNTINLUPA",
+      "barangay": "ALABANG",
+      "street": "FILINVEST CORPORATE CITY",
+      "latitude": 14.4098693,
+      "longitude": 121.0372225,
+      "historicalBeds": "50.0",
+      "historicalCode": "2232"
+    },
+    {
+      "name": "AIR FORCE GENERAL HOSPITAL",
+      "city": "PASAY CITY",
+      "barangay": "BARANGAY 183",
+      "street": "COL. JESUS VILLAMOR AIR BASE",
+      "latitude": 14.516937,
+      "longitude": 121.019969,
+      "historicalBeds": "100.0",
+      "historicalCode": "2244"
+    },
+    {
+      "name": "MEDICAL CENTER MUNTINLUPA, INC",
+      "city": "CITY OF MUNTINLUPA",
+      "barangay": "PUTATAN",
+      "street": "38 NATIONAL ROAD",
+      "latitude": 14.3983677,
+      "longitude": 121.0363768,
+      "historicalBeds": "95.0",
+      "historicalCode": "2245"
+    },
+    {
+      "name": "SAN JUAN MEDICAL CENTER",
+      "city": "CITY OF SAN JUAN",
+      "barangay": "BALONG-BATO",
+      "street": "N.DOMINGO STREET",
+      "latitude": 14.6065754,
+      "longitude": 121.0236011,
+      "historicalBeds": "150.0",
+      "historicalCode": "2314"
+    },
+    {
+      "name": "FEU- DR. NICANOR REYES MEDICAL FOUNDATION",
+      "city": "QUEZON CITY",
+      "barangay": "FAIRVIEW",
+      "street": "REGALADO AVENUE WEST FAIRVIEW",
+      "latitude": 14.6986356,
+      "longitude": 121.0671184,
+      "historicalBeds": "300.0",
+      "historicalCode": "2407"
+    },
+    {
+      "name": "SALVE REGINA GENERAL HOSPITAL INC.",
+      "city": "CITY OF PASIG",
+      "barangay": "DELA PAZ",
+      "street": "LOT A 2A MARCOS HIGHWAY",
+      "latitude": 14.6199475,
+      "longitude": 121.0963324,
+      "historicalBeds": "50.0",
+      "historicalCode": "2550"
+    },
+    {
+      "name": "FAMILY HEALTHCARE HOSPITAL-THE REINE-MERE MEDICAL FACILITIES, INC.",
+      "city": "CITY OF PASIG",
+      "barangay": "ROSARIO",
+      "street": "2 RUBY STREET, DOÑA JUANA SUBDIVISION.",
+      "latitude": 14.5764261,
+      "longitude": 121.0851562,
+      "historicalBeds": "20.0",
+      "historicalCode": "2561"
+    },
+    {
+      "name": "TRINITY WOMAN AND CHILD CENTER \"THE BIRTHPLACE\"",
+      "city": "SANTA ANA",
+      "barangay": "BARANGAY 888",
+      "street": "2732 NEW PANADEROS STREET",
+      "latitude": 14.584378,
+      "longitude": 121.017462,
+      "historicalBeds": "25.0",
+      "historicalCode": "2852"
+    },
+    {
+      "name": "VILLAROSA HOSPITAL, INC.",
+      "city": "QUEZON CITY",
+      "barangay": "MILAGROSA",
+      "street": "11 SALALILLA STREET PROJ 4",
+      "latitude": 14.6219457,
+      "longitude": 121.0661992,
+      "historicalBeds": "24.0",
+      "historicalCode": "2872"
+    },
+    {
+      "name": "VETERANS MEMORIAL MEDICAL CENTER",
+      "city": "QUEZON CITY",
+      "barangay": "BAGONG PAG-ASA",
+      "street": "NORTH AVENUE, DILIMAN",
+      "latitude": 14.6561184,
+      "longitude": 121.0400556,
+      "historicalBeds": "766.0",
+      "historicalCode": "2911"
+    },
+    {
+      "name": "OSPITAL NG PARAÑAQUE",
+      "city": "CITY OF PARA?AQUE",
+      "barangay": "LA HUERTA",
+      "street": "",
+      "latitude": 14.5004142,
+      "longitude": 120.9911214,
+      "historicalBeds": "50.0",
+      "historicalCode": "2995"
+    },
+    {
+      "name": "UNIVERSITY OF SANTO TOMAS HOSPITAL",
+      "city": "SAMPALOC",
+      "barangay": "",
+      "street": "ESPAÑA BOULEVARD",
+      "latitude": 14.6114265,
+      "longitude": 120.9902019,
+      "historicalBeds": "700.0",
+      "historicalCode": "2997"
+    },
+    {
+      "name": "ALFONSO SPECIALIST HOSPITAL",
+      "city": "CITY OF PASIG",
+      "barangay": "ROSARIO",
+      "street": "185 DR. SIXTO ANTONIO AVENUE",
+      "latitude": 14.5901272,
+      "longitude": 121.084647,
+      "historicalBeds": "22.0",
+      "historicalCode": "3039"
+    },
+    {
+      "name": "PNP GENERAL HOSPITAL",
+      "city": "QUEZON CITY",
+      "barangay": "BAGONG LIPUNAN NG CRAME",
+      "street": "EDSA, CAMP CRAME",
+      "latitude": 14.6156163,
+      "longitude": 121.0519252,
+      "historicalBeds": "176.0",
+      "historicalCode": "3066"
+    },
+    {
+      "name": "DE LOS SANTOS MEDICAL CENTER",
+      "city": "QUEZON CITY",
+      "barangay": "KALUSUGAN",
+      "street": "201 E. RODRIGUEZ SR. BOULEVARD",
+      "latitude": 14.6200907,
+      "longitude": 121.0177773,
+      "historicalBeds": "150.0",
+      "historicalCode": "3191"
+    },
+    {
+      "name": "CRUZ-RABE MATERNITY AND GENERAL HOSPITAL",
+      "city": "TAGUIG CITY",
+      "barangay": "TUKTUKAN",
+      "street": "37 GENERAL LUNA STREET",
+      "latitude": 14.5292634,
+      "longitude": 121.0706663,
+      "historicalBeds": "50.0",
+      "historicalCode": "3264"
+    },
+    {
+      "name": "METROPOLITAN MEDICAL CENTER",
+      "city": "TONDO I / II",
+      "barangay": "",
+      "street": "1357 G. MASANGKAY STREET",
+      "latitude": 14.6096397,
+      "longitude": 120.9784934,
+      "historicalBeds": "300.0",
+      "historicalCode": "3281"
+    },
+    {
+      "name": "PASCUAL GENERAL HOSPITAL",
+      "city": "QUEZON CITY",
+      "barangay": "BAESA",
+      "street": "130 QUIRINO HIGHWAY",
+      "latitude": 14.666991,
+      "longitude": 121.0090838,
+      "historicalBeds": "30.0",
+      "historicalCode": "3302"
+    },
+    {
+      "name": "Q.C. ST. AGNES GENERAL HOSPITAL, INC.",
+      "city": "QUEZON CITY",
+      "barangay": "SAN ANTONIO",
+      "street": "241 ROOSEVELT AVENUE SAN FRANCISCO DEL MONTE",
+      "latitude": 14.647461,
+      "longitude": 121.017415,
+      "historicalBeds": "50.0",
+      "historicalCode": "3416"
+    },
+    {
+      "name": "OSPITAL NG MAYNILA MEDICAL CENTER",
+      "city": "MALATE",
+      "barangay": "",
+      "street": "PRES. QUIRINO AVENUE, CORNER ROXAS BOULEVARD",
+      "latitude": 14.5640798,
+      "longitude": 120.9863884,
+      "historicalBeds": "300.0",
+      "historicalCode": "3498"
+    },
+    {
+      "name": "OSPITAL NG MUNTINLUPA",
+      "city": "CITY OF MUNTINLUPA",
+      "barangay": "ALABANG",
+      "street": "CIVIC DRIVE FILINVEST CORPORATE",
+      "latitude": 14.4142709,
+      "longitude": 121.0441734,
+      "historicalBeds": "149.0",
+      "historicalCode": "3499"
+    },
+    {
+      "name": "OSPITAL NG SAMPALOC",
+      "city": "SAMPALOC",
+      "barangay": "",
+      "street": "677 GERONIMO CORNER CAROLA STREET",
+      "latitude": 14.607878,
+      "longitude": 120.9967203,
+      "historicalBeds": "50.0",
+      "historicalCode": "3500"
+    },
+    {
+      "name": "ST. LUKE'S MEDICAL CENTER",
+      "city": "QUEZON CITY",
+      "barangay": "KALUSUGAN",
+      "street": "279 E. RODRIGUEZ SR. BOULEVARD",
+      "latitude": 14.6225416,
+      "longitude": 121.0232346,
+      "historicalBeds": "633.0",
+      "historicalCode": "3522"
+    },
+    {
+      "name": "MISSION HOSPITAL",
+      "city": "CITY OF PASIG",
+      "barangay": "ROSARIO",
+      "street": "KM. 17 ORTIGAS AVENUE EXTENSION",
+      "latitude": 14.5898229,
+      "longitude": 121.0975159,
+      "historicalBeds": "30.0",
+      "historicalCode": "3626"
+    },
+    {
+      "name": "CALALANG GENERAL HOSPITAL",
+      "city": "CITY OF VALENZUELA",
+      "barangay": "MARULAS",
+      "street": "16R VALENZUELA STREET MC ARTHUR HIGHWAY",
+      "latitude": 14.6727141,
+      "longitude": 120.9824212,
+      "historicalBeds": "50.0",
+      "historicalCode": "3765"
+    },
+    {
+      "name": "AMANG RODRIGUEZ MEMORIAL MEDICAL CENTER",
+      "city": "CITY OF MARIKINA",
+      "barangay": "SANTO NIÑO",
+      "street": "SUMULONG HIGHWAY",
+      "latitude": 14.6358837,
+      "longitude": 121.0982344,
+      "historicalBeds": "150.0",
+      "historicalCode": "3872"
+    },
+    {
+      "name": "AMISOLA MATERNITY AND CHILDRENS HOSPITAL",
+      "city": "TONDO I / II",
+      "barangay": "",
+      "street": "1068 HERMOSA STREET",
+      "latitude": 14.632708,
+      "longitude": 120.978483,
+      "historicalBeds": "25.0",
+      "historicalCode": "3873"
+    },
+    {
+      "name": "SABATER HOSPITAL",
+      "city": "CITY OF PASIG",
+      "barangay": "SAN NICOLAS (POB.)",
+      "street": "20 CARUNCHO AVENUE",
+      "latitude": 14.5600486,
+      "longitude": 121.0829079,
+      "historicalBeds": "20.0",
+      "historicalCode": "3884"
+    },
+    {
+      "name": "MANILA DOCTORS HOSPITAL",
+      "city": "ERMITA",
+      "barangay": "BARANGAY 667",
+      "street": "667 UNITED NATIONS AVENUE",
+      "latitude": 14.5820218,
+      "longitude": 120.9826523,
+      "historicalBeds": "300.0",
+      "historicalCode": "3999"
+    },
+    {
+      "name": "BEATO-CAUILAN HOSPITAL",
+      "city": "CITY OF MUNTINLUPA",
+      "barangay": "TUNASAN",
+      "street": "BLOCK 9 LOT 1 VILLA CAROLINA SUBDIVISION",
+      "latitude": 14.370943,
+      "longitude": 121.049406,
+      "historicalBeds": "10.0",
+      "historicalCode": "4123"
+    },
+    {
+      "name": "QUEZON CITY GENERAL HOSPITAL",
+      "city": "QUEZON CITY",
+      "barangay": "BAHAY TORO",
+      "street": "SEMINARY ROAD, EDSA",
+      "latitude": 14.6611598,
+      "longitude": 121.0182091,
+      "historicalBeds": "250.0",
+      "historicalCode": "4124"
+    },
+    {
+      "name": "DIVINE HEART MEDICAL SERVICE AND DEVELOPMENT COOPERATIVE HOSPITAL",
+      "city": "QUEZON CITY",
+      "barangay": "NAGKAISANG NAYON",
+      "street": "215 GEN. LUIS STREET",
+      "latitude": 14.7219939,
+      "longitude": 121.0358511,
+      "historicalBeds": "32.0",
+      "historicalCode": "4355"
+    },
+    {
+      "name": "QUEENSBERRY HOSPITAL",
+      "city": "QUEZON CITY",
+      "barangay": "NOVALICHES PROPER",
+      "street": "56 RAMIREZ STREET",
+      "latitude": 14.723859,
+      "longitude": 121.0397136,
+      "historicalBeds": "19.0",
+      "historicalCode": "4385"
+    },
+    {
+      "name": "ALABANG MEDICAL CLINIC - LAS PIÑAS BRANCH",
+      "city": "CITY OF LAS PI?AS",
+      "barangay": "TALON UNO",
+      "street": "ALABANG-ZAPOTE RD. COR. MENDOZA ST. PELAYO VILLAGE",
+      "latitude": 14.4428476,
+      "longitude": 120.996961,
+      "historicalBeds": "25.0",
+      "historicalCode": "4395"
+    },
+    {
+      "name": "SOUTH SUPERHIGHWAY MEDICAL CENTER",
+      "city": "CITY OF PARA?AQUE",
+      "barangay": "MARCELO GREEN VILLAGE",
+      "street": "KM. 17, WEST SERVICE ROAD, SOUTH SUPER HIGHWAY",
+      "latitude": 14.4747843,
+      "longitude": 121.0448469,
+      "historicalBeds": "50.0",
+      "historicalCode": "4437"
+    },
+    {
+      "name": "SAN LORENZO HOSPITAL HEALTH MANAGEMENT CO., INC.",
+      "city": "QUEZON CITY",
+      "barangay": "PASONG PUTIK PROPER (PASONG PUTIK)",
+      "street": "QUIRINO HIGHWAY",
+      "latitude": 14.73509,
+      "longitude": 121.033594,
+      "historicalBeds": "22.0",
+      "historicalCode": "4475"
+    },
+    {
+      "name": "ARMY GENERAL HOSPITAL",
+      "city": "TAGUIG CITY",
+      "barangay": "FORT BONIFACIO",
+      "street": "",
+      "latitude": 14.5309752,
+      "longitude": 121.047928,
+      "historicalBeds": "200.0",
+      "historicalCode": "4489"
+    },
+    {
+      "name": "QUEZON INSTITUTE",
+      "city": "QUEZON CITY",
+      "barangay": "SANTOL",
+      "street": "E. RODRIGUEZ SR. BOULEVARD",
+      "latitude": 14.6163599,
+      "longitude": 121.0126208,
+      "historicalBeds": "85.0",
+      "historicalCode": "4499"
+    },
+    {
+      "name": "CAPITOL MEDICAL CENTER, INC.",
+      "city": "QUEZON CITY",
+      "barangay": "PALIGSAHAN",
+      "street": "SCOUT MAGBANUA CORNER PANAY AVENUE",
+      "latitude": 14.6342467,
+      "longitude": 121.0228414,
+      "historicalBeds": "300.0",
+      "historicalCode": "4515"
+    },
+    {
+      "name": "DR. E. ZARATE GENERAL HOSPITAL",
+      "city": "CITY OF LAS PI?AS",
+      "barangay": "TALON SINGKO",
+      "street": "BLOCK 5 LOT 5 CRYSTAL STREET GOLDEN ACRES SUBDIVISION",
+      "latitude": 14.4189237,
+      "longitude": 120.9977796,
+      "historicalBeds": "16.0",
+      "historicalCode": "4579"
+    },
+    {
+      "name": "VICTORIANO LUNA MEDICAL CENTER",
+      "city": "QUEZON CITY",
+      "barangay": "PINYAHAN",
+      "street": "V. LUNA ROAD",
+      "latitude": 14.6356249,
+      "longitude": 121.0526898,
+      "historicalBeds": "1200.0",
+      "historicalCode": "4639"
+    },
+    {
+      "name": "NEW BILIBID PRISON HOSPITAL",
+      "city": "CITY OF MUNTINLUPA",
+      "barangay": "POBLACION",
+      "street": "NBP RESERVATION",
+      "latitude": 14.381331,
+      "longitude": 121.028048,
+      "historicalBeds": "500.0",
+      "historicalCode": "4643"
+    },
+    {
+      "name": "ALABANG MEDICAL CLINIC",
+      "city": "CITY OF MUNTINLUPA",
+      "barangay": "ALABANG",
+      "street": "297 T. MONTILLANO STREET",
+      "latitude": 14.4192193,
+      "longitude": 121.0500472,
+      "historicalBeds": "30.0",
+      "historicalCode": "4702"
+    },
+    {
+      "name": "ACEBEDO GENERAL HOSPITAL",
+      "city": "CALOOCAN CITY",
+      "barangay": "BARANGAY 175",
+      "street": "849 GEN. LUIS STREET, BAGBAGUIN",
+      "latitude": 14.7187229,
+      "longitude": 121.0050807,
+      "historicalBeds": "16.0",
+      "historicalCode": "4706"
+    },
+    {
+      "name": "GAT ANDRES BONIFACIO MEMORIAL MEDICAL CENTER",
+      "city": "TONDO I / II",
+      "barangay": "BARANGAY  12",
+      "street": "#8001 DELPAN STREET",
+      "latitude": 14.6009188,
+      "longitude": 120.9648485,
+      "historicalBeds": "150.0",
+      "historicalCode": "4708"
+    },
+    {
+      "name": "SAN LAZARO HOSPITAL",
+      "city": "SANTA CRUZ",
+      "barangay": "BARANGAY 331",
+      "street": "QUIRICADA STREET",
+      "latitude": 14.613705,
+      "longitude": 120.9809349,
+      "historicalBeds": "500.0",
+      "historicalCode": "4799"
+    },
+    {
+      "name": "STA. RITA DE BACLARAN HOSPITAL",
+      "city": "CITY OF PARA?AQUE",
+      "barangay": "BACLARAN",
+      "street": "97 G. CRUZ STREET",
+      "latitude": 14.5300749,
+      "longitude": 120.9959362,
+      "historicalBeds": "25.0",
+      "historicalCode": "4803"
+    },
+    {
+      "name": "A. ZARATE GENERAL HOSPITAL",
+      "city": "CITY OF LAS PI?AS",
+      "barangay": "PULANG LUPA DOS",
+      "street": "ATLAS COMPOUND NAGA ROAD",
+      "latitude": 14.4685359,
+      "longitude": 120.980585,
+      "historicalBeds": "17.0",
+      "historicalCode": "5026"
+    },
+    {
+      "name": "UP-PHILIPPINE GENERAL HOSPITAL",
+      "city": "ERMITA",
+      "barangay": "",
+      "street": "TAFT AVENUE",
+      "latitude": 14.5774498,
+      "longitude": 120.9857721,
+      "historicalBeds": "1334.0",
+      "historicalCode": "5032"
+    },
+    {
+      "name": "NORTH CALOOCAN DOCTORS HOSPITAL",
+      "city": "CALOOCAN CITY",
+      "barangay": "BARANGAY 184",
+      "street": "LOT 31 BLOCK 10 BANKERS VILLAGE 2 QUIRINO HI-WAY",
+      "latitude": 14.766024,
+      "longitude": 121.0847039,
+      "historicalBeds": "29.0",
+      "historicalCode": "5050"
+    },
+    {
+      "name": "MARTINEZ MEMORIAL HOSPITAL",
+      "city": "CALOOCAN CITY",
+      "barangay": "BARANGAY  32",
+      "street": "198 A. MABINI STREET MAYPAJO",
+      "latitude": 14.6384367,
+      "longitude": 120.9757357,
+      "historicalBeds": "70.0",
+      "historicalCode": "5081"
+    },
+    {
+      "name": "SAN JUAN DE DIOS EDUCATIONAL FOUNDATION INC.",
+      "city": "PASAY CITY",
+      "barangay": "BARANGAY  76",
+      "street": "2772 ROXAS BOULEVARD",
+      "latitude": 14.537906,
+      "longitude": 120.992987,
+      "historicalBeds": "230.0",
+      "historicalCode": "5084"
+    },
+    {
+      "name": "THE MEDICAL CITY",
+      "city": "CITY OF PASIG",
+      "barangay": "UGONG",
+      "street": "ORTIGAS AVENUE",
+      "latitude": 14.5895499,
+      "longitude": 121.0692782,
+      "historicalBeds": "522.0",
+      "historicalCode": "5104"
+    },
+    {
+      "name": "WORLD CITI MEDICAL CENTER",
+      "city": "QUEZON CITY",
+      "barangay": "BAGUMBUHAY",
+      "street": "960 AURORA BOULEVARD",
+      "latitude": 14.6272442,
+      "longitude": 121.0633398,
+      "historicalBeds": "276.0",
+      "historicalCode": "5107"
+    },
+    {
+      "name": "STA. TERESITA GENERAL HOSPITAL",
+      "city": "QUEZON CITY",
+      "barangay": "SANTA TERESITA",
+      "street": "100 D. TUAZON STREET",
+      "latitude": 14.6247575,
+      "longitude": 121.0024413,
+      "historicalBeds": "65.0",
+      "historicalCode": "5126"
+    },
+    {
+      "name": "MARIKINA ST. VINCENT GENERAL HOSPITAL, INC.",
+      "city": "CITY OF MARIKINA",
+      "barangay": "CONCEPCION UNO",
+      "street": "35 BAYAN-BAYANAN AVENUE",
+      "latitude": 14.650892,
+      "longitude": 121.107633,
+      "historicalBeds": "90.0",
+      "historicalCode": "5205"
+    },
+    {
+      "name": "THE FAMILY CLINIC, INC.",
+      "city": "SAMPALOC",
+      "barangay": " ",
+      "street": "1474 MARIA CLARA STREET",
+      "latitude": 14.5929932,
+      "longitude": 120.9722863,
+      "historicalBeds": null,
+      "historicalCode": "5281"
+    },
+    {
+      "name": "MANILA NAVAL HOSPITAL",
+      "city": "TAGUIG CITY",
+      "barangay": "FORT BONIFACIO",
+      "street": "NAVAL STATION, JOSE FRANCISCO",
+      "latitude": 14.5301095,
+      "longitude": 121.0315087,
+      "historicalBeds": "85.0",
+      "historicalCode": "5304"
+    },
+    {
+      "name": "SDS MEDICAL CENTER",
+      "city": "CITY OF MARIKINA",
+      "barangay": "CONCEPCION DOS",
+      "street": "KATIPUNAN COR. PIO DEL PILAR",
+      "latitude": 14.639342,
+      "longitude": 121.110041,
+      "historicalBeds": "22.0",
+      "historicalCode": "5470"
+    },
+    {
+      "name": "OUR LADY OF GRACE HOSPITAL INC.",
+      "city": "CALOOCAN CITY",
+      "barangay": "BARANGAY  61",
+      "street": "8TH AVENUE, CORNER F. ROXAS STREET GRACE PARK",
+      "latitude": 14.64893,
+      "longitude": 120.981379,
+      "historicalBeds": "28.0",
+      "historicalCode": "5484"
+    },
+    {
+      "name": "BERNARDINO GENERAL HOSPITAL I",
+      "city": "QUEZON CITY",
+      "barangay": "SAN BARTOLOME",
+      "street": "680 QUIRINO HIGHWAY",
+      "latitude": 14.7004428,
+      "longitude": 121.0349725,
+      "historicalBeds": "80.0",
+      "historicalCode": "5521"
+    },
+    {
+      "name": "U.E.R.M. MEMORIAL HOSPITAL",
+      "city": "QUEZON CITY",
+      "barangay": "DOÑA IMELDA",
+      "street": "AURORA BOULEVARD, DONA IMELDA",
+      "latitude": 14.6069139,
+      "longitude": 121.0203692,
+      "historicalBeds": "307.0",
+      "historicalCode": "5683"
+    },
+    {
+      "name": "SEAMEN'S HOSPITAL",
+      "city": "INTRAMUROS",
+      "barangay": "BARANGAY 657",
+      "street": "CABILDO STREET CORNER SAN JOSE STREET",
+      "latitude": 14.587556,
+      "longitude": 120.977748,
+      "historicalBeds": "100.0",
+      "historicalCode": "5687"
+    },
+    {
+      "name": "MANDALUYONG CITY MEDICAL CENTER",
+      "city": "CITY OF MANDALUYONG",
+      "barangay": "PLAINVIEW",
+      "street": "605 BONI AVENUE",
+      "latitude": 14.5762966,
+      "longitude": 121.0352591,
+      "historicalBeds": "150.0",
+      "historicalCode": "5688"
+    },
+    {
+      "name": "LAS PIÑAS CITY MEDICAL CENTER",
+      "city": "CITY OF LAS PI?AS",
+      "barangay": "TALON SINGKO",
+      "street": "1314 MARCOS ALVAREZ AVENUE",
+      "latitude": 14.4297941,
+      "longitude": 121.0034361,
+      "historicalBeds": "66.0",
+      "historicalCode": "5710"
+    },
+    {
+      "name": "MCU-FDT MEDICAL FOUNDATION HOSPITAL",
+      "city": "CALOOCAN CITY",
+      "barangay": "BARANGAY  81",
+      "street": "SAMSON ROAD, EDSA",
+      "latitude": 14.6576209,
+      "longitude": 120.9871392,
+      "historicalBeds": "215.0",
+      "historicalCode": "5738"
+    },
+    {
+      "name": "OSPITAL NG MAKATI",
+      "city": "CITY OF MAKATI",
+      "barangay": "PEMBO",
+      "street": "SAMPAGUITA STREET CORNER GUMAMELA STREET",
+      "latitude": 14.5465028,
+      "longitude": 121.0617574,
+      "historicalBeds": "300.0",
+      "historicalCode": "5830"
+    },
+    {
+      "name": "FATIMA UNIVERSITY MEDICAL CENTER, CORP.",
+      "city": "CITY OF VALENZUELA",
+      "barangay": "HEN. T. DE LEON",
+      "street": "120 MC ARTHUR HIGHWAY",
+      "latitude": 14.6780548,
+      "longitude": 120.9802868,
+      "historicalBeds": "150.0",
+      "historicalCode": "6013"
+    },
+    {
+      "name": "LUNG CENTER OF THE PHILIPPINES",
+      "city": "QUEZON CITY",
+      "barangay": "CENTRAL",
+      "street": "QUEZON AVENUE EXTENSION",
+      "latitude": 14.6476142,
+      "longitude": 121.0458408,
+      "historicalBeds": "210.0",
+      "historicalCode": "6028"
+    },
+    {
+      "name": "MARIA LOURDES MATERNITY HOSPITAL INC.",
+      "city": "CITY OF MAKATI",
+      "barangay": "TEJEROS",
+      "street": "1076 CHINO ROCES AVENUE CORNER SOLCHUAGA",
+      "latitude": 14.570425,
+      "longitude": 121.014786,
+      "historicalBeds": "20.0",
+      "historicalCode": "6030"
+    },
+    {
+      "name": "ADVENTIST MEDICAL CENTER, INC.",
+      "city": "PASAY CITY",
+      "barangay": "BARANGAY  35",
+      "street": "1975 DONADA STREET",
+      "latitude": 14.5557606,
+      "longitude": 120.9954585,
+      "historicalBeds": "150.0",
+      "historicalCode": "6034"
+    },
+    {
+      "name": "MARY JOHNSTON HOSPITAL",
+      "city": "TONDO I / II",
+      "barangay": "",
+      "street": "1221 JUAN NOLASCO STREET",
+      "latitude": 14.608999,
+      "longitude": 120.966283,
+      "historicalBeds": "120.0",
+      "historicalCode": "6037"
+    },
+    {
+      "name": "NATIONAL CHILDREN’S HOSPITAL",
+      "city": "QUEZON CITY",
+      "barangay": "DAMAYANG LAGI",
+      "street": "226 E. RODRIGUEZ SR. BOULEVARD",
+      "latitude": 14.6204405,
+      "longitude": 121.0208118,
+      "historicalBeds": "250.0",
+      "historicalCode": "6046"
+    },
+    {
+      "name": "UP HEALTH SERVICES",
+      "city": "QUEZON CITY",
+      "barangay": "U.P. CAMPUS",
+      "street": "J.P. LAUREL AVENUE CORNER APACIBLE & AGONCILLO STREET, UP CAMPUS",
+      "latitude": 14.65984,
+      "longitude": 121.071133,
+      "historicalBeds": "50.0",
+      "historicalCode": "6092"
+    },
+    {
+      "name": "NODADO GENERAL HOSPITAL",
+      "city": "CALOOCAN CITY",
+      "barangay": "BARANGAY 175",
+      "street": "CAPTAIN SAMANO STREET AREA A, CAMARIN",
+      "latitude": 14.763405,
+      "longitude": 121.0441189,
+      "historicalBeds": "40.0",
+      "historicalCode": "6502"
+    },
+    {
+      "name": "TONDO MEDICAL CENTER",
+      "city": "TONDO I / II",
+      "barangay": "BARANGAY 126",
+      "street": "KALAKAL STREET",
+      "latitude": 14.6348574,
+      "longitude": 120.9630594,
+      "historicalBeds": "200.0",
+      "historicalCode": "6596"
+    },
+    {
+      "name": "F.Y. MANALO MEDICAL FOUNDATION INC.- NEW ERA GENERAL HOSPITAL",
+      "city": "QUEZON CITY",
+      "barangay": "NEW ERA (CONSTITUTION HILLS)",
+      "street": "DON MARIANO MARCOS, COMMONWEALTH AVE. COR TANDANG SORA",
+      "latitude": 14.6641226,
+      "longitude": 121.0667406,
+      "historicalBeds": "100.0",
+      "historicalCode": "6711"
+    },
+    {
+      "name": "OSPITAL NG TONDO",
+      "city": "TONDO I / II",
+      "barangay": "BARANGAY 215",
+      "street": "JOSE ABAD SANTOS AVENUE",
+      "latitude": 14.625964,
+      "longitude": 120.978381,
+      "historicalBeds": "50.0",
+      "historicalCode": "6888"
+    },
+    {
+      "name": "SAN LORENZO RUIZ WOMEN'S HOSPITAL",
+      "city": "CITY OF MALABON",
+      "barangay": "SANTOLAN",
+      "street": "ROSITA SUBDIVISION, O. REYES STREET",
+      "latitude": 14.6711066,
+      "longitude": 120.9514631,
+      "historicalBeds": "10.0",
+      "historicalCode": "7064"
+    },
+    {
+      "name": "J.P. SIOSON GENERAL HOSPITAL AND COLLEGES, INC",
+      "city": "QUEZON CITY",
+      "barangay": "RAMON MAGSAYSAY",
+      "street": "75 BUKIDNON STREET, BAGO BANTAY",
+      "latitude": 14.6597663,
+      "longitude": 121.0251816,
+      "historicalBeds": "40.0",
+      "historicalCode": "7081"
+    },
+    {
+      "name": "NATIONAL CENTER FOR MENTAL HEALTH",
+      "city": "CITY OF MANDALUYONG",
+      "barangay": "MAUWAY",
+      "street": "9 DE PEBRERO STREET",
+      "latitude": 14.5810127,
+      "longitude": 121.0429164,
+      "historicalBeds": "4200.0",
+      "historicalCode": "7359"
+    },
+    {
+      "name": "ALABANG MEDICAL CLINIC - MUNTINLUPA BRANCH",
+      "city": "CITY OF MUNTINLUPA",
+      "barangay": "PUTATAN",
+      "street": "NUMBER 1 NATIONAL ROAD",
+      "latitude": 14.3910711,
+      "longitude": 121.0442814,
+      "historicalBeds": "25.0",
+      "historicalCode": "7497"
+    },
+    {
+      "name": "GARCIA GENERAL HOSPITAL",
+      "city": "CITY OF MARIKINA",
+      "barangay": "MARIKINA HEIGHTS (CONCEPCION)",
+      "street": "49 BAYAN-BAYANAN AVENUE, MARIKINA HEIGHTS",
+      "latitude": 14.6488776,
+      "longitude": 121.1134036,
+      "historicalBeds": "24.0",
+      "historicalCode": "7507"
+    },
+    {
+      "name": "NOVALICHES DISTRICT HOSPITAL",
+      "city": "QUEZON CITY",
+      "barangay": "SAN BARTOLOME",
+      "street": "QUIRINO HIGHWAY",
+      "latitude": 14.700472,
+      "longitude": 121.034431,
+      "historicalBeds": "30.0",
+      "historicalCode": "7515"
+    },
+    {
+      "name": "NOVALICHES GENERAL HOSPITAL",
+      "city": "QUEZON CITY",
+      "barangay": "GULOD",
+      "street": "793 QUIRINO HIGHWAY",
+      "latitude": 14.7095039,
+      "longitude": 121.0390092,
+      "historicalBeds": "100.0",
+      "historicalCode": "7516"
+    },
+    {
+      "name": "QUIRINO MEMORIAL MEDICAL CENTER",
+      "city": "QUEZON CITY",
+      "barangay": "MARILAG",
+      "street": "J. P. RIZAL CORNER P. TUAZON STREET, PROJECT 4, KATIPUNAN",
+      "latitude": 14.6222558,
+      "longitude": 121.0728482,
+      "historicalBeds": "460.0",
+      "historicalCode": "7520"
+    },
+    {
+      "name": "HOLYLIFE HOSPITAL",
+      "city": "CITY OF PASIG",
+      "barangay": "ROSARIO",
+      "street": "LOT 2 BLOCK 4 PRES. QUEZON AVE., LIFE HOMES SUBDV.",
+      "latitude": 14.5920282,
+      "longitude": 121.0954436,
+      "historicalBeds": "7.0",
+      "historicalCode": "7986"
+    },
+    {
+      "name": "ST. LUKE'S MEDICAL CENTER-GLOBAL CITY",
+      "city": "TAGUIG CITY",
+      "barangay": "FORT BONIFACIO",
+      "street": "BLOCK 16 LOT 18, CRESCENT PARK, RIZAL DRIVE, CORNER 32ND STREET BONIFACIO GLOBAL CITY",
+      "latitude": 14.554936,
+      "longitude": 121.0482191,
+      "historicalBeds": "528.0",
+      "historicalCode": "7987"
+    },
+    {
+      "name": "OUR LADY OF LOURDES HOSPITAL INC.",
+      "city": "CITY OF MANILA",
+      "barangay": "",
+      "street": "46 P. SANCHEZ STREET, SANTA MESA",
+      "latitude": 14.5949547,
+      "longitude": 121.0225571,
+      "historicalBeds": "230.0",
+      "historicalCode": "12505"
+    },
+    {
+      "name": "ST. ANTHONY MEDICAL CENTER OF MARIKINA, INC.",
+      "city": "CITY OF MARIKINA",
+      "barangay": "SAN ROQUE",
+      "street": "32 SANTA ANA EXTENSION COR. BETELNUT STREET",
+      "latitude": 14.6244715,
+      "longitude": 121.1028413,
+      "historicalBeds": "34.0",
+      "historicalCode": "13518"
+    },
+    {
+      "name": "JUSTICE JOSE ABAD SANTOS GENERAL HOSPITAL",
+      "city": "BINONDO",
+      "barangay": "",
+      "street": "NUMANCIA STREET",
+      "latitude": 14.5975621,
+      "longitude": 120.9719335,
+      "historicalBeds": "150.0",
+      "historicalCode": "22594"
+    },
+    {
+      "name": "STA. ANA HOSPITAL",
+      "city": "SANTA ANA",
+      "barangay": "BARANGAY 886",
+      "street": "NEW PANADEROS STREET",
+      "latitude": 14.5836328,
+      "longitude": 121.0164213,
+      "historicalBeds": "300.0",
+      "historicalCode": "22598"
+    },
+    {
+      "name": "COMMONWEALTH HOSPITAL AND MEDICAL CENTER",
+      "city": "QUEZON CITY",
+      "barangay": "PASONG PUTIK PROPER (PASONG PUTIK)",
+      "street": "LOT 3 AND 4, BLK. 3 NEOPOLITAN BUSINESS PARK, REGALADO HIGHWAY",
+      "latitude": 14.7313248,
+      "longitude": 121.0606761,
+      "historicalBeds": "148.0",
+      "historicalCode": "23752"
+    },
+    {
+      "name": "ST. CHRISTIANA MATERNITY HOSPITAL",
+      "city": "CITY OF PASIG",
+      "barangay": "MANGGAHAN",
+      "street": "3338 MAGSAYSAY AVE., KARANGALAN VILLAGE",
+      "latitude": 14.6039035,
+      "longitude": 121.102859,
+      "historicalBeds": "10.0",
+      "historicalCode": "23753"
+    },
+    {
+      "name": "E. ZARATE HOSPITAL",
+      "city": "CITY OF LAS PI?AS",
+      "barangay": "TALON UNO",
+      "street": "18-19 J. Aguilar Avenue",
+      "latitude": 14.4467042,
+      "longitude": 120.994167,
+      "historicalBeds": "10.0",
+      "historicalCode": "23768"
+    },
+    {
+      "name": "ST. CAMILLUS MEDICAL CENTER",
+      "city": "CITY OF PASIG",
+      "barangay": "SANTOLAN",
+      "street": "116 E. AMANG RODRIGUEZ AVENUE",
+      "latitude": 14.6121254,
+      "longitude": 121.091848,
+      "historicalBeds": "40.0",
+      "historicalCode": "24433"
+    },
+    {
+      "name": "UROLOGY CENTER OF THE PHILIPPINES",
+      "city": "QUEZON CITY",
+      "barangay": "",
+      "street": "NO. 62 MAGINOO STREET, DILIMAN",
+      "latitude": 14.6421261,
+      "longitude": 121.0534868,
+      "historicalBeds": "16.0",
+      "historicalCode": "25834"
+    },
+    {
+      "name": "ALLIED CARE EXPERTS (ACE) MEDICAL CENTER - PATEROS, INC.",
+      "city": "PATEROS",
+      "barangay": "AGUHO",
+      "street": "884 P. HERRERA STREET",
+      "latitude": 14.5440787,
+      "longitude": 121.0652003,
+      "historicalBeds": "58.0",
+      "historicalCode": "37036"
+    },
+    {
+      "name": "VILLON-TANSINSIN HOSPITAL, INC.",
+      "city": "CITY OF MARIKINA",
+      "barangay": "SANTO NIÑO",
+      "street": "3 TOYOTA AVENUE COR. GUERILLA ST.",
+      "latitude": 14.6373258,
+      "longitude": 121.0994369,
+      "historicalBeds": "20.0",
+      "historicalCode": "29734"
+    },
+    {
+      "name": "PASIG CITY CHILDREN'S HOSPITAL CHILD'S HOPE",
+      "city": "CITY OF PASIG",
+      "barangay": "KAPASIGAN",
+      "street": "ALCALDE JOSE CORNER INDUSTRIA",
+      "latitude": 14.5617792,
+      "longitude": 121.0743292,
+      "historicalBeds": "64.0",
+      "historicalCode": "29735"
+    },
+    {
+      "name": "PACIFIC GLOBAL MEDICAL CENTER",
+      "city": "QUEZON CITY",
+      "barangay": "TALIPAPA",
+      "street": "LOT 2B, MINDANAO AVENUE",
+      "latitude": 14.688493,
+      "longitude": 121.029989,
+      "historicalBeds": "100.0",
+      "historicalCode": "29741"
+    },
+    {
+      "name": "METRO NORTH MEDICAL CENTER AND HOSPITAL INC.",
+      "city": "QUEZON CITY",
+      "barangay": "BAHAY TORO",
+      "street": "1001 MINDANAO AVENUE",
+      "latitude": 14.668842,
+      "longitude": 121.033579,
+      "historicalBeds": "80.0",
+      "historicalCode": "30973"
+    },
+    {
+      "name": "UNIHEALTH PARAÑAQUE HOSPITAL AND MEDICAL CENTER, INC.",
+      "city": "CITY OF PARA?AQUE",
+      "barangay": "SAN ANTONIO",
+      "street": "DR. A. SANTOS AVENUE, VALLEY 1",
+      "latitude": 14.464536,
+      "longitude": 121.019618,
+      "historicalBeds": "100.0",
+      "historicalCode": "32017"
+    },
+    {
+      "name": "PROVIDENCE HOSPITAL, INC.",
+      "city": "QUEZON CITY",
+      "barangay": "WEST TRIANGLE",
+      "street": "1515 WEST TRIANGLE, QUEZON AVENUE",
+      "latitude": 14.6410104,
+      "longitude": 121.0317367,
+      "historicalBeds": "75.0",
+      "historicalCode": "32015"
+    },
+    {
+      "name": "ALLIED CARE EXPERTS (ACE) MEDICAL CENTER VALENZUELA, INC.",
+      "city": "CITY OF VALENZUELA",
+      "barangay": "MALANDAY",
+      "street": "548 MA ARTHUR HIGHWAY",
+      "latitude": 14.715363,
+      "longitude": 120.9576404,
+      "historicalBeds": "102.0",
+      "historicalCode": "32019"
+    },
+    {
+      "name": "VALENZUELA CITICARE MEDICAL CENTER TIMOG HILAGA PROVIDENCE GROUP, INC.",
+      "city": "CITY OF VALENZUELA",
+      "barangay": "MALINTA",
+      "street": "KM 14 MACARTHUR HIGHWAY",
+      "latitude": 14.6956543,
+      "longitude": 120.9631945,
+      "historicalBeds": "40.0",
+      "historicalCode": "32020"
+    },
+    {
+      "name": "THE PREMIER MEDICAL CENTER",
+      "city": "CITY OF PARA?AQUE",
+      "barangay": "SAN DIONISIO",
+      "street": "LOT 2, AMVEL BUSINESS PARK, DR. A. SANTOS AVENUE, SUCAT ROAD",
+      "latitude": 14.4883843,
+      "longitude": 120.9927341,
+      "historicalBeds": "50.0",
+      "historicalCode": "32082"
+    },
+    {
+      "name": "TRICITY MEDICAL CENTER, INC.",
+      "city": "CITY OF PASIG",
+      "barangay": "MAYBUNGA",
+      "street": "269 C. RAYMUNDO AVENUE",
+      "latitude": 14.5759284,
+      "longitude": 121.0851341,
+      "historicalBeds": "100.0",
+      "historicalCode": "32083"
+    },
+    {
+      "name": "RLCT MOTHER AND CHILD HOSPITAL",
+      "city": "QUEZON CITY",
+      "barangay": "SANGANDAAN",
+      "street": "16 TANDANG SORA AVENUE",
+      "latitude": 14.6793099,
+      "longitude": 121.020658,
+      "historicalBeds": "20.0",
+      "historicalCode": "32084"
+    },
+    {
+      "name": "NAVOTAS CITY HOSPITAL",
+      "city": "CITY OF NAVOTAS",
+      "barangay": "SAN JOSE (POB.)",
+      "street": "M. NAVAL STREET",
+      "latitude": 14.6602329,
+      "longitude": 120.9460534,
+      "historicalBeds": "50.0",
+      "historicalCode": "33794"
+    },
+    {
+      "name": "MEDICAL CENTER OF TAGUIG CITY, INC.",
+      "city": "TAGUIG CITY",
+      "barangay": "USUSAN",
+      "street": "LEVI MARIANO AVENUE",
+      "latitude": 14.554936,
+      "longitude": 121.0482191,
+      "historicalBeds": "50.0",
+      "historicalCode": "33842"
+    },
+    {
+      "name": "RECUENCO GENERAL HOSPITAL, INC.",
+      "city": "TAGUIG CITY",
+      "barangay": "NORTH SIGNAL VILLAGE",
+      "street": "68 SAMPALOC EXTENSION",
+      "latitude": 14.5133646,
+      "longitude": 121.059499,
+      "historicalBeds": "12.0",
+      "historicalCode": "34334"
+    },
+    {
+      "name": "OSPITAL NG MALABON",
+      "city": "CITY OF MALABON",
+      "barangay": "TAÑONG (POB.)",
+      "street": "F. SEVILLA BOULEVARD",
+      "latitude": 14.6551378,
+      "longitude": 120.9626025,
+      "historicalBeds": "34.0",
+      "historicalCode": "35563"
+    },
+    {
+      "name": "PASIG DOCTORS MEDICAL CENTER, INC.",
+      "city": "CITY OF PASIG",
+      "barangay": "MANGGAHAN",
+      "street": "254 AMANG RODRIGUEZ AVENUE",
+      "latitude": 14.6006858,
+      "longitude": 121.0920941,
+      "historicalBeds": "80.0",
+      "historicalCode": "35564"
+    },
+    {
+      "name": "MARIKINA DOCTORS HOSPITAL AND MEDICAL CENTER, INC.",
+      "city": "CITY OF PASIG",
+      "barangay": "SANTOLAN",
+      "street": "10 EVANGELISTA ROAD",
+      "latitude": 14.6210508,
+      "longitude": 121.0826439,
+      "historicalBeds": "54.0",
+      "historicalCode": "36392"
+    },
+    {
+      "name": "ALLIED CARE EXPERTS (ACE) MEDICAL CENTER - QUEZON CITY, INC.",
+      "city": "QUEZON CITY",
+      "barangay": "BAHAY TORO",
+      "street": "SEMINARY ROAD CORNER FEMA ROAD",
+      "latitude": 14.6603861,
+      "longitude": 121.0172572,
+      "historicalBeds": "100.0",
+      "historicalCode": "37012"
+    },
+    {
+      "name": "DILIMAN DOCTORS HOSPITAL, INC.",
+      "city": "QUEZON CITY",
+      "barangay": "MATANDANG BALARA",
+      "street": "251 COMMONWEALTH AVENUE",
+      "latitude": 14.6684416,
+      "longitude": 121.0760803,
+      "historicalBeds": "80.0",
+      "historicalCode": "37100"
+    },
+    {
+      "name": "ROSARIO MACLANG BAUTISTA GENERAL HOSPITAL",
+      "city": "QUEZON CITY",
+      "barangay": "BATASAN HILLS",
+      "street": "",
+      "latitude": 14.6860196,
+      "longitude": 121.0893914,
+      "historicalBeds": "107.0",
+      "historicalCode": "37966"
+    },
+    {
+      "name": "POPE JOHN PAUL II HOSPITAL AND MEDICAL CENTER INC.",
+      "city": "CITY OF LAS PI?AS",
+      "barangay": "TALON UNO",
+      "street": "545 E ALABANG ZAPOTE ROAD",
+      "latitude": 14.443419,
+      "longitude": 120.995942,
+      "historicalBeds": "100.0",
+      "historicalCode": "38397"
+    }
+  ]
+}
