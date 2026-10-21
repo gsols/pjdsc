@@ -1,0 +1,15 @@
+'use client';
+import { Bar, BarChart, CartesianGrid, Line, LineChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts';
+import type { FacilityResult } from '@/lib/types';
+export interface Validation {
+  area: string; model_mae: number; seasonal_naive_mae: number; better_than_seasonal_naive: boolean;
+  caution?: string; validation_type?: string; holdout_years?: number[];
+}
+export function ValidationChart({ validation }: { validation: Validation }) {
+  const data = [{ name: 'Model', error: validation.model_mae }, { name: 'Seasonal baseline', error: validation.seasonal_naive_mae }];
+  return <figure className="evidence-chart"><figcaption>One-week-ahead mean absolute error <span>Cases / week · lower is better</span></figcaption><div className="chart-frame"><ResponsiveContainer width="100%" height="100%" minWidth={0}><BarChart data={data} layout="vertical" margin={{left:0,right:28,top:12,bottom:5}} accessibilityLayer><CartesianGrid horizontal={false} stroke="var(--border)"/><XAxis type="number" tick={{fontSize:11,fill:'var(--muted)'}}/><YAxis dataKey="name" type="category" width={125} tick={{fontSize:12,fill:'var(--text)'}} tickLine={false} axisLine={false}/><Tooltip cursor={{fill:'var(--cream)'}} contentStyle={{borderRadius:12,border:'1px solid var(--border)',background:'var(--surface)'}}/><Bar dataKey="error" name="Mean absolute error (cases/week)" fill="var(--teal)" radius={[0,5,5,0]} barSize={30} isAnimationActive={false}/></BarChart></ResponsiveContainer></div><div className="chart-values"><span>Model <strong>{validation.model_mae.toFixed(1)}</strong></span><span>Seasonal baseline <strong>{validation.seasonal_naive_mae.toFixed(1)}</strong></span></div></figure>;
+}
+export function FacilityTrend({ rows, week }: { rows: FacilityResult[]; week: number }) {
+  const data = [...rows].sort((a,b)=>a.week-b.week).map(row=>({...row,period:`Week ${row.week}`}));
+  return <figure className="evidence-chart"><figcaption>28-day facility outlook<span>Weekly values only · selected week {week}</span></figcaption>{data.some(row=>row.availablePct !== null) ? <div className="chart-frame"><ResponsiveContainer width="100%" height="100%" minWidth={0}><LineChart data={data} margin={{left:0,right:20,top:15,bottom:5}} accessibilityLayer><CartesianGrid stroke="var(--border)" strokeDasharray="3 3"/><XAxis dataKey="period" tick={{fontSize:11}}/><YAxis unit="%" width={42} tick={{fontSize:11}}/><Tooltip/><Line dataKey="availablePct" name="Simulated spare capacity (%)" stroke="var(--teal)" strokeWidth={2} connectNulls={false} isAnimationActive={false}/></LineChart></ResponsiveContainer></div> : <p className="notice">Spare-capacity values are unavailable for this facility.</p>}<details><summary>View weekly values</summary><table><caption>Simulated facility capacity</caption><thead><tr><th>Week</th><th>Spare capacity</th><th>Capacity gap</th></tr></thead><tbody>{data.map(row=><tr key={row.week} aria-current={row.week===week ? 'true' : undefined}><td>{row.week}</td><td>{row.availablePct===null?'Unavailable':`${row.availablePct.toFixed(1)}%`}</td><td>{row.capacityGap??'Unavailable'}</td></tr>)}</tbody></table></details></figure>;
+}

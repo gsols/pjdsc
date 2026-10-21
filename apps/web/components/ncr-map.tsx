@@ -1,5 +1,5 @@
 'use client';
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import maplibregl, { type Map as MapType } from 'maplibre-gl';
 import 'maplibre-gl/dist/maplibre-gl.css';
 import type { Facility, ScenarioResult } from '@/lib/types';
@@ -10,6 +10,7 @@ type Props = {
   onFacilitySelect: (f: Facility) => void;
   activeWeek: number;
   result: ScenarioResult | null;
+  facilitiesVisible?: boolean;
 };
 const BOUNDARIES = '/api/boundaries';
 function cityName(p: Record<string, unknown>): string {
@@ -37,7 +38,9 @@ export default function NCRMap({
   onFacilitySelect,
   activeWeek,
   result,
+  facilitiesVisible = true,
 }: Props) {
+  const [mapError, setMapError] = useState('');
   const root = useRef<HTMLDivElement>(null),
     mapRef = useRef<MapType | null>(null),
     markers = useRef<maplibregl.Marker[]>([]);
@@ -51,7 +54,7 @@ export default function NCRMap({
     if (!root.current || mapRef.current) return;
     const map = new maplibregl.Map({
       container: root.current,
-      style: 'https://basemaps.cartocdn.com/gl/dark-matter-gl-style/style.json',
+      style: 'https://basemaps.cartocdn.com/gl/positron-gl-style/style.json',
       center: [121.03, 14.64],
       zoom: 10.1,
     });
@@ -74,8 +77,8 @@ export default function NCRMap({
             'fill-color': [
               'case',
               ['==', ['get', 'area_id'], 'QUEZON_CITY'],
-              '#2c9e91',
-              '#566a7a',
+              '#86b6aa',
+              '#9caeaa',
             ],
             'fill-opacity': 0.24,
           },
@@ -84,7 +87,7 @@ export default function NCRMap({
           id: 'ncr-border',
           type: 'line',
           source: 'ncr-boundaries',
-          paint: { 'line-color': '#b8dfe3', 'line-width': 1.25 },
+          paint: { 'line-color': '#527b74', 'line-width': 1.25 },
         });
         map.on('click', 'ncr-fill', (e) => {
           const p = e.features?.[0]?.properties;
@@ -103,10 +106,15 @@ export default function NCRMap({
         );
       } catch (e) {
         console.warn('NCR boundaries unavailable', e);
+        setMapError('City boundaries could not be loaded. You can still select NCR or Quezon City using the geography selector.');
       }
     });
+    map.on('error', () => setMapError('Some map resources could not be loaded. Geography selection and facility registry remain available in the panel.'));
+    const observer = new ResizeObserver(() => { if (root.current?.clientWidth && root.current?.clientHeight) map.resize(); });
+    observer.observe(root.current);
     mapRef.current = map;
     return () => {
+      observer.disconnect();
       markers.current.forEach((m) => m.remove());
       map.remove();
       mapRef.current = null;
@@ -120,14 +128,15 @@ export default function NCRMap({
         map.setPaintProperty('ncr-fill', 'fill-color', [
           'case',
           ['==', ['get', 'area_id'], selectedArea],
-          '#2ac8b0',
+          '#027a76',
           ['==', ['get', 'area_id'], 'QUEZON_CITY'],
-          '#2c9e91',
-          '#566a7a',
+          '#86b6aa',
+          '#9caeaa',
         ]);
     };
     if (map.isStyleLoaded()) update();
     else map.once('load', update);
+    return () => { map.off('load', update); };
   }, [selectedArea]);
   useEffect(() => {
     const map = mapRef.current;
@@ -147,25 +156,28 @@ export default function NCRMap({
       );
       const color =
         f.coordinateStatus === 'PROVISIONAL_HISTORICAL_MATCH'
-          ? '#ffb45d'
+          ? '#9a734f'
           : res?.capacityGap && res.capacityGap > 0
-            ? '#ef6666'
+            ? '#ba1827'
             : res?.availablePct !== null &&
                 res?.availablePct !== undefined &&
                 res.availablePct <= 20
-              ? '#f6ad55'
-              : '#51d0bb';
+              ? '#f4a24c'
+              : '#027a76';
       const el = document.createElement('button');
       el.type = 'button';
-      el.title = f.name;
-      el.setAttribute('aria-label', f.name);
+      const status = f.coordinateStatus === 'PROVISIONAL_HISTORICAL_MATCH' ? 'Provisional historical location' : res?.capacityGap && res.capacityGap > 0 ? 'Simulated capacity gap' : res?.availablePct != null && res.availablePct <= 20 ? 'Limited simulated spare capacity' : 'Facility location';
+      el.title = `${f.name} · ${status}`;
+      el.setAttribute('aria-label', `${f.name} · ${status}`);
+      el.className = 'facility-marker';
       Object.assign(el.style, {
-        width: '15px',
-        height: '15px',
-        borderRadius: '50%',
+        width: '22px',
+        height: '22px',
+        borderRadius: f.coordinateStatus === 'PROVISIONAL_HISTORICAL_MATCH' ? '5px' : '50%',
         background: color,
         border: '2px solid #ffffff',
-        boxShadow: '0 2px 10px #111b29',
+        boxShadow: '0 2px 6px #203b3a30',
+        display: facilitiesVisible ? '' : 'none',
       });
       el.addEventListener('click', (e) => {
         e.stopPropagation();
@@ -177,12 +189,15 @@ export default function NCRMap({
           .addTo(map)
       );
     }
-  }, [facilities, result, activeWeek]);
+  }, [facilities, result, activeWeek, facilitiesVisible]);
   return (
+    <>
     <div
       ref={root}
       className="map"
       aria-label="Map of National Capital Region"
     />
+    {mapError && <div className="map-error" role="status">{mapError}</div>}
+    </>
   );
 }
