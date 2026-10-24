@@ -5,6 +5,7 @@ import { Activity, ArrowLeft, Download, Pause, Play, RotateCcw } from 'lucide-re
 import type { MovieContext, QCControls, QCWorkspaceResult } from '@/lib/outbreak-types';
 import { formatScenarioDate, nextPlaybackDay, validateDateWindow } from '@/lib/playback';
 import { addDateDays, CASE_BANDS } from '@/lib/case-bands';
+import QCWorkspaceSidebar from '@/components/qc-workspace-sidebar';
 
 const OutbreakMap = dynamic(() => import('@/components/outbreak-map'), { ssr: false });
 const PhilippinesOverview = dynamic(() => import('@/components/philippines-overview'), { ssr: false });
@@ -123,6 +124,7 @@ export default function QCSimulationWorkspace() {
     <div className="qc-scope-note"><Activity size={16} /><span>{tab === 'future' ? 'Future seasonal surge planning: new seasonal curves and historical weather analogs; current 2026/2027 surveillance and real hospital census are unavailable.' : 'Historical replay: source-based case/environment forecasts for retrospective periods.'} <strong>No place selection is required.</strong> QC calculations; Philippines geography is context only.</span></div>
     {error && <div className="qc-error" role="alert">{error}<button onClick={() => calculate()}>Reload data-based forecast</button></div>}
     <div className="qc-layout">
+      <QCWorkspaceSidebar side="left" label="Forecast controls">
       <aside className="qc-controls">
         <div className="qc-workspace-tabs" role="tablist" aria-label="Simulation workspace">
           {(['historical', 'future'] as const).map(value => <button key={value} id={`qc-tab-${value}`} role="tab"
@@ -184,6 +186,7 @@ export default function QCSimulationWorkspace() {
         </section>
         </div>
       </aside>
+      </QCWorkspaceSidebar>
       <section className="qc-main">
         <div className="qc-period-summary"><div><span>QC expected cases · full selected range</span><strong>{format(fullPeriod?.expectedCases)}</strong></div>
           <div><span>Experimental empirical case range · 80% target</span><strong>{range(fullPeriod?.caseRange)}</strong><small>Conditional on historical spatial weights</small></div>
@@ -239,6 +242,7 @@ export default function QCSimulationWorkspace() {
           </tbody></table></div>
         </section>
       </section>
+      <QCWorkspaceSidebar side="right" label="Hospital capacity">
       <aside className="qc-hospital-sidebar"><div className="qc-section-heading">02 / Nearest hospital capacity</div>
         <h2>{area?.name ?? 'Leading QC hotspot'}</h2><p>Automatically focused on the highest modeled window burden. Map/table clicks are optional inspection.</p>
         <div className="qc-area-estimate"><strong>{format(selectedPeriod?.cumulativeCases)} expected cases</strong><span>Window range: {range(selectedPeriod?.caseRange)}</span></div>
@@ -261,6 +265,7 @@ export default function QCSimulationWorkspace() {
             <small>Capacities and occupancy are scenario assumptions, not current vacancies.</small><div className="qc-hospital-links"><a href={h.primarySourceUrl} target="_blank" rel="noreferrer">Bed source</a><a href={h.coordinateSourceUrl} target="_blank" rel="noreferrer">Coordinate evidence</a></div>
           </section>; })}
       </aside>
+      </QCWorkspaceSidebar>
     </div>
     {data?.allocationComparison && <section className="qc-comparison"><h2>Resource allocation comparison</h2><p>{data.allocationComparison.caveat}</p><table><thead><tr><th>Same-input policy</th><th>Unresolved demand</th><th>Holding census</th><th>Peak normal occupancy</th><th>Expected patient-km</th></tr></thead><tbody>{(['nearest', 'optimized'] as const).map(policy => { const m = data.allocationComparison![policy]; return <tr key={policy}><td>{policy}</td><td>{format(m.cumulativeUnresolved)}</td><td>{format(m.holdingCensus)}</td><td>{format(m.maxNormalOccupancyPct)}%</td><td>{format(m.expectedPatientKm)}</td></tr>; })}</tbody></table></section>}
     <section className="qc-provenance"><details><summary>Forecast ranges, date assumptions and reproducibility</summary>

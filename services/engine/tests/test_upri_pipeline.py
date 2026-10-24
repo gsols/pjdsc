@@ -1,5 +1,6 @@
 """Synthetic mutation tests plus checks against the hash-pinned source artifacts."""
 import copy
+import hashlib
 import json
 from unittest.mock import patch
 
@@ -10,8 +11,8 @@ from fastapi.testclient import TestClient
 
 from scripts.train_dengue import features, require_resolved_iso_calendar
 from services.engine.main import app
-from services.engine.upri_data import load_annual, load_weekly, validate_weekly, verify_sources
-from services.engine.repositories.forecast_runs import artifact, load_runs
+from services.engine.upri_data import ROOT, load_annual, load_weekly, validate_weekly, verify_sources, sha256
+from services.engine.repositories.forecast_runs import FOLDER, artifact, load_runs
 from services.engine.domain.spatial import allocate, annual_weights
 from services.engine.domain.patient_flow import simulate_flow
 
@@ -25,6 +26,35 @@ def test_raw_hashes_completeness_and_null_preservation():
     assert qc["Pressure_ERA5-Land"].isna().sum() == 13
     assert qc.FLAG_COVID.sum() == 104
     assert load_annual().DC_2014.isna().sum() == 12
+
+
+def test_manifest_outputs_preserve_exact_file_bytes():
+    manifest = json.loads((FOLDER / "manifest.json").read_text())
+    expected = dict(manifest["outputs"])
+    for name, output in [
+        ("qc-environmental-manifest.json", "data/processed/upri_noah/qc-environmental-forecasts.json"),
+        ("philippines-context-manifest.json", "apps/web/public/data/philippines-context.geojson"),
+    ]:
+        expected[output] = json.loads((FOLDER / name).read_text())["outputSha256"]
+    for path, checksum in expected.items():
+        assert sha256(ROOT / path) == checksum, f"Exact artifact bytes changed: {path}"
+
+
+@pytest.mark.parametrize("mutation", [b"count\n12\n", b"count\r\n13\r\n"])
+def test_source_verification_rejects_newline_and_value_mutations(tmp_path, mutation):
+    # Synthetic fixture: both newline conversion and changed values must fail.
+    source = tmp_path / "fixture.csv"
+    original = b"count\r\n12\r\n"
+    source.write_bytes(original)
+    manifest = {"sources": [{"path": "fixture.csv", "sourceCommitId": "fixture-commit",
+        "sha256": hashlib.sha256(original).hexdigest()}]}
+    reference = tmp_path / "data/reference/upri_noah"
+    reference.mkdir(parents=True)
+    (reference / "sources.json").write_text(json.dumps(manifest), encoding="utf-8")
+    assert verify_sources(tmp_path) == manifest
+    source.write_bytes(mutation)
+    with pytest.raises(ValueError, match="UPRI source version/hash mismatch"):
+        verify_sources(tmp_path)
 
 
 def test_legacy_iso_experiments_refuse_ambiguous_calendar():

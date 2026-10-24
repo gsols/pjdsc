@@ -16,6 +16,49 @@ Request: continue implementation and preserve progress when changing models.
 `docs/SESSION_HANDOFF.md` records implementation state, source boundaries,
 reproduction, verification and outstanding work. Root instructions require reading
 and updating the handoff. It is a checkpoint to verify, not a substitute for files.
+## 2026-10-24 22:01:36 +08:00 — map-first hackathon dashboard
+
+User request: make `/dashboard` mainly map, float the existing right panel over
+it with dragging/collapse controls, and emphasize the simulation entry point for
+the PJDSC 2026 hackathon. The map now fills the workspace; the existing panel
+starts open at the upper right, can be moved within map bounds and collapsed,
+and reopens when a different hospital is selected. A prominent lower-left
+launch card links to the existing QC simulation with historical/assumption
+labels. Keyboard movement is supported. No calculation or API changes.
+User explicitly deferred tests/builds for this iteration. See
+`architecture-and-contracts.md`, Dashboard presentation.
+
+## 2026-10-24 21:52:14 +08:00 — recover cross-platform audited data bytes
+
+User requested help with the audited historical-input 503 after local engine
+setup. Eleven files had LF line endings while existing manifests pinned CRLF.
+Restore only the newline representation that exactly matches each recorded
+SHA-256, preserving source content and strict runtime verification. Add Git
+attributes to prevent future conversion. No model or simulation logic changes.
+See `upri-verification.md`, Cross-platform newline recovery.
+
+## 2026-10-24 21:40:17 +08:00 — mirrored sidebar toggle placement
+
+User request: move the right sidebar collapse control to its left edge, mirroring
+the left sidebar. Both controls now sit beside the map; the right heading leaves
+space for its button. See `qc-simulation-workspace.md`, Geography and UI arrangement.
+
+## 2026-10-24 21:32:43 +08:00 — resizable and collapsible sidebars
+
+User request: make both workspace sidebars resizable by dragging their inner
+edges and individually collapsible to free map space. Both remain open at their
+existing widths on first display. Desktop resize handles support arrow keys and
+double-click reset; expanding restores the chosen width for the current page.
+Smaller-screen layouts and simulation behavior remain unchanged. See
+`qc-simulation-workspace.md`, Geography and UI arrangement.
+
+## 2026-10-24 21:28:17 +08:00 — independent workspace scrolling
+
+User request: allow the left, center and right sections of `/outbreak-response`
+to scroll independently, without changing simulation logic or functionality.
+Desktop columns now scroll within a viewport-height workspace and contain scroll
+chaining. Smaller screens retain their existing stacked/page scrolling layout.
+See `qc-simulation-workspace.md`, Geography and UI arrangement.
 
 ## 2026-10-24 20:14:55 +08:00 — automatic QC forecast UI and hospital sidebar
 

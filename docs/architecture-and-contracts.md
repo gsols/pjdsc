@@ -20,6 +20,14 @@ The existing README and `docs/data-sources.md` describe an older empty scaffold;
 
 ## End-to-end pipeline
 
+### Dashboard presentation
+
+`/dashboard` uses a full-width map with a draggable, collapsible explorer overlay
+for the existing geography, hospital inventory and source controls. The map's
+simulation launch card links to `/outbreak-response`; it does not run the guarded
+legacy simulation endpoint or transfer NCR demand to the QC simulation. The
+launch copy explicitly labels historical forecasts and assumed capacity.
+
 1. `scripts/` ingests immutable, dated originals, applies QA and records a provenance manifest.
 2. `services/engine/domain/forecast...` or equivalent loads **historical** QC/NCR sources, trains/evaluates at strict issue dates, saves run artifacts and scorecards.
 3. `services/engine/domain/spatial...` allocates the QC-specific forecast to QC barangays using **cutoff-safe annual weights**. If not available, QC city-only simulation may run without claiming locations of individual hotspots.
