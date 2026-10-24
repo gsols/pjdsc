@@ -1,5 +1,11 @@
 # Automatic QC forecasting and capacity workspace
 
+Extension 2026-10-24 21:19:03 +08:00: the sidebar now has Historical replay and
+Future surge forecast tabs, arbitrary 1–28-day horizons, future-season controls
+and case-to-bed demand projections. Historical methods below remain applicable
+to replay. See [future seasonal methods](future-seasonal-simulation.md) for the
+separate future model, evaluation and capacity limitations.
+
 User revision recorded **2026-10-24 20:14:55 +08:00**; both uncertainty ranges
 and numeric input limits were explicitly confirmed. See `change-request-log.md`.
 

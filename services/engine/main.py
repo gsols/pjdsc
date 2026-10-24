@@ -9,11 +9,13 @@ from services.engine.api.research import router as research_router
 from services.engine.api.limits import BodySizeLimit
 from services.engine.api.outbreak import router as outbreak_router
 from services.engine.api.qc_simulation import router as qc_simulation_router
+from services.engine.api.future_simulation import router as future_simulation_router
 
 app = FastAPI(title="PJDSC Dengue Forecast and Simulation API", version="0.1.0")
 app.include_router(research_router)
 app.include_router(outbreak_router)
 app.include_router(qc_simulation_router)
+app.include_router(future_simulation_router)
 app.add_middleware(BodySizeLimit)
 
 class SimulationInput(BaseModel):

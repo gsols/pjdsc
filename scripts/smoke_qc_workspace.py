@@ -25,6 +25,7 @@ def main():
         assert status == 200, (page, status)
         if page in {"/outbreak-response", "/simulate"}:
             assert "Quezon City forecast" in html and "Observed cases already" in html and "Nearest hospital capacity" in html
+            assert "Historical replay" in html and "Future surge forecast" in html
             assert "Expansion origin" not in html
     status, country = request("/data/philippines-context.geojson")
     assert status == 200 and len(country["features"]) == 17
@@ -46,7 +47,26 @@ def main():
     assert status == 200 and {"nearest", "optimized"}.issubset(comparison["allocationComparison"]), comparison
     status, _ = request("/api/research/qc-simulation", {**controls, "area": "NCR"})
     assert status == 422
-    print("PASS: root/dashboard/simulation, Philippines context, weather-derived QC forecasts, all 142 conditional ranges, all 46 capacities, observed source counts, 7/14/28-day windows, optimizer comparison, QC-only scope.")
+    status, future = request("/api/research/future-simulation")
+    assert status == 200, future
+    assert future["workspaceTab"] == "future" and future["futureForecast"]["trainingCutoffBlock"]["YR"] == 2025
+    assert future["bedProjection"]["staffedBedsRequired"] >= 0
+    baseline_january = None
+    for days in [2, 12, 14, 28]:
+        status, window = request("/api/research/future-simulation", {"startDate": "2027-01-01", "horizonDays": days, "surgeEnabled": False})
+        assert status == 200 and len(window["days"]) == days + 1, window
+        assert window["days"][-1]["bedForecast"]["staffedBedsRequired"] >= 0
+        assert all(abs(d["balanceError"]) < 1e-7 for d in window["days"])
+        if days == 28:
+            baseline_january = window["periodSummary"]["expectedCases"]
+    status, today = request("/api/research/future-simulation", {"surgeEnabled": False})
+    assert status == 200, today
+    assert baseline_january != today["periodSummary"]["expectedCases"]
+    assert future["periodSummary"]["expectedCases"] > today["periodSummary"]["expectedCases"]
+    for patch in [{"horizonDays": 29}, {"area": "NCR"}, {"facilities": []}]:
+        status, _ = request("/api/research/future-simulation", patch)
+        assert status == 422
+    print("PASS: pages/two tabs, Philippines context, historical QC/ranges/46 hospitals, 7/14/28-day replay, allocation comparison, future 2/12/14/28-day windows, January 2027 seasonal difference, surge, bed demand, conservation and invalid-input/QC-scope rejection.")
 
 
 if __name__ == "__main__":

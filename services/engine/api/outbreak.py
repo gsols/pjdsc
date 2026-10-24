@@ -13,7 +13,7 @@ from fastapi import APIRouter, HTTPException
 from pydantic import Field, model_validator
 
 from .research import StrictModel, FacilityAssumption, forecast, annual_data, unavailable
-from ..domain import outbreak, patient_flow, spatial, optimizer
+from ..domain import outbreak, patient_flow, spatial, optimizer, bed_forecast
 from ..domain.outbreak import make_context, build_movie, VERSION
 from ..repositories.facility import load_facilities, DATASET_ID, HOSPITAL_SHA256
 from ..repositories.forecast_runs import FOLDER, load_runs, load_environmental_runs
@@ -50,6 +50,9 @@ class OutbreakInput(StrictModel):
     scenarioKind: Literal["hypothetical_shock", "historical_replay"]
     autoHotspots: bool = False
     allocationPolicy: Literal["nearest", "optimized"] = "nearest"
+    surgeEnabled: bool = False
+    surgeOnsetDay: int = Field(default=0, strict=True, ge=0, le=27)
+    surgeMultiplier: float = Field(default=1, ge=1, le=10)
     acknowledgeHypotheticalHospitalNetwork: Literal[True]
     acknowledgeHypotheticalDates: Literal[True]
     startDate: date
@@ -75,6 +78,8 @@ class OutbreakInput(StrictModel):
             raise ValueError("Scenario onset must be between 2012 and 2035; future dates remain hypothetical.")
         if self.scenarioKind == "historical_replay" and self.extraCasesPerWeek != 0:
             raise ValueError("Historical reference mode cannot contain a hypothetical added shock.")
+        if self.surgeEnabled and self.surgeOnsetDay >= (self.endDate - self.startDate).days:
+            raise ValueError("Surge onset must be within the selected future window.")
         return self
 
 
@@ -110,6 +115,8 @@ def context(ident: str):
 def create_movie(params: OutbreakInput):
     try:
         run, geo, manifest = inputs(params.forecastRunId, params.startDate.year)
+        if params.surgeEnabled and not run.get("dailyPredictions"):
+            raise HTTPException(422, detail={"code": "SEASONAL_FORECAST_REQUIRED", "message": "Multiplicative future surges require the seasonal future engine."})
         approved = {h["id"] for h in geo["hospitals"]}
         ids = [f.facilityId for f in params.facilities]
         if len(set(ids)) != len(ids) or not set(ids).issubset(approved):
@@ -122,8 +129,9 @@ def create_movie(params: OutbreakInput):
             "softwareVersions": {"python": platform.python_version(), "shapely": shapely.__version__, "pyproj": pyproj.__version__, "scipy": scipy.__version__},
             "facilitySourceSha256": HOSPITAL_SHA256, "forecastArtifactSha256": sha256(FOLDER / "forecast-runs.json"),
             "environmentalForecastSha256": sha256(FOLDER / "qc-environmental-forecasts.json") if run["model"] == "cases_weather" else None,
+            "seasonalModelSha256": run.get("seasonalModelSha256"), "forecastRunSha256": run.get("runSha256"),
             "referenceSourceSha256": run["sourceSha256"], "sourceHashes": manifest["outputs"],
-            "codeHashes": {name: sha256(module.__file__) for name, module in [("outbreak", outbreak), ("patient_flow", patient_flow), ("spatial", spatial), ("optimizer", optimizer)]}}
+            "codeHashes": {name: sha256(module.__file__) for name, module in [("outbreak", outbreak), ("patient_flow", patient_flow), ("spatial", spatial), ("optimizer", optimizer), ("bed_forecast", bed_forecast)]}}
         ident = hashlib.sha256(json.dumps(identity, sort_keys=True).encode()).hexdigest()
         folder = FOLDER / "scenarios/movies"
         target = folder / (ident + ".json")
@@ -170,6 +178,10 @@ def saved_movie(ident: str):
             raise ValueError("Forecast version changed")
         if result.get("environmentalForecastSha256") and result["environmentalForecastSha256"] != sha256(FOLDER / "qc-environmental-forecasts.json"):
             raise ValueError("Environmental forecast version changed")
+        if result.get("seasonalModelSha256"):
+            from ..repositories.seasonal_runs import approved_model, load_seasonal_run
+            if approved_model()[1]["modelSha256"] != result["seasonalModelSha256"] or load_seasonal_run(result["parameters"]["forecastRunId"])["runSha256"] != result["forecastRunSha256"]:
+                raise ValueError("Seasonal model/forecast version changed")
         # Revalidate all canonical inputs, including polygon and annual table hashes.
         _, _, manifest = inputs(result["parameters"]["forecastRunId"], date.fromisoformat(result["parameters"]["startDate"]).year)
         if result["sourceHashes"] != manifest["outputs"] or result["scenarioId"] != ident:

@@ -23,6 +23,13 @@ Existing `/dashboard` stays the landing entry; add navigational affordances with
 
 ## Functional UI contract
 
+User extension 2026-10-24 21:19:03 +08:00: preserve the left-sidebar Historical
+replay/Future surge forecast tabs, independent controls, arbitrary 1–28-day
+windows, future month/weather/surge controls and daily/peak hospital bed-demand
+projections. No mandatory location selection. Future outputs are conditional
+seasonal planning; actual census/vacancies remain unknown. See
+`docs/future-seasonal-simulation.md` and the repository session handoff.
+
 **User revision — 2026-10-24 20:14:55 +08:00:** default to automatic QC-only
 case/environment-based forecasts; remove mandatory place selection. Show both
 case-count ranges and numeric input limits, retain Philippines geographic

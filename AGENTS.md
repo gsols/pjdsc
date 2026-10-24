@@ -2,6 +2,12 @@
 
 **ACTIVE QC HOSPITAL DATASET OVERRIDE (2026-10-24):** Follow `docs/hospital-dataset-source-of-truth.md`. The primary QC hospital/infirmary inventory is now `apps/web/public/data/qc-philhealth-hospitals.json` (**46 PhilHealth QC records, 9,389 accredited beds, 46 provisional point coordinates**) and its processed CSV/manifest. `apps/web/public/data/facilities.json` (legacy DOH/NHFR, 165 NCR / 41 QC) is **NOT** the active QC hospital map, admission, simulator, or optimizer data source; retain it only for crosswalk/audit. Do not sum sources or silently fall back. All 46 active hospital points are present, but **zero hospital entrance positions are independently verified**. The 70 supplementary maternity/public lying-in sites are separate and only 3 are geocoded. Switch the existing frontend fetch and backend approved-record source accordingly. Read `prompts/MIGRATE_QC_HOSPITALS_TO_PHILHEALTH.md` and implement that migration **before** simulation.
 
+## Session continuity
+
+Read `docs/SESSION_HANDOFF.md` before continuing simulation work in a new model or
+conversation. Verify its checkpoint against the actual working tree and update it
+after substantive progress. Preserve existing edits and raw-source immutability.
+
 ## Mission and non-negotiable scientific claim boundary
 
 User extension recorded 2026-10-24 19:15:49 +08:00: maintain timestamped additional
@@ -13,6 +19,15 @@ Build on the **existing** map-first public-health research prototype. Connect hi
 Never invent observations, hospital coordinates, clinical capability, vacancy, operating hours, observed admissions, model performance, or optimization benefits. A configured assumption or synthetic stress test must always be labeled as such. When required source data are absent, expose an honest blocked/unknown state; do not manufacture a demo dataset labeled real.
 
 ## This actual repository (inspected 2026-10-24)
+
+Current integration update (2026-10-24 22:03:31 +08:00): the original workbook,
+annual barangay CSV and official archive-derived boundaries have now been audited
+and integrated. Historical forecast runs, seasonal trained local artifacts,
+versioned simulation endpoints and the two-tab workspace exist. The original
+upload descriptions below are historical context; consult
+`docs/upri-integration-audit.md`, `docs/future-seasonal-simulation.md` and the
+session handoff for current availability and verification. Operational hospital
+capacity, verified entrances and current surveillance remain absent.
 
 - `apps/web/`: Next.js 15 / React 19 / TypeScript / MapLibre UI. The existing dashboard is `apps/web/app/dashboard/page.tsx`; current map is `apps/web/components/ncr-map.tsx`; app types are `apps/web/lib/types.ts`.
 - `apps/web/app/api/boundaries/route.ts`: reads **already present** `apps/web/public/data/ncr-cities.geojson` with 17 NCR local-government polygons. Do not state that NCR boundaries have not been imported.

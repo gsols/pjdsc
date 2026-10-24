@@ -17,6 +17,11 @@
 .qc-layout { display: grid; grid-template-columns: 265px minmax(380px, 1fr) 330px; align-items: start; }
 .qc-controls, .qc-hospital-sidebar { padding: 20px 18px; }
 .qc-controls { border-right: 1px solid #294452; }
+.qc-workspace-tabs { display: grid; grid-template-columns: 1fr 1fr; gap: 5px; padding-bottom: 17px; }
+.qc-workspace .qc-workspace-tabs button { font-size: 10px; line-height: 1.6; padding: 9px 6px; }
+.qc-workspace .qc-workspace-tabs button[aria-selected=true] { background: #1b4a48; border-color: #7bc6b5; color: #c8f5df; }
+.qc-controls .qc-surge-toggle { display: flex; align-items: center; gap: 8px; margin-top: 0; color: #ead7b5; }
+.qc-hypothetical p { font-size: 9px; color: #cbb294; line-height: 1.8; margin-bottom: 0; }
 .qc-hospital-sidebar { border-left: 1px solid #294452; }
 .qc-section-heading { color: #92b3bf; font-size: 9px; letter-spacing: .14em; text-transform: uppercase; border-bottom: 1px solid #2b4654; padding-bottom: 12px; margin-bottom: 13px; }
 .qc-controls label { display: block; color: #bdd0d9; font-size: 11px; margin-top: 13px; line-height: 1.7; }
@@ -27,7 +32,8 @@
 .qc-workspace button:disabled { opacity: .4; cursor: default; }
 .qc-workspace button:focus-visible, .qc-workspace a:focus-visible { outline: 2px solid #70e4ce; outline-offset: 3px; }
 .qc-workspace button[aria-pressed=true] { color: #9ef3df; border-color: #62bdab; background: #17443f; }
-.qc-horizons { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; margin: 11px 0 16px; }
+.qc-horizons { display: grid; grid-template-columns: repeat(5, 1fr); gap: 4px; margin: 11px 0 16px; }
+.qc-workspace .qc-horizons button { padding: 6px 3px; font-size: 9px; }
 .qc-hypothetical { margin: 12px 0; padding: 12px; background: #332d24; border-left: 2px solid #d7a063; color: #dfc3a2; font-size: 10px; line-height: 1.7; }
 .qc-assumptions { border-top: 1px solid #2d4958; margin-top: 16px; padding-top: 13px; }
 .qc-workspace summary { cursor: pointer; color: #bfd2df; font-size: 11px; line-height: 1.8; }
@@ -80,6 +86,19 @@
 .qc-hotspots { padding: 20px 22px; }.qc-hotspots > p { color: #91adb9; font-size: 10px; line-height: 1.7; }
 .qc-table-scroll { overflow: auto; }.qc-workspace table { border-collapse: collapse; width: 100%; font-size: 10px; }.qc-workspace th { color: #9dbac6; font-weight: 500; font-size: 9px; }.qc-workspace th, .qc-workspace td { text-align: left; padding: 10px 7px; border-bottom: 1px solid #294653; line-height: 1.65; }.qc-workspace td button { text-align: left; justify-content: flex-start; font-size: 10px; padding: 4px 6px; border-color: transparent; background: transparent; }
 .qc-hotspots tr.selected { background: #193c3e; }
+.qc-bed-forecast { padding: 20px 22px; background: #0f2635; border-bottom: 1px solid #34515d; }
+.qc-bed-summary { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 18px; }
+.qc-bed-summary > div { border: 1px solid #38586a; border-radius: 5px; padding: 11px 10px; background: #142f40; }
+.qc-bed-summary span, .qc-bed-summary small { display: block; color: #a2bbca; font-size: 9px; line-height: 1.7; }
+.qc-bed-summary strong { display: block; color: #b5dcef; font-size: 24px; font-weight: 500; margin: 5px 0; }
+.qc-bed-summary small { font-size: 8px; }
+.qc-bed-forecast svg { width: 100%; height: 100px; display: block; margin-top: 8px; }
+.qc-bed-forecast > p { color: #9bb7c9; font-size: 9px; line-height: 1.8; }
+.qc-hospital-bed-forecast { background: #163344; border: 1px solid #3c5c70; border-radius: 4px; padding: 9px; margin-top: 10px; }
+.qc-hospital-bed-forecast > strong { display: block; color: #bad9ec; font-weight: 500; font-size: 10px; margin-bottom: 8px; }
+.qc-hospital-bed-forecast > span { display: flex; justify-content: space-between; gap: 7px; color: #9fbaca; font-size: 9px; line-height: 1.8; }
+.qc-hospital-bed-forecast b { color: #c4e4f4; font-weight: 500; }
+.qc-hospital-bed-forecast small { display: block; font-size: 8px; color: #92aebe; line-height: 1.75; margin-top: 5px; }
 .qc-hospital-sidebar > h2 { font-size: 20px; font-weight: 500; margin: 5px 0; }.qc-hospital-sidebar > p { color: #94afbd; font-size: 10px; line-height: 1.7; }
 .qc-area-estimate { padding: 11px 12px; background: #173631; border: 1px solid #3a6254; border-radius: 5px; margin: 12px 0 18px; }.qc-area-estimate strong { display: block; font-size: 14px; font-weight: 500; color: #d3e8cc; }.qc-area-estimate span { display: block; margin-top: 4px; color: #a7c6b5; font-size: 10px; }
 .qc-hospital-card { border: 1px solid #33515f; background: #102935; border-radius: 6px; padding: 13px; margin-top: 12px; }.qc-hospital-card.active { border-color: #83c4bc; }
