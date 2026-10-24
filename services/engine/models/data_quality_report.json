@@ -1,0 +1,41 @@
+{
+  "QUEZON_CITY": {
+    "sheet": "QC Data",
+    "case_column": "DC_QC",
+    "weather_columns": ["RF_NASA", "Temp_ERA5-Land", "RH_ERA5-Land"],
+    "source_rows": 832,
+    "first_week": "2010-01-04",
+    "last_week": "2025-12-22",
+    "weather_missing_values": {
+      "RF_NASA": 0,
+      "Temp_ERA5-Land": 0,
+      "RH_ERA5-Land": 0
+    },
+    "flags": {
+      "FLAG_PLAUSIBILITY": {
+        "0": 832
+      }
+    }
+  },
+  "NCR": {
+    "sheet": "Regional Data",
+    "case_column": "DC_DOH",
+    "weather_columns": ["RF_HDX", "Temp_ERA5-Land", "SH_ERA5-Land"],
+    "source_rows": 416,
+    "first_week": "2016-01-04",
+    "last_week": "2025-12-22",
+    "weather_missing_values": {
+      "RF_HDX": 0,
+      "Temp_ERA5-Land": 0,
+      "SH_ERA5-Land": 0
+    },
+    "flags": {
+      "FLAG_DEKADAL_APPROX": {
+        "1": 416
+      },
+      "FLAG_PLAUSIBILITY": {
+        "0": 416
+      }
+    }
+  }
+}

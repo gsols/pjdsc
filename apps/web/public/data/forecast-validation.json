@@ -1,0 +1,36 @@
+[
+  {
+    "area": "QUEZON_CITY",
+    "source_last_week": {
+      "year": 2025,
+      "week": 52
+    },
+    "rows_total": 834,
+    "train_rows": 662,
+    "test_rows": 104,
+    "holdout_years": [2024, 2025],
+    "model_mae": 34.99,
+    "seasonal_naive_mae": 109.83,
+    "better_than_seasonal_naive": true,
+    "validation_type": "out-of-time one-week-ahead (observed preceding weeks)",
+    "four_week_recursive_performance_evaluated": false,
+    "caution": "Not a validated four-week prospective forecast. Source data ends in 2025."
+  },
+  {
+    "area": "NCR",
+    "source_last_week": {
+      "year": 2025,
+      "week": 52
+    },
+    "rows_total": 521,
+    "train_rows": 208,
+    "test_rows": 104,
+    "holdout_years": [2024, 2025],
+    "model_mae": 134.08,
+    "seasonal_naive_mae": 502.42,
+    "better_than_seasonal_naive": true,
+    "validation_type": "out-of-time one-week-ahead (observed preceding weeks)",
+    "four_week_recursive_performance_evaluated": false,
+    "caution": "Not a validated four-week prospective forecast. Source data ends in 2025."
+  }
+]
