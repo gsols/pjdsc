@@ -29,7 +29,19 @@ AREAS = {
                 weather=["RF_HDX", "Temp_ERA5-Land", "SH_ERA5-Land"]),
 }
 
+def require_resolved_iso_calendar(source):
+    """Legacy date-based experiments must not silently reinterpret source blocks."""
+    book = pd.ExcelFile(source)
+    if {"Dataset Summary", "Data Dictionary"}.issubset(book.sheet_names):
+        summary = pd.read_excel(book, sheet_name="Dataset Summary", header=None).astype(str)
+        dictionary = pd.read_excel(book, sheet_name="Data Dictionary", header=None).astype(str)
+        text = " ".join(summary.to_numpy().ravel())
+        dictionary_text = " ".join(dictionary.to_numpy().ravel())
+        if "continuous 7-day blocks" in text and "ISO epidemiological week" in dictionary_text:
+            raise ValueError("Unresolved UPRI WN calendar metadata: ISO conversion is unsafe. Run scripts/audit_upri.py then scripts/integrate_upri.py for explicit source-block replay; legacy ISO experiments require reconciled metadata.")
+
 def inspect_workbook(source):
+    require_resolved_iso_calendar(source)
     book = pd.ExcelFile(source)
     required_sheets = {v["sheet"] for v in AREAS.values()}
     missing = required_sheets - set(book.sheet_names)
@@ -78,6 +90,7 @@ def inspect_workbook(source):
     return results
 
 def load_series(source: Path, area: str):
+    require_resolved_iso_calendar(source)
     spec = AREAS[area]
     df = pd.read_excel(source, sheet_name=spec["sheet"])
     if area == "NCR":

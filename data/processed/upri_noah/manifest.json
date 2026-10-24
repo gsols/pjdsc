@@ -1,0 +1,121 @@
+{
+  "schemaVersion": "1.0",
+  "transformVersion": "upri-source-block-v1",
+  "sources": {
+    "repository": "pelitro-rcw/dengue-environmental-dataset",
+    "referenceCommit": "02926278d570db8950da368d44db544ae0097615",
+    "license": "ODC-ODbL-1.0 (source README)",
+    "datasetDoiAsCitedBySource": "10.5281/zenodo.19448854",
+    "sources": [
+      {
+        "path": "data/raw/upri_noah/DC_Regional-Brgy.7z.001",
+        "sha256": "357544d7b563c2b22c1ed2573bd550ae3e7d74d660e9772a1bd1d4dffe7251d4",
+        "sourceUrl": "https://github.com/pelitro-rcw/dengue-environmental-dataset/blob/02926278d570db8950da368d44db544ae0097615/DC_Regional-Brgy.7z.001",
+        "sourceCommitId": "02926278d570db8950da368d44db544ae0097615",
+        "commitVerification": "exact_git_blob_match"
+      },
+      {
+        "path": "data/raw/upri_noah/DC_Regional-Brgy.7z.002",
+        "sha256": "15f7bca16ed1574a8c9e2b1782d7e97e08edeb92be0ec5e46603fb8a9b8e5a73",
+        "sourceUrl": "https://github.com/pelitro-rcw/dengue-environmental-dataset/blob/02926278d570db8950da368d44db544ae0097615/DC_Regional-Brgy.7z.002",
+        "sourceCommitId": "02926278d570db8950da368d44db544ae0097615",
+        "commitVerification": "exact_git_blob_match"
+      },
+      {
+        "path": "data/raw/upri_noah/Dengue_Environmental Vars_Dataset.xlsx",
+        "sha256": "94c65ce24e13c132007f67da9b4d10f7023e9429fff79c358b1de938f982dd78",
+        "sourceUrl": "https://github.com/pelitro-rcw/dengue-environmental-dataset/blob/02926278d570db8950da368d44db544ae0097615/Dengue_Environmental%20Vars_Dataset.xlsx",
+        "sourceCommitId": "02926278d570db8950da368d44db544ae0097615",
+        "commitVerification": "exact_git_blob_match"
+      },
+      {
+        "path": "data/raw/upri_noah/Dengue_Environmental Vars_Validation.R",
+        "sha256": "2be6cdaa401fb29564b5e1f03914c4abff29d501297f68e7013ae6e3f11bf8d0",
+        "sourceUrl": "https://github.com/pelitro-rcw/dengue-environmental-dataset/blob/02926278d570db8950da368d44db544ae0097615/Dengue_Environmental%20Vars_Validation.R",
+        "sourceCommitId": "02926278d570db8950da368d44db544ae0097615",
+        "commitVerification": "exact_git_blob_match"
+      },
+      {
+        "path": "data/raw/upri_noah/QC_YearlyData-Barangay(CSV).csv",
+        "sha256": "50a26b5395d0a096d895932b82832207946133f3c92b66b2a4a3158c81c5ddbd",
+        "sourceUrl": "https://github.com/pelitro-rcw/dengue-environmental-dataset/blob/02926278d570db8950da368d44db544ae0097615/QC_YearlyData-Barangay%28CSV%29.csv",
+        "sourceCommitId": "02926278d570db8950da368d44db544ae0097615",
+        "commitVerification": "exact_git_blob_match"
+      },
+      {
+        "path": "data/raw/upri_noah/README.md",
+        "sha256": "342eabe7e5742cbce77c09f45ecfb8ce8e253573a6de5292b0f5f5e637fbdde4",
+        "sourceUrl": "https://github.com/pelitro-rcw/dengue-environmental-dataset/blob/02926278d570db8950da368d44db544ae0097615/README.md",
+        "sourceCommitId": "02926278d570db8950da368d44db544ae0097615",
+        "commitVerification": "exact_git_blob_match"
+      },
+      {
+        "path": "data/reference/upri_noah/environmental_validation_report.xlsx",
+        "sha256": "9c00abb3b4e8ac8637d7be8e0e159346d201b8c68cd6f298077442ec0c11b254",
+        "sourceUrl": "https://raw.githubusercontent.com/pelitro-rcw/dengue-environmental-dataset/02926278d570db8950da368d44db544ae0097615/environmental_validation_report.xlsx",
+        "sourceCommitId": "02926278d570db8950da368d44db544ae0097615"
+      }
+    ]
+  },
+  "transformedAt": "2026-10-24T11:00:31.322063+00:00",
+  "transformations": [
+    "Audit original metadata/report and compare legacy QA",
+    "Extract concatenated split archive without editing raw parts",
+    "140 exact IDs and annual attribute matches plus two explicit project name crosswalks with absent source attributes; valid EPSG:32651 geometry -> EPSG:4326",
+    "Copy source columns and nulls without imputation",
+    "Reindex 52-block source ordinal, preserve missing years",
+    "Direct horizons, training labels <= issue block; matched baselines and weather ablation"
+  ],
+  "codeHashes": {
+    "scripts/integrate_upri.py": "1b01e290e06143da63b7292857960831c64f231ed36f9cc0718eecb3f40dc410",
+    "services/engine/upri_data.py": "f0bb2730af1986040615b443d03269aa7176b1feb2da2ee99f69b404ddd7f273",
+    "scripts/train_dengue.py": "252765d1745f393790ea509c1b33c7a32fe93f7e3c6f616f22b0a1222d514722",
+    "scripts/audit_upri.py": "621517fdfaafb7200eedf1ac4203a15736c876529562182f15bbbd02e31b92cc",
+    "data/reference/upri_noah/barangay-crosswalk.json": "6b135e388010663770e91f28b35a8a3e58933a0efc7b81e75de4ea6e13d3bccc"
+  },
+  "outputs": {
+    "data/processed/upri_noah/audit.json": "24f94763c9cc655b052476035f6a4ee08626a50c1691e0bf794d0680dd68a3b0",
+    "data/processed/upri_noah/backtest.json": "7630b1e62cbd3bddf2e1f16c4217b820b3521c8ea9d05d9bbb622055469fdf4c",
+    "data/processed/upri_noah/forecast-runs.json": "1bad8aba837da0ab50b99c11f987d870880c5c0fbbfd861bbc165032f662b295",
+    "data/processed/upri_noah/geometry-audit.json": "06512b749bd71e914cc7ed507f9466957f4516ba78087946b92bee1e86d4ce8b",
+    "data/processed/upri_noah/NCR-observations.json": "f37abc476c4b2bf4fe299467754f187d767efa9cc3ef37a1c791d8796a7ce124",
+    "data/processed/upri_noah/QUEZON_CITY-observations.json": "3da834eea607c9089cc57b78b31438bc6d10791f1839baeaf5a740164f5f2d9d",
+    "apps/web/public/data/qc-barangays.geojson": "886381cbcb97c405d3a260cd74fa256ba9e963e64e5fc972570003cdc79b51b9",
+    "apps/web/public/data/qc-annual-burden.json": "40e640165e9b72d723b66a7a34e6144d263f219d3eda49befb4815439945c4dd"
+  },
+  "geometry": {
+    "layer": "QC-Brgy",
+    "sourceCrs": "EPSG:32651",
+    "outputCrs": "EPSG:4326",
+    "features": 142,
+    "extractedSha256": "c1a1e7fb0405078bc554f64603e97796a6278bef2c609248d5f5acc4d64e12c8",
+    "existingReferenceSha256": "c1a1e7fb0405078bc554f64603e97796a6278bef2c609248d5f5acc4d64e12c8",
+    "existingReferenceMatchesArchive": true,
+    "exactSourceIdJoins": 140,
+    "explicitProjectCrosswalks": {
+      "schemaVersion": "1.0",
+      "purpose": "Explicit project identifier reconciliation; raw geometry attributes remain unchanged",
+      "records": [
+        {
+          "sourceADM4_EN": "Do\u00f1a Imelda",
+          "sourceADM4_PCODE": null,
+          "ADM4_PCODE": "PH1307404031",
+          "Barangay": "Do\u00c3\u00b1a Imelda"
+        },
+        {
+          "sourceADM4_EN": "Do\u00f1a Josefa",
+          "sourceADM4_PCODE": null,
+          "ADM4_PCODE": "PH1307404032",
+          "Barangay": "Do\u00c3\u00b1a Josefa"
+        }
+      ],
+      "evidence": "Two source GeoPackage rows have null IDs and all annual case attributes null. Reconciliation requires the explicit unique CSV identifier/name pair and exact equality after reversible Latin-1-to-UTF-8 decoding of the CSV name. No fuzzy matching or shape editing. The other 140 source-ID joins match every annual count including nulls. These two derived identifiers are project name crosswalks, not official source corrections."
+    }
+  },
+  "software": {
+    "python": "3.13.3 (tags/v3.13.3:6280bb5, Apr  8 2025, 14:47:33) [MSC v.1943 64 bit (AMD64)]",
+    "pandas": "2.2.3",
+    "numpy": "2.2.6",
+    "scikit-learn": "1.8.0"
+  }
+}

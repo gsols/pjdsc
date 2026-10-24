@@ -1,0 +1,9 @@
+{
+  "schemaVersion": "1.0",
+  "purpose": "Explicit project identifier reconciliation; raw geometry attributes remain unchanged",
+  "records": [
+    {"sourceADM4_EN": "Doña Imelda", "sourceADM4_PCODE": null, "ADM4_PCODE": "PH1307404031", "Barangay": "Do\u00c3\u00b1a Imelda"},
+    {"sourceADM4_EN": "Doña Josefa", "sourceADM4_PCODE": null, "ADM4_PCODE": "PH1307404032", "Barangay": "Do\u00c3\u00b1a Josefa"}
+  ],
+  "evidence": "Two source GeoPackage rows have null IDs and all annual case attributes null. Reconciliation requires the explicit unique CSV identifier/name pair and exact equality after reversible Latin-1-to-UTF-8 decoding of the CSV name. No fuzzy matching or shape editing. The other 140 source-ID joins match every annual count including nulls. These two derived identifiers are project name crosswalks, not official source corrections."
+}

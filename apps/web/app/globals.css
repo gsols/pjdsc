@@ -250,3 +250,10 @@ select {
     right: 12px;
   }
 }
+.hospital-table { max-height: 290px; overflow: auto; margin-top: 12px; }
+table { border-collapse: collapse; width: 100%; text-align: left; }
+th, td { padding: 8px 4px; border-bottom: 1px solid var(--border); vertical-align: top; }
+caption { text-align: left; margin-bottom: 8px; }
+.text-button { padding: 0; background: none; border: 0; color: var(--accent); text-align: left; font-size: 12px; }
+input[type='search'] { width: 100%; padding: 8px; color: var(--text); background: #172b3c; border: 1px solid var(--border); border-radius: 6px; }
+a { color: var(--accent); }

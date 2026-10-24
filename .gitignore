@@ -1,5 +1,7 @@
 node_modules/
 .next/
+.next-dev/
+.next-dev.lock
 .env*
 !.env.example
 __pycache__/
@@ -8,3 +10,11 @@ __pycache__/
 .DS_Store
 
 services/engine/models/*.joblib
+
+*.tsbuildinfo
+.pytest_cache/
+data/processed/upri_noah/source-archive.7z
+data/processed/upri_noah/extracted/
+data/processed/upri_noah/scenarios/
+*.gpkg-shm
+*.gpkg-wal

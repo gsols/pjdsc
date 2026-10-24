@@ -1,0 +1,29 @@
+{
+  "layer": "QC-Brgy",
+  "sourceCrs": "EPSG:32651",
+  "outputCrs": "EPSG:4326",
+  "features": 142,
+  "extractedSha256": "c1a1e7fb0405078bc554f64603e97796a6278bef2c609248d5f5acc4d64e12c8",
+  "existingReferenceSha256": "c1a1e7fb0405078bc554f64603e97796a6278bef2c609248d5f5acc4d64e12c8",
+  "existingReferenceMatchesArchive": true,
+  "exactSourceIdJoins": 140,
+  "explicitProjectCrosswalks": {
+    "schemaVersion": "1.0",
+    "purpose": "Explicit project identifier reconciliation; raw geometry attributes remain unchanged",
+    "records": [
+      {
+        "sourceADM4_EN": "Do\u00f1a Imelda",
+        "sourceADM4_PCODE": null,
+        "ADM4_PCODE": "PH1307404031",
+        "Barangay": "Do\u00c3\u00b1a Imelda"
+      },
+      {
+        "sourceADM4_EN": "Do\u00f1a Josefa",
+        "sourceADM4_PCODE": null,
+        "ADM4_PCODE": "PH1307404032",
+        "Barangay": "Do\u00c3\u00b1a Josefa"
+      }
+    ],
+    "evidence": "Two source GeoPackage rows have null IDs and all annual case attributes null. Reconciliation requires the explicit unique CSV identifier/name pair and exact equality after reversible Latin-1-to-UTF-8 decoding of the CSV name. No fuzzy matching or shape editing. The other 140 source-ID joins match every annual count including nulls. These two derived identifiers are project name crosswalks, not official source corrections."
+  }
+}

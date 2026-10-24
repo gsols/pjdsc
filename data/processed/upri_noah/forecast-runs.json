@@ -1,0 +1,1301 @@
+{
+  "schemaVersion": "1.0",
+  "runs": [
+    {
+      "schemaVersion": "1.0",
+      "id": "upri-source-block-v1-QUEZON_CITY-2024-4",
+      "area": "QUEZON_CITY",
+      "mode": "historical_replay",
+      "issueBlock": {
+        "YR": 2024,
+        "WN": 4
+      },
+      "trainingCutoffBlock": {
+        "YR": 2024,
+        "WN": 4
+      },
+      "issueDate": null,
+      "calendarStatus": "UNRESOLVED_SOURCE_WEEK_DEFINITION",
+      "units": "reported cases / source block",
+      "methodVersion": "upri-source-block-v1",
+      "model": "cases_only",
+      "seed": 42,
+      "modelParameters": {
+        "estimator": "HistGradientBoostingRegressor",
+        "loss": "poisson",
+        "max_iter": 80,
+        "max_leaf_nodes": 12,
+        "min_samples_leaf": 15,
+        "learning_rate": 0.04,
+        "l2_regularization": 5,
+        "random_state": 42,
+        "sklearnVersion": "1.8.0"
+      },
+      "sourceSha256": "94c65ce24e13c132007f67da9b4d10f7023e9429fff79c358b1de938f982dd78",
+      "weeklyPredictions": [
+        {
+          "YR": 2024,
+          "WN": 5,
+          "meanCases": 79.31938661120738,
+          "measurementKind": "forecast",
+          "observedCases": 84.0,
+          "observedMeasurementKind": "observed",
+          "lowerCases": null,
+          "upperCases": null,
+          "intervalKind": "not_estimated"
+        },
+        {
+          "YR": 2024,
+          "WN": 6,
+          "meanCases": 74.8982007891531,
+          "measurementKind": "forecast",
+          "observedCases": 81.0,
+          "observedMeasurementKind": "observed",
+          "lowerCases": null,
+          "upperCases": null,
+          "intervalKind": "not_estimated"
+        },
+        {
+          "YR": 2024,
+          "WN": 7,
+          "meanCases": 68.96779221196174,
+          "measurementKind": "forecast",
+          "observedCases": 77.0,
+          "observedMeasurementKind": "observed",
+          "lowerCases": null,
+          "upperCases": null,
+          "intervalKind": "not_estimated"
+        },
+        {
+          "YR": 2024,
+          "WN": 8,
+          "meanCases": 61.56193965321948,
+          "measurementKind": "forecast",
+          "observedCases": 68.0,
+          "observedMeasurementKind": "observed",
+          "lowerCases": null,
+          "upperCases": null,
+          "intervalKind": "not_estimated"
+        }
+      ],
+      "availabilityAssumption": "All history through issue block is available; original publication delays/vintages unknown.",
+      "modelSelection": "Cases-only predeclared for replay; no selection on evaluation scores.",
+      "simulationCaveat": "Relative-day hypothetical planning with 2026 PhilHealth inventory; not historical hospital occupancy."
+    },
+    {
+      "schemaVersion": "1.0",
+      "id": "upri-source-block-v1-QUEZON_CITY-2024-17",
+      "area": "QUEZON_CITY",
+      "mode": "historical_replay",
+      "issueBlock": {
+        "YR": 2024,
+        "WN": 17
+      },
+      "trainingCutoffBlock": {
+        "YR": 2024,
+        "WN": 17
+      },
+      "issueDate": null,
+      "calendarStatus": "UNRESOLVED_SOURCE_WEEK_DEFINITION",
+      "units": "reported cases / source block",
+      "methodVersion": "upri-source-block-v1",
+      "model": "cases_only",
+      "seed": 42,
+      "modelParameters": {
+        "estimator": "HistGradientBoostingRegressor",
+        "loss": "poisson",
+        "max_iter": 80,
+        "max_leaf_nodes": 12,
+        "min_samples_leaf": 15,
+        "learning_rate": 0.04,
+        "l2_regularization": 5,
+        "random_state": 42,
+        "sklearnVersion": "1.8.0"
+      },
+      "sourceSha256": "94c65ce24e13c132007f67da9b4d10f7023e9429fff79c358b1de938f982dd78",
+      "weeklyPredictions": [
+        {
+          "YR": 2024,
+          "WN": 18,
+          "meanCases": 41.2391964422478,
+          "measurementKind": "forecast",
+          "observedCases": 37.0,
+          "observedMeasurementKind": "observed",
+          "lowerCases": null,
+          "upperCases": null,
+          "intervalKind": "not_estimated"
+        },
+        {
+          "YR": 2024,
+          "WN": 19,
+          "meanCases": 37.38898167412396,
+          "measurementKind": "forecast",
+          "observedCases": 25.0,
+          "observedMeasurementKind": "observed",
+          "lowerCases": null,
+          "upperCases": null,
+          "intervalKind": "not_estimated"
+        },
+        {
+          "YR": 2024,
+          "WN": 20,
+          "meanCases": 43.787854004805176,
+          "measurementKind": "forecast",
+          "observedCases": 24.0,
+          "observedMeasurementKind": "observed",
+          "lowerCases": null,
+          "upperCases": null,
+          "intervalKind": "not_estimated"
+        },
+        {
+          "YR": 2024,
+          "WN": 21,
+          "meanCases": 51.23524209648138,
+          "measurementKind": "forecast",
+          "observedCases": 31.0,
+          "observedMeasurementKind": "observed",
+          "lowerCases": null,
+          "upperCases": null,
+          "intervalKind": "not_estimated"
+        }
+      ],
+      "availabilityAssumption": "All history through issue block is available; original publication delays/vintages unknown.",
+      "modelSelection": "Cases-only predeclared for replay; no selection on evaluation scores.",
+      "simulationCaveat": "Relative-day hypothetical planning with 2026 PhilHealth inventory; not historical hospital occupancy."
+    },
+    {
+      "schemaVersion": "1.0",
+      "id": "upri-source-block-v1-QUEZON_CITY-2024-30",
+      "area": "QUEZON_CITY",
+      "mode": "historical_replay",
+      "issueBlock": {
+        "YR": 2024,
+        "WN": 30
+      },
+      "trainingCutoffBlock": {
+        "YR": 2024,
+        "WN": 30
+      },
+      "issueDate": null,
+      "calendarStatus": "UNRESOLVED_SOURCE_WEEK_DEFINITION",
+      "units": "reported cases / source block",
+      "methodVersion": "upri-source-block-v1",
+      "model": "cases_only",
+      "seed": 42,
+      "modelParameters": {
+        "estimator": "HistGradientBoostingRegressor",
+        "loss": "poisson",
+        "max_iter": 80,
+        "max_leaf_nodes": 12,
+        "min_samples_leaf": 15,
+        "learning_rate": 0.04,
+        "l2_regularization": 5,
+        "random_state": 42,
+        "sklearnVersion": "1.8.0"
+      },
+      "sourceSha256": "94c65ce24e13c132007f67da9b4d10f7023e9429fff79c358b1de938f982dd78",
+      "weeklyPredictions": [
+        {
+          "YR": 2024,
+          "WN": 31,
+          "meanCases": 142.43044768724252,
+          "measurementKind": "forecast",
+          "observedCases": 195.0,
+          "observedMeasurementKind": "observed",
+          "lowerCases": null,
+          "upperCases": null,
+          "intervalKind": "not_estimated"
+        },
+        {
+          "YR": 2024,
+          "WN": 32,
+          "meanCases": 172.85232924802034,
+          "measurementKind": "forecast",
+          "observedCases": 229.0,
+          "observedMeasurementKind": "observed",
+          "lowerCases": null,
+          "upperCases": null,
+          "intervalKind": "not_estimated"
+        },
+        {
+          "YR": 2024,
+          "WN": 33,
+          "meanCases": 155.5622553507886,
+          "measurementKind": "forecast",
+          "observedCases": 222.0,
+          "observedMeasurementKind": "observed",
+          "lowerCases": null,
+          "upperCases": null,
+          "intervalKind": "not_estimated"
+        },
+        {
+          "YR": 2024,
+          "WN": 34,
+          "meanCases": 159.4668532305968,
+          "measurementKind": "forecast",
+          "observedCases": 232.0,
+          "observedMeasurementKind": "observed",
+          "lowerCases": null,
+          "upperCases": null,
+          "intervalKind": "not_estimated"
+        }
+      ],
+      "availabilityAssumption": "All history through issue block is available; original publication delays/vintages unknown.",
+      "modelSelection": "Cases-only predeclared for replay; no selection on evaluation scores.",
+      "simulationCaveat": "Relative-day hypothetical planning with 2026 PhilHealth inventory; not historical hospital occupancy."
+    },
+    {
+      "schemaVersion": "1.0",
+      "id": "upri-source-block-v1-QUEZON_CITY-2024-43",
+      "area": "QUEZON_CITY",
+      "mode": "historical_replay",
+      "issueBlock": {
+        "YR": 2024,
+        "WN": 43
+      },
+      "trainingCutoffBlock": {
+        "YR": 2024,
+        "WN": 43
+      },
+      "issueDate": null,
+      "calendarStatus": "UNRESOLVED_SOURCE_WEEK_DEFINITION",
+      "units": "reported cases / source block",
+      "methodVersion": "upri-source-block-v1",
+      "model": "cases_only",
+      "seed": 42,
+      "modelParameters": {
+        "estimator": "HistGradientBoostingRegressor",
+        "loss": "poisson",
+        "max_iter": 80,
+        "max_leaf_nodes": 12,
+        "min_samples_leaf": 15,
+        "learning_rate": 0.04,
+        "l2_regularization": 5,
+        "random_state": 42,
+        "sklearnVersion": "1.8.0"
+      },
+      "sourceSha256": "94c65ce24e13c132007f67da9b4d10f7023e9429fff79c358b1de938f982dd78",
+      "weeklyPredictions": [
+        {
+          "YR": 2024,
+          "WN": 44,
+          "meanCases": 221.7017706473578,
+          "measurementKind": "forecast",
+          "observedCases": 351.0,
+          "observedMeasurementKind": "observed",
+          "lowerCases": null,
+          "upperCases": null,
+          "intervalKind": "not_estimated"
+        },
+        {
+          "YR": 2024,
+          "WN": 45,
+          "meanCases": 226.09857309203483,
+          "measurementKind": "forecast",
+          "observedCases": 384.0,
+          "observedMeasurementKind": "observed",
+          "lowerCases": null,
+          "upperCases": null,
+          "intervalKind": "not_estimated"
+        },
+        {
+          "YR": 2024,
+          "WN": 46,
+          "meanCases": 210.53038314516348,
+          "measurementKind": "forecast",
+          "observedCases": 424.0,
+          "observedMeasurementKind": "observed",
+          "lowerCases": null,
+          "upperCases": null,
+          "intervalKind": "not_estimated"
+        },
+        {
+          "YR": 2024,
+          "WN": 47,
+          "meanCases": 165.65727706797347,
+          "measurementKind": "forecast",
+          "observedCases": 454.0,
+          "observedMeasurementKind": "observed",
+          "lowerCases": null,
+          "upperCases": null,
+          "intervalKind": "not_estimated"
+        }
+      ],
+      "availabilityAssumption": "All history through issue block is available; original publication delays/vintages unknown.",
+      "modelSelection": "Cases-only predeclared for replay; no selection on evaluation scores.",
+      "simulationCaveat": "Relative-day hypothetical planning with 2026 PhilHealth inventory; not historical hospital occupancy."
+    },
+    {
+      "schemaVersion": "1.0",
+      "id": "upri-source-block-v1-QUEZON_CITY-2025-4",
+      "area": "QUEZON_CITY",
+      "mode": "historical_replay",
+      "issueBlock": {
+        "YR": 2025,
+        "WN": 4
+      },
+      "trainingCutoffBlock": {
+        "YR": 2025,
+        "WN": 4
+      },
+      "issueDate": null,
+      "calendarStatus": "UNRESOLVED_SOURCE_WEEK_DEFINITION",
+      "units": "reported cases / source block",
+      "methodVersion": "upri-source-block-v1",
+      "model": "cases_only",
+      "seed": 42,
+      "modelParameters": {
+        "estimator": "HistGradientBoostingRegressor",
+        "loss": "poisson",
+        "max_iter": 80,
+        "max_leaf_nodes": 12,
+        "min_samples_leaf": 15,
+        "learning_rate": 0.04,
+        "l2_regularization": 5,
+        "random_state": 42,
+        "sklearnVersion": "1.8.0"
+      },
+      "sourceSha256": "94c65ce24e13c132007f67da9b4d10f7023e9429fff79c358b1de938f982dd78",
+      "weeklyPredictions": [
+        {
+          "YR": 2025,
+          "WN": 5,
+          "meanCases": 263.98381665097213,
+          "measurementKind": "forecast",
+          "observedCases": 335.0,
+          "observedMeasurementKind": "observed",
+          "lowerCases": null,
+          "upperCases": null,
+          "intervalKind": "not_estimated"
+        },
+        {
+          "YR": 2025,
+          "WN": 6,
+          "meanCases": 251.28359300638974,
+          "measurementKind": "forecast",
+          "observedCases": 291.0,
+          "observedMeasurementKind": "observed",
+          "lowerCases": null,
+          "upperCases": null,
+          "intervalKind": "not_estimated"
+        },
+        {
+          "YR": 2025,
+          "WN": 7,
+          "meanCases": 210.2631623594397,
+          "measurementKind": "forecast",
+          "observedCases": 437.0,
+          "observedMeasurementKind": "observed",
+          "lowerCases": null,
+          "upperCases": null,
+          "intervalKind": "not_estimated"
+        },
+        {
+          "YR": 2025,
+          "WN": 8,
+          "meanCases": 237.39684744762064,
+          "measurementKind": "forecast",
+          "observedCases": 622.0,
+          "observedMeasurementKind": "observed",
+          "lowerCases": null,
+          "upperCases": null,
+          "intervalKind": "not_estimated"
+        }
+      ],
+      "availabilityAssumption": "All history through issue block is available; original publication delays/vintages unknown.",
+      "modelSelection": "Cases-only predeclared for replay; no selection on evaluation scores.",
+      "simulationCaveat": "Relative-day hypothetical planning with 2026 PhilHealth inventory; not historical hospital occupancy."
+    },
+    {
+      "schemaVersion": "1.0",
+      "id": "upri-source-block-v1-QUEZON_CITY-2025-17",
+      "area": "QUEZON_CITY",
+      "mode": "historical_replay",
+      "issueBlock": {
+        "YR": 2025,
+        "WN": 17
+      },
+      "trainingCutoffBlock": {
+        "YR": 2025,
+        "WN": 17
+      },
+      "issueDate": null,
+      "calendarStatus": "UNRESOLVED_SOURCE_WEEK_DEFINITION",
+      "units": "reported cases / source block",
+      "methodVersion": "upri-source-block-v1",
+      "model": "cases_only",
+      "seed": 42,
+      "modelParameters": {
+        "estimator": "HistGradientBoostingRegressor",
+        "loss": "poisson",
+        "max_iter": 80,
+        "max_leaf_nodes": 12,
+        "min_samples_leaf": 15,
+        "learning_rate": 0.04,
+        "l2_regularization": 5,
+        "random_state": 42,
+        "sklearnVersion": "1.8.0"
+      },
+      "sourceSha256": "94c65ce24e13c132007f67da9b4d10f7023e9429fff79c358b1de938f982dd78",
+      "weeklyPredictions": [
+        {
+          "YR": 2025,
+          "WN": 18,
+          "meanCases": 90.01937618660244,
+          "measurementKind": "forecast",
+          "observedCases": 80.0,
+          "observedMeasurementKind": "observed",
+          "lowerCases": null,
+          "upperCases": null,
+          "intervalKind": "not_estimated"
+        },
+        {
+          "YR": 2025,
+          "WN": 19,
+          "meanCases": 91.35017484490581,
+          "measurementKind": "forecast",
+          "observedCases": 77.0,
+          "observedMeasurementKind": "observed",
+          "lowerCases": null,
+          "upperCases": null,
+          "intervalKind": "not_estimated"
+        },
+        {
+          "YR": 2025,
+          "WN": 20,
+          "meanCases": 94.4145960004575,
+          "measurementKind": "forecast",
+          "observedCases": 59.0,
+          "observedMeasurementKind": "observed",
+          "lowerCases": null,
+          "upperCases": null,
+          "intervalKind": "not_estimated"
+        },
+        {
+          "YR": 2025,
+          "WN": 21,
+          "meanCases": 87.52230635025887,
+          "measurementKind": "forecast",
+          "observedCases": 76.0,
+          "observedMeasurementKind": "observed",
+          "lowerCases": null,
+          "upperCases": null,
+          "intervalKind": "not_estimated"
+        }
+      ],
+      "availabilityAssumption": "All history through issue block is available; original publication delays/vintages unknown.",
+      "modelSelection": "Cases-only predeclared for replay; no selection on evaluation scores.",
+      "simulationCaveat": "Relative-day hypothetical planning with 2026 PhilHealth inventory; not historical hospital occupancy."
+    },
+    {
+      "schemaVersion": "1.0",
+      "id": "upri-source-block-v1-QUEZON_CITY-2025-30",
+      "area": "QUEZON_CITY",
+      "mode": "historical_replay",
+      "issueBlock": {
+        "YR": 2025,
+        "WN": 30
+      },
+      "trainingCutoffBlock": {
+        "YR": 2025,
+        "WN": 30
+      },
+      "issueDate": null,
+      "calendarStatus": "UNRESOLVED_SOURCE_WEEK_DEFINITION",
+      "units": "reported cases / source block",
+      "methodVersion": "upri-source-block-v1",
+      "model": "cases_only",
+      "seed": 42,
+      "modelParameters": {
+        "estimator": "HistGradientBoostingRegressor",
+        "loss": "poisson",
+        "max_iter": 80,
+        "max_leaf_nodes": 12,
+        "min_samples_leaf": 15,
+        "learning_rate": 0.04,
+        "l2_regularization": 5,
+        "random_state": 42,
+        "sklearnVersion": "1.8.0"
+      },
+      "sourceSha256": "94c65ce24e13c132007f67da9b4d10f7023e9429fff79c358b1de938f982dd78",
+      "weeklyPredictions": [
+        {
+          "YR": 2025,
+          "WN": 31,
+          "meanCases": 253.7750578326328,
+          "measurementKind": "forecast",
+          "observedCases": 268.0,
+          "observedMeasurementKind": "observed",
+          "lowerCases": null,
+          "upperCases": null,
+          "intervalKind": "not_estimated"
+        },
+        {
+          "YR": 2025,
+          "WN": 32,
+          "meanCases": 280.8253257189167,
+          "measurementKind": "forecast",
+          "observedCases": 295.0,
+          "observedMeasurementKind": "observed",
+          "lowerCases": null,
+          "upperCases": null,
+          "intervalKind": "not_estimated"
+        },
+        {
+          "YR": 2025,
+          "WN": 33,
+          "meanCases": 271.09872936360637,
+          "measurementKind": "forecast",
+          "observedCases": 267.0,
+          "observedMeasurementKind": "observed",
+          "lowerCases": null,
+          "upperCases": null,
+          "intervalKind": "not_estimated"
+        },
+        {
+          "YR": 2025,
+          "WN": 34,
+          "meanCases": 274.3727359801835,
+          "measurementKind": "forecast",
+          "observedCases": 213.0,
+          "observedMeasurementKind": "observed",
+          "lowerCases": null,
+          "upperCases": null,
+          "intervalKind": "not_estimated"
+        }
+      ],
+      "availabilityAssumption": "All history through issue block is available; original publication delays/vintages unknown.",
+      "modelSelection": "Cases-only predeclared for replay; no selection on evaluation scores.",
+      "simulationCaveat": "Relative-day hypothetical planning with 2026 PhilHealth inventory; not historical hospital occupancy."
+    },
+    {
+      "schemaVersion": "1.0",
+      "id": "upri-source-block-v1-QUEZON_CITY-2025-43",
+      "area": "QUEZON_CITY",
+      "mode": "historical_replay",
+      "issueBlock": {
+        "YR": 2025,
+        "WN": 43
+      },
+      "trainingCutoffBlock": {
+        "YR": 2025,
+        "WN": 43
+      },
+      "issueDate": null,
+      "calendarStatus": "UNRESOLVED_SOURCE_WEEK_DEFINITION",
+      "units": "reported cases / source block",
+      "methodVersion": "upri-source-block-v1",
+      "model": "cases_only",
+      "seed": 42,
+      "modelParameters": {
+        "estimator": "HistGradientBoostingRegressor",
+        "loss": "poisson",
+        "max_iter": 80,
+        "max_leaf_nodes": 12,
+        "min_samples_leaf": 15,
+        "learning_rate": 0.04,
+        "l2_regularization": 5,
+        "random_state": 42,
+        "sklearnVersion": "1.8.0"
+      },
+      "sourceSha256": "94c65ce24e13c132007f67da9b4d10f7023e9429fff79c358b1de938f982dd78",
+      "weeklyPredictions": [
+        {
+          "YR": 2025,
+          "WN": 44,
+          "meanCases": 325.34711397378976,
+          "measurementKind": "forecast",
+          "observedCases": 205.0,
+          "observedMeasurementKind": "observed",
+          "lowerCases": null,
+          "upperCases": null,
+          "intervalKind": "not_estimated"
+        },
+        {
+          "YR": 2025,
+          "WN": 45,
+          "meanCases": 355.7848635510127,
+          "measurementKind": "forecast",
+          "observedCases": 194.0,
+          "observedMeasurementKind": "observed",
+          "lowerCases": null,
+          "upperCases": null,
+          "intervalKind": "not_estimated"
+        },
+        {
+          "YR": 2025,
+          "WN": 46,
+          "meanCases": 367.1214303224413,
+          "measurementKind": "forecast",
+          "observedCases": 164.0,
+          "observedMeasurementKind": "observed",
+          "lowerCases": null,
+          "upperCases": null,
+          "intervalKind": "not_estimated"
+        },
+        {
+          "YR": 2025,
+          "WN": 47,
+          "meanCases": 357.58450489258746,
+          "measurementKind": "forecast",
+          "observedCases": 201.0,
+          "observedMeasurementKind": "observed",
+          "lowerCases": null,
+          "upperCases": null,
+          "intervalKind": "not_estimated"
+        }
+      ],
+      "availabilityAssumption": "All history through issue block is available; original publication delays/vintages unknown.",
+      "modelSelection": "Cases-only predeclared for replay; no selection on evaluation scores.",
+      "simulationCaveat": "Relative-day hypothetical planning with 2026 PhilHealth inventory; not historical hospital occupancy."
+    },
+    {
+      "schemaVersion": "1.0",
+      "id": "upri-source-block-v1-NCR-2024-4",
+      "area": "NCR",
+      "mode": "historical_replay",
+      "issueBlock": {
+        "YR": 2024,
+        "WN": 4
+      },
+      "trainingCutoffBlock": {
+        "YR": 2024,
+        "WN": 4
+      },
+      "issueDate": null,
+      "calendarStatus": "UNRESOLVED_SOURCE_WEEK_DEFINITION",
+      "units": "reported cases / source block",
+      "methodVersion": "upri-source-block-v1",
+      "model": "cases_only",
+      "seed": 42,
+      "modelParameters": {
+        "estimator": "HistGradientBoostingRegressor",
+        "loss": "poisson",
+        "max_iter": 80,
+        "max_leaf_nodes": 12,
+        "min_samples_leaf": 15,
+        "learning_rate": 0.04,
+        "l2_regularization": 5,
+        "random_state": 42,
+        "sklearnVersion": "1.8.0"
+      },
+      "sourceSha256": "94c65ce24e13c132007f67da9b4d10f7023e9429fff79c358b1de938f982dd78",
+      "weeklyPredictions": [
+        {
+          "YR": 2024,
+          "WN": 5,
+          "meanCases": 404.08827203835403,
+          "measurementKind": "forecast",
+          "observedCases": 455.0,
+          "observedMeasurementKind": "observed",
+          "lowerCases": null,
+          "upperCases": null,
+          "intervalKind": "not_estimated"
+        },
+        {
+          "YR": 2024,
+          "WN": 6,
+          "meanCases": 440.8169963095172,
+          "measurementKind": "forecast",
+          "observedCases": 380.0,
+          "observedMeasurementKind": "observed",
+          "lowerCases": null,
+          "upperCases": null,
+          "intervalKind": "not_estimated"
+        },
+        {
+          "YR": 2024,
+          "WN": 7,
+          "meanCases": 430.0501667800112,
+          "measurementKind": "forecast",
+          "observedCases": 411.0,
+          "observedMeasurementKind": "observed",
+          "lowerCases": null,
+          "upperCases": null,
+          "intervalKind": "not_estimated"
+        },
+        {
+          "YR": 2024,
+          "WN": 8,
+          "meanCases": 364.949548088744,
+          "measurementKind": "forecast",
+          "observedCases": 343.0,
+          "observedMeasurementKind": "observed",
+          "lowerCases": null,
+          "upperCases": null,
+          "intervalKind": "not_estimated"
+        }
+      ],
+      "availabilityAssumption": "All history through issue block is available; original publication delays/vintages unknown.",
+      "modelSelection": "Cases-only predeclared for replay; no selection on evaluation scores.",
+      "simulationCaveat": "Relative-day hypothetical planning with 2026 PhilHealth inventory; not historical hospital occupancy."
+    },
+    {
+      "schemaVersion": "1.0",
+      "id": "upri-source-block-v1-NCR-2024-17",
+      "area": "NCR",
+      "mode": "historical_replay",
+      "issueBlock": {
+        "YR": 2024,
+        "WN": 17
+      },
+      "trainingCutoffBlock": {
+        "YR": 2024,
+        "WN": 17
+      },
+      "issueDate": null,
+      "calendarStatus": "UNRESOLVED_SOURCE_WEEK_DEFINITION",
+      "units": "reported cases / source block",
+      "methodVersion": "upri-source-block-v1",
+      "model": "cases_only",
+      "seed": 42,
+      "modelParameters": {
+        "estimator": "HistGradientBoostingRegressor",
+        "loss": "poisson",
+        "max_iter": 80,
+        "max_leaf_nodes": 12,
+        "min_samples_leaf": 15,
+        "learning_rate": 0.04,
+        "l2_regularization": 5,
+        "random_state": 42,
+        "sklearnVersion": "1.8.0"
+      },
+      "sourceSha256": "94c65ce24e13c132007f67da9b4d10f7023e9429fff79c358b1de938f982dd78",
+      "weeklyPredictions": [
+        {
+          "YR": 2024,
+          "WN": 18,
+          "meanCases": 175.6901142189605,
+          "measurementKind": "forecast",
+          "observedCases": 179.0,
+          "observedMeasurementKind": "observed",
+          "lowerCases": null,
+          "upperCases": null,
+          "intervalKind": "not_estimated"
+        },
+        {
+          "YR": 2024,
+          "WN": 19,
+          "meanCases": 177.15100103099073,
+          "measurementKind": "forecast",
+          "observedCases": 163.0,
+          "observedMeasurementKind": "observed",
+          "lowerCases": null,
+          "upperCases": null,
+          "intervalKind": "not_estimated"
+        },
+        {
+          "YR": 2024,
+          "WN": 20,
+          "meanCases": 198.09862276253003,
+          "measurementKind": "forecast",
+          "observedCases": 141.0,
+          "observedMeasurementKind": "observed",
+          "lowerCases": null,
+          "upperCases": null,
+          "intervalKind": "not_estimated"
+        },
+        {
+          "YR": 2024,
+          "WN": 21,
+          "meanCases": 245.4253434767895,
+          "measurementKind": "forecast",
+          "observedCases": 144.0,
+          "observedMeasurementKind": "observed",
+          "lowerCases": null,
+          "upperCases": null,
+          "intervalKind": "not_estimated"
+        }
+      ],
+      "availabilityAssumption": "All history through issue block is available; original publication delays/vintages unknown.",
+      "modelSelection": "Cases-only predeclared for replay; no selection on evaluation scores.",
+      "simulationCaveat": "Relative-day hypothetical planning with 2026 PhilHealth inventory; not historical hospital occupancy."
+    },
+    {
+      "schemaVersion": "1.0",
+      "id": "upri-source-block-v1-NCR-2024-30",
+      "area": "NCR",
+      "mode": "historical_replay",
+      "issueBlock": {
+        "YR": 2024,
+        "WN": 30
+      },
+      "trainingCutoffBlock": {
+        "YR": 2024,
+        "WN": 30
+      },
+      "issueDate": null,
+      "calendarStatus": "UNRESOLVED_SOURCE_WEEK_DEFINITION",
+      "units": "reported cases / source block",
+      "methodVersion": "upri-source-block-v1",
+      "model": "cases_only",
+      "seed": 42,
+      "modelParameters": {
+        "estimator": "HistGradientBoostingRegressor",
+        "loss": "poisson",
+        "max_iter": 80,
+        "max_leaf_nodes": 12,
+        "min_samples_leaf": 15,
+        "learning_rate": 0.04,
+        "l2_regularization": 5,
+        "random_state": 42,
+        "sklearnVersion": "1.8.0"
+      },
+      "sourceSha256": "94c65ce24e13c132007f67da9b4d10f7023e9429fff79c358b1de938f982dd78",
+      "weeklyPredictions": [
+        {
+          "YR": 2024,
+          "WN": 31,
+          "meanCases": 712.4163809788976,
+          "measurementKind": "forecast",
+          "observedCases": 812.0,
+          "observedMeasurementKind": "observed",
+          "lowerCases": null,
+          "upperCases": null,
+          "intervalKind": "not_estimated"
+        },
+        {
+          "YR": 2024,
+          "WN": 32,
+          "meanCases": 704.3218254161359,
+          "measurementKind": "forecast",
+          "observedCases": 856.0,
+          "observedMeasurementKind": "observed",
+          "lowerCases": null,
+          "upperCases": null,
+          "intervalKind": "not_estimated"
+        },
+        {
+          "YR": 2024,
+          "WN": 33,
+          "meanCases": 773.6167008708453,
+          "measurementKind": "forecast",
+          "observedCases": 969.0,
+          "observedMeasurementKind": "observed",
+          "lowerCases": null,
+          "upperCases": null,
+          "intervalKind": "not_estimated"
+        },
+        {
+          "YR": 2024,
+          "WN": 34,
+          "meanCases": 886.588205462329,
+          "measurementKind": "forecast",
+          "observedCases": 999.0,
+          "observedMeasurementKind": "observed",
+          "lowerCases": null,
+          "upperCases": null,
+          "intervalKind": "not_estimated"
+        }
+      ],
+      "availabilityAssumption": "All history through issue block is available; original publication delays/vintages unknown.",
+      "modelSelection": "Cases-only predeclared for replay; no selection on evaluation scores.",
+      "simulationCaveat": "Relative-day hypothetical planning with 2026 PhilHealth inventory; not historical hospital occupancy."
+    },
+    {
+      "schemaVersion": "1.0",
+      "id": "upri-source-block-v1-NCR-2024-43",
+      "area": "NCR",
+      "mode": "historical_replay",
+      "issueBlock": {
+        "YR": 2024,
+        "WN": 43
+      },
+      "trainingCutoffBlock": {
+        "YR": 2024,
+        "WN": 43
+      },
+      "issueDate": null,
+      "calendarStatus": "UNRESOLVED_SOURCE_WEEK_DEFINITION",
+      "units": "reported cases / source block",
+      "methodVersion": "upri-source-block-v1",
+      "model": "cases_only",
+      "seed": 42,
+      "modelParameters": {
+        "estimator": "HistGradientBoostingRegressor",
+        "loss": "poisson",
+        "max_iter": 80,
+        "max_leaf_nodes": 12,
+        "min_samples_leaf": 15,
+        "learning_rate": 0.04,
+        "l2_regularization": 5,
+        "random_state": 42,
+        "sklearnVersion": "1.8.0"
+      },
+      "sourceSha256": "94c65ce24e13c132007f67da9b4d10f7023e9429fff79c358b1de938f982dd78",
+      "weeklyPredictions": [
+        {
+          "YR": 2024,
+          "WN": 44,
+          "meanCases": 1570.6290858493248,
+          "measurementKind": "forecast",
+          "observedCases": 1773.0,
+          "observedMeasurementKind": "observed",
+          "lowerCases": null,
+          "upperCases": null,
+          "intervalKind": "not_estimated"
+        },
+        {
+          "YR": 2024,
+          "WN": 45,
+          "meanCases": 1492.2542059936382,
+          "measurementKind": "forecast",
+          "observedCases": 1931.0,
+          "observedMeasurementKind": "observed",
+          "lowerCases": null,
+          "upperCases": null,
+          "intervalKind": "not_estimated"
+        },
+        {
+          "YR": 2024,
+          "WN": 46,
+          "meanCases": 1347.5156728560946,
+          "measurementKind": "forecast",
+          "observedCases": 1982.0,
+          "observedMeasurementKind": "observed",
+          "lowerCases": null,
+          "upperCases": null,
+          "intervalKind": "not_estimated"
+        },
+        {
+          "YR": 2024,
+          "WN": 47,
+          "meanCases": 1137.7605675829798,
+          "measurementKind": "forecast",
+          "observedCases": 2129.0,
+          "observedMeasurementKind": "observed",
+          "lowerCases": null,
+          "upperCases": null,
+          "intervalKind": "not_estimated"
+        }
+      ],
+      "availabilityAssumption": "All history through issue block is available; original publication delays/vintages unknown.",
+      "modelSelection": "Cases-only predeclared for replay; no selection on evaluation scores.",
+      "simulationCaveat": "Relative-day hypothetical planning with 2026 PhilHealth inventory; not historical hospital occupancy."
+    },
+    {
+      "schemaVersion": "1.0",
+      "id": "upri-source-block-v1-NCR-2025-4",
+      "area": "NCR",
+      "mode": "historical_replay",
+      "issueBlock": {
+        "YR": 2025,
+        "WN": 4
+      },
+      "trainingCutoffBlock": {
+        "YR": 2025,
+        "WN": 4
+      },
+      "issueDate": null,
+      "calendarStatus": "UNRESOLVED_SOURCE_WEEK_DEFINITION",
+      "units": "reported cases / source block",
+      "methodVersion": "upri-source-block-v1",
+      "model": "cases_only",
+      "seed": 42,
+      "modelParameters": {
+        "estimator": "HistGradientBoostingRegressor",
+        "loss": "poisson",
+        "max_iter": 80,
+        "max_leaf_nodes": 12,
+        "min_samples_leaf": 15,
+        "learning_rate": 0.04,
+        "l2_regularization": 5,
+        "random_state": 42,
+        "sklearnVersion": "1.8.0"
+      },
+      "sourceSha256": "94c65ce24e13c132007f67da9b4d10f7023e9429fff79c358b1de938f982dd78",
+      "weeklyPredictions": [
+        {
+          "YR": 2025,
+          "WN": 5,
+          "meanCases": 1501.3540942186967,
+          "measurementKind": "forecast",
+          "observedCases": 1494.0,
+          "observedMeasurementKind": "observed",
+          "lowerCases": null,
+          "upperCases": null,
+          "intervalKind": "not_estimated"
+        },
+        {
+          "YR": 2025,
+          "WN": 6,
+          "meanCases": 1516.401960766101,
+          "measurementKind": "forecast",
+          "observedCases": 1282.0,
+          "observedMeasurementKind": "observed",
+          "lowerCases": null,
+          "upperCases": null,
+          "intervalKind": "not_estimated"
+        },
+        {
+          "YR": 2025,
+          "WN": 7,
+          "meanCases": 963.8092652317551,
+          "measurementKind": "forecast",
+          "observedCases": 1479.0,
+          "observedMeasurementKind": "observed",
+          "lowerCases": null,
+          "upperCases": null,
+          "intervalKind": "not_estimated"
+        },
+        {
+          "YR": 2025,
+          "WN": 8,
+          "meanCases": 560.5040553440764,
+          "measurementKind": "forecast",
+          "observedCases": 1698.0,
+          "observedMeasurementKind": "observed",
+          "lowerCases": null,
+          "upperCases": null,
+          "intervalKind": "not_estimated"
+        }
+      ],
+      "availabilityAssumption": "All history through issue block is available; original publication delays/vintages unknown.",
+      "modelSelection": "Cases-only predeclared for replay; no selection on evaluation scores.",
+      "simulationCaveat": "Relative-day hypothetical planning with 2026 PhilHealth inventory; not historical hospital occupancy."
+    },
+    {
+      "schemaVersion": "1.0",
+      "id": "upri-source-block-v1-NCR-2025-17",
+      "area": "NCR",
+      "mode": "historical_replay",
+      "issueBlock": {
+        "YR": 2025,
+        "WN": 17
+      },
+      "trainingCutoffBlock": {
+        "YR": 2025,
+        "WN": 17
+      },
+      "issueDate": null,
+      "calendarStatus": "UNRESOLVED_SOURCE_WEEK_DEFINITION",
+      "units": "reported cases / source block",
+      "methodVersion": "upri-source-block-v1",
+      "model": "cases_only",
+      "seed": 42,
+      "modelParameters": {
+        "estimator": "HistGradientBoostingRegressor",
+        "loss": "poisson",
+        "max_iter": 80,
+        "max_leaf_nodes": 12,
+        "min_samples_leaf": 15,
+        "learning_rate": 0.04,
+        "l2_regularization": 5,
+        "random_state": 42,
+        "sklearnVersion": "1.8.0"
+      },
+      "sourceSha256": "94c65ce24e13c132007f67da9b4d10f7023e9429fff79c358b1de938f982dd78",
+      "weeklyPredictions": [
+        {
+          "YR": 2025,
+          "WN": 18,
+          "meanCases": 389.06961001652195,
+          "measurementKind": "forecast",
+          "observedCases": 284.0,
+          "observedMeasurementKind": "observed",
+          "lowerCases": null,
+          "upperCases": null,
+          "intervalKind": "not_estimated"
+        },
+        {
+          "YR": 2025,
+          "WN": 19,
+          "meanCases": 350.4196983945371,
+          "measurementKind": "forecast",
+          "observedCases": 289.0,
+          "observedMeasurementKind": "observed",
+          "lowerCases": null,
+          "upperCases": null,
+          "intervalKind": "not_estimated"
+        },
+        {
+          "YR": 2025,
+          "WN": 20,
+          "meanCases": 299.04477922929175,
+          "measurementKind": "forecast",
+          "observedCases": 248.0,
+          "observedMeasurementKind": "observed",
+          "lowerCases": null,
+          "upperCases": null,
+          "intervalKind": "not_estimated"
+        },
+        {
+          "YR": 2025,
+          "WN": 21,
+          "meanCases": 256.02275515860464,
+          "measurementKind": "forecast",
+          "observedCases": 259.0,
+          "observedMeasurementKind": "observed",
+          "lowerCases": null,
+          "upperCases": null,
+          "intervalKind": "not_estimated"
+        }
+      ],
+      "availabilityAssumption": "All history through issue block is available; original publication delays/vintages unknown.",
+      "modelSelection": "Cases-only predeclared for replay; no selection on evaluation scores.",
+      "simulationCaveat": "Relative-day hypothetical planning with 2026 PhilHealth inventory; not historical hospital occupancy."
+    },
+    {
+      "schemaVersion": "1.0",
+      "id": "upri-source-block-v1-NCR-2025-30",
+      "area": "NCR",
+      "mode": "historical_replay",
+      "issueBlock": {
+        "YR": 2025,
+        "WN": 30
+      },
+      "trainingCutoffBlock": {
+        "YR": 2025,
+        "WN": 30
+      },
+      "issueDate": null,
+      "calendarStatus": "UNRESOLVED_SOURCE_WEEK_DEFINITION",
+      "units": "reported cases / source block",
+      "methodVersion": "upri-source-block-v1",
+      "model": "cases_only",
+      "seed": 42,
+      "modelParameters": {
+        "estimator": "HistGradientBoostingRegressor",
+        "loss": "poisson",
+        "max_iter": 80,
+        "max_leaf_nodes": 12,
+        "min_samples_leaf": 15,
+        "learning_rate": 0.04,
+        "l2_regularization": 5,
+        "random_state": 42,
+        "sklearnVersion": "1.8.0"
+      },
+      "sourceSha256": "94c65ce24e13c132007f67da9b4d10f7023e9429fff79c358b1de938f982dd78",
+      "weeklyPredictions": [
+        {
+          "YR": 2025,
+          "WN": 31,
+          "meanCases": 815.0841525074794,
+          "measurementKind": "forecast",
+          "observedCases": 1089.0,
+          "observedMeasurementKind": "observed",
+          "lowerCases": null,
+          "upperCases": null,
+          "intervalKind": "not_estimated"
+        },
+        {
+          "YR": 2025,
+          "WN": 32,
+          "meanCases": 741.5756321976451,
+          "measurementKind": "forecast",
+          "observedCases": 1168.0,
+          "observedMeasurementKind": "observed",
+          "lowerCases": null,
+          "upperCases": null,
+          "intervalKind": "not_estimated"
+        },
+        {
+          "YR": 2025,
+          "WN": 33,
+          "meanCases": 640.8010193321057,
+          "measurementKind": "forecast",
+          "observedCases": 1224.0,
+          "observedMeasurementKind": "observed",
+          "lowerCases": null,
+          "upperCases": null,
+          "intervalKind": "not_estimated"
+        },
+        {
+          "YR": 2025,
+          "WN": 34,
+          "meanCases": 627.9409762731771,
+          "measurementKind": "forecast",
+          "observedCases": 1111.0,
+          "observedMeasurementKind": "observed",
+          "lowerCases": null,
+          "upperCases": null,
+          "intervalKind": "not_estimated"
+        }
+      ],
+      "availabilityAssumption": "All history through issue block is available; original publication delays/vintages unknown.",
+      "modelSelection": "Cases-only predeclared for replay; no selection on evaluation scores.",
+      "simulationCaveat": "Relative-day hypothetical planning with 2026 PhilHealth inventory; not historical hospital occupancy."
+    },
+    {
+      "schemaVersion": "1.0",
+      "id": "upri-source-block-v1-NCR-2025-43",
+      "area": "NCR",
+      "mode": "historical_replay",
+      "issueBlock": {
+        "YR": 2025,
+        "WN": 43
+      },
+      "trainingCutoffBlock": {
+        "YR": 2025,
+        "WN": 43
+      },
+      "issueDate": null,
+      "calendarStatus": "UNRESOLVED_SOURCE_WEEK_DEFINITION",
+      "units": "reported cases / source block",
+      "methodVersion": "upri-source-block-v1",
+      "model": "cases_only",
+      "seed": 42,
+      "modelParameters": {
+        "estimator": "HistGradientBoostingRegressor",
+        "loss": "poisson",
+        "max_iter": 80,
+        "max_leaf_nodes": 12,
+        "min_samples_leaf": 15,
+        "learning_rate": 0.04,
+        "l2_regularization": 5,
+        "random_state": 42,
+        "sklearnVersion": "1.8.0"
+      },
+      "sourceSha256": "94c65ce24e13c132007f67da9b4d10f7023e9429fff79c358b1de938f982dd78",
+      "weeklyPredictions": [
+        {
+          "YR": 2025,
+          "WN": 44,
+          "meanCases": 1344.4567334183778,
+          "measurementKind": "forecast",
+          "observedCases": 806.0,
+          "observedMeasurementKind": "observed",
+          "lowerCases": null,
+          "upperCases": null,
+          "intervalKind": "not_estimated"
+        },
+        {
+          "YR": 2025,
+          "WN": 45,
+          "meanCases": 1445.7859624811706,
+          "measurementKind": "forecast",
+          "observedCases": 153.0,
+          "observedMeasurementKind": "observed",
+          "lowerCases": null,
+          "upperCases": null,
+          "intervalKind": "not_estimated"
+        },
+        {
+          "YR": 2025,
+          "WN": 46,
+          "meanCases": 1168.346261156445,
+          "measurementKind": "forecast",
+          "observedCases": 121.0,
+          "observedMeasurementKind": "observed",
+          "lowerCases": null,
+          "upperCases": null,
+          "intervalKind": "not_estimated"
+        },
+        {
+          "YR": 2025,
+          "WN": 47,
+          "meanCases": 1097.145828281879,
+          "measurementKind": "forecast",
+          "observedCases": 134.0,
+          "observedMeasurementKind": "observed",
+          "lowerCases": null,
+          "upperCases": null,
+          "intervalKind": "not_estimated"
+        }
+      ],
+      "availabilityAssumption": "All history through issue block is available; original publication delays/vintages unknown.",
+      "modelSelection": "Cases-only predeclared for replay; no selection on evaluation scores.",
+      "simulationCaveat": "Relative-day hypothetical planning with 2026 PhilHealth inventory; not historical hospital occupancy."
+    }
+  ]
+}
