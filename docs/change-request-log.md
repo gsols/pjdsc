@@ -1,5 +1,28 @@
 # User-requested extensions
 
+## 2026-10-24 21:40:17 +08:00 — mirrored sidebar toggle placement
+
+User request: move the right sidebar collapse control to its left edge, mirroring
+the left sidebar. Both controls now sit beside the map; the right heading leaves
+space for its button. See `qc-simulation-workspace.md`, Geography and UI arrangement.
+
+## 2026-10-24 21:32:43 +08:00 — resizable and collapsible sidebars
+
+User request: make both workspace sidebars resizable by dragging their inner
+edges and individually collapsible to free map space. Both remain open at their
+existing widths on first display. Desktop resize handles support arrow keys and
+double-click reset; expanding restores the chosen width for the current page.
+Smaller-screen layouts and simulation behavior remain unchanged. See
+`qc-simulation-workspace.md`, Geography and UI arrangement.
+
+## 2026-10-24 21:28:17 +08:00 — independent workspace scrolling
+
+User request: allow the left, center and right sections of `/outbreak-response`
+to scroll independently, without changing simulation logic or functionality.
+Desktop columns now scroll within a viewport-height workspace and contain scroll
+chaining. Smaller screens retain their existing stacked/page scrolling layout.
+See `qc-simulation-workspace.md`, Geography and UI arrangement.
+
 ## 2026-10-24 20:14:55 +08:00 — automatic QC forecast UI and hospital sidebar
 
 User request: remove mandatory place selection; use historical cases and

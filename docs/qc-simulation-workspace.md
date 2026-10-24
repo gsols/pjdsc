@@ -54,6 +54,14 @@ available historical source require explicit hypothetical mode. No authoritative
 
 ## Geography and UI arrangement
 
+- On desktop (above 1180 px), the left controls, center content and right hospital
+  sidebar scroll independently within the viewport; reaching a panel edge does
+  not scroll the page. Smaller screens retain the existing responsive layout.
+- Desktop sidebars start open at their original widths. Drag an inner edge to
+  resize (or focus it and use arrow keys; Shift makes larger steps). Double-click
+  an edge to reset its width. Each top toggle collapses/expands that sidebar,
+  preserving its chosen width until page reload. The map canvas follows changes.
+  Toggle buttons sit at the inner top corners, beside the map, mirroring each other.
 - The calculation scope is QC alone. NCR forecasts remain a separate research
   scope and are never assigned to the QC hospital network.
 - `scripts/build_philippines_context.py` extracts only name/ID/geometry from the
