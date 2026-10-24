@@ -27,6 +27,8 @@ export default function OutbreakMap({ context, snapshot, selected, onSelect, onH
         style: { version: 8, sources: {}, layers: [{ id: 'background', type: 'background', paint: { 'background-color': '#0b1c2b' } }] } });
     } catch { setError('Map unavailable. Use hotspot and hospital tables.'); return; }
     map.current = instance;
+    const resizeObserver = new ResizeObserver(() => instance.resize());
+    resizeObserver.observe(root.current);
     instance.addControl(new maplibregl.NavigationControl(), 'top-right');
     const controller = new AbortController();
     instance.on('load', async () => {
@@ -67,7 +69,7 @@ export default function OutbreakMap({ context, snapshot, selected, onSelect, onH
       } catch { if (!controller.signal.aborted) setError('Geometry could not load. Use the tables beside the map.'); }
     });
     const labelStore = labels;
-    return () => { controller.abort(); labelStore.current.forEach(label => label.remove()); instance.remove(); map.current = null; };
+    return () => { resizeObserver.disconnect(); controller.abort(); labelStore.current.forEach(label => label.remove()); instance.remove(); map.current = null; };
   }, []);
   useEffect(() => {
     if (!ready || !map.current) return;
