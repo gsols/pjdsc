@@ -6,3 +6,9 @@ data/processed/upri_noah/** -text
 apps/web/public/data/qc-annual-burden.json -text
 apps/web/public/data/qc-barangays.geojson -text
 apps/web/public/data/philippines-context.geojson -text
+
+# Training code is also pinned by byte hash in the seasonal manifest.
+scripts/train_qc_seasonal.py text eol=lf
+services/engine/domain/seasonal_forecast.py text eol=lf
+scripts/train_qc_barangay.py text eol=lf
+services/engine/domain/barangay_forecast.py text eol=lf

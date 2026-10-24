@@ -1,14 +1,25 @@
 {
   "schemaVersion": "1.0",
-  "selectedModel": "seasonal_boosted_trees",
+  "selectedModel": "seasonal_xgboost",
   "selection": {
-    "criterion": "Lowest pre-2024 past-only seasonal calibration MAE; frozen before 2024\u20132025 evaluation",
+    "criterion": "XGBoost explicitly requested for planning; compared with two baselines using pre-2024 calibration, with later years held out",
     "scores": {
+      "seasonal_xgboost": 65.14824319497133,
       "seasonal_boosted_trees": 64.27698944970966,
       "seasonal_baseline": 65.87846886019962
-    }
+    },
+    "bestCalibrationModel": "seasonal_boosted_trees",
+    "userRequestedModel": "seasonal_xgboost"
   },
   "backtest": [
+    {
+      "year": 2024,
+      "model": "seasonal_xgboost",
+      "n": 52,
+      "mae": 79.06434271885799,
+      "rmse": 129.02722376736958,
+      "empiricalRangeCoverage": 0.7692307692307693
+    },
     {
       "year": 2024,
       "model": "seasonal_boosted_trees",
@@ -24,6 +35,14 @@
       "mae": 74.43076923076923,
       "rmse": 127.67658237135052,
       "empiricalRangeCoverage": 0.7692307692307693
+    },
+    {
+      "year": 2025,
+      "model": "seasonal_xgboost",
+      "n": 52,
+      "mae": 112.9391551384559,
+      "rmse": 160.34516583908126,
+      "empiricalRangeCoverage": 0.5576923076923077
     },
     {
       "year": 2025,
@@ -49,6 +68,7 @@
       "week": 1,
       "observed": 167.0,
       "lastTrainingBlock": 104935,
+      "seasonal_xgboost": 65.24290466308594,
       "seasonal_boosted_trees": 63.09935489836131,
       "seasonal_baseline": 62.975
     },
@@ -58,6 +78,7 @@
       "week": 2,
       "observed": 154.0,
       "lastTrainingBlock": 104935,
+      "seasonal_xgboost": 73.45106506347656,
       "seasonal_boosted_trees": 80.7352631872862,
       "seasonal_baseline": 65.375
     },
@@ -67,6 +88,7 @@
       "week": 3,
       "observed": 160.0,
       "lastTrainingBlock": 104935,
+      "seasonal_xgboost": 67.0165023803711,
       "seasonal_boosted_trees": 74.2895873961097,
       "seasonal_baseline": 70.425
     },
@@ -76,6 +98,7 @@
       "week": 4,
       "observed": 138.0,
       "lastTrainingBlock": 104935,
+      "seasonal_xgboost": 69.17879486083984,
       "seasonal_boosted_trees": 72.72371800584317,
       "seasonal_baseline": 71.75
     },
@@ -85,6 +108,7 @@
       "week": 5,
       "observed": 127.0,
       "lastTrainingBlock": 104935,
+      "seasonal_xgboost": 49.55632019042969,
       "seasonal_boosted_trees": 50.6842478241159,
       "seasonal_baseline": 66.7
     },
@@ -94,6 +118,7 @@
       "week": 6,
       "observed": 149.0,
       "lastTrainingBlock": 104935,
+      "seasonal_xgboost": 42.804054260253906,
       "seasonal_boosted_trees": 42.52154473010353,
       "seasonal_baseline": 62.825
     },
@@ -103,6 +128,7 @@
       "week": 7,
       "observed": 122.0,
       "lastTrainingBlock": 104935,
+      "seasonal_xgboost": 45.057987213134766,
       "seasonal_boosted_trees": 46.22026944113944,
       "seasonal_baseline": 58.275
     },
@@ -112,6 +138,7 @@
       "week": 8,
       "observed": 102.0,
       "lastTrainingBlock": 104935,
+      "seasonal_xgboost": 48.820796966552734,
       "seasonal_boosted_trees": 47.803355450802755,
       "seasonal_baseline": 57.3
     },
@@ -121,6 +148,7 @@
       "week": 9,
       "observed": 95.0,
       "lastTrainingBlock": 104935,
+      "seasonal_xgboost": 39.08422088623047,
       "seasonal_boosted_trees": 35.139197679048806,
       "seasonal_baseline": 54.475
     },
@@ -130,6 +158,7 @@
       "week": 10,
       "observed": 91.0,
       "lastTrainingBlock": 104935,
+      "seasonal_xgboost": 43.61959457397461,
       "seasonal_boosted_trees": 39.03812829047732,
       "seasonal_baseline": 51.3
     },
@@ -139,6 +168,7 @@
       "week": 11,
       "observed": 104.0,
       "lastTrainingBlock": 104935,
+      "seasonal_xgboost": 35.488521575927734,
       "seasonal_boosted_trees": 29.47333593883495,
       "seasonal_baseline": 48.725
     },
@@ -148,6 +178,7 @@
       "week": 12,
       "observed": 77.0,
       "lastTrainingBlock": 104935,
+      "seasonal_xgboost": 35.02067184448242,
       "seasonal_boosted_trees": 29.25916368089185,
       "seasonal_baseline": 45.775
     },
@@ -157,6 +188,7 @@
       "week": 13,
       "observed": 76.0,
       "lastTrainingBlock": 104935,
+      "seasonal_xgboost": 40.85675811767578,
       "seasonal_boosted_trees": 31.827477686303368,
       "seasonal_baseline": 40.7
     },
@@ -166,6 +198,7 @@
       "week": 14,
       "observed": 80.0,
       "lastTrainingBlock": 104935,
+      "seasonal_xgboost": 35.07659912109375,
       "seasonal_boosted_trees": 32.72534147093043,
       "seasonal_baseline": 37.625
     },
@@ -175,6 +208,7 @@
       "week": 15,
       "observed": 71.0,
       "lastTrainingBlock": 104935,
+      "seasonal_xgboost": 32.79093551635742,
       "seasonal_boosted_trees": 28.946436055032045,
       "seasonal_baseline": 36.4
     },
@@ -184,6 +218,7 @@
       "week": 16,
       "observed": 84.0,
       "lastTrainingBlock": 104935,
+      "seasonal_xgboost": 32.610836029052734,
       "seasonal_boosted_trees": 29.27381839782948,
       "seasonal_baseline": 35.25
     },
@@ -193,6 +228,7 @@
       "week": 17,
       "observed": 51.0,
       "lastTrainingBlock": 104935,
+      "seasonal_xgboost": 32.25164031982422,
       "seasonal_boosted_trees": 30.712369809176025,
       "seasonal_baseline": 34.275
     },
@@ -202,6 +238,7 @@
       "week": 18,
       "observed": 76.0,
       "lastTrainingBlock": 104935,
+      "seasonal_xgboost": 32.719852447509766,
       "seasonal_boosted_trees": 27.54213416242376,
       "seasonal_baseline": 34.85
     },
@@ -211,6 +248,7 @@
       "week": 19,
       "observed": 81.0,
       "lastTrainingBlock": 104935,
+      "seasonal_xgboost": 34.353267669677734,
       "seasonal_boosted_trees": 31.470718256608166,
       "seasonal_baseline": 36.675
     },
@@ -220,6 +258,7 @@
       "week": 20,
       "observed": 67.0,
       "lastTrainingBlock": 104935,
+      "seasonal_xgboost": 34.93574142456055,
       "seasonal_boosted_trees": 32.72575507776593,
       "seasonal_baseline": 38.325
     },
@@ -229,6 +268,7 @@
       "week": 21,
       "observed": 72.0,
       "lastTrainingBlock": 104935,
+      "seasonal_xgboost": 34.663818359375,
       "seasonal_boosted_trees": 35.24092924797203,
       "seasonal_baseline": 40.925
     },
@@ -238,6 +278,7 @@
       "week": 22,
       "observed": 81.0,
       "lastTrainingBlock": 104935,
+      "seasonal_xgboost": 42.43425750732422,
       "seasonal_boosted_trees": 37.55065604504308,
       "seasonal_baseline": 47.1
     },
@@ -247,6 +288,7 @@
       "week": 23,
       "observed": 77.0,
       "lastTrainingBlock": 104935,
+      "seasonal_xgboost": 62.58061218261719,
       "seasonal_boosted_trees": 56.19931733332451,
       "seasonal_baseline": 56.2
     },
@@ -256,6 +298,7 @@
       "week": 24,
       "observed": 100.0,
       "lastTrainingBlock": 104935,
+      "seasonal_xgboost": 61.381492614746094,
       "seasonal_boosted_trees": 61.527545436082924,
       "seasonal_baseline": 69.8
     },
@@ -265,6 +308,7 @@
       "week": 25,
       "observed": 114.0,
       "lastTrainingBlock": 104935,
+      "seasonal_xgboost": 109.56661224365234,
       "seasonal_boosted_trees": 96.82181644597543,
       "seasonal_baseline": 87.35
     },
@@ -274,6 +318,7 @@
       "week": 26,
       "observed": 202.0,
       "lastTrainingBlock": 104935,
+      "seasonal_xgboost": 140.89947509765625,
       "seasonal_boosted_trees": 142.5852969823889,
       "seasonal_baseline": 107.65
     },
@@ -283,6 +328,7 @@
       "week": 27,
       "observed": 184.0,
       "lastTrainingBlock": 104935,
+      "seasonal_xgboost": 115.84024810791016,
       "seasonal_boosted_trees": 119.05765259534776,
       "seasonal_baseline": 132.9
     },
@@ -292,6 +338,7 @@
       "week": 28,
       "observed": 131.0,
       "lastTrainingBlock": 104935,
+      "seasonal_xgboost": 145.97210693359375,
       "seasonal_boosted_trees": 145.25354061518377,
       "seasonal_baseline": 155.125
     },
@@ -301,6 +348,7 @@
       "week": 29,
       "observed": 277.0,
       "lastTrainingBlock": 104935,
+      "seasonal_xgboost": 193.4248809814453,
       "seasonal_boosted_trees": 194.39476773514494,
       "seasonal_baseline": 172.6
     },
@@ -310,6 +358,7 @@
       "week": 30,
       "observed": 188.0,
       "lastTrainingBlock": 104935,
+      "seasonal_xgboost": 208.09120178222656,
       "seasonal_boosted_trees": 201.012899181487,
       "seasonal_baseline": 192.8
     },
@@ -319,6 +368,7 @@
       "week": 31,
       "observed": 261.0,
       "lastTrainingBlock": 104935,
+      "seasonal_xgboost": 150.54237365722656,
       "seasonal_boosted_trees": 148.88528703841604,
       "seasonal_baseline": 214.025
     },
@@ -328,6 +378,7 @@
       "week": 32,
       "observed": 355.0,
       "lastTrainingBlock": 104935,
+      "seasonal_xgboost": 241.53900146484375,
       "seasonal_boosted_trees": 247.2720122623842,
       "seasonal_baseline": 230.725
     },
@@ -337,6 +388,7 @@
       "week": 33,
       "observed": 278.0,
       "lastTrainingBlock": 104935,
+      "seasonal_xgboost": 252.74366760253906,
       "seasonal_boosted_trees": 270.0835101614712,
       "seasonal_baseline": 240.525
     },
@@ -346,6 +398,7 @@
       "week": 34,
       "observed": 331.0,
       "lastTrainingBlock": 104935,
+      "seasonal_xgboost": 238.72134399414062,
       "seasonal_boosted_trees": 258.3955417492396,
       "seasonal_baseline": 245.725
     },
@@ -355,6 +408,7 @@
       "week": 35,
       "observed": 256.0,
       "lastTrainingBlock": 104935,
+      "seasonal_xgboost": 231.0762176513672,
       "seasonal_boosted_trees": 245.65939776587302,
       "seasonal_baseline": 242.45
     },
@@ -364,6 +418,7 @@
       "week": 36,
       "observed": 273.0,
       "lastTrainingBlock": 104935,
+      "seasonal_xgboost": 205.11244201660156,
       "seasonal_boosted_trees": 213.95596701241465,
       "seasonal_baseline": 232.8
     },
@@ -373,6 +428,7 @@
       "week": 37,
       "observed": 217.0,
       "lastTrainingBlock": 104935,
+      "seasonal_xgboost": 226.5609893798828,
       "seasonal_boosted_trees": 233.3556367998849,
       "seasonal_baseline": 213.075
     },
@@ -382,6 +438,7 @@
       "week": 38,
       "observed": 231.0,
       "lastTrainingBlock": 104935,
+      "seasonal_xgboost": 213.4052734375,
       "seasonal_boosted_trees": 192.84638738140714,
       "seasonal_baseline": 195.825
     },
@@ -391,6 +448,7 @@
       "week": 39,
       "observed": 280.0,
       "lastTrainingBlock": 104935,
+      "seasonal_xgboost": 171.6703338623047,
       "seasonal_boosted_trees": 203.51365656213824,
       "seasonal_baseline": 179.025
     },
@@ -400,6 +458,7 @@
       "week": 40,
       "observed": 325.0,
       "lastTrainingBlock": 104935,
+      "seasonal_xgboost": 159.0666961669922,
       "seasonal_boosted_trees": 162.02851394925298,
       "seasonal_baseline": 162.925
     },
@@ -409,6 +468,7 @@
       "week": 41,
       "observed": 243.0,
       "lastTrainingBlock": 104935,
+      "seasonal_xgboost": 133.53115844726562,
       "seasonal_boosted_trees": 130.55767155263828,
       "seasonal_baseline": 148.125
     },
@@ -418,6 +478,7 @@
       "week": 42,
       "observed": 216.0,
       "lastTrainingBlock": 104935,
+      "seasonal_xgboost": 161.52886962890625,
       "seasonal_boosted_trees": 178.64202785827817,
       "seasonal_baseline": 133.6
     },
@@ -427,6 +488,7 @@
       "week": 43,
       "observed": 211.0,
       "lastTrainingBlock": 104935,
+      "seasonal_xgboost": 127.54597473144531,
       "seasonal_boosted_trees": 120.07370503720217,
       "seasonal_baseline": 123.625
     },
@@ -436,6 +498,7 @@
       "week": 44,
       "observed": 176.0,
       "lastTrainingBlock": 104935,
+      "seasonal_xgboost": 113.67365264892578,
       "seasonal_boosted_trees": 116.14530330185544,
       "seasonal_baseline": 113.575
     },
@@ -445,6 +508,7 @@
       "week": 45,
       "observed": 127.0,
       "lastTrainingBlock": 104935,
+      "seasonal_xgboost": 117.01329803466797,
       "seasonal_boosted_trees": 107.2843500225104,
       "seasonal_baseline": 102.825
     },
@@ -454,6 +518,7 @@
       "week": 46,
       "observed": 160.0,
       "lastTrainingBlock": 104935,
+      "seasonal_xgboost": 95.78390502929688,
       "seasonal_boosted_trees": 75.36875150705188,
       "seasonal_baseline": 91.625
     },
@@ -463,6 +528,7 @@
       "week": 47,
       "observed": 129.0,
       "lastTrainingBlock": 104935,
+      "seasonal_xgboost": 90.36384582519531,
       "seasonal_boosted_trees": 84.77300693246131,
       "seasonal_baseline": 87.425
     },
@@ -472,6 +538,7 @@
       "week": 48,
       "observed": 142.0,
       "lastTrainingBlock": 104935,
+      "seasonal_xgboost": 105.74043273925781,
       "seasonal_boosted_trees": 111.24228675923281,
       "seasonal_baseline": 80.275
     },
@@ -481,6 +548,7 @@
       "week": 49,
       "observed": 120.0,
       "lastTrainingBlock": 104935,
+      "seasonal_xgboost": 79.29492950439453,
       "seasonal_boosted_trees": 71.09986539747494,
       "seasonal_baseline": 75.6
     },
@@ -490,6 +558,7 @@
       "week": 50,
       "observed": 143.0,
       "lastTrainingBlock": 104935,
+      "seasonal_xgboost": 67.7706527709961,
       "seasonal_boosted_trees": 58.47593665149448,
       "seasonal_baseline": 67.575
     },
@@ -499,6 +568,7 @@
       "week": 51,
       "observed": 93.0,
       "lastTrainingBlock": 104935,
+      "seasonal_xgboost": 66.87840270996094,
       "seasonal_boosted_trees": 62.83849070589972,
       "seasonal_baseline": 62.9
     },
@@ -508,6 +578,7 @@
       "week": 52,
       "observed": 93.0,
       "lastTrainingBlock": 104935,
+      "seasonal_xgboost": 66.04235076904297,
       "seasonal_boosted_trees": 59.43708978795615,
       "seasonal_baseline": 62.3
     },
@@ -517,6 +588,7 @@
       "week": 1,
       "observed": 169.0,
       "lastTrainingBlock": 104987,
+      "seasonal_xgboost": 66.09524536132812,
       "seasonal_boosted_trees": 63.95501126421428,
       "seasonal_baseline": 70.8
     },
@@ -526,6 +598,7 @@
       "week": 2,
       "observed": 206.0,
       "lastTrainingBlock": 104987,
+      "seasonal_xgboost": 79.98931884765625,
       "seasonal_boosted_trees": 88.32820094553902,
       "seasonal_baseline": 73.93333333333334
     },
@@ -535,6 +608,7 @@
       "week": 3,
       "observed": 186.0,
       "lastTrainingBlock": 104987,
+      "seasonal_xgboost": 85.86468505859375,
       "seasonal_boosted_trees": 105.95835453938396,
       "seasonal_baseline": 79.17777777777778
     },
@@ -544,6 +618,7 @@
       "week": 4,
       "observed": 142.0,
       "lastTrainingBlock": 104987,
+      "seasonal_xgboost": 112.68394470214844,
       "seasonal_boosted_trees": 112.62205292609038,
       "seasonal_baseline": 79.95555555555555
     },
@@ -553,6 +628,7 @@
       "week": 5,
       "observed": 183.0,
       "lastTrainingBlock": 104987,
+      "seasonal_xgboost": 60.62765121459961,
       "seasonal_boosted_trees": 58.60671525564358,
       "seasonal_baseline": 74.75555555555556
     },
@@ -562,6 +638,7 @@
       "week": 6,
       "observed": 122.0,
       "lastTrainingBlock": 104987,
+      "seasonal_xgboost": 70.18096923828125,
       "seasonal_boosted_trees": 68.64797563174012,
       "seasonal_baseline": 70.02222222222223
     },
@@ -571,6 +648,7 @@
       "week": 7,
       "observed": 109.0,
       "lastTrainingBlock": 104987,
+      "seasonal_xgboost": 68.35982513427734,
       "seasonal_boosted_trees": 67.04412812055499,
       "seasonal_baseline": 65.02222222222223
     },
@@ -580,6 +658,7 @@
       "week": 8,
       "observed": 118.0,
       "lastTrainingBlock": 104987,
+      "seasonal_xgboost": 46.33131408691406,
       "seasonal_boosted_trees": 43.15755489727036,
       "seasonal_baseline": 63.355555555555554
     },
@@ -589,6 +668,7 @@
       "week": 9,
       "observed": 88.0,
       "lastTrainingBlock": 104987,
+      "seasonal_xgboost": 43.85713577270508,
       "seasonal_boosted_trees": 41.16543058707742,
       "seasonal_baseline": 59.84444444444444
     },
@@ -598,6 +678,7 @@
       "week": 10,
       "observed": 81.0,
       "lastTrainingBlock": 104987,
+      "seasonal_xgboost": 45.52898406982422,
       "seasonal_boosted_trees": 42.83634762304764,
       "seasonal_baseline": 56.022222222222226
     },
@@ -607,6 +688,7 @@
       "week": 11,
       "observed": 53.0,
       "lastTrainingBlock": 104987,
+      "seasonal_xgboost": 41.723045349121094,
       "seasonal_boosted_trees": 42.997593590498376,
       "seasonal_baseline": 53.15555555555556
     },
@@ -616,6 +698,7 @@
       "week": 12,
       "observed": 56.0,
       "lastTrainingBlock": 104987,
+      "seasonal_xgboost": 40.88457107543945,
       "seasonal_boosted_trees": 39.0063857123694,
       "seasonal_baseline": 50.2
     },
@@ -625,6 +708,7 @@
       "week": 13,
       "observed": 48.0,
       "lastTrainingBlock": 104987,
+      "seasonal_xgboost": 40.21623992919922,
       "seasonal_boosted_trees": 35.4666410766666,
       "seasonal_baseline": 45.24444444444445
     },
@@ -634,6 +718,7 @@
       "week": 14,
       "observed": 29.0,
       "lastTrainingBlock": 104987,
+      "seasonal_xgboost": 46.256404876708984,
       "seasonal_boosted_trees": 49.923165269486326,
       "seasonal_baseline": 42.06666666666667
     },
@@ -643,6 +728,7 @@
       "week": 15,
       "observed": 42.0,
       "lastTrainingBlock": 104987,
+      "seasonal_xgboost": 39.2562141418457,
       "seasonal_boosted_trees": 35.02897836959061,
       "seasonal_baseline": 40.4
     },
@@ -652,6 +738,7 @@
       "week": 16,
       "observed": 66.0,
       "lastTrainingBlock": 104987,
+      "seasonal_xgboost": 38.46676254272461,
       "seasonal_boosted_trees": 37.25280806762011,
       "seasonal_baseline": 39.37777777777778
     },
@@ -661,6 +748,7 @@
       "week": 17,
       "observed": 53.0,
       "lastTrainingBlock": 104987,
+      "seasonal_xgboost": 54.910675048828125,
       "seasonal_boosted_trees": 39.57203040834965,
       "seasonal_baseline": 38.53333333333333
     },
@@ -670,6 +758,7 @@
       "week": 18,
       "observed": 30.0,
       "lastTrainingBlock": 104987,
+      "seasonal_xgboost": 38.754173278808594,
       "seasonal_boosted_trees": 37.155659681122124,
       "seasonal_baseline": 38.955555555555556
     },
@@ -679,6 +768,7 @@
       "week": 19,
       "observed": 21.0,
       "lastTrainingBlock": 104987,
+      "seasonal_xgboost": 41.692256927490234,
       "seasonal_boosted_trees": 41.211476648563334,
       "seasonal_baseline": 40.31111111111111
     },
@@ -688,6 +778,7 @@
       "week": 20,
       "observed": 35.0,
       "lastTrainingBlock": 104987,
+      "seasonal_xgboost": 47.36638259887695,
       "seasonal_boosted_trees": 42.55446584317496,
       "seasonal_baseline": 42.44444444444444
     },
@@ -697,6 +788,7 @@
       "week": 21,
       "observed": 101.0,
       "lastTrainingBlock": 104987,
+      "seasonal_xgboost": 45.86431884765625,
       "seasonal_boosted_trees": 46.79748747054307,
       "seasonal_baseline": 44.77777777777778
     },
@@ -706,6 +798,7 @@
       "week": 22,
       "observed": 79.0,
       "lastTrainingBlock": 104987,
+      "seasonal_xgboost": 57.691837310791016,
       "seasonal_boosted_trees": 58.847805796835544,
       "seasonal_baseline": 50.68888888888889
     },
@@ -715,6 +808,7 @@
       "week": 23,
       "observed": 50.0,
       "lastTrainingBlock": 104987,
+      "seasonal_xgboost": 61.95637512207031,
       "seasonal_boosted_trees": 60.099577125193285,
       "seasonal_baseline": 59.82222222222222
     },
@@ -724,6 +818,7 @@
       "week": 24,
       "observed": 43.0,
       "lastTrainingBlock": 104987,
+      "seasonal_xgboost": 89.79077911376953,
       "seasonal_boosted_trees": 81.47592410953587,
       "seasonal_baseline": 74.8
     },
@@ -733,6 +828,7 @@
       "week": 25,
       "observed": 64.0,
       "lastTrainingBlock": 104987,
+      "seasonal_xgboost": 107.94898223876953,
       "seasonal_boosted_trees": 106.22642489454292,
       "seasonal_baseline": 92.68888888888888
     },
@@ -742,6 +838,7 @@
       "week": 26,
       "observed": 91.0,
       "lastTrainingBlock": 104987,
+      "seasonal_xgboost": 104.37799072265625,
       "seasonal_boosted_trees": 111.71132089707709,
       "seasonal_baseline": 111.93333333333334
     },
@@ -751,6 +848,7 @@
       "week": 27,
       "observed": 111.0,
       "lastTrainingBlock": 104987,
+      "seasonal_xgboost": 129.1677703857422,
       "seasonal_boosted_trees": 126.38182820995561,
       "seasonal_baseline": 138.3111111111111
     },
@@ -760,6 +858,7 @@
       "week": 28,
       "observed": 164.0,
       "lastTrainingBlock": 104987,
+      "seasonal_xgboost": 135.42373657226562,
       "seasonal_boosted_trees": 127.46318880038982,
       "seasonal_baseline": 159.7111111111111
     },
@@ -769,6 +868,7 @@
       "week": 29,
       "observed": 219.0,
       "lastTrainingBlock": 104987,
+      "seasonal_xgboost": 230.07745361328125,
       "seasonal_boosted_trees": 212.41485954546872,
       "seasonal_baseline": 176.55555555555554
     },
@@ -778,6 +878,7 @@
       "week": 30,
       "observed": 374.0,
       "lastTrainingBlock": 104987,
+      "seasonal_xgboost": 206.98431396484375,
       "seasonal_boosted_trees": 192.46275840417806,
       "seasonal_baseline": 198.3111111111111
     },
@@ -787,6 +888,7 @@
       "week": 31,
       "observed": 407.0,
       "lastTrainingBlock": 104987,
+      "seasonal_xgboost": 212.9384002685547,
       "seasonal_boosted_trees": 219.03212169602685,
       "seasonal_baseline": 220.44444444444446
     },
@@ -796,6 +898,7 @@
       "week": 32,
       "observed": 398.0,
       "lastTrainingBlock": 104987,
+      "seasonal_xgboost": 240.37142944335938,
       "seasonal_boosted_trees": 244.27852512941044,
       "seasonal_baseline": 236.48888888888888
     },
@@ -805,6 +908,7 @@
       "week": 33,
       "observed": 509.0,
       "lastTrainingBlock": 104987,
+      "seasonal_xgboost": 246.6730499267578,
       "seasonal_boosted_trees": 258.5818596570625,
       "seasonal_baseline": 246.7111111111111
     },
@@ -814,6 +918,7 @@
       "week": 34,
       "observed": 612.0,
       "lastTrainingBlock": 104987,
+      "seasonal_xgboost": 249.3535614013672,
       "seasonal_boosted_trees": 251.2562997079721,
       "seasonal_baseline": 251.6
     },
@@ -823,6 +928,7 @@
       "week": 35,
       "observed": 697.0,
       "lastTrainingBlock": 104987,
+      "seasonal_xgboost": 221.96615600585938,
       "seasonal_boosted_trees": 234.3625781617617,
       "seasonal_baseline": 245.62222222222223
     },
@@ -832,6 +938,7 @@
       "week": 36,
       "observed": 597.0,
       "lastTrainingBlock": 104987,
+      "seasonal_xgboost": 197.80987548828125,
       "seasonal_boosted_trees": 231.1786382676878,
       "seasonal_baseline": 236.0
     },
@@ -841,6 +948,7 @@
       "week": 37,
       "observed": 416.0,
       "lastTrainingBlock": 104987,
+      "seasonal_xgboost": 204.90383911132812,
       "seasonal_boosted_trees": 207.3427765585125,
       "seasonal_baseline": 217.33333333333334
     },
@@ -850,6 +958,7 @@
       "week": 38,
       "observed": 374.0,
       "lastTrainingBlock": 104987,
+      "seasonal_xgboost": 209.36866760253906,
       "seasonal_boosted_trees": 207.84385432326678,
       "seasonal_baseline": 203.53333333333333
     },
@@ -859,6 +968,7 @@
       "week": 39,
       "observed": 309.0,
       "lastTrainingBlock": 104987,
+      "seasonal_xgboost": 176.0665740966797,
       "seasonal_boosted_trees": 181.74520518419956,
       "seasonal_baseline": 187.93333333333334
     },
@@ -868,6 +978,7 @@
       "week": 40,
       "observed": 335.0,
       "lastTrainingBlock": 104987,
+      "seasonal_xgboost": 164.87890625,
       "seasonal_boosted_trees": 157.98717613165576,
       "seasonal_baseline": 173.6
     },
@@ -877,6 +988,7 @@
       "week": 41,
       "observed": 346.0,
       "lastTrainingBlock": 104987,
+      "seasonal_xgboost": 128.44302368164062,
       "seasonal_boosted_trees": 134.6160602515313,
       "seasonal_baseline": 160.0
     },
@@ -886,6 +998,7 @@
       "week": 42,
       "observed": 238.0,
       "lastTrainingBlock": 104987,
+      "seasonal_xgboost": 133.0365753173828,
       "seasonal_boosted_trees": 128.13749170129063,
       "seasonal_baseline": 144.77777777777777
     },
@@ -895,6 +1008,7 @@
       "week": 43,
       "observed": 235.0,
       "lastTrainingBlock": 104987,
+      "seasonal_xgboost": 114.28982543945312,
       "seasonal_boosted_trees": 112.96977070401853,
       "seasonal_baseline": 131.51111111111112
     },
@@ -904,6 +1018,7 @@
       "week": 44,
       "observed": 215.0,
       "lastTrainingBlock": 104987,
+      "seasonal_xgboost": 107.0196762084961,
       "seasonal_boosted_trees": 103.02409837829555,
       "seasonal_baseline": 120.73333333333333
     },
@@ -913,6 +1028,7 @@
       "week": 45,
       "observed": 213.0,
       "lastTrainingBlock": 104987,
+      "seasonal_xgboost": 103.16928100585938,
       "seasonal_boosted_trees": 93.95173823581885,
       "seasonal_baseline": 109.24444444444444
     },
@@ -922,6 +1038,7 @@
       "week": 46,
       "observed": 181.0,
       "lastTrainingBlock": 104987,
+      "seasonal_xgboost": 106.40357971191406,
       "seasonal_boosted_trees": 111.4796606811889,
       "seasonal_baseline": 97.75555555555556
     },
@@ -931,6 +1048,7 @@
       "week": 47,
       "observed": 172.0,
       "lastTrainingBlock": 104987,
+      "seasonal_xgboost": 104.6717529296875,
       "seasonal_boosted_trees": 105.20326756876291,
       "seasonal_baseline": 92.77777777777777
     },
@@ -940,6 +1058,7 @@
       "week": 48,
       "observed": 165.0,
       "lastTrainingBlock": 104987,
+      "seasonal_xgboost": 93.6947250366211,
       "seasonal_boosted_trees": 109.95565873210833,
       "seasonal_baseline": 86.77777777777777
     },
@@ -949,6 +1068,7 @@
       "week": 49,
       "observed": 169.0,
       "lastTrainingBlock": 104987,
+      "seasonal_xgboost": 77.76508331298828,
       "seasonal_boosted_trees": 84.0494488112227,
       "seasonal_baseline": 81.13333333333334
     },
@@ -958,6 +1078,7 @@
       "week": 50,
       "observed": 139.0,
       "lastTrainingBlock": 104987,
+      "seasonal_xgboost": 68.49983978271484,
       "seasonal_boosted_trees": 68.57378632235707,
       "seasonal_baseline": 73.2
     },
@@ -967,6 +1088,7 @@
       "week": 51,
       "observed": 151.0,
       "lastTrainingBlock": 104987,
+      "seasonal_xgboost": 70.56037902832031,
       "seasonal_boosted_trees": 81.31826116133055,
       "seasonal_baseline": 69.6
     },
@@ -976,6 +1098,7 @@
       "week": 52,
       "observed": 157.0,
       "lastTrainingBlock": 104987,
+      "seasonal_xgboost": 69.68932342529297,
       "seasonal_boosted_trees": 59.04928552024227,
       "seasonal_baseline": 69.82222222222222
     },
@@ -985,6 +1108,7 @@
       "week": 1,
       "observed": 104.0,
       "lastTrainingBlock": 105039,
+      "seasonal_xgboost": 76.55484771728516,
       "seasonal_boosted_trees": 72.39950056147207,
       "seasonal_baseline": 81.1
     },
@@ -994,6 +1118,7 @@
       "week": 2,
       "observed": 183.0,
       "lastTrainingBlock": 105039,
+      "seasonal_xgboost": 84.8773193359375,
       "seasonal_boosted_trees": 80.9123299670231,
       "seasonal_baseline": 83.74
     },
@@ -1003,6 +1128,7 @@
       "week": 3,
       "observed": 136.0,
       "lastTrainingBlock": 105039,
+      "seasonal_xgboost": 77.56114196777344,
       "seasonal_boosted_trees": 89.66894951044002,
       "seasonal_baseline": 88.98
     },
@@ -1012,6 +1138,7 @@
       "week": 4,
       "observed": 133.0,
       "lastTrainingBlock": 105039,
+      "seasonal_xgboost": 77.37799072265625,
       "seasonal_boosted_trees": 80.20617248608909,
       "seasonal_baseline": 88.74
     },
@@ -1021,6 +1148,7 @@
       "week": 5,
       "observed": 116.0,
       "lastTrainingBlock": 105039,
+      "seasonal_xgboost": 62.31984329223633,
       "seasonal_boosted_trees": 63.369007147175815,
       "seasonal_baseline": 82.12
     },
@@ -1030,6 +1158,7 @@
       "week": 6,
       "observed": 77.0,
       "lastTrainingBlock": 105039,
+      "seasonal_xgboost": 53.28908920288086,
       "seasonal_boosted_trees": 52.76993018077021,
       "seasonal_baseline": 76.5
     },
@@ -1039,6 +1168,7 @@
       "week": 7,
       "observed": 52.0,
       "lastTrainingBlock": 105039,
+      "seasonal_xgboost": 50.58855438232422,
       "seasonal_boosted_trees": 50.50758103768177,
       "seasonal_baseline": 70.92
     },
@@ -1048,6 +1178,7 @@
       "week": 8,
       "observed": 70.0,
       "lastTrainingBlock": 105039,
+      "seasonal_xgboost": 53.09273910522461,
       "seasonal_boosted_trees": 51.18465817255991,
       "seasonal_baseline": 67.38
     },
@@ -1057,6 +1188,7 @@
       "week": 9,
       "observed": 64.0,
       "lastTrainingBlock": 105039,
+      "seasonal_xgboost": 58.08510208129883,
       "seasonal_boosted_trees": 54.013599296736366,
       "seasonal_baseline": 62.84
     },
@@ -1066,6 +1198,7 @@
       "week": 10,
       "observed": 50.0,
       "lastTrainingBlock": 105039,
+      "seasonal_xgboost": 51.75502395629883,
       "seasonal_boosted_trees": 48.86552994506214,
       "seasonal_baseline": 58.34
     },
@@ -1075,6 +1208,7 @@
       "week": 11,
       "observed": 38.0,
       "lastTrainingBlock": 105039,
+      "seasonal_xgboost": 65.71881103515625,
       "seasonal_boosted_trees": 55.63082601143499,
       "seasonal_baseline": 54.36
     },
@@ -1084,6 +1218,7 @@
       "week": 12,
       "observed": 23.0,
       "lastTrainingBlock": 105039,
+      "seasonal_xgboost": 45.682613372802734,
       "seasonal_boosted_trees": 39.61136301420846,
       "seasonal_baseline": 50.52
     },
@@ -1093,6 +1228,7 @@
       "week": 13,
       "observed": 6.0,
       "lastTrainingBlock": 105039,
+      "seasonal_xgboost": 43.27675247192383,
       "seasonal_boosted_trees": 36.40074515419546,
       "seasonal_baseline": 45.28
     },
@@ -1102,6 +1238,7 @@
       "week": 14,
       "observed": 5.0,
       "lastTrainingBlock": 105039,
+      "seasonal_xgboost": 40.261905670166016,
       "seasonal_boosted_trees": 36.79649327590873,
       "seasonal_baseline": 42.68
     },
@@ -1111,6 +1248,7 @@
       "week": 15,
       "observed": 1.0,
       "lastTrainingBlock": 105039,
+      "seasonal_xgboost": 40.826194763183594,
       "seasonal_boosted_trees": 37.80169833271298,
       "seasonal_baseline": 41.12
     },
@@ -1120,6 +1258,7 @@
       "week": 16,
       "observed": 3.0,
       "lastTrainingBlock": 105039,
+      "seasonal_xgboost": 42.1002082824707,
       "seasonal_boosted_trees": 36.951125881561026,
       "seasonal_baseline": 39.84
     },
@@ -1129,6 +1268,7 @@
       "week": 17,
       "observed": 4.0,
       "lastTrainingBlock": 105039,
+      "seasonal_xgboost": 48.624481201171875,
       "seasonal_boosted_trees": 45.99465252866739,
       "seasonal_baseline": 38.92
     },
@@ -1138,6 +1278,7 @@
       "week": 18,
       "observed": 1.0,
       "lastTrainingBlock": 105039,
+      "seasonal_xgboost": 48.33477020263672,
       "seasonal_boosted_trees": 46.72661148130732,
       "seasonal_baseline": 39.16
     },
@@ -1147,6 +1288,7 @@
       "week": 19,
       "observed": 2.0,
       "lastTrainingBlock": 105039,
+      "seasonal_xgboost": 48.91184616088867,
       "seasonal_boosted_trees": 48.547495785230474,
       "seasonal_baseline": 41.08
     },
@@ -1156,6 +1298,7 @@
       "week": 20,
       "observed": 1.0,
       "lastTrainingBlock": 105039,
+      "seasonal_xgboost": 44.190711975097656,
       "seasonal_boosted_trees": 41.63372937358376,
       "seasonal_baseline": 43.52
     },
@@ -1165,6 +1308,7 @@
       "week": 21,
       "observed": 2.0,
       "lastTrainingBlock": 105039,
+      "seasonal_xgboost": 45.20872116088867,
       "seasonal_boosted_trees": 42.41418364391685,
       "seasonal_baseline": 46.02
     },
@@ -1174,6 +1318,7 @@
       "week": 22,
       "observed": 1.0,
       "lastTrainingBlock": 105039,
+      "seasonal_xgboost": 53.077247619628906,
       "seasonal_boosted_trees": 53.39550519704427,
       "seasonal_baseline": 51.78
     },
@@ -1183,6 +1328,7 @@
       "week": 23,
       "observed": 3.0,
       "lastTrainingBlock": 105039,
+      "seasonal_xgboost": 53.565120697021484,
       "seasonal_boosted_trees": 52.775202883775236,
       "seasonal_baseline": 60.58
     },
@@ -1192,6 +1338,7 @@
       "week": 24,
       "observed": 5.0,
       "lastTrainingBlock": 105039,
+      "seasonal_xgboost": 83.36505126953125,
       "seasonal_boosted_trees": 75.27206324260159,
       "seasonal_baseline": 73.86
     },
@@ -1201,6 +1348,7 @@
       "week": 25,
       "observed": 5.0,
       "lastTrainingBlock": 105039,
+      "seasonal_xgboost": 89.1598892211914,
       "seasonal_boosted_trees": 87.03352915204476,
       "seasonal_baseline": 90.6
     },
@@ -1210,6 +1358,7 @@
       "week": 26,
       "observed": 5.0,
       "lastTrainingBlock": 105039,
+      "seasonal_xgboost": 102.35572052001953,
       "seasonal_boosted_trees": 111.44693805401538,
       "seasonal_baseline": 110.2
     },
@@ -1219,6 +1368,7 @@
       "week": 27,
       "observed": 6.0,
       "lastTrainingBlock": 105039,
+      "seasonal_xgboost": 130.1117706298828,
       "seasonal_boosted_trees": 125.72954247278632,
       "seasonal_baseline": 137.46
     },
@@ -1228,6 +1378,7 @@
       "week": 28,
       "observed": 9.0,
       "lastTrainingBlock": 105039,
+      "seasonal_xgboost": 158.37591552734375,
       "seasonal_boosted_trees": 139.81058929538085,
       "seasonal_baseline": 162.92
     },
@@ -1237,6 +1388,7 @@
       "week": 29,
       "observed": 8.0,
       "lastTrainingBlock": 105039,
+      "seasonal_xgboost": 213.73756408691406,
       "seasonal_boosted_trees": 206.54673670921514,
       "seasonal_baseline": 184.4
     },
@@ -1246,6 +1398,7 @@
       "week": 30,
       "observed": 7.0,
       "lastTrainingBlock": 105039,
+      "seasonal_xgboost": 190.72317504882812,
       "seasonal_boosted_trees": 180.38449241111834,
       "seasonal_baseline": 209.72
     },
@@ -1255,6 +1408,7 @@
       "week": 31,
       "observed": 9.0,
       "lastTrainingBlock": 105039,
+      "seasonal_xgboost": 227.10775756835938,
       "seasonal_boosted_trees": 212.46580508515117,
       "seasonal_baseline": 236.54
     },
@@ -1264,6 +1418,7 @@
       "week": 32,
       "observed": 12.0,
       "lastTrainingBlock": 105039,
+      "seasonal_xgboost": 248.2792205810547,
       "seasonal_boosted_trees": 252.52309368025573,
       "seasonal_baseline": 258.84
     },
@@ -1273,6 +1428,7 @@
       "week": 33,
       "observed": 8.0,
       "lastTrainingBlock": 105039,
+      "seasonal_xgboost": 229.29086303710938,
       "seasonal_boosted_trees": 252.51013877140036,
       "seasonal_baseline": 274.5
     },
@@ -1282,6 +1438,7 @@
       "week": 34,
       "observed": 10.0,
       "lastTrainingBlock": 105039,
+      "seasonal_xgboost": 223.7093048095703,
       "seasonal_boosted_trees": 236.5256015270012,
       "seasonal_baseline": 282.7
     },
@@ -1291,6 +1448,7 @@
       "week": 35,
       "observed": 13.0,
       "lastTrainingBlock": 105039,
+      "seasonal_xgboost": 220.13853454589844,
       "seasonal_boosted_trees": 252.88949417027814,
       "seasonal_baseline": 277.68
     },
@@ -1300,6 +1458,7 @@
       "week": 36,
       "observed": 16.0,
       "lastTrainingBlock": 105039,
+      "seasonal_xgboost": 193.47828674316406,
       "seasonal_boosted_trees": 228.92372904526215,
       "seasonal_baseline": 266.32
     },
@@ -1309,6 +1468,7 @@
       "week": 37,
       "observed": 27.0,
       "lastTrainingBlock": 105039,
+      "seasonal_xgboost": 201.196044921875,
       "seasonal_boosted_trees": 207.32024862577407,
       "seasonal_baseline": 243.46
     },
@@ -1318,6 +1478,7 @@
       "week": 38,
       "observed": 13.0,
       "lastTrainingBlock": 105039,
+      "seasonal_xgboost": 182.13795471191406,
       "seasonal_boosted_trees": 178.83498137449817,
       "seasonal_baseline": 223.8
     },
@@ -1327,6 +1488,7 @@
       "week": 39,
       "observed": 12.0,
       "lastTrainingBlock": 105039,
+      "seasonal_xgboost": 182.35650634765625,
       "seasonal_boosted_trees": 228.89871105987672,
       "seasonal_baseline": 204.74
     },
@@ -1336,6 +1498,7 @@
       "week": 40,
       "observed": 11.0,
       "lastTrainingBlock": 105039,
+      "seasonal_xgboost": 136.7398681640625,
       "seasonal_boosted_trees": 119.19457466219895,
       "seasonal_baseline": 188.28
     },
@@ -1345,6 +1508,7 @@
       "week": 41,
       "observed": 13.0,
       "lastTrainingBlock": 105039,
+      "seasonal_xgboost": 166.92579650878906,
       "seasonal_boosted_trees": 157.0514675861897,
       "seasonal_baseline": 173.26
     },
@@ -1354,6 +1518,7 @@
       "week": 42,
       "observed": 10.0,
       "lastTrainingBlock": 105039,
+      "seasonal_xgboost": 171.4862518310547,
       "seasonal_boosted_trees": 202.86215750069354,
       "seasonal_baseline": 157.68
     },
@@ -1363,6 +1528,7 @@
       "week": 43,
       "observed": 20.0,
       "lastTrainingBlock": 105039,
+      "seasonal_xgboost": 147.68968200683594,
       "seasonal_boosted_trees": 166.7775565549905,
       "seasonal_baseline": 143.3
     },
@@ -1372,6 +1538,7 @@
       "week": 44,
       "observed": 19.0,
       "lastTrainingBlock": 105039,
+      "seasonal_xgboost": 104.2702407836914,
       "seasonal_boosted_trees": 94.0762948265484,
       "seasonal_baseline": 130.3
     },
@@ -1381,6 +1548,7 @@
       "week": 45,
       "observed": 24.0,
       "lastTrainingBlock": 105039,
+      "seasonal_xgboost": 104.0458984375,
       "seasonal_boosted_trees": 87.09861329883206,
       "seasonal_baseline": 118.64
     },
@@ -1390,6 +1558,7 @@
       "week": 46,
       "observed": 27.0,
       "lastTrainingBlock": 105039,
+      "seasonal_xgboost": 72.15638732910156,
       "seasonal_boosted_trees": 57.01488531783944,
       "seasonal_baseline": 106.9
     },
@@ -1399,6 +1568,7 @@
       "week": 47,
       "observed": 31.0,
       "lastTrainingBlock": 105039,
+      "seasonal_xgboost": 98.76538848876953,
       "seasonal_boosted_trees": 80.79885240324813,
       "seasonal_baseline": 101.5
     },
@@ -1408,6 +1578,7 @@
       "week": 48,
       "observed": 35.0,
       "lastTrainingBlock": 105039,
+      "seasonal_xgboost": 80.75119018554688,
       "seasonal_boosted_trees": 91.13762044110351,
       "seasonal_baseline": 94.62
     },
@@ -1417,6 +1588,7 @@
       "week": 49,
       "observed": 30.0,
       "lastTrainingBlock": 105039,
+      "seasonal_xgboost": 69.37127685546875,
       "seasonal_boosted_trees": 58.97480332440139,
       "seasonal_baseline": 88.94
     },
@@ -1426,6 +1598,7 @@
       "week": 50,
       "observed": 17.0,
       "lastTrainingBlock": 105039,
+      "seasonal_xgboost": 88.88168334960938,
       "seasonal_boosted_trees": 76.17755434419188,
       "seasonal_baseline": 81.5
     },
@@ -1435,6 +1608,7 @@
       "week": 51,
       "observed": 26.0,
       "lastTrainingBlock": 105039,
+      "seasonal_xgboost": 71.52054595947266,
       "seasonal_boosted_trees": 65.13965404356068,
       "seasonal_baseline": 78.34
     },
@@ -1444,6 +1618,7 @@
       "week": 52,
       "observed": 35.0,
       "lastTrainingBlock": 105039,
+      "seasonal_xgboost": 74.83000183105469,
       "seasonal_boosted_trees": 66.41536866447801,
       "seasonal_baseline": 79.28
     },
@@ -1453,6 +1628,7 @@
       "week": 1,
       "observed": 38.0,
       "lastTrainingBlock": 105091,
+      "seasonal_xgboost": 88.2297134399414,
       "seasonal_boosted_trees": 95.16334118969549,
       "seasonal_baseline": 82.52727272727273
     },
@@ -1462,6 +1638,7 @@
       "week": 2,
       "observed": 25.0,
       "lastTrainingBlock": 105091,
+      "seasonal_xgboost": 86.84841918945312,
       "seasonal_boosted_trees": 83.49696339586694,
       "seasonal_baseline": 86.87272727272727
     },
@@ -1471,6 +1648,7 @@
       "week": 3,
       "observed": 32.0,
       "lastTrainingBlock": 105091,
+      "seasonal_xgboost": 89.19676208496094,
       "seasonal_boosted_trees": 91.59604951495577,
       "seasonal_baseline": 93.10909090909091
     },
@@ -1480,6 +1658,7 @@
       "week": 4,
       "observed": 26.0,
       "lastTrainingBlock": 105091,
+      "seasonal_xgboost": 103.92510986328125,
       "seasonal_boosted_trees": 109.45551839047148,
       "seasonal_baseline": 92.4
     },
@@ -1489,6 +1668,7 @@
       "week": 5,
       "observed": 28.0,
       "lastTrainingBlock": 105091,
+      "seasonal_xgboost": 82.6720199584961,
       "seasonal_boosted_trees": 81.01257559973456,
       "seasonal_baseline": 84.0
     },
@@ -1498,6 +1678,7 @@
       "week": 6,
       "observed": 24.0,
       "lastTrainingBlock": 105091,
+      "seasonal_xgboost": 96.67919921875,
       "seasonal_boosted_trees": 88.28397133665983,
       "seasonal_baseline": 77.69090909090909
     },
@@ -1507,6 +1688,7 @@
       "week": 7,
       "observed": 21.0,
       "lastTrainingBlock": 105091,
+      "seasonal_xgboost": 88.26939392089844,
       "seasonal_boosted_trees": 88.59698139629073,
       "seasonal_baseline": 71.36363636363636
     },
@@ -1516,6 +1698,7 @@
       "week": 8,
       "observed": 38.0,
       "lastTrainingBlock": 105091,
+      "seasonal_xgboost": 58.58434295654297,
       "seasonal_boosted_trees": 61.70590276454687,
       "seasonal_baseline": 66.94545454545455
     },
@@ -1525,6 +1708,7 @@
       "week": 9,
       "observed": 23.0,
       "lastTrainingBlock": 105091,
+      "seasonal_xgboost": 55.96438217163086,
       "seasonal_boosted_trees": 52.98122998533428,
       "seasonal_baseline": 62.10909090909091
     },
@@ -1534,6 +1718,7 @@
       "week": 10,
       "observed": 22.0,
       "lastTrainingBlock": 105091,
+      "seasonal_xgboost": 60.11664581298828,
       "seasonal_boosted_trees": 57.1224260166861,
       "seasonal_baseline": 57.49090909090909
     },
@@ -1543,6 +1728,7 @@
       "week": 11,
       "observed": 15.0,
       "lastTrainingBlock": 105091,
+      "seasonal_xgboost": 55.28548049926758,
       "seasonal_boosted_trees": 52.03102199129892,
       "seasonal_baseline": 52.70909090909091
     },
@@ -1552,6 +1738,7 @@
       "week": 12,
       "observed": 14.0,
       "lastTrainingBlock": 105091,
+      "seasonal_xgboost": 46.47008514404297,
       "seasonal_boosted_trees": 39.671394458578185,
       "seasonal_baseline": 48.14545454545455
     },
@@ -1561,6 +1748,7 @@
       "week": 13,
       "observed": 11.0,
       "lastTrainingBlock": 105091,
+      "seasonal_xgboost": 42.19212341308594,
       "seasonal_boosted_trees": 38.10116700504062,
       "seasonal_baseline": 42.49090909090909
     },
@@ -1570,6 +1758,7 @@
       "week": 14,
       "observed": 12.0,
       "lastTrainingBlock": 105091,
+      "seasonal_xgboost": 43.324310302734375,
       "seasonal_boosted_trees": 36.349859343094,
       "seasonal_baseline": 39.49090909090909
     },
@@ -1579,6 +1768,7 @@
       "week": 15,
       "observed": 7.0,
       "lastTrainingBlock": 105091,
+      "seasonal_xgboost": 41.3056755065918,
       "seasonal_boosted_trees": 38.477965731697715,
       "seasonal_baseline": 37.72727272727273
     },
@@ -1588,6 +1778,7 @@
       "week": 16,
       "observed": 11.0,
       "lastTrainingBlock": 105091,
+      "seasonal_xgboost": 36.711360931396484,
       "seasonal_boosted_trees": 34.054499642116625,
       "seasonal_baseline": 36.472727272727276
     },
@@ -1597,6 +1788,7 @@
       "week": 17,
       "observed": 13.0,
       "lastTrainingBlock": 105091,
+      "seasonal_xgboost": 37.16687774658203,
       "seasonal_boosted_trees": 32.5655672509284,
       "seasonal_baseline": 35.58181818181818
     },
@@ -1606,6 +1798,7 @@
       "week": 18,
       "observed": 10.0,
       "lastTrainingBlock": 105091,
+      "seasonal_xgboost": 44.73305892944336,
       "seasonal_boosted_trees": 42.95985407074288,
       "seasonal_baseline": 35.8
     },
@@ -1615,6 +1808,7 @@
       "week": 19,
       "observed": 13.0,
       "lastTrainingBlock": 105091,
+      "seasonal_xgboost": 42.64889907836914,
       "seasonal_boosted_trees": 38.18145244418562,
       "seasonal_baseline": 37.527272727272724
     },
@@ -1624,6 +1818,7 @@
       "week": 20,
       "observed": 16.0,
       "lastTrainingBlock": 105091,
+      "seasonal_xgboost": 38.0906867980957,
       "seasonal_boosted_trees": 31.910008171408638,
       "seasonal_baseline": 39.69090909090909
     },
@@ -1633,6 +1828,7 @@
       "week": 21,
       "observed": 6.0,
       "lastTrainingBlock": 105091,
+      "seasonal_xgboost": 44.95134353637695,
       "seasonal_boosted_trees": 43.15974471238253,
       "seasonal_baseline": 42.0
     },
@@ -1642,6 +1838,7 @@
       "week": 22,
       "observed": 15.0,
       "lastTrainingBlock": 105091,
+      "seasonal_xgboost": 51.694942474365234,
       "seasonal_boosted_trees": 53.605915321915816,
       "seasonal_baseline": 47.29090909090909
     },
@@ -1651,6 +1848,7 @@
       "week": 23,
       "observed": 4.0,
       "lastTrainingBlock": 105091,
+      "seasonal_xgboost": 64.97509765625,
       "seasonal_boosted_trees": 67.87790101530067,
       "seasonal_baseline": 55.36363636363637
     },
@@ -1660,6 +1858,7 @@
       "week": 24,
       "observed": 10.0,
       "lastTrainingBlock": 105091,
+      "seasonal_xgboost": 93.93262481689453,
       "seasonal_boosted_trees": 75.74712491660625,
       "seasonal_baseline": 67.49090909090908
     },
@@ -1669,6 +1868,7 @@
       "week": 25,
       "observed": 11.0,
       "lastTrainingBlock": 105091,
+      "seasonal_xgboost": 85.58696746826172,
       "seasonal_boosted_trees": 106.02716102973373,
       "seasonal_baseline": 82.8
     },
@@ -1678,6 +1878,7 @@
       "week": 26,
       "observed": 15.0,
       "lastTrainingBlock": 105091,
+      "seasonal_xgboost": 168.31398010253906,
       "seasonal_boosted_trees": 191.06269243964658,
       "seasonal_baseline": 100.72727272727273
     },
@@ -1687,6 +1888,7 @@
       "week": 27,
       "observed": 11.0,
       "lastTrainingBlock": 105091,
+      "seasonal_xgboost": 117.66900634765625,
       "seasonal_boosted_trees": 122.34472783432251,
       "seasonal_baseline": 125.56363636363636
     },
@@ -1696,6 +1898,7 @@
       "week": 28,
       "observed": 22.0,
       "lastTrainingBlock": 105091,
+      "seasonal_xgboost": 164.97901916503906,
       "seasonal_boosted_trees": 174.98744813042128,
       "seasonal_baseline": 148.74545454545455
     },
@@ -1705,6 +1908,7 @@
       "week": 29,
       "observed": 20.0,
       "lastTrainingBlock": 105091,
+      "seasonal_xgboost": 198.1817626953125,
       "seasonal_boosted_trees": 167.45068019842998,
       "seasonal_baseline": 168.34545454545454
     },
@@ -1714,6 +1918,7 @@
       "week": 30,
       "observed": 31.0,
       "lastTrainingBlock": 105091,
+      "seasonal_xgboost": 220.93069458007812,
       "seasonal_boosted_trees": 213.23067451148347,
       "seasonal_baseline": 191.47272727272727
     },
@@ -1723,6 +1928,7 @@
       "week": 31,
       "observed": 34.0,
       "lastTrainingBlock": 105091,
+      "seasonal_xgboost": 226.74710083007812,
       "seasonal_boosted_trees": 199.46825895237606,
       "seasonal_baseline": 215.83636363636364
     },
@@ -1732,6 +1938,7 @@
       "week": 32,
       "observed": 45.0,
       "lastTrainingBlock": 105091,
+      "seasonal_xgboost": 303.8995361328125,
       "seasonal_boosted_trees": 337.6857908698781,
       "seasonal_baseline": 236.14545454545456
     },
@@ -1741,6 +1948,7 @@
       "week": 33,
       "observed": 27.0,
       "lastTrainingBlock": 105091,
+      "seasonal_xgboost": 248.61923217773438,
       "seasonal_boosted_trees": 246.78098229302358,
       "seasonal_baseline": 250.4909090909091
     },
@@ -1750,6 +1958,7 @@
       "week": 34,
       "observed": 26.0,
       "lastTrainingBlock": 105091,
+      "seasonal_xgboost": 229.89398193359375,
       "seasonal_boosted_trees": 224.49199249563355,
       "seasonal_baseline": 258.07272727272726
     },
@@ -1759,6 +1968,7 @@
       "week": 35,
       "observed": 28.0,
       "lastTrainingBlock": 105091,
+      "seasonal_xgboost": 217.02871704101562,
       "seasonal_boosted_trees": 217.54416627986467,
       "seasonal_baseline": 253.78181818181818
     },
@@ -1768,6 +1978,7 @@
       "week": 36,
       "observed": 36.0,
       "lastTrainingBlock": 105091,
+      "seasonal_xgboost": 214.12132263183594,
       "seasonal_boosted_trees": 195.9207554150793,
       "seasonal_baseline": 243.54545454545453
     },
@@ -1777,6 +1988,7 @@
       "week": 37,
       "observed": 39.0,
       "lastTrainingBlock": 105091,
+      "seasonal_xgboost": 202.4480743408203,
       "seasonal_boosted_trees": 188.38595137360954,
       "seasonal_baseline": 222.8
     },
@@ -1786,6 +1998,7 @@
       "week": 38,
       "observed": 35.0,
       "lastTrainingBlock": 105091,
+      "seasonal_xgboost": 194.32225036621094,
       "seasonal_boosted_trees": 185.4849536463531,
       "seasonal_baseline": 204.8909090909091
     },
@@ -1795,6 +2008,7 @@
       "week": 39,
       "observed": 46.0,
       "lastTrainingBlock": 105091,
+      "seasonal_xgboost": 180.37376403808594,
       "seasonal_boosted_trees": 183.04936337780543,
       "seasonal_baseline": 187.5090909090909
     },
@@ -1804,6 +2018,7 @@
       "week": 40,
       "observed": 37.0,
       "lastTrainingBlock": 105091,
+      "seasonal_xgboost": 157.84371948242188,
       "seasonal_boosted_trees": 160.57255139286633,
       "seasonal_baseline": 172.23636363636365
     },
@@ -1813,6 +2028,7 @@
       "week": 41,
       "observed": 38.0,
       "lastTrainingBlock": 105091,
+      "seasonal_xgboost": 130.48455810546875,
       "seasonal_boosted_trees": 145.0694323979488,
       "seasonal_baseline": 158.70909090909092
     },
@@ -1822,6 +2038,7 @@
       "week": 42,
       "observed": 49.0,
       "lastTrainingBlock": 105091,
+      "seasonal_xgboost": 143.76934814453125,
       "seasonal_boosted_trees": 138.96455674649042,
       "seasonal_baseline": 144.6727272727273
     },
@@ -1831,6 +2048,7 @@
       "week": 43,
       "observed": 25.0,
       "lastTrainingBlock": 105091,
+      "seasonal_xgboost": 156.0563507080078,
       "seasonal_boosted_trees": 155.31142841626445,
       "seasonal_baseline": 131.83636363636364
     },
@@ -1840,6 +2058,7 @@
       "week": 44,
       "observed": 43.0,
       "lastTrainingBlock": 105091,
+      "seasonal_xgboost": 102.42646789550781,
       "seasonal_boosted_trees": 99.88005526868486,
       "seasonal_baseline": 120.27272727272727
     },
@@ -1849,6 +2068,7 @@
       "week": 45,
       "observed": 32.0,
       "lastTrainingBlock": 105091,
+      "seasonal_xgboost": 108.53712463378906,
       "seasonal_boosted_trees": 98.24251304423255,
       "seasonal_baseline": 110.05454545454545
     },
@@ -1858,6 +2078,7 @@
       "week": 46,
       "observed": 36.0,
       "lastTrainingBlock": 105091,
+      "seasonal_xgboost": 93.13414764404297,
       "seasonal_boosted_trees": 88.99866773638762,
       "seasonal_baseline": 99.65454545454546
     },
@@ -1867,6 +2088,7 @@
       "week": 47,
       "observed": 34.0,
       "lastTrainingBlock": 105091,
+      "seasonal_xgboost": 76.90242767333984,
       "seasonal_boosted_trees": 66.46978907890472,
       "seasonal_baseline": 94.94545454545455
     },
@@ -1876,6 +2098,7 @@
       "week": 48,
       "observed": 33.0,
       "lastTrainingBlock": 105091,
+      "seasonal_xgboost": 119.73519897460938,
       "seasonal_boosted_trees": 102.00761632220318,
       "seasonal_baseline": 88.56363636363636
     },
@@ -1885,6 +2108,7 @@
       "week": 49,
       "observed": 28.0,
       "lastTrainingBlock": 105091,
+      "seasonal_xgboost": 82.201416015625,
       "seasonal_boosted_trees": 79.73708378973772,
       "seasonal_baseline": 83.38181818181818
     },
@@ -1894,6 +2118,7 @@
       "week": 50,
       "observed": 23.0,
       "lastTrainingBlock": 105091,
+      "seasonal_xgboost": 78.51837921142578,
       "seasonal_boosted_trees": 70.94525324763754,
       "seasonal_baseline": 76.69090909090909
     },
@@ -1903,6 +2128,7 @@
       "week": 51,
       "observed": 22.0,
       "lastTrainingBlock": 105091,
+      "seasonal_xgboost": 89.44361877441406,
       "seasonal_boosted_trees": 78.83848946274767,
       "seasonal_baseline": 75.07272727272728
     },
@@ -1912,6 +2138,7 @@
       "week": 52,
       "observed": 15.0,
       "lastTrainingBlock": 105091,
+      "seasonal_xgboost": 68.51117706298828,
       "seasonal_boosted_trees": 56.00123289789728,
       "seasonal_baseline": 78.7090909090909
     },
@@ -1921,6 +2148,7 @@
       "week": 1,
       "observed": 11.0,
       "lastTrainingBlock": 105143,
+      "seasonal_xgboost": 78.41193389892578,
       "seasonal_boosted_trees": 82.51207466206034,
       "seasonal_baseline": 77.85
     },
@@ -1930,6 +2158,7 @@
       "week": 2,
       "observed": 7.0,
       "lastTrainingBlock": 105143,
+      "seasonal_xgboost": 86.5988540649414,
       "seasonal_boosted_trees": 76.52966386835499,
       "seasonal_baseline": 81.9
     },
@@ -1939,6 +2168,7 @@
       "week": 3,
       "observed": 18.0,
       "lastTrainingBlock": 105143,
+      "seasonal_xgboost": 81.09956359863281,
       "seasonal_boosted_trees": 79.714138657587,
       "seasonal_baseline": 87.83333333333333
     },
@@ -1948,6 +2178,7 @@
       "week": 4,
       "observed": 16.0,
       "lastTrainingBlock": 105143,
+      "seasonal_xgboost": 79.14054870605469,
       "seasonal_boosted_trees": 82.03049359872355,
       "seasonal_baseline": 86.95
     },
@@ -1957,6 +2188,7 @@
       "week": 5,
       "observed": 16.0,
       "lastTrainingBlock": 105143,
+      "seasonal_xgboost": 64.0690689086914,
       "seasonal_boosted_trees": 63.28325455228552,
       "seasonal_baseline": 79.18333333333334
     },
@@ -1966,6 +2198,7 @@
       "week": 6,
       "observed": 26.0,
       "lastTrainingBlock": 105143,
+      "seasonal_xgboost": 59.97794723510742,
       "seasonal_boosted_trees": 56.05081772650664,
       "seasonal_baseline": 73.5
     },
@@ -1975,6 +2208,7 @@
       "week": 7,
       "observed": 12.0,
       "lastTrainingBlock": 105143,
+      "seasonal_xgboost": 55.82091522216797,
       "seasonal_boosted_trees": 55.186780677781336,
       "seasonal_baseline": 67.65
     },
@@ -1984,6 +2218,7 @@
       "week": 8,
       "observed": 19.0,
       "lastTrainingBlock": 105143,
+      "seasonal_xgboost": 55.217613220214844,
       "seasonal_boosted_trees": 52.83235071083177,
       "seasonal_baseline": 63.5
     },
@@ -1993,6 +2228,7 @@
       "week": 9,
       "observed": 23.0,
       "lastTrainingBlock": 105143,
+      "seasonal_xgboost": 53.83268737792969,
       "seasonal_boosted_trees": 51.96019981929546,
       "seasonal_baseline": 58.916666666666664
     },
@@ -2002,6 +2238,7 @@
       "week": 10,
       "observed": 20.0,
       "lastTrainingBlock": 105143,
+      "seasonal_xgboost": 54.18824768066406,
       "seasonal_boosted_trees": 55.1495399597862,
       "seasonal_baseline": 54.56666666666667
     },
@@ -2011,6 +2248,7 @@
       "week": 11,
       "observed": 19.0,
       "lastTrainingBlock": 105143,
+      "seasonal_xgboost": 52.849361419677734,
       "seasonal_boosted_trees": 46.1638700930609,
       "seasonal_baseline": 49.733333333333334
     },
@@ -2020,6 +2258,7 @@
       "week": 12,
       "observed": 17.0,
       "lastTrainingBlock": 105143,
+      "seasonal_xgboost": 46.97591018676758,
       "seasonal_boosted_trees": 42.15398644698271,
       "seasonal_baseline": 45.36666666666667
     },
@@ -2029,6 +2268,7 @@
       "week": 13,
       "observed": 19.0,
       "lastTrainingBlock": 105143,
+      "seasonal_xgboost": 40.830535888671875,
       "seasonal_boosted_trees": 37.6400728512323,
       "seasonal_baseline": 39.93333333333333
     },
@@ -2038,6 +2278,7 @@
       "week": 14,
       "observed": 27.0,
       "lastTrainingBlock": 105143,
+      "seasonal_xgboost": 34.53703689575195,
       "seasonal_boosted_trees": 29.84247696426121,
       "seasonal_baseline": 37.11666666666667
     },
@@ -2047,6 +2288,7 @@
       "week": 15,
       "observed": 23.0,
       "lastTrainingBlock": 105143,
+      "seasonal_xgboost": 40.78639221191406,
       "seasonal_boosted_trees": 38.63081904207446,
       "seasonal_baseline": 35.483333333333334
     },
@@ -2056,6 +2298,7 @@
       "week": 16,
       "observed": 22.0,
       "lastTrainingBlock": 105143,
+      "seasonal_xgboost": 49.018489837646484,
       "seasonal_boosted_trees": 43.36896131475632,
       "seasonal_baseline": 34.31666666666667
     },
@@ -2065,6 +2308,7 @@
       "week": 17,
       "observed": 24.0,
       "lastTrainingBlock": 105143,
+      "seasonal_xgboost": 37.93389129638672,
       "seasonal_boosted_trees": 34.463142660050096,
       "seasonal_baseline": 33.516666666666666
     },
@@ -2074,6 +2318,7 @@
       "week": 18,
       "observed": 27.0,
       "lastTrainingBlock": 105143,
+      "seasonal_xgboost": 34.22751235961914,
       "seasonal_boosted_trees": 32.35039265500157,
       "seasonal_baseline": 33.86666666666667
     },
@@ -2083,6 +2328,7 @@
       "week": 19,
       "observed": 31.0,
       "lastTrainingBlock": 105143,
+      "seasonal_xgboost": 36.42842102050781,
       "seasonal_boosted_trees": 34.085242597274316,
       "seasonal_baseline": 35.36666666666667
     },
@@ -2092,6 +2338,7 @@
       "week": 20,
       "observed": 37.0,
       "lastTrainingBlock": 105143,
+      "seasonal_xgboost": 35.15131759643555,
       "seasonal_boosted_trees": 33.96563776906724,
       "seasonal_baseline": 37.38333333333333
     },
@@ -2101,6 +2348,7 @@
       "week": 21,
       "observed": 44.0,
       "lastTrainingBlock": 105143,
+      "seasonal_xgboost": 37.981239318847656,
       "seasonal_boosted_trees": 32.19345863610125,
       "seasonal_baseline": 39.4
     },
@@ -2110,6 +2358,7 @@
       "week": 22,
       "observed": 36.0,
       "lastTrainingBlock": 105143,
+      "seasonal_xgboost": 41.69939422607422,
       "seasonal_boosted_trees": 37.126659894276166,
       "seasonal_baseline": 44.2
     },
@@ -2119,6 +2368,7 @@
       "week": 23,
       "observed": 51.0,
       "lastTrainingBlock": 105143,
+      "seasonal_xgboost": 46.23483657836914,
       "seasonal_boosted_trees": 41.90362234099751,
       "seasonal_baseline": 51.516666666666666
     },
@@ -2128,6 +2378,7 @@
       "week": 24,
       "observed": 75.0,
       "lastTrainingBlock": 105143,
+      "seasonal_xgboost": 46.47870635986328,
       "seasonal_boosted_trees": 46.19179909749247,
       "seasonal_baseline": 62.78333333333333
     },
@@ -2137,6 +2388,7 @@
       "week": 25,
       "observed": 114.0,
       "lastTrainingBlock": 105143,
+      "seasonal_xgboost": 83.58967590332031,
       "seasonal_boosted_trees": 91.88765649199766,
       "seasonal_baseline": 76.75
     },
@@ -2146,6 +2398,7 @@
       "week": 26,
       "observed": 125.0,
       "lastTrainingBlock": 105143,
+      "seasonal_xgboost": 97.44731140136719,
       "seasonal_boosted_trees": 101.27555186026383,
       "seasonal_baseline": 93.48333333333333
     },
@@ -2155,6 +2408,7 @@
       "week": 27,
       "observed": 107.0,
       "lastTrainingBlock": 105143,
+      "seasonal_xgboost": 109.3267593383789,
       "seasonal_boosted_trees": 99.729361023558,
       "seasonal_baseline": 116.41666666666667
     },
@@ -2164,6 +2418,7 @@
       "week": 28,
       "observed": 159.0,
       "lastTrainingBlock": 105143,
+      "seasonal_xgboost": 147.08401489257812,
       "seasonal_boosted_trees": 132.9001225246295,
       "seasonal_baseline": 138.0
     },
@@ -2173,6 +2428,7 @@
       "week": 29,
       "observed": 177.0,
       "lastTrainingBlock": 105143,
+      "seasonal_xgboost": 166.8685760498047,
       "seasonal_boosted_trees": 133.1602796365735,
       "seasonal_baseline": 156.28333333333333
     },
@@ -2182,6 +2438,7 @@
       "week": 30,
       "observed": 172.0,
       "lastTrainingBlock": 105143,
+      "seasonal_xgboost": 188.89248657226562,
       "seasonal_boosted_trees": 175.46319810655805,
       "seasonal_baseline": 178.05
     },
@@ -2191,6 +2448,7 @@
       "week": 31,
       "observed": 183.0,
       "lastTrainingBlock": 105143,
+      "seasonal_xgboost": 191.77711486816406,
       "seasonal_boosted_trees": 169.13902846425057,
       "seasonal_baseline": 200.46666666666667
     },
@@ -2200,6 +2458,7 @@
       "week": 32,
       "observed": 188.0,
       "lastTrainingBlock": 105143,
+      "seasonal_xgboost": 233.96969604492188,
       "seasonal_boosted_trees": 234.98731193333057,
       "seasonal_baseline": 219.18333333333334
     },
@@ -2209,6 +2468,7 @@
       "week": 33,
       "observed": 146.0,
       "lastTrainingBlock": 105143,
+      "seasonal_xgboost": 233.29180908203125,
       "seasonal_boosted_trees": 262.8234998534228,
       "seasonal_baseline": 232.28333333333333
     },
@@ -2218,6 +2478,7 @@
       "week": 34,
       "observed": 172.0,
       "lastTrainingBlock": 105143,
+      "seasonal_xgboost": 233.74835205078125,
       "seasonal_boosted_trees": 253.48339930604658,
       "seasonal_baseline": 239.26666666666668
     },
@@ -2227,6 +2488,7 @@
       "week": 35,
       "observed": 151.0,
       "lastTrainingBlock": 105143,
+      "seasonal_xgboost": 228.6240234375,
       "seasonal_boosted_trees": 242.5946962844751,
       "seasonal_baseline": 235.23333333333332
     },
@@ -2236,6 +2498,7 @@
       "week": 36,
       "observed": 140.0,
       "lastTrainingBlock": 105143,
+      "seasonal_xgboost": 217.69442749023438,
       "seasonal_boosted_trees": 199.87213661941857,
       "seasonal_baseline": 225.98333333333332
     },
@@ -2245,6 +2508,7 @@
       "week": 37,
       "observed": 172.0,
       "lastTrainingBlock": 105143,
+      "seasonal_xgboost": 184.63685607910156,
       "seasonal_boosted_trees": 184.63396767125332,
       "seasonal_baseline": 207.3
     },
@@ -2254,6 +2518,7 @@
       "week": 38,
       "observed": 137.0,
       "lastTrainingBlock": 105143,
+      "seasonal_xgboost": 176.25146484375,
       "seasonal_boosted_trees": 166.86973994039388,
       "seasonal_baseline": 191.03333333333333
     },
@@ -2263,6 +2528,7 @@
       "week": 39,
       "observed": 93.0,
       "lastTrainingBlock": 105143,
+      "seasonal_xgboost": 160.8050994873047,
       "seasonal_boosted_trees": 154.48080741571837,
       "seasonal_baseline": 175.13333333333333
     },
@@ -2272,6 +2538,7 @@
       "week": 40,
       "observed": 108.0,
       "lastTrainingBlock": 105143,
+      "seasonal_xgboost": 142.326904296875,
       "seasonal_boosted_trees": 122.85405791061255,
       "seasonal_baseline": 161.3
     },
@@ -2281,6 +2548,7 @@
       "week": 41,
       "observed": 107.0,
       "lastTrainingBlock": 105143,
+      "seasonal_xgboost": 128.9757537841797,
       "seasonal_boosted_trees": 117.36615370551418,
       "seasonal_baseline": 148.73333333333332
     },
@@ -2290,6 +2558,7 @@
       "week": 42,
       "observed": 76.0,
       "lastTrainingBlock": 105143,
+      "seasonal_xgboost": 104.39376831054688,
       "seasonal_boosted_trees": 91.78204125287715,
       "seasonal_baseline": 135.81666666666666
     },
@@ -2299,6 +2568,7 @@
       "week": 43,
       "observed": 71.0,
       "lastTrainingBlock": 105143,
+      "seasonal_xgboost": 120.11123657226562,
       "seasonal_boosted_trees": 119.55298832354451,
       "seasonal_baseline": 123.96666666666667
     },
@@ -2308,6 +2578,7 @@
       "week": 44,
       "observed": 69.0,
       "lastTrainingBlock": 105143,
+      "seasonal_xgboost": 96.3957748413086,
       "seasonal_boosted_trees": 91.56028595589895,
       "seasonal_baseline": 113.33333333333333
     },
@@ -2317,6 +2588,7 @@
       "week": 45,
       "observed": 82.0,
       "lastTrainingBlock": 105143,
+      "seasonal_xgboost": 103.78575897216797,
       "seasonal_boosted_trees": 100.09248168790718,
       "seasonal_baseline": 103.71666666666667
     },
@@ -2326,6 +2598,7 @@
       "week": 46,
       "observed": 67.0,
       "lastTrainingBlock": 105143,
+      "seasonal_xgboost": 86.09636688232422,
       "seasonal_boosted_trees": 76.30218478071305,
       "seasonal_baseline": 94.31666666666666
     },
@@ -2335,6 +2608,7 @@
       "week": 47,
       "observed": 60.0,
       "lastTrainingBlock": 105143,
+      "seasonal_xgboost": 75.4437026977539,
       "seasonal_boosted_trees": 72.33215649027369,
       "seasonal_baseline": 89.75
     },
@@ -2344,6 +2618,7 @@
       "week": 48,
       "observed": 81.0,
       "lastTrainingBlock": 105143,
+      "seasonal_xgboost": 106.86287689208984,
       "seasonal_boosted_trees": 102.20393888991292,
       "seasonal_baseline": 83.75
     },
@@ -2353,6 +2628,7 @@
       "week": 49,
       "observed": 68.0,
       "lastTrainingBlock": 105143,
+      "seasonal_xgboost": 84.13379669189453,
       "seasonal_boosted_trees": 81.58886803686286,
       "seasonal_baseline": 78.76666666666667
     },
@@ -2362,6 +2638,7 @@
       "week": 50,
       "observed": 66.0,
       "lastTrainingBlock": 105143,
+      "seasonal_xgboost": 78.35631561279297,
       "seasonal_boosted_trees": 74.72077578403143,
       "seasonal_baseline": 72.31666666666666
     },
@@ -2371,6 +2648,7 @@
       "week": 51,
       "observed": 54.0,
       "lastTrainingBlock": 105143,
+      "seasonal_xgboost": 77.74068450927734,
       "seasonal_boosted_trees": 70.13740223119771,
       "seasonal_baseline": 70.91666666666667
     },
@@ -2380,6 +2658,7 @@
       "week": 52,
       "observed": 67.0,
       "lastTrainingBlock": 105143,
+      "seasonal_xgboost": 74.1546859741211,
       "seasonal_boosted_trees": 67.74501834166128,
       "seasonal_baseline": 74.2
     },
@@ -2389,6 +2668,7 @@
       "week": 1,
       "observed": 55.0,
       "lastTrainingBlock": 105195,
+      "seasonal_xgboost": 66.53519439697266,
       "seasonal_boosted_trees": 68.55015576397277,
       "seasonal_baseline": 74.27692307692308
     },
@@ -2398,6 +2678,7 @@
       "week": 2,
       "observed": 68.0,
       "lastTrainingBlock": 105195,
+      "seasonal_xgboost": 78.63497924804688,
       "seasonal_boosted_trees": 67.79319977404803,
       "seasonal_baseline": 77.43076923076923
     },
@@ -2407,6 +2688,7 @@
       "week": 3,
       "observed": 64.0,
       "lastTrainingBlock": 105195,
+      "seasonal_xgboost": 72.38289642333984,
       "seasonal_boosted_trees": 62.96795861911215,
       "seasonal_baseline": 82.12307692307692
     },
@@ -2416,6 +2698,7 @@
       "week": 4,
       "observed": 58.0,
       "lastTrainingBlock": 105195,
+      "seasonal_xgboost": 75.98238372802734,
       "seasonal_boosted_trees": 77.49660429841157,
       "seasonal_baseline": 81.53846153846153
     },
@@ -2425,6 +2708,7 @@
       "week": 5,
       "observed": 67.0,
       "lastTrainingBlock": 105195,
+      "seasonal_xgboost": 56.83774948120117,
       "seasonal_boosted_trees": 58.238852199098964,
       "seasonal_baseline": 74.44615384615385
     },
@@ -2434,6 +2718,7 @@
       "week": 6,
       "observed": 58.0,
       "lastTrainingBlock": 105195,
+      "seasonal_xgboost": 54.0388069152832,
       "seasonal_boosted_trees": 51.379511413257816,
       "seasonal_baseline": 69.21538461538462
     },
@@ -2443,6 +2728,7 @@
       "week": 7,
       "observed": 78.0,
       "lastTrainingBlock": 105195,
+      "seasonal_xgboost": 53.7201042175293,
       "seasonal_boosted_trees": 53.34684192539552,
       "seasonal_baseline": 63.92307692307692
     },
@@ -2452,6 +2738,7 @@
       "week": 8,
       "observed": 52.0,
       "lastTrainingBlock": 105195,
+      "seasonal_xgboost": 52.547542572021484,
       "seasonal_boosted_trees": 53.69772833457261,
       "seasonal_baseline": 60.15384615384615
     },
@@ -2461,6 +2748,7 @@
       "week": 9,
       "observed": 33.0,
       "lastTrainingBlock": 105195,
+      "seasonal_xgboost": 51.806060791015625,
       "seasonal_boosted_trees": 49.369009473114886,
       "seasonal_baseline": 55.815384615384616
     },
@@ -2470,6 +2758,7 @@
       "week": 10,
       "observed": 39.0,
       "lastTrainingBlock": 105195,
+      "seasonal_xgboost": 51.22098922729492,
       "seasonal_boosted_trees": 49.03486980360404,
       "seasonal_baseline": 51.87692307692308
     },
@@ -2479,6 +2768,7 @@
       "week": 11,
       "observed": 34.0,
       "lastTrainingBlock": 105195,
+      "seasonal_xgboost": 49.71567916870117,
       "seasonal_boosted_trees": 45.05617008993045,
       "seasonal_baseline": 47.41538461538462
     },
@@ -2488,6 +2778,7 @@
       "week": 12,
       "observed": 31.0,
       "lastTrainingBlock": 105195,
+      "seasonal_xgboost": 45.36323928833008,
       "seasonal_boosted_trees": 41.08710621365114,
       "seasonal_baseline": 43.44615384615385
     },
@@ -2497,6 +2788,7 @@
       "week": 13,
       "observed": 39.0,
       "lastTrainingBlock": 105195,
+      "seasonal_xgboost": 48.477081298828125,
       "seasonal_boosted_trees": 47.225130745617314,
       "seasonal_baseline": 38.47692307692308
     },
@@ -2506,6 +2798,7 @@
       "week": 14,
       "observed": 19.0,
       "lastTrainingBlock": 105195,
+      "seasonal_xgboost": 40.91347122192383,
       "seasonal_boosted_trees": 33.85401832401056,
       "seasonal_baseline": 35.92307692307692
     },
@@ -2515,6 +2808,7 @@
       "week": 15,
       "observed": 35.0,
       "lastTrainingBlock": 105195,
+      "seasonal_xgboost": 35.15129089355469,
       "seasonal_boosted_trees": 29.622663443948205,
       "seasonal_baseline": 34.52307692307692
     },
@@ -2524,6 +2818,7 @@
       "week": 16,
       "observed": 38.0,
       "lastTrainingBlock": 105195,
+      "seasonal_xgboost": 35.15129089355469,
       "seasonal_boosted_trees": 33.09989362941518,
       "seasonal_baseline": 33.56923076923077
     },
@@ -2533,6 +2828,7 @@
       "week": 17,
       "observed": 37.0,
       "lastTrainingBlock": 105195,
+      "seasonal_xgboost": 33.285179138183594,
       "seasonal_boosted_trees": 30.50511304737885,
       "seasonal_baseline": 32.89230769230769
     },
@@ -2542,6 +2838,7 @@
       "week": 18,
       "observed": 20.0,
       "lastTrainingBlock": 105195,
+      "seasonal_xgboost": 34.32373809814453,
       "seasonal_boosted_trees": 31.042104378128478,
       "seasonal_baseline": 33.43076923076923
     },
@@ -2551,6 +2848,7 @@
       "week": 19,
       "observed": 27.0,
       "lastTrainingBlock": 105195,
+      "seasonal_xgboost": 33.92583465576172,
       "seasonal_boosted_trees": 31.365432396379937,
       "seasonal_baseline": 35.15384615384615
     },
@@ -2560,6 +2858,7 @@
       "week": 20,
       "observed": 39.0,
       "lastTrainingBlock": 105195,
+      "seasonal_xgboost": 35.04039764404297,
       "seasonal_boosted_trees": 31.00497406854019,
       "seasonal_baseline": 37.2
     },
@@ -2569,6 +2868,7 @@
       "week": 21,
       "observed": 32.0,
       "lastTrainingBlock": 105195,
+      "seasonal_xgboost": 38.36837387084961,
       "seasonal_boosted_trees": 43.67890949004199,
       "seasonal_baseline": 39.43076923076923
     },
@@ -2578,6 +2878,7 @@
       "week": 22,
       "observed": 43.0,
       "lastTrainingBlock": 105195,
+      "seasonal_xgboost": 41.8239631652832,
       "seasonal_boosted_trees": 40.58588637921923,
       "seasonal_baseline": 44.53846153846154
     },
@@ -2587,6 +2888,7 @@
       "week": 23,
       "observed": 55.0,
       "lastTrainingBlock": 105195,
+      "seasonal_xgboost": 42.86533737182617,
       "seasonal_boosted_trees": 37.021626423583754,
       "seasonal_baseline": 52.47692307692308
     },
@@ -2596,6 +2898,7 @@
       "week": 24,
       "observed": 77.0,
       "lastTrainingBlock": 105195,
+      "seasonal_xgboost": 58.70968246459961,
       "seasonal_boosted_trees": 60.12137075939961,
       "seasonal_baseline": 64.12307692307692
     },
@@ -2605,6 +2908,7 @@
       "week": 25,
       "observed": 87.0,
       "lastTrainingBlock": 105195,
+      "seasonal_xgboost": 80.30078125,
       "seasonal_boosted_trees": 88.03459322028681,
       "seasonal_baseline": 78.1076923076923
     },
@@ -2614,6 +2918,7 @@
       "week": 26,
       "observed": 96.0,
       "lastTrainingBlock": 105195,
+      "seasonal_xgboost": 85.09639739990234,
       "seasonal_boosted_trees": 94.72998399836523,
       "seasonal_baseline": 95.21538461538462
     },
@@ -2623,6 +2928,7 @@
       "week": 27,
       "observed": 95.0,
       "lastTrainingBlock": 105195,
+      "seasonal_xgboost": 118.17456817626953,
       "seasonal_boosted_trees": 104.10862947828645,
       "seasonal_baseline": 117.95384615384616
     },
@@ -2632,6 +2938,7 @@
       "week": 28,
       "observed": 60.0,
       "lastTrainingBlock": 105195,
+      "seasonal_xgboost": 135.24794006347656,
       "seasonal_boosted_trees": 125.86377646516155,
       "seasonal_baseline": 138.76923076923077
     },
@@ -2641,6 +2948,7 @@
       "week": 29,
       "observed": 75.0,
       "lastTrainingBlock": 105195,
+      "seasonal_xgboost": 171.55479431152344,
       "seasonal_boosted_trees": 143.14591921788238,
       "seasonal_baseline": 156.53846153846155
     },
@@ -2650,6 +2958,7 @@
       "week": 30,
       "observed": 84.0,
       "lastTrainingBlock": 105195,
+      "seasonal_xgboost": 180.3278350830078,
       "seasonal_boosted_trees": 176.34231134320515,
       "seasonal_baseline": 177.87692307692308
     },
@@ -2659,6 +2968,7 @@
       "week": 31,
       "observed": 82.0,
       "lastTrainingBlock": 105195,
+      "seasonal_xgboost": 205.05474853515625,
       "seasonal_boosted_trees": 200.66416703656145,
       "seasonal_baseline": 198.36923076923077
     },
@@ -2668,6 +2978,7 @@
       "week": 32,
       "observed": 111.0,
       "lastTrainingBlock": 105195,
+      "seasonal_xgboost": 221.81834411621094,
       "seasonal_boosted_trees": 233.27527365652298,
       "seasonal_baseline": 215.56923076923076
     },
@@ -2677,6 +2988,7 @@
       "week": 33,
       "observed": 132.0,
       "lastTrainingBlock": 105195,
+      "seasonal_xgboost": 177.29354858398438,
       "seasonal_boosted_trees": 164.9689053025309,
       "seasonal_baseline": 227.33846153846153
     },
@@ -2686,6 +2998,7 @@
       "week": 34,
       "observed": 117.0,
       "lastTrainingBlock": 105195,
+      "seasonal_xgboost": 223.0655059814453,
       "seasonal_boosted_trees": 219.71437899272496,
       "seasonal_baseline": 233.12307692307692
     },
@@ -2695,6 +3008,7 @@
       "week": 35,
       "observed": 124.0,
       "lastTrainingBlock": 105195,
+      "seasonal_xgboost": 222.16448974609375,
       "seasonal_boosted_trees": 260.1754197270717,
       "seasonal_baseline": 229.15384615384616
     },
@@ -2704,6 +3018,7 @@
       "week": 36,
       "observed": 120.0,
       "lastTrainingBlock": 105195,
+      "seasonal_xgboost": 195.8685760498047,
       "seasonal_boosted_trees": 194.71557480647397,
       "seasonal_baseline": 220.47692307692307
     },
@@ -2713,6 +3028,7 @@
       "week": 37,
       "observed": 111.0,
       "lastTrainingBlock": 105195,
+      "seasonal_xgboost": 196.09715270996094,
       "seasonal_boosted_trees": 179.54394559733012,
       "seasonal_baseline": 202.01538461538462
     },
@@ -2722,6 +3038,7 @@
       "week": 38,
       "observed": 113.0,
       "lastTrainingBlock": 105195,
+      "seasonal_xgboost": 171.2570343017578,
       "seasonal_boosted_trees": 146.688825293188,
       "seasonal_baseline": 186.33846153846153
     },
@@ -2731,6 +3048,7 @@
       "week": 39,
       "observed": 113.0,
       "lastTrainingBlock": 105195,
+      "seasonal_xgboost": 150.1901092529297,
       "seasonal_boosted_trees": 134.23327400963825,
       "seasonal_baseline": 171.15384615384616
     },
@@ -2740,6 +3058,7 @@
       "week": 40,
       "observed": 147.0,
       "lastTrainingBlock": 105195,
+      "seasonal_xgboost": 138.64500427246094,
       "seasonal_boosted_trees": 129.51188841495207,
       "seasonal_baseline": 156.90769230769232
     },
@@ -2749,6 +3068,7 @@
       "week": 41,
       "observed": 158.0,
       "lastTrainingBlock": 105195,
+      "seasonal_xgboost": 120.18663024902344,
       "seasonal_boosted_trees": 107.83071444743186,
       "seasonal_baseline": 144.2923076923077
     },
@@ -2758,6 +3078,7 @@
       "week": 42,
       "observed": 110.0,
       "lastTrainingBlock": 105195,
+      "seasonal_xgboost": 105.96514892578125,
       "seasonal_boosted_trees": 89.7769244581369,
       "seasonal_baseline": 132.0
     },
@@ -2767,6 +3088,7 @@
       "week": 43,
       "observed": 111.0,
       "lastTrainingBlock": 105195,
+      "seasonal_xgboost": 112.99607849121094,
       "seasonal_boosted_trees": 99.46114307794313,
       "seasonal_baseline": 120.66153846153846
     },
@@ -2776,6 +3098,7 @@
       "week": 44,
       "observed": 98.0,
       "lastTrainingBlock": 105195,
+      "seasonal_xgboost": 93.53433990478516,
       "seasonal_boosted_trees": 86.23244536293431,
       "seasonal_baseline": 110.23076923076923
     },
@@ -2785,6 +3108,7 @@
       "week": 45,
       "observed": 136.0,
       "lastTrainingBlock": 105195,
+      "seasonal_xgboost": 81.65791320800781,
       "seasonal_boosted_trees": 68.28733115157976,
       "seasonal_baseline": 101.1076923076923
     },
@@ -2794,6 +3118,7 @@
       "week": 46,
       "observed": 108.0,
       "lastTrainingBlock": 105195,
+      "seasonal_xgboost": 74.63685607910156,
       "seasonal_boosted_trees": 66.9629604583247,
       "seasonal_baseline": 92.58461538461539
     },
@@ -2803,6 +3128,7 @@
       "week": 47,
       "observed": 126.0,
       "lastTrainingBlock": 105195,
+      "seasonal_xgboost": 75.4021224975586,
       "seasonal_boosted_trees": 73.80228862303038,
       "seasonal_baseline": 88.35384615384615
     },
@@ -2812,6 +3138,7 @@
       "week": 48,
       "observed": 100.0,
       "lastTrainingBlock": 105195,
+      "seasonal_xgboost": 75.35629272460938,
       "seasonal_boosted_trees": 64.72184067772031,
       "seasonal_baseline": 82.56923076923077
     },
@@ -2821,6 +3148,7 @@
       "week": 49,
       "observed": 71.0,
       "lastTrainingBlock": 105195,
+      "seasonal_xgboost": 73.16529846191406,
       "seasonal_boosted_trees": 64.23294662448157,
       "seasonal_baseline": 77.76923076923077
     },
@@ -2830,6 +3158,7 @@
       "week": 50,
       "observed": 85.0,
       "lastTrainingBlock": 105195,
+      "seasonal_xgboost": 74.74345397949219,
       "seasonal_boosted_trees": 67.46649512006088,
       "seasonal_baseline": 71.92307692307692
     },
@@ -2839,6 +3168,7 @@
       "week": 51,
       "observed": 69.0,
       "lastTrainingBlock": 105195,
+      "seasonal_xgboost": 69.32910919189453,
       "seasonal_boosted_trees": 60.289225611182964,
       "seasonal_baseline": 69.55384615384615
     },
@@ -2848,6 +3178,7 @@
       "week": 52,
       "observed": 72.0,
       "lastTrainingBlock": 105195,
+      "seasonal_xgboost": 69.24899291992188,
       "seasonal_boosted_trees": 61.99724178729225,
       "seasonal_baseline": 71.64615384615385
     },
@@ -2857,6 +3188,7 @@
       "week": 1,
       "observed": 122.0,
       "lastTrainingBlock": 105247,
+      "seasonal_xgboost": 69.41028594970703,
       "seasonal_boosted_trees": 69.2541034291452,
       "seasonal_baseline": 73.65714285714286
     },
@@ -2866,6 +3198,7 @@
       "week": 2,
       "observed": 98.0,
       "lastTrainingBlock": 105247,
+      "seasonal_xgboost": 76.52853393554688,
       "seasonal_boosted_trees": 68.25300207165161,
       "seasonal_baseline": 76.42857142857143
     },
@@ -2875,6 +3208,7 @@
       "week": 3,
       "observed": 89.0,
       "lastTrainingBlock": 105247,
+      "seasonal_xgboost": 70.83792877197266,
       "seasonal_boosted_trees": 65.3668450124011,
       "seasonal_baseline": 80.71428571428571
     },
@@ -2884,6 +3218,7 @@
       "week": 4,
       "observed": 87.0,
       "lastTrainingBlock": 105247,
+      "seasonal_xgboost": 79.54259490966797,
       "seasonal_boosted_trees": 79.64727993904587,
       "seasonal_baseline": 80.21428571428571
     },
@@ -2893,6 +3228,7 @@
       "week": 5,
       "observed": 84.0,
       "lastTrainingBlock": 105247,
+      "seasonal_xgboost": 57.99833679199219,
       "seasonal_boosted_trees": 58.20508249912539,
       "seasonal_baseline": 73.77142857142857
     },
@@ -2902,6 +3238,7 @@
       "week": 6,
       "observed": 81.0,
       "lastTrainingBlock": 105247,
+      "seasonal_xgboost": 66.44153594970703,
       "seasonal_boosted_trees": 61.29067131575878,
       "seasonal_baseline": 68.74285714285715
     },
@@ -2911,6 +3248,7 @@
       "week": 7,
       "observed": 77.0,
       "lastTrainingBlock": 105247,
+      "seasonal_xgboost": 54.2830696105957,
       "seasonal_boosted_trees": 49.56057747349513,
       "seasonal_baseline": 63.47142857142857
     },
@@ -2920,6 +3258,7 @@
       "week": 8,
       "observed": 68.0,
       "lastTrainingBlock": 105247,
+      "seasonal_xgboost": 55.15721893310547,
       "seasonal_boosted_trees": 53.758789894386936,
       "seasonal_baseline": 59.57142857142857
     },
@@ -2929,6 +3268,7 @@
       "week": 9,
       "observed": 70.0,
       "lastTrainingBlock": 105247,
+      "seasonal_xgboost": 51.99763870239258,
       "seasonal_boosted_trees": 51.78066336180573,
       "seasonal_baseline": 55.2
     },
@@ -2938,6 +3278,7 @@
       "week": 10,
       "observed": 64.0,
       "lastTrainingBlock": 105247,
+      "seasonal_xgboost": 51.29959487915039,
       "seasonal_boosted_trees": 48.6903689022184,
       "seasonal_baseline": 50.871428571428574
     },
@@ -2947,6 +3288,7 @@
       "week": 11,
       "observed": 60.0,
       "lastTrainingBlock": 105247,
+      "seasonal_xgboost": 51.089107513427734,
       "seasonal_boosted_trees": 46.026667408803064,
       "seasonal_baseline": 46.542857142857144
     },
@@ -2956,6 +3298,7 @@
       "week": 12,
       "observed": 56.0,
       "lastTrainingBlock": 105247,
+      "seasonal_xgboost": 47.61163330078125,
       "seasonal_boosted_trees": 43.04542795914106,
       "seasonal_baseline": 42.65714285714286
     },
@@ -2965,6 +3308,7 @@
       "week": 13,
       "observed": 38.0,
       "lastTrainingBlock": 105247,
+      "seasonal_xgboost": 50.92658615112305,
       "seasonal_boosted_trees": 45.49498531759074,
       "seasonal_baseline": 37.98571428571429
     },
@@ -2974,6 +3318,7 @@
       "week": 14,
       "observed": 38.0,
       "lastTrainingBlock": 105247,
+      "seasonal_xgboost": 39.16994857788086,
       "seasonal_boosted_trees": 35.3656450572306,
       "seasonal_baseline": 35.67142857142857
     },
@@ -2983,6 +3328,7 @@
       "week": 15,
       "observed": 42.0,
       "lastTrainingBlock": 105247,
+      "seasonal_xgboost": 46.16495895385742,
       "seasonal_boosted_trees": 41.50749071563505,
       "seasonal_baseline": 34.457142857142856
     },
@@ -2992,6 +3338,7 @@
       "week": 16,
       "observed": 43.0,
       "lastTrainingBlock": 105247,
+      "seasonal_xgboost": 39.22248840332031,
       "seasonal_boosted_trees": 35.09568786184373,
       "seasonal_baseline": 33.3
     },
@@ -3001,6 +3348,7 @@
       "week": 17,
       "observed": 38.0,
       "lastTrainingBlock": 105247,
+      "seasonal_xgboost": 32.131072998046875,
       "seasonal_boosted_trees": 29.72191542396453,
       "seasonal_baseline": 32.785714285714285
     },
@@ -3010,6 +3358,7 @@
       "week": 18,
       "observed": 37.0,
       "lastTrainingBlock": 105247,
+      "seasonal_xgboost": 47.9351692199707,
       "seasonal_boosted_trees": 40.07989361590522,
       "seasonal_baseline": 33.34285714285714
     },
@@ -3019,6 +3368,7 @@
       "week": 19,
       "observed": 25.0,
       "lastTrainingBlock": 105247,
+      "seasonal_xgboost": 37.5361213684082,
       "seasonal_boosted_trees": 31.130058471855175,
       "seasonal_baseline": 34.857142857142854
     },
@@ -3028,6 +3378,7 @@
       "week": 20,
       "observed": 24.0,
       "lastTrainingBlock": 105247,
+      "seasonal_xgboost": 33.21647644042969,
       "seasonal_boosted_trees": 32.475180376340006,
       "seasonal_baseline": 36.84285714285714
     },
@@ -3037,6 +3388,7 @@
       "week": 21,
       "observed": 31.0,
       "lastTrainingBlock": 105247,
+      "seasonal_xgboost": 41.64942932128906,
       "seasonal_boosted_trees": 42.9749878755876,
       "seasonal_baseline": 39.41428571428571
     },
@@ -3046,6 +3398,7 @@
       "week": 22,
       "observed": 47.0,
       "lastTrainingBlock": 105247,
+      "seasonal_xgboost": 47.11343002319336,
       "seasonal_boosted_trees": 46.338465248934185,
       "seasonal_baseline": 44.871428571428574
     },
@@ -3055,6 +3408,7 @@
       "week": 23,
       "observed": 40.0,
       "lastTrainingBlock": 105247,
+      "seasonal_xgboost": 42.78608703613281,
       "seasonal_boosted_trees": 39.192786523516595,
       "seasonal_baseline": 52.92857142857143
     },
@@ -3064,6 +3418,7 @@
       "week": 24,
       "observed": 45.0,
       "lastTrainingBlock": 105247,
+      "seasonal_xgboost": 60.21510696411133,
       "seasonal_boosted_trees": 57.44567469087778,
       "seasonal_baseline": 64.65714285714286
     },
@@ -3073,6 +3428,7 @@
       "week": 25,
       "observed": 70.0,
       "lastTrainingBlock": 105247,
+      "seasonal_xgboost": 87.33883666992188,
       "seasonal_boosted_trees": 101.23812711935909,
       "seasonal_baseline": 78.38571428571429
     },
@@ -3082,6 +3438,7 @@
       "week": 26,
       "observed": 79.0,
       "lastTrainingBlock": 105247,
+      "seasonal_xgboost": 85.00786590576172,
       "seasonal_boosted_trees": 100.37232119923586,
       "seasonal_baseline": 94.34285714285714
     },
@@ -3091,6 +3448,7 @@
       "week": 27,
       "observed": 80.0,
       "lastTrainingBlock": 105247,
+      "seasonal_xgboost": 117.39187622070312,
       "seasonal_boosted_trees": 116.51965178781388,
       "seasonal_baseline": 115.42857142857143
     },
@@ -3100,6 +3458,7 @@
       "week": 28,
       "observed": 102.0,
       "lastTrainingBlock": 105247,
+      "seasonal_xgboost": 77.52735137939453,
       "seasonal_boosted_trees": 61.88079363181764,
       "seasonal_baseline": 134.71428571428572
     },
@@ -3109,6 +3468,7 @@
       "week": 29,
       "observed": 140.0,
       "lastTrainingBlock": 105247,
+      "seasonal_xgboost": 91.25306701660156,
       "seasonal_boosted_trees": 85.9795173188645,
       "seasonal_baseline": 151.0142857142857
     },
@@ -3118,6 +3478,7 @@
       "week": 30,
       "observed": 133.0,
       "lastTrainingBlock": 105247,
+      "seasonal_xgboost": 174.42149353027344,
       "seasonal_boosted_trees": 167.8832018922933,
       "seasonal_baseline": 171.05714285714285
     },
@@ -3127,6 +3488,7 @@
       "week": 31,
       "observed": 195.0,
       "lastTrainingBlock": 105247,
+      "seasonal_xgboost": 95.861083984375,
       "seasonal_boosted_trees": 102.58938616766702,
       "seasonal_baseline": 191.11428571428573
     },
@@ -3136,6 +3498,7 @@
       "week": 32,
       "observed": 229.0,
       "lastTrainingBlock": 105247,
+      "seasonal_xgboost": 207.4822540283203,
       "seasonal_boosted_trees": 203.93895288011268,
       "seasonal_baseline": 207.68571428571428
     },
@@ -3145,6 +3508,7 @@
       "week": 33,
       "observed": 222.0,
       "lastTrainingBlock": 105247,
+      "seasonal_xgboost": 176.0047149658203,
       "seasonal_boosted_trees": 149.92384532750555,
       "seasonal_baseline": 219.18571428571428
     },
@@ -3154,6 +3518,7 @@
       "week": 34,
       "observed": 232.0,
       "lastTrainingBlock": 105247,
+      "seasonal_xgboost": 222.3122100830078,
       "seasonal_boosted_trees": 215.78903836732007,
       "seasonal_baseline": 225.1
     },
@@ -3163,6 +3528,7 @@
       "week": 35,
       "observed": 207.0,
       "lastTrainingBlock": 105247,
+      "seasonal_xgboost": 199.312744140625,
       "seasonal_boosted_trees": 209.33764522843273,
       "seasonal_baseline": 221.4142857142857
     },
@@ -3172,6 +3538,7 @@
       "week": 36,
       "observed": 216.0,
       "lastTrainingBlock": 105247,
+      "seasonal_xgboost": 197.0387725830078,
       "seasonal_boosted_trees": 175.1233134330754,
       "seasonal_baseline": 213.0857142857143
     },
@@ -3181,6 +3548,7 @@
       "week": 37,
       "observed": 297.0,
       "lastTrainingBlock": 105247,
+      "seasonal_xgboost": 189.19032287597656,
       "seasonal_boosted_trees": 180.26935576086902,
       "seasonal_baseline": 195.88571428571427
     },
@@ -3190,6 +3558,7 @@
       "week": 38,
       "observed": 319.0,
       "lastTrainingBlock": 105247,
+      "seasonal_xgboost": 161.6663360595703,
       "seasonal_boosted_trees": 143.03891353578476,
       "seasonal_baseline": 181.65714285714284
     },
@@ -3199,6 +3568,7 @@
       "week": 39,
       "observed": 269.0,
       "lastTrainingBlock": 105247,
+      "seasonal_xgboost": 172.4719696044922,
       "seasonal_boosted_trees": 146.64345537255318,
       "seasonal_baseline": 168.1
     },
@@ -3208,6 +3578,7 @@
       "week": 40,
       "observed": 305.0,
       "lastTrainingBlock": 105247,
+      "seasonal_xgboost": 152.06443786621094,
       "seasonal_boosted_trees": 130.8084836586664,
       "seasonal_baseline": 154.85714285714286
     },
@@ -3217,6 +3588,7 @@
       "week": 41,
       "observed": 307.0,
       "lastTrainingBlock": 105247,
+      "seasonal_xgboost": 137.13157653808594,
       "seasonal_boosted_trees": 125.53460374646906,
       "seasonal_baseline": 143.11428571428573
     },
@@ -3226,6 +3598,7 @@
       "week": 42,
       "observed": 317.0,
       "lastTrainingBlock": 105247,
+      "seasonal_xgboost": 119.76712036132812,
       "seasonal_boosted_trees": 112.83393958946552,
       "seasonal_baseline": 131.4857142857143
     },
@@ -3235,6 +3608,7 @@
       "week": 43,
       "observed": 253.0,
       "lastTrainingBlock": 105247,
+      "seasonal_xgboost": 119.62505340576172,
       "seasonal_boosted_trees": 112.47241630085684,
       "seasonal_baseline": 120.8
     },
@@ -3244,6 +3618,7 @@
       "week": 44,
       "observed": 351.0,
       "lastTrainingBlock": 105247,
+      "seasonal_xgboost": 113.4227523803711,
       "seasonal_boosted_trees": 101.66098678297458,
       "seasonal_baseline": 110.4
     },
@@ -3253,6 +3628,7 @@
       "week": 45,
       "observed": 384.0,
       "lastTrainingBlock": 105247,
+      "seasonal_xgboost": 110.7929916381836,
       "seasonal_boosted_trees": 115.1365739494331,
       "seasonal_baseline": 102.15714285714286
     },
@@ -3262,6 +3638,7 @@
       "week": 46,
       "observed": 424.0,
       "lastTrainingBlock": 105247,
+      "seasonal_xgboost": 100.23908996582031,
       "seasonal_boosted_trees": 106.23756904016416,
       "seasonal_baseline": 94.08571428571429
     },
@@ -3271,6 +3648,7 @@
       "week": 47,
       "observed": 454.0,
       "lastTrainingBlock": 105247,
+      "seasonal_xgboost": 81.30838775634766,
       "seasonal_boosted_trees": 79.7778661340057,
       "seasonal_baseline": 89.77142857142857
     },
@@ -3280,6 +3658,7 @@
       "week": 48,
       "observed": 439.0,
       "lastTrainingBlock": 105247,
+      "seasonal_xgboost": 93.66783905029297,
       "seasonal_boosted_trees": 95.97827021384555,
       "seasonal_baseline": 83.67142857142858
     },
@@ -3289,6 +3668,7 @@
       "week": 49,
       "observed": 352.0,
       "lastTrainingBlock": 105247,
+      "seasonal_xgboost": 79.12979125976562,
       "seasonal_boosted_trees": 81.27995189534789,
       "seasonal_baseline": 78.65714285714286
     },
@@ -3298,6 +3678,7 @@
       "week": 50,
       "observed": 301.0,
       "lastTrainingBlock": 105247,
+      "seasonal_xgboost": 73.38997650146484,
       "seasonal_boosted_trees": 66.90687667184739,
       "seasonal_baseline": 72.45714285714286
     },
@@ -3307,6 +3688,7 @@
       "week": 51,
       "observed": 213.0,
       "lastTrainingBlock": 105247,
+      "seasonal_xgboost": 74.53073120117188,
       "seasonal_boosted_trees": 70.81858339277242,
       "seasonal_baseline": 69.61428571428571
     },
@@ -3316,6 +3698,7 @@
       "week": 52,
       "observed": 282.0,
       "lastTrainingBlock": 105247,
+      "seasonal_xgboost": 68.78594970703125,
       "seasonal_boosted_trees": 62.76084645564099,
       "seasonal_baseline": 71.51428571428572
     },
@@ -3325,6 +3708,7 @@
       "week": 1,
       "observed": 200.0,
       "lastTrainingBlock": 105299,
+      "seasonal_xgboost": 75.21094512939453,
       "seasonal_boosted_trees": 69.64225475385058,
       "seasonal_baseline": 79.46666666666667
     },
@@ -3334,6 +3718,7 @@
       "week": 2,
       "observed": 357.0,
       "lastTrainingBlock": 105299,
+      "seasonal_xgboost": 84.01048278808594,
       "seasonal_boosted_trees": 72.64753929590226,
       "seasonal_baseline": 80.37333333333333
     },
@@ -3343,6 +3728,7 @@
       "week": 3,
       "observed": 295.0,
       "lastTrainingBlock": 105299,
+      "seasonal_xgboost": 82.30825805664062,
       "seasonal_boosted_trees": 73.59556030972257,
       "seasonal_baseline": 81.73333333333333
     },
@@ -3352,6 +3738,7 @@
       "week": 4,
       "observed": 304.0,
       "lastTrainingBlock": 105299,
+      "seasonal_xgboost": 80.00480651855469,
       "seasonal_boosted_trees": 76.77946231371962,
       "seasonal_baseline": 80.72
     },
@@ -3361,6 +3748,7 @@
       "week": 5,
       "observed": 335.0,
       "lastTrainingBlock": 105299,
+      "seasonal_xgboost": 61.496360778808594,
       "seasonal_boosted_trees": 56.31785953091546,
       "seasonal_baseline": 74.42666666666666
     },
@@ -3370,6 +3758,7 @@
       "week": 6,
       "observed": 291.0,
       "lastTrainingBlock": 105299,
+      "seasonal_xgboost": 68.59037780761719,
       "seasonal_boosted_trees": 60.18157722246533,
       "seasonal_baseline": 69.45333333333333
     },
@@ -3379,6 +3768,7 @@
       "week": 7,
       "observed": 437.0,
       "lastTrainingBlock": 105299,
+      "seasonal_xgboost": 56.90573501586914,
       "seasonal_boosted_trees": 49.58542896706669,
       "seasonal_baseline": 64.30666666666667
     },
@@ -3388,6 +3778,7 @@
       "week": 8,
       "observed": 622.0,
       "lastTrainingBlock": 105299,
+      "seasonal_xgboost": 58.957035064697266,
       "seasonal_boosted_trees": 58.04417914586698,
       "seasonal_baseline": 60.4
     },
@@ -3397,6 +3788,7 @@
       "week": 9,
       "observed": 427.0,
       "lastTrainingBlock": 105299,
+      "seasonal_xgboost": 59.363677978515625,
       "seasonal_boosted_trees": 54.6041831933013,
       "seasonal_baseline": 56.04
     },
@@ -3406,6 +3798,7 @@
       "week": 10,
       "observed": 321.0,
       "lastTrainingBlock": 105299,
+      "seasonal_xgboost": 52.713314056396484,
       "seasonal_boosted_trees": 50.45026193605451,
       "seasonal_baseline": 51.72
     },
@@ -3415,6 +3808,7 @@
       "week": 11,
       "observed": 271.0,
       "lastTrainingBlock": 105299,
+      "seasonal_xgboost": 48.70169448852539,
       "seasonal_boosted_trees": 41.51699338502461,
       "seasonal_baseline": 47.28
     },
@@ -3424,6 +3818,7 @@
       "week": 12,
       "observed": 246.0,
       "lastTrainingBlock": 105299,
+      "seasonal_xgboost": 46.1912727355957,
       "seasonal_boosted_trees": 40.5430196335523,
       "seasonal_baseline": 43.22666666666667
     },
@@ -3433,6 +3828,7 @@
       "week": 13,
       "observed": 158.0,
       "lastTrainingBlock": 105299,
+      "seasonal_xgboost": 48.042327880859375,
       "seasonal_boosted_trees": 43.85222629628817,
       "seasonal_baseline": 38.57333333333333
     },
@@ -3442,6 +3838,7 @@
       "week": 14,
       "observed": 173.0,
       "lastTrainingBlock": 105299,
+      "seasonal_xgboost": 48.2673225402832,
       "seasonal_boosted_trees": 42.81447151651978,
       "seasonal_baseline": 36.18666666666667
     },
@@ -3451,6 +3848,7 @@
       "week": 15,
       "observed": 126.0,
       "lastTrainingBlock": 105299,
+      "seasonal_xgboost": 46.80249786376953,
       "seasonal_boosted_trees": 41.806836693914455,
       "seasonal_baseline": 34.81333333333333
     },
@@ -3460,6 +3858,7 @@
       "week": 16,
       "observed": 104.0,
       "lastTrainingBlock": 105299,
+      "seasonal_xgboost": 48.26333999633789,
       "seasonal_boosted_trees": 41.50176070754596,
       "seasonal_baseline": 33.72
     },
@@ -3469,6 +3868,7 @@
       "week": 17,
       "observed": 99.0,
       "lastTrainingBlock": 105299,
+      "seasonal_xgboost": 42.326690673828125,
       "seasonal_boosted_trees": 41.7565004807783,
       "seasonal_baseline": 33.06666666666667
     },
@@ -3478,6 +3878,7 @@
       "week": 18,
       "observed": 80.0,
       "lastTrainingBlock": 105299,
+      "seasonal_xgboost": 36.34727096557617,
       "seasonal_boosted_trees": 37.640016945830595,
       "seasonal_baseline": 33.346666666666664
     },
@@ -3487,6 +3888,7 @@
       "week": 19,
       "observed": 77.0,
       "lastTrainingBlock": 105299,
+      "seasonal_xgboost": 36.30008316040039,
       "seasonal_boosted_trees": 36.62385122475139,
       "seasonal_baseline": 34.6
     },
@@ -3496,6 +3898,7 @@
       "week": 20,
       "observed": 59.0,
       "lastTrainingBlock": 105299,
+      "seasonal_xgboost": 35.35622787475586,
       "seasonal_boosted_trees": 33.49957277995161,
       "seasonal_baseline": 36.57333333333333
     },
@@ -3505,6 +3908,7 @@
       "week": 21,
       "observed": 76.0,
       "lastTrainingBlock": 105299,
+      "seasonal_xgboost": 40.625308990478516,
       "seasonal_boosted_trees": 38.319427760237765,
       "seasonal_baseline": 39.013333333333335
     },
@@ -3514,6 +3918,7 @@
       "week": 22,
       "observed": 69.0,
       "lastTrainingBlock": 105299,
+      "seasonal_xgboost": 51.2780876159668,
       "seasonal_boosted_trees": 44.43267497428537,
       "seasonal_baseline": 44.373333333333335
     },
@@ -3523,6 +3928,7 @@
       "week": 23,
       "observed": 73.0,
       "lastTrainingBlock": 105299,
+      "seasonal_xgboost": 62.374366760253906,
       "seasonal_boosted_trees": 49.21273007310576,
       "seasonal_baseline": 52.50666666666667
     },
@@ -3532,6 +3938,7 @@
       "week": 24,
       "observed": 85.0,
       "lastTrainingBlock": 105299,
+      "seasonal_xgboost": 73.40495300292969,
       "seasonal_boosted_trees": 72.47577363220559,
       "seasonal_baseline": 64.09333333333333
     },
@@ -3541,6 +3948,7 @@
       "week": 25,
       "observed": 104.0,
       "lastTrainingBlock": 105299,
+      "seasonal_xgboost": 83.82777404785156,
       "seasonal_boosted_trees": 85.82748843303115,
       "seasonal_baseline": 77.34666666666666
     },
@@ -3550,6 +3958,7 @@
       "week": 26,
       "observed": 133.0,
       "lastTrainingBlock": 105299,
+      "seasonal_xgboost": 141.97186279296875,
       "seasonal_boosted_trees": 152.6855263418273,
       "seasonal_baseline": 93.06666666666666
     },
@@ -3559,6 +3968,7 @@
       "week": 27,
       "observed": 153.0,
       "lastTrainingBlock": 105299,
+      "seasonal_xgboost": 92.80145263671875,
       "seasonal_boosted_trees": 97.69818430095685,
       "seasonal_baseline": 114.01333333333334
     },
@@ -3568,6 +3978,7 @@
       "week": 28,
       "observed": 163.0,
       "lastTrainingBlock": 105299,
+      "seasonal_xgboost": 128.6470184326172,
       "seasonal_boosted_trees": 141.46344182416232,
       "seasonal_baseline": 132.85333333333332
     },
@@ -3577,6 +3988,7 @@
       "week": 29,
       "observed": 162.0,
       "lastTrainingBlock": 105299,
+      "seasonal_xgboost": 154.17066955566406,
       "seasonal_boosted_trees": 156.89014713636777,
       "seasonal_baseline": 149.61333333333334
     },
@@ -3586,6 +3998,7 @@
       "week": 30,
       "observed": 215.0,
       "lastTrainingBlock": 105299,
+      "seasonal_xgboost": 171.07960510253906,
       "seasonal_boosted_trees": 164.3904054729479,
       "seasonal_baseline": 170.30666666666667
     },
@@ -3595,6 +4008,7 @@
       "week": 31,
       "observed": 268.0,
       "lastTrainingBlock": 105299,
+      "seasonal_xgboost": 173.35882568359375,
       "seasonal_boosted_trees": 172.4271422879599,
       "seasonal_baseline": 190.62666666666667
     },
@@ -3604,6 +4018,7 @@
       "week": 32,
       "observed": 295.0,
       "lastTrainingBlock": 105299,
+      "seasonal_xgboost": 211.7483673095703,
       "seasonal_boosted_trees": 202.65604091615774,
       "seasonal_baseline": 207.32
     },
@@ -3613,6 +4028,7 @@
       "week": 33,
       "observed": 267.0,
       "lastTrainingBlock": 105299,
+      "seasonal_xgboost": 229.4947509765625,
       "seasonal_boosted_trees": 216.99912048718159,
       "seasonal_baseline": 219.04
     },
@@ -3622,6 +4038,7 @@
       "week": 34,
       "observed": 213.0,
       "lastTrainingBlock": 105299,
+      "seasonal_xgboost": 208.22738647460938,
       "seasonal_boosted_trees": 236.70171707611925,
       "seasonal_baseline": 224.84
     },
@@ -3631,6 +4048,7 @@
       "week": 35,
       "observed": 222.0,
       "lastTrainingBlock": 105299,
+      "seasonal_xgboost": 201.36180114746094,
       "seasonal_boosted_trees": 196.48944229824644,
       "seasonal_baseline": 222.30666666666667
     },
@@ -3640,6 +4058,7 @@
       "week": 36,
       "observed": 273.0,
       "lastTrainingBlock": 105299,
+      "seasonal_xgboost": 212.49362182617188,
       "seasonal_boosted_trees": 196.5633249837429,
       "seasonal_baseline": 215.82666666666665
     },
@@ -3649,6 +4068,7 @@
       "week": 37,
       "observed": 214.0,
       "lastTrainingBlock": 105299,
+      "seasonal_xgboost": 189.83689880371094,
       "seasonal_boosted_trees": 184.39489880014864,
       "seasonal_baseline": 200.26666666666668
     },
@@ -3658,6 +4078,7 @@
       "week": 38,
       "observed": 220.0,
       "lastTrainingBlock": 105299,
+      "seasonal_xgboost": 183.5198211669922,
       "seasonal_boosted_trees": 168.42353485624514,
       "seasonal_baseline": 188.29333333333332
     },
@@ -3667,6 +4088,7 @@
       "week": 39,
       "observed": 269.0,
       "lastTrainingBlock": 105299,
+      "seasonal_xgboost": 153.4265899658203,
       "seasonal_boosted_trees": 145.09910086627366,
       "seasonal_baseline": 176.85333333333332
     },
@@ -3676,6 +4098,7 @@
       "week": 40,
       "observed": 357.0,
       "lastTrainingBlock": 105299,
+      "seasonal_xgboost": 143.6693572998047,
       "seasonal_boosted_trees": 134.29115460840825,
       "seasonal_baseline": 164.76
     },
@@ -3685,6 +4108,7 @@
       "week": 41,
       "observed": 320.0,
       "lastTrainingBlock": 105299,
+      "seasonal_xgboost": 136.37515258789062,
       "seasonal_boosted_trees": 118.24298532458621,
       "seasonal_baseline": 152.92
     },
@@ -3694,6 +4118,7 @@
       "week": 42,
       "observed": 293.0,
       "lastTrainingBlock": 105299,
+      "seasonal_xgboost": 115.55579376220703,
       "seasonal_boosted_trees": 132.98516022567497,
       "seasonal_baseline": 143.16
     },
@@ -3703,6 +4128,7 @@
       "week": 43,
       "observed": 302.0,
       "lastTrainingBlock": 105299,
+      "seasonal_xgboost": 128.1046600341797,
       "seasonal_boosted_trees": 112.00844533028898,
       "seasonal_baseline": 134.24
     },
@@ -3712,6 +4138,7 @@
       "week": 44,
       "observed": 205.0,
       "lastTrainingBlock": 105299,
+      "seasonal_xgboost": 131.09068298339844,
       "seasonal_boosted_trees": 122.67471880064967,
       "seasonal_baseline": 126.09333333333333
     },
@@ -3721,6 +4148,7 @@
       "week": 45,
       "observed": 194.0,
       "lastTrainingBlock": 105299,
+      "seasonal_xgboost": 101.84608459472656,
       "seasonal_boosted_trees": 89.9994825392267,
       "seasonal_baseline": 120.22666666666667
     },
@@ -3730,6 +4158,7 @@
       "week": 46,
       "observed": 164.0,
       "lastTrainingBlock": 105299,
+      "seasonal_xgboost": 120.21919250488281,
       "seasonal_boosted_trees": 123.70149749221413,
       "seasonal_baseline": 115.17333333333333
     },
@@ -3739,6 +4168,7 @@
       "week": 47,
       "observed": 201.0,
       "lastTrainingBlock": 105299,
+      "seasonal_xgboost": 98.63243103027344,
       "seasonal_boosted_trees": 102.41524708320807,
       "seasonal_baseline": 111.16
     },
@@ -3748,6 +4178,7 @@
       "week": 48,
       "observed": 150.0,
       "lastTrainingBlock": 105299,
+      "seasonal_xgboost": 90.1684341430664,
       "seasonal_boosted_trees": 74.5561911678918,
       "seasonal_baseline": 104.36
     },
@@ -3757,6 +4188,7 @@
       "week": 49,
       "observed": 135.0,
       "lastTrainingBlock": 105299,
+      "seasonal_xgboost": 78.8934555053711,
       "seasonal_boosted_trees": 66.82452382310315,
       "seasonal_baseline": 96.86666666666666
     },
@@ -3766,6 +4198,7 @@
       "week": 50,
       "observed": 132.0,
       "lastTrainingBlock": 105299,
+      "seasonal_xgboost": 74.4702377319336,
       "seasonal_boosted_trees": 64.43316038763793,
       "seasonal_baseline": 88.78666666666666
     },
@@ -3775,6 +4208,7 @@
       "week": 51,
       "observed": 116.0,
       "lastTrainingBlock": 105299,
+      "seasonal_xgboost": 74.4639892578125,
       "seasonal_boosted_trees": 62.180480618983985,
       "seasonal_baseline": 81.90666666666667
     },
@@ -3784,6 +4218,7 @@
       "week": 52,
       "observed": 82.0,
       "lastTrainingBlock": 105299,
+      "seasonal_xgboost": 78.8093032836914,
       "seasonal_boosted_trees": 68.43323212470497,
       "seasonal_baseline": 80.29333333333334
     }

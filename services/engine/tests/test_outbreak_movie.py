@@ -28,6 +28,10 @@ def test_distance_geometry_nearest_and_provisional_inventory(demo):
         assert polygons[b["id"]].covers(Point(b["coordinates"]))
         expected = sorted(hospitals, key=lambda h: (distance_km(b["coordinates"], hospitals[h]["coordinates"]), h))[:3]
         assert [h["facilityId"] for h in b["nearestHospitals"]] == expected
+        contained = {ident for ident, h in hospitals.items() if polygons[b["id"]].covers(Point(h["coordinates"]))}
+        assert {h["facilityId"] for h in b["hospitalsWithinBarangay"]} == contained
+        assert all(h["distanceKm"] >= 0 for h in b["hospitalsWithinBarangay"])
+    assert any(len(b["hospitalsWithinBarangay"]) > 1 for b in context["barangays"])
     assert all(h["coordinateStatus"].startswith("PROVISIONAL") and h["dengueInpatientEligible"] is None for h in hospitals.values())
     assert context["weightYear"] <= 2023
 

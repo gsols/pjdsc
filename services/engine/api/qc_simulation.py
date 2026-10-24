@@ -43,6 +43,7 @@ class QCInput(StrictModel):
     surgeActivationDay: int = Field(default=7, strict=True, ge=0, le=28)
     acknowledgeAssumedCapacity: Literal[True] = True
     allocationPolicy: Literal["nearest", "optimized"] = "nearest"
+    arrivalSplitPolicy: Literal["nearest", "nearest_three_equal"] = "nearest_three_equal"
     compareAllocation: bool = False
 
     @model_validator(mode="after")
@@ -73,13 +74,13 @@ def default_workspace():
 def workspace(params: QCInput):
     try:
         run = select_reference(load_environmental_runs(), params.startDate)
-        geo = inputs(run["id"], params.startDate.year)[1]
+        geo = inputs(run["id"], params.startDate.year, True)[1]
         # No place is requested from the browser; all QC weights determine rankings.
         automatic_origin = max(geo["barangays"], key=lambda b: b["weight"])["id"]
         model = OutbreakInput(
             forecastRunId=run["id"], scenarioKind="historical_replay" if params.mode == "forecast" else "hypothetical_shock",
             autoHotspots=True, acknowledgeHypotheticalHospitalNetwork=True, acknowledgeHypotheticalDates=True,
-            allocationPolicy=params.allocationPolicy,
+            allocationPolicy=params.allocationPolicy, arrivalSplitPolicy=params.arrivalSplitPolicy,
             startDate=params.startDate, endDate=params.endDate, seedBarangayId=automatic_origin,
             extraCasesPerWeek=params.extraCasesPerWeek, initialRadiusKm=.5, expansionKmPerDay=0,
             growthDays=params.growthDays, shockProfile="ramp", hospitalizationRate=params.hospitalizationRate,
@@ -101,6 +102,8 @@ def workspace(params: QCInput):
         result["periodSummary"] = {"expectedCases": final["cumulativeCases"], "caseRange": final["caseRange"],
             "barangays": sorted(final["barangays"], key=lambda b: (-b["cumulativeCases"], b["barangayId"]))}
         result["assumptions"] = "QC-wide historical case + lagged rainfall/temperature/humidity model; fixed prior annual barangay weights. Daily counts are uniformly disaggregated source-block forecasts. Zero initial dengue census, constant assumed non-dengue occupancy, configured admission fraction/delay and fixed LOS; observed source case totals are not observed hospital admissions. No user-selected infection origin or calibrated transmission model. All 46 registered hospitals are hypothetical eligible sites with separately assumed capacity. " + ("Minimum-distance capacity-constrained LP; holding solved after supported placements." if params.allocationPolicy == "optimized" else "Deterministic nearest-supported-capacity baseline, then finite holding.")
+        result["assumptions"] = result["assumptions"].replace("fixed prior annual barangay weights", "fixed XGBoost annual barangay burden forecast shares")
+        result["forecastEvidence"]["spatialCaveat"] = "XGBoost annual barangay burden supplies modeled shares and ten high-burden candidates. Annual ranking is evaluated separately; weekly hotspot and spatial-allocation uncertainty are not validated."
         if params.compareAllocation:
             counterpart = create_movie(model.model_copy(update={"allocationPolicy": "optimized" if params.allocationPolicy == "nearest" else "nearest"}))
             def metrics(movie):

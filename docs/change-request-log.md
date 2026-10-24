@@ -1,5 +1,179 @@
 # User-requested extensions
 
+## 2026-10-25 07:11:55 +08:00 — restore color animation and clarify bed percentages
+
+Runtime follow-up 07:26 +08:00: restarted the stale local engine and versioned new
+bed-percentage results separately. Import-time code hashes plus a restart-required
+guard prevent old workers from saving calculations as if new code produced them.
+
+Request: restore moving/changing forecast colors during surge playback and make
+predicted bed use/capacity percentages clear. Scope: [QC workspace](qc-simulation-workspace.md).
+
+Added explicit frame-based interpolation of each candidate's forecast values into
+a continuous palette and halo size. New runs default to accumulated-case animation;
+daily forecast remains selectable. A full-window scale stays fixed during playback
+so high counts do not all saturate at the old 50-case cap. Reduced-motion mode
+remains static. Only the ten annual XGBoost candidates receive color/markers; there
+is no neighbor-triggered spread or animation of fabricated case observations.
+
+Backend bed forecasts now return demandUtilizationPct = expected dengue bed demand /
+scenario-assumed dengue slots × 100, with null for zero capacity and no 100% cap.
+Nearby hospital cards and the right sidebar show expected beds, denominator and
+percentage, separate from three-way arrival shares and post-placement total
+staffed-bed occupancy. Configured-surge status is explicit and not presented as an
+observed outbreak. Actual staffed/available capacity remains unknown.
+
+## 2026-10-25 01:10:07 +08:00 — correct hotspot definition and train local ranking
+
+Request: explain why all barangays were marked and whether hotspots/high-case
+places were calculated with XGBoost. The earlier map incorrectly equated positive
+allocated demand with hotspot eligibility; its XGBoost model was QC-wide only.
+
+Corrected markers and case-band coloring to only ten ranked high-burden candidates.
+Selecting a non-candidate no longer gives it an orange hotspot marker. Trained a
+separate annual barangay XGBoost burden model, evaluated matched past-only annual
+origins, and used its forecast shares for the automatic workspace. Source cutoffs,
+annual-vs-weekly limitations, ranking definition and baseline comparisons are
+exposed in the UI and [ranking specification](barangay-xgboost-ranking.md).
+Observed annual nulls and immutable raw sources are preserved. Invalid model
+artifacts block the workspace, with no historical-share fallback.
+
+## 2026-10-25 00:02:51 +08:00 — complete marker coverage and dated place progression
+
+Request: resolve remaining missing hotspot markers and base progression on each
+place's forecast rather than a chain of events. Scope: [QC workspace](qc-simulation-workspace.md).
+
+All positive-demand barangays now have marker IDs, rather than only the top ten.
+Top-ten ranks retain numbered icons; other modeled locations use orange dots.
+Screen-space separation, viewport/control exclusion and adaptive icon sizes keep
+crowded markers accessible, with gray stems to original points. Source coordinates
+are untouched. Date controls, legend, thumbnail and inspection cards occupy normal
+layout outside the map viewport. Marker objects persist across playback frames.
+
+Daily forecast allocation is now the default map measure, with an accumulated-cases
+option and a selected-place daily chart. Forecast scenarios use a dedicated dated
+allocation function; no neighbor events, seed distance or radial expansion affects
+case progression. All places update concurrently. The legacy explicitly hypothetical
+radial outbreak API remains separate. Current place curves remain prior-annual-share
+allocations of QC forecasts; independent barangay weekly forecasts are unavailable.
+
+## 2026-10-25 00:35:33 +08:00 — XGBoost and shared hospital surge-bed demand
+
+Request: show projected surge-related beds near a selected place, account for people
+dividing among three nearby hospitals and use XGBoost. Scope:
+[future seasonal simulation](future-seasonal-simulation.md).
+
+Installed/pinned XGBoost 3.1.3 and retrained the seasonal case model on audited inputs.
+The requested XGBoost model is explicitly selected; original boosting and seasonal
+baselines remain in past-only calibration and 2024/2025 evaluation. No superiority
+claim is made. The model is used for future cases, with admissions/LOS converting
+cases to required beds; observed admissions/occupancy targets remain absent.
+
+New workspace runs default to equal expected shares across the nearest three
+assumed-eligible sites, with a nearest-only comparator. Identical shares drive
+placement preferences and unconstrained hospital bed demand; capacity diversions
+remain finite. Per-place tables/sidebar summarize shares, expected admissions,
+no-added-surge peak beds, with-surge peak beds and extra demand due to surge.
+Hospital cards cover all origins; actual staffed/vacant beds remain unknown.
+Raw source inputs and accredited-bed definitions are unchanged.
+
+## 2026-10-24 23:52:00 +08:00 — show hotspot markers before playback
+
+Request: urgently restore missing hotspot markers. Location-preview IDs now come
+from the loaded approved window independently of day-zero value gating. Orange
+numbered hotspot markers and their proximity connections appear as soon as data
+loads; the legend explicitly calls them a location preview before playback.
+Projected counts and other modeled outputs remain hidden at day zero. The render
+regression now asserts both visible marker IDs and hidden projection counts.
+
+## 2026-10-24 23:45:45 +08:00 — SurgeWise, within-barangay links and not-started state
+
+Request: connect hotspots to multiple hospitals inside their area, suppress
+simulated values before playback unless they are a verified base for that date,
+remove remaining persistent hotspot names and rename the product SurgeWise.
+Scope: [QC workspace](qc-simulation-workspace.md).
+
+The engine context adds hospitalsWithinBarangay using polygon covers on canonical
+provisional points (including boundary points); it does not infer eligibility or
+entrances. Each of ten ranked hotspots and any inspected barangay links to the
+nearest hospital plus all hospitals inside its polygon, deduplicated by ID. Click
+cards list those sites. Source data and demand/placement calculations are unchanged.
+
+Day zero now withholds projections, modeled charts/ranks, occupancy, bed demand and
+exports, including after restart/scrubbing to zero. No authoritative daily base
+count is available for the selected dates; unavailable remains unavailable rather
+than showing zero or an old source-year total as a current base. Dated inventory,
+configuration and model/source evidence remain accessible. Persistent hotspot name
+labels were removed; numbered markers reveal names in click cards. Product headers,
+dashboard, browser metadata and API title now say SurgeWise.
+
+## 2026-10-24 23:31:50 +08:00 — map stacking, visible hotspots and restrained labels
+
+Request: stop icons overlaying legend/details, make hotspot markers more prominent
+and emphasize only the selected region rather than bolding its text.
+Scope: [QC workspace](qc-simulation-workspace.md).
+
+The map now has an isolated stacking context below opaque legends/inspection cards.
+Hotspots use larger orange numbered circles with light outlines and a static halo;
+numbers match the ranked guide. Selected map labels retain regular weight, size
+and padding; selected table text is also regular. Polygon extrusion/outline and
+connection emphasis remain. No case data, source artifacts or calculations changed.
+
+## 2026-10-24 23:27:45 +08:00 — collapsible results footer and marker key
+
+Request: collapse reproducibility, export and all bottom case/patient metrics;
+identify hotspots versus hospitals with a marker legend; show medical icons
+instead of hospital name labels; provide cases and nearest hospital when a
+hotspot is clicked, preserving hospital capacity/nearest-hotspot inspection.
+Scope: [QC workspace](qc-simulation-workspace.md).
+
+Implemented a native Show/Hide results-footer disclosure, initially expanded.
+Medical-cross buttons represent all 46 registered hospital points; names appear
+in the inspection card after selection. Orange hotspot and medical-cross symbols
+are explained in the map key. Hotspot/guide clicks show full-window projected
+cases/range, playback-day accumulation and nearest hospital/distance, with links
+to hospital inspection. Hospital hit priority and provisional-point/source-capacity
+caveats remain. This changes presentation only, not demand or source data.
+
+## 2026-10-24 23:16:44 +08:00 — collapsible case summary
+
+Request: allow collapsing the full-window expected cases, experimental range,
+date/calendar assumption and range-validation warning together. Implemented a
+native keyboard-accessible disclosure, expanded initially, with explicit Show/Hide
+labels. Both forecasting tabs share it. See [QC workspace](qc-simulation-workspace.md).
+
+## 2026-10-24 23:07:02 +08:00 — hotspot guide and map selection
+
+Request: show hotspot locations, projected cases and nearest hospitals; show bed
+capacity and nearest hotspot when any hospital is clicked; clarify connections;
+make a selected barangay bold and visually raised, with stronger local connections.
+Scope: [QC workspace](qc-simulation-workspace.md).
+
+The guide lists the ten ranked hotspots for the full window, expected cases,
+conditional ranges and nearest registered hospital/distance. Hospital inspection
+shows source-reported accredited beds, unknown operational capacity and the nearest
+of those ten ranked hotspot representative points. Gold dotted hospital-to-hotspot
+connections are separate from purple dashed nearest-hospital links and solid
+modeled placement lines. Selected polygons have a decorative extrusion, shadow,
+bright outline and bold label; no physical elevation or observed outbreak claim.
+Hospital clicks take priority over underlying polygon clicks and reveal the
+capacity sidebar. Data sources, scenario calculations and provenance remain intact.
+
+## 2026-10-24 22:54:08 +08:00 — forecasting validation and reload repair
+
+Request: investigate the recurring forecasting-subtab validation failure across
+the integration, rebuild audited artifacts and make data-based reload work
+without fallback. Scope: [future seasonal simulation](future-seasonal-simulation.md)
+and [QC workspace](qc-simulation-workspace.md).
+
+Confirmed byte-level newline drift in the seasonal report and hash-pinned
+training code. Rebuilt the seasonal model/report/manifest from verified immutable
+sources; pinned code line endings and made generated JSON UTF-8/LF and publication
+atomic per file, with the manifest last. Added typed seasonal failure diagnostics,
+seasonal readiness, tampering/missing-artifact regression checks and retries that
+preserve the active tab's controls. Historical sources and all eight base
+integration artifact hashes verified unchanged. No source or model fallback.
+
 ## 2026-10-24 21:19:03 +08:00 — two simulation tabs, future seasons and beds
 
 Request: separate historical replay from future surge forecasting in the left

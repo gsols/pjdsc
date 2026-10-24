@@ -4,9 +4,9 @@ import { useEffect, useId, useRef, useState } from 'react';
 import type { CSSProperties, KeyboardEvent, PointerEvent, ReactNode } from 'react';
 import { PanelLeftClose, PanelLeftOpen, PanelRightClose, PanelRightOpen } from 'lucide-react';
 
-type Props = { side: 'left' | 'right'; label: string; children: ReactNode };
+type Props = { side: 'left' | 'right'; label: string; children: ReactNode; revealKey?: number };
 
-export default function QCWorkspaceSidebar({ side, label, children }: Props) {
+export default function QCWorkspaceSidebar({ side, label, children, revealKey }: Props) {
   const id = useId();
   const shell = useRef<HTMLDivElement>(null);
   const drag = useRef<{ x: number; width: number } | null>(null);
@@ -20,6 +20,8 @@ export default function QCWorkspaceSidebar({ side, label, children }: Props) {
   const Icon = side === 'left'
     ? collapsed ? PanelLeftOpen : PanelLeftClose
     : collapsed ? PanelRightOpen : PanelRightClose;
+
+  useEffect(() => { if (revealKey) setCollapsed(false); }, [revealKey]);
 
   useEffect(() => {
     const element = shell.current!;

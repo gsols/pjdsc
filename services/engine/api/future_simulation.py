@@ -10,7 +10,7 @@ from pydantic import Field, model_validator
 from .qc_simulation import QCInput, LIMITS
 from .research import FacilityAssumption, unavailable
 from .outbreak import OutbreakInput, inputs, create_movie
-from ..repositories.seasonal_runs import create_seasonal_run, approved_model, FOLDER
+from ..repositories.seasonal_runs import create_seasonal_run, approved_model, FOLDER, SeasonalArtifactError
 
 router = APIRouter(prefix="/v1")
 
@@ -71,10 +71,10 @@ def future_workspace(params: FutureInput):
     try:
         as_of = today_qc()
         run = create_seasonal_run(params.startDate, params.weatherProfile, as_of)
-        _, geo, _ = inputs(run["id"], params.startDate.year)
+        _, geo, _ = inputs(run["id"], params.startDate.year, True)
         model = OutbreakInput(forecastRunId=run["id"], scenarioKind="hypothetical_shock", autoHotspots=True,
             acknowledgeHypotheticalHospitalNetwork=True, acknowledgeHypotheticalDates=True,
-            allocationPolicy=params.allocationPolicy, surgeEnabled=params.surgeEnabled,
+            allocationPolicy=params.allocationPolicy, arrivalSplitPolicy=params.arrivalSplitPolicy, surgeEnabled=params.surgeEnabled,
             surgeOnsetDay=params.surgeOnsetDay, surgeMultiplier=params.surgeMultiplier,
             startDate=params.startDate, endDate=params.endDate,
             seedBarangayId=max(geo["barangays"], key=lambda b: b["weight"])["id"],
@@ -107,6 +107,8 @@ def future_workspace(params: FutureInput):
                 "barangays": sorted(final["barangays"], key=lambda b: (-b["cumulativeCases"], b["barangayId"]))},
             "assumptions": "New seasonal baseline for the requested future dates; historical weather analogs and a configured surge onset/ramp/multiplier. Fixed prior annual spatial weights, zero initial dengue census, fixed assumed q/LOS/delay and non-dengue occupancy. All 46 hospitals are hypothetical eligible sites. Required beds are unconstrained case-to-cohort demand; modeled placement/overflow uses finite assumed normal/surge/holding resources. No current vacancies are inferred.",
             "simulationResultSha256": movie["resultSha256"]}
+        result["assumptions"] = result["assumptions"].replace("Fixed prior annual spatial weights", "Fixed XGBoost annual barangay burden forecast shares")
+        result["forecastEvidence"]["spatialCaveat"] = "XGBoost annual barangay burden supplies modeled shares and ten high-burden candidates. Annual ranking is not validated weekly hotspot detection; spatial uncertainty is not included in city case ranges."
         if params.compareAllocation:
             other = create_movie(model.model_copy(update={"allocationPolicy": "optimized" if params.allocationPolicy == "nearest" else "nearest"}))
             def metrics(value):
@@ -121,5 +123,7 @@ def future_workspace(params: FutureInput):
         return result
     except HTTPException:
         raise
+    except SeasonalArtifactError as error:
+        raise HTTPException(503, detail={"code": "SEASONAL_ARTIFACTS_UNAVAILABLE", "message": str(error)}) from None
     except (OSError, ValueError, KeyError, TypeError):
         raise unavailable() from None

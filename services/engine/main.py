@@ -11,7 +11,7 @@ from services.engine.api.outbreak import router as outbreak_router
 from services.engine.api.qc_simulation import router as qc_simulation_router
 from services.engine.api.future_simulation import router as future_simulation_router
 
-app = FastAPI(title="PJDSC Dengue Forecast and Simulation API", version="0.1.0")
+app = FastAPI(title="SurgeWise Forecast and Simulation API", version="0.1.0")
 app.include_router(research_router)
 app.include_router(outbreak_router)
 app.include_router(qc_simulation_router)
@@ -57,7 +57,24 @@ def readiness():
         forecast_ready = bool(load_runs("QUEZON_CITY"))
     except (OSError, ValueError, KeyError, TypeError):
         forecast_ready = False
+    from services.engine.repositories.seasonal_runs import approved_model, SeasonalArtifactError
+    seasonal = {"ready": True}
+    try:
+        approved_model()
+    except SeasonalArtifactError as error:
+        seasonal = {"ready": False, "code": "SEASONAL_ARTIFACTS_UNAVAILABLE", "message": str(error)}
+    from services.engine.repositories.barangay_runs import approved_ranking, BarangayRankingUnavailable
+    from services.engine.api.future_simulation import today_qc
+    ranking = {"ready": True}
+    try:
+        approved_ranking(today_qc().year)
+    except BarangayRankingUnavailable as error:
+        ranking = {"ready": False, "code": "BARANGAY_RANKING_UNAVAILABLE", "message": str(error)}
     return {"schemaVersion": "1.0", "ready": False, "historicalSourceBlockReplayReady": forecast_ready and facility_ready,
+        "seasonalForecast": seasonal,
+        "barangayRanking": ranking,
+        "qcWorkspaceReady": forecast_ready and facility_ready and ranking["ready"],
+        "futureWorkspaceReady": facility_ready and ranking["ready"] and seasonal["ready"],
         "facilities": {"ready": facility_ready, "datasetId": DATASET_ID},
         "blockers": ["Exact source week/calendar alignment and historical publication delays unresolved; live and calendar-dated forecasting unavailable.",
         "Dengue eligibility and staffed capacity unknown; /v1/scenarios requires explicit hypothetical assumptions.",

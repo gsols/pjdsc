@@ -93,7 +93,7 @@ export default function Dashboard() {
       <header className="header dashboard-header">
         <div>
           <div className="brand">
-            PJDSC <span>/ DENGUE INTELLIGENCE</span>
+            SurgeWise
           </div>
           <div className="subtle">NCR Preparedness Research Prototype</div>
         </div>
