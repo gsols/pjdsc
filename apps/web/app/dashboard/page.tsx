@@ -3,6 +3,9 @@ import dynamic from 'next/dynamic';
 import { useEffect, useState } from 'react';
 import type { Facility, ScenarioResult } from '@/lib/types';
 import { loadFacilities, FACILITY_DATASET_ID } from '@/lib/facilities';
+import { ArrowUpRight, Play } from 'lucide-react';
+import FloatingMapPanel from '@/components/floating-map-panel';
+import './dashboard.css';
 const NCRMap = dynamic(() => import('@/components/ncr-map'), {
   ssr: false,
   loading: () => <div style={{ padding: 28 }}>Loading geographic map...</div>,
@@ -87,7 +90,7 @@ export default function Dashboard() {
   }
   return (
     <>
-      <header className="header">
+      <header className="header dashboard-header">
         <div>
           <div className="brand">
             PJDSC <span>/ DENGUE INTELLIGENCE</span>
@@ -96,7 +99,7 @@ export default function Dashboard() {
         </div>
         <a className="pill" href="/outbreak-response">Open animated simulation</a>
       </header>
-      <main className="layout">
+      <main className="layout dashboard-map-layout">
         <section className="map-section">
           <NCRMap
             selectedArea={area}
@@ -126,6 +129,13 @@ export default function Dashboard() {
               </span>
             </div>
           </div>
+          <section className="dashboard-simulation-launch" aria-label="QC simulation workspace">
+            <span>Explore a preparedness scenario</span>
+            <h2>What happens when cases rise?</h2>
+            <p>Explore QC forecasts, hospital strain and capacity scenarios.</p>
+            <a href="/outbreak-response"><span><Play size={17} /> Open QC simulation</span><ArrowUpRight size={19} /></a>
+            <small>Historical forecasts · Assumed hospital capacity · Research use</small>
+          </section>
           {result && (
             <div className="timeline">
               <strong>Simulation week</strong>
@@ -141,10 +151,11 @@ export default function Dashboard() {
             </div>
           )}
         </section>
+        <FloatingMapPanel revealKey={facility?.id}>
         <aside className="panel">
-          <h1>Scenario Workspace</h1>
+          <h1>Geography & hospitals</h1>
           <div className="subtle">
-            Review source inventory and configure research assumptions
+            Inspect the network, filter map markers and review source records
           </div>
           <div className="field">
             <label htmlFor="selected-area">Selected geography</label>
@@ -334,6 +345,7 @@ export default function Dashboard() {
             completed simulation. All public advisories require LGU review.
           </div>
         </aside>
+        </FloatingMapPanel>
       </main>
     </>
   );

@@ -1,5 +1,33 @@
 # UPRI integration verification — 24 October 2026
 
+## Cross-platform newline recovery
+
+On 24 October 2026, a macOS checkout failed `/v1/qc-simulation` with 503 because
+Git had stored LF versions of files whose manifests pinned CRLF bytes. Eleven
+files were affected: two raw text sources, seven processed JSON artifacts and
+the public QC annual table and barangay geometry. In every case, changing only
+line endings reproduced the existing SHA-256 exactly. Those original bytes were
+restored without changing data values, forecast results, expected hashes, source
+metadata or model configuration. No training or source download was required.
+
+`.gitattributes` now disables Git text conversion for UPRI sources, references,
+processed artifacts and the three public UPRI-derived JSON/GeoJSON files. Git
+clean filtering was checked with `core.autocrlf=false`, `input` and `true`.
+All 17 pinned input/output files match their unchanged fingerprints.
+
+Executed after recovery: Python compilation and all **36 Python tests** passed;
+the running engine returned **200** for `GET /v1/qc-simulation`. Regression checks
+cover all processed manifest outputs and reject both newline-only and
+numeric-value mutations of a synthetic source fixture. Runtime verification
+still hashes exact bytes and fails closed on mismatches. This repair does not
+resolve the scientific/operational limitations recorded below.
+
+The **13 frontend tests** and running frontend/engine HTTP smoke also passed,
+including 7/14/28-day windows, all 142 barangays and 46 hospitals, same-input
+allocation comparison and rejection of non-QC simulation scope.
+
+## Earlier integration verification
+
 The later animated simulation extension passes **26 Python tests, 9 Node tests,
 a clean production build and the running web/engine HTTP smoke**. See
 [movie verification and methods](simulation-movie.md) and the timestamped
