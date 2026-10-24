@@ -1,0 +1,4512 @@
+{
+  "schemaVersion": "1.1",
+  "runs": [
+    {
+      "schemaVersion": "1.1",
+      "id": "qc-weather-residual-v2-QUEZON_CITY-2024-4",
+      "area": "QUEZON_CITY",
+      "mode": "historical_replay",
+      "issueBlock": {
+        "YR": 2024,
+        "WN": 4
+      },
+      "issueDate": null,
+      "trainingCutoffBlock": {
+        "YR": 2024,
+        "WN": 4
+      },
+      "sourceSha256": "94c65ce24e13c132007f67da9b4d10f7023e9429fff79c358b1de938f982dd78",
+      "calendarStatus": "UNRESOLVED_SOURCE_WEEK_DEFINITION",
+      "model": "cases_weather",
+      "methodVersion": "qc-weather-residual-v2",
+      "seed": 42,
+      "weeklyPredictions": [
+        {
+          "YR": 2024,
+          "WN": 5,
+          "meanCases": 81.06002737790793,
+          "lowerCases": 66.50228223542766,
+          "upperCases": 95.6177725203882,
+          "measurementKind": "forecast",
+          "observedCases": 84.0,
+          "observedMeasurementKind": "observed",
+          "intervalKind": "empirical_pre_origin_absolute_residual_80",
+          "calibrationSamples": 38,
+          "lastTrainingTargetBlock": 105251,
+          "trainingSamples": 680
+        },
+        {
+          "YR": 2024,
+          "WN": 6,
+          "meanCases": 72.13909297734828,
+          "lowerCases": 47.27493768157434,
+          "upperCases": 97.00324827312222,
+          "measurementKind": "forecast",
+          "observedCases": 81.0,
+          "observedMeasurementKind": "observed",
+          "intervalKind": "empirical_pre_origin_absolute_residual_80",
+          "calibrationSamples": 38,
+          "lastTrainingTargetBlock": 105251,
+          "trainingSamples": 679
+        },
+        {
+          "YR": 2024,
+          "WN": 7,
+          "meanCases": 63.6798245376365,
+          "lowerCases": 22.135761840067055,
+          "upperCases": 105.22388723520595,
+          "measurementKind": "forecast",
+          "observedCases": 77.0,
+          "observedMeasurementKind": "observed",
+          "intervalKind": "empirical_pre_origin_absolute_residual_80",
+          "calibrationSamples": 38,
+          "lastTrainingTargetBlock": 105251,
+          "trainingSamples": 678
+        },
+        {
+          "YR": 2024,
+          "WN": 8,
+          "meanCases": 59.85836441748281,
+          "lowerCases": 3.5513169117387164,
+          "upperCases": 116.16541192322691,
+          "measurementKind": "forecast",
+          "observedCases": 68.0,
+          "observedMeasurementKind": "observed",
+          "intervalKind": "empirical_pre_origin_absolute_residual_80",
+          "calibrationSamples": 38,
+          "lastTrainingTargetBlock": 105251,
+          "trainingSamples": 677
+        }
+      ],
+      "calibrationResidualPaths": [
+        {
+          "originBlock": 105096,
+          "lastTargetBlock": 105100,
+          "residuals": [
+            -11.843296339159743,
+            -16.998326644396585,
+            10.104649352564234,
+            -6.459214395418492
+          ]
+        },
+        {
+          "originBlock": 105100,
+          "lastTargetBlock": 105104,
+          "residuals": [
+            -8.10331288227987,
+            -17.67617288359358,
+            -14.087261682599898,
+            -14.865716502691896
+          ]
+        },
+        {
+          "originBlock": 105104,
+          "lastTargetBlock": 105108,
+          "residuals": [
+            -6.189914906682322,
+            -8.192972649635715,
+            -3.062179590266524,
+            -1.2063509016129998
+          ]
+        },
+        {
+          "originBlock": 105108,
+          "lastTargetBlock": 105112,
+          "residuals": [
+            -6.230828063072387,
+            -3.864969915995058,
+            1.914635706957469,
+            -7.453452807574413
+          ]
+        },
+        {
+          "originBlock": 105112,
+          "lastTargetBlock": 105116,
+          "residuals": [
+            4.220770477110886,
+            -9.218824376106907,
+            -2.6194115378391007,
+            -2.773969376232909
+          ]
+        },
+        {
+          "originBlock": 105116,
+          "lastTargetBlock": 105120,
+          "residuals": [
+            -1.9188312572435215,
+            -4.663506542960773,
+            5.2287856701581426,
+            4.497240712936286
+          ]
+        },
+        {
+          "originBlock": 105120,
+          "lastTargetBlock": 105124,
+          "residuals": [
+            3.683730115910862,
+            4.728776221548426,
+            19.11806113960823,
+            -2.330988336818649
+          ]
+        },
+        {
+          "originBlock": 105124,
+          "lastTargetBlock": 105128,
+          "residuals": [
+            -11.856682912147036,
+            -22.408244423545966,
+            -3.6677402481904764,
+            0.581029412063053
+          ]
+        },
+        {
+          "originBlock": 105128,
+          "lastTargetBlock": 105132,
+          "residuals": [
+            -3.7800356260570425,
+            14.0974164630933,
+            3.536907216446764,
+            3.7208599240638662
+          ]
+        },
+        {
+          "originBlock": 105132,
+          "lastTargetBlock": 105136,
+          "residuals": [
+            5.882162932163574,
+            -20.818121113415714,
+            1.903880176085508,
+            -5.544053513376902
+          ]
+        },
+        {
+          "originBlock": 105136,
+          "lastTargetBlock": 105140,
+          "residuals": [
+            -3.8070264997136576,
+            -14.656728368718404,
+            -7.373663217535146,
+            -11.982888398163645
+          ]
+        },
+        {
+          "originBlock": 105140,
+          "lastTargetBlock": 105144,
+          "residuals": [
+            -10.117879948816757,
+            -14.855309044870651,
+            -20.444261943234984,
+            -23.990162010043612
+          ]
+        },
+        {
+          "originBlock": 105144,
+          "lastTargetBlock": 105148,
+          "residuals": [
+            -11.405196190392026,
+            0.49667581621403656,
+            -5.852111210839407,
+            -6.815002313114757
+          ]
+        },
+        {
+          "originBlock": 105148,
+          "lastTargetBlock": 105152,
+          "residuals": [
+            4.155565505751543,
+            -7.381182543176319,
+            -1.2759160269555458,
+            1.2863445427770728
+          ]
+        },
+        {
+          "originBlock": 105152,
+          "lastTargetBlock": 105156,
+          "residuals": [
+            -4.53229519128897,
+            -4.550798543818022,
+            -2.2861492949463376,
+            1.3704102536247902
+          ]
+        },
+        {
+          "originBlock": 105156,
+          "lastTargetBlock": 105160,
+          "residuals": [
+            3.0673247744974326,
+            0.8018186198431145,
+            2.919467873303663,
+            7.375323680978738
+          ]
+        },
+        {
+          "originBlock": 105160,
+          "lastTargetBlock": 105164,
+          "residuals": [
+            1.2028785658012495,
+            7.162787670354472,
+            14.372015839129908,
+            24.25966145764814
+          ]
+        },
+        {
+          "originBlock": 105164,
+          "lastTargetBlock": 105168,
+          "residuals": [
+            -14.49986878099125,
+            7.016163143949896,
+            30.13183835652952,
+            72.16287279266663
+          ]
+        },
+        {
+          "originBlock": 105168,
+          "lastTargetBlock": 105172,
+          "residuals": [
+            3.8655280363023934,
+            -37.86507929706903,
+            -50.431070380537335,
+            -137.82226538172324
+          ]
+        },
+        {
+          "originBlock": 105172,
+          "lastTargetBlock": 105176,
+          "residuals": [
+            -22.980666678972028,
+            -134.2418681849805,
+            -129.7987971414588,
+            -165.11852523947567
+          ]
+        },
+        {
+          "originBlock": 105176,
+          "lastTargetBlock": 105180,
+          "residuals": [
+            -0.5021246752733362,
+            -63.2176052900229,
+            -65.42909826916616,
+            -87.99265045284864
+          ]
+        },
+        {
+          "originBlock": 105180,
+          "lastTargetBlock": 105184,
+          "residuals": [
+            -12.90779151955411,
+            -42.561090807502325,
+            -41.544062697569444,
+            -53.980994121643135
+          ]
+        },
+        {
+          "originBlock": 105184,
+          "lastTargetBlock": 105188,
+          "residuals": [
+            -27.722189013984632,
+            -22.070765669435502,
+            -21.98564056363817,
+            -7.712701993823913
+          ]
+        },
+        {
+          "originBlock": 105188,
+          "lastTargetBlock": 105192,
+          "residuals": [
+            -9.467324356772934,
+            -21.482671563795847,
+            15.643914366572048,
+            5.001012084825078
+          ]
+        },
+        {
+          "originBlock": 105192,
+          "lastTargetBlock": 105196,
+          "residuals": [
+            -11.85595097431515,
+            -16.873894843613897,
+            -5.265258534262728,
+            -20.71273264008333
+          ]
+        },
+        {
+          "originBlock": 105196,
+          "lastTargetBlock": 105200,
+          "residuals": [
+            5.594151852270073,
+            1.5321820521639609,
+            0.3529850816654516,
+            3.8319770355353597
+          ]
+        },
+        {
+          "originBlock": 105200,
+          "lastTargetBlock": 105204,
+          "residuals": [
+            -5.822694532793527,
+            11.749713852705199,
+            -9.09303353512292,
+            -21.32927150737379
+          ]
+        },
+        {
+          "originBlock": 105204,
+          "lastTargetBlock": 105208,
+          "residuals": [
+            0.16585355913928623,
+            -7.924080142881309,
+            -5.193039366509993,
+            4.170464093046846
+          ]
+        },
+        {
+          "originBlock": 105208,
+          "lastTargetBlock": 105212,
+          "residuals": [
+            -22.6852038754294,
+            -1.2548264231077937,
+            3.765384594848733,
+            7.235531741802216
+          ]
+        },
+        {
+          "originBlock": 105212,
+          "lastTargetBlock": 105216,
+          "residuals": [
+            -17.36572875542295,
+            -7.209326914365882,
+            -0.17241152943378069,
+            -8.579402559409552
+          ]
+        },
+        {
+          "originBlock": 105216,
+          "lastTargetBlock": 105220,
+          "residuals": [
+            8.264089109789282,
+            21.656888128585308,
+            36.60928057899934,
+            39.84598502038803
+          ]
+        },
+        {
+          "originBlock": 105220,
+          "lastTargetBlock": 105224,
+          "residuals": [
+            -3.233775942393663,
+            -16.718865787006365,
+            -103.25963473003839,
+            -94.29464643575875
+          ]
+        },
+        {
+          "originBlock": 105224,
+          "lastTargetBlock": 105228,
+          "residuals": [
+            -14.557745142480272,
+            -24.11448083258179,
+            -12.776960364924179,
+            5.466770663033074
+          ]
+        },
+        {
+          "originBlock": 105228,
+          "lastTargetBlock": 105232,
+          "residuals": [
+            -35.00024184034973,
+            -29.159270870971,
+            -52.13276568489522,
+            -77.56141864288259
+          ]
+        },
+        {
+          "originBlock": 105232,
+          "lastTargetBlock": 105236,
+          "residuals": [
+            -1.9318350509400801,
+            4.988732273599894,
+            41.93243785585115,
+            56.307047505744094
+          ]
+        },
+        {
+          "originBlock": 105236,
+          "lastTargetBlock": 105240,
+          "residuals": [
+            -37.636003256604226,
+            -37.10787462941363,
+            -20.740270454519248,
+            16.968249297025935
+          ]
+        },
+        {
+          "originBlock": 105240,
+          "lastTargetBlock": 105244,
+          "residuals": [
+            -4.787890528945553,
+            24.86415529577394,
+            6.101916646436877,
+            -25.92782922677631
+          ]
+        },
+        {
+          "originBlock": 105244,
+          "lastTargetBlock": 105248,
+          "residuals": [
+            9.147357099529486,
+            0.3841503015559624,
+            4.74970470416423,
+            47.62995051618189
+          ]
+        }
+      ],
+      "intervalCoverageTarget": 0.8,
+      "intervalCaveat": "Pre-origin empirical residual range; time-series exchangeability is not guaranteed. Barangay allocation uncertainty is not measured.",
+      "environmentalInputs": [
+        {
+          "sourceColumn": "RF_NASA",
+          "valueAtOrigin": 14.17571,
+          "unit": "mm/source block",
+          "measurementKind": "observed",
+          "geography": "QUEZON_CITY",
+          "lagsSourceBlocks": [
+            1,
+            2,
+            4
+          ]
+        },
+        {
+          "sourceColumn": "Temp_ERA5-Land",
+          "valueAtOrigin": 25.514286,
+          "unit": "degrees Celsius",
+          "measurementKind": "observed",
+          "geography": "QUEZON_CITY",
+          "lagsSourceBlocks": [
+            1,
+            2,
+            4
+          ]
+        },
+        {
+          "sourceColumn": "RH_ERA5-Land",
+          "valueAtOrigin": 66.857143,
+          "unit": "%",
+          "measurementKind": "observed",
+          "geography": "QUEZON_CITY",
+          "lagsSourceBlocks": [
+            1,
+            2,
+            4
+          ]
+        }
+      ],
+      "observedCasesAtOrigin": 87.0,
+      "observedSourceYearToDateCases": 396.0,
+      "availabilityAssumption": "Case/weather history through origin is assumed available; original publication delays and revision vintages unknown.",
+      "spatialCaveat": "Environmental inputs are citywide; annual barangay weights provide within-QC spatial shares, not measured barangay microclimate.",
+      "software": {
+        "sklearn": "1.8.0",
+        "numpy": "2.2.6"
+      }
+    },
+    {
+      "schemaVersion": "1.1",
+      "id": "qc-weather-residual-v2-QUEZON_CITY-2024-17",
+      "area": "QUEZON_CITY",
+      "mode": "historical_replay",
+      "issueBlock": {
+        "YR": 2024,
+        "WN": 17
+      },
+      "issueDate": null,
+      "trainingCutoffBlock": {
+        "YR": 2024,
+        "WN": 17
+      },
+      "sourceSha256": "94c65ce24e13c132007f67da9b4d10f7023e9429fff79c358b1de938f982dd78",
+      "calendarStatus": "UNRESOLVED_SOURCE_WEEK_DEFINITION",
+      "model": "cases_weather",
+      "methodVersion": "qc-weather-residual-v2",
+      "seed": 42,
+      "weeklyPredictions": [
+        {
+          "YR": 2024,
+          "WN": 18,
+          "meanCases": 40.735542099976385,
+          "lowerCases": 26.235673318985135,
+          "upperCases": 55.235410880967635,
+          "measurementKind": "forecast",
+          "observedCases": 37.0,
+          "observedMeasurementKind": "observed",
+          "intervalKind": "empirical_pre_origin_absolute_residual_80",
+          "calibrationSamples": 39,
+          "lastTrainingTargetBlock": 105264,
+          "trainingSamples": 693
+        },
+        {
+          "YR": 2024,
+          "WN": 19,
+          "meanCases": 38.212606719776055,
+          "lowerCases": 14.098125887194264,
+          "upperCases": 62.327087552357845,
+          "measurementKind": "forecast",
+          "observedCases": 25.0,
+          "observedMeasurementKind": "observed",
+          "intervalKind": "empirical_pre_origin_absolute_residual_80",
+          "calibrationSamples": 39,
+          "lastTrainingTargetBlock": 105264,
+          "trainingSamples": 692
+        },
+        {
+          "YR": 2024,
+          "WN": 20,
+          "meanCases": 45.06107299735983,
+          "lowerCases": 8.45179241836049,
+          "upperCases": 81.67035357635916,
+          "measurementKind": "forecast",
+          "observedCases": 24.0,
+          "observedMeasurementKind": "observed",
+          "intervalKind": "empirical_pre_origin_absolute_residual_80",
+          "calibrationSamples": 39,
+          "lastTrainingTargetBlock": 105264,
+          "trainingSamples": 691
+        },
+        {
+          "YR": 2024,
+          "WN": 21,
+          "meanCases": 53.112110682483824,
+          "lowerCases": 0,
+          "upperCases": 107.09310480412697,
+          "measurementKind": "forecast",
+          "observedCases": 31.0,
+          "observedMeasurementKind": "observed",
+          "intervalKind": "empirical_pre_origin_absolute_residual_80",
+          "calibrationSamples": 39,
+          "lastTrainingTargetBlock": 105264,
+          "trainingSamples": 690
+        }
+      ],
+      "calibrationResidualPaths": [
+        {
+          "originBlock": 105108,
+          "lastTargetBlock": 105112,
+          "residuals": [
+            -6.230828063072387,
+            -3.864969915995058,
+            1.914635706957469,
+            -7.453452807574413
+          ]
+        },
+        {
+          "originBlock": 105112,
+          "lastTargetBlock": 105116,
+          "residuals": [
+            4.220770477110886,
+            -9.218824376106907,
+            -2.6194115378391007,
+            -2.773969376232909
+          ]
+        },
+        {
+          "originBlock": 105116,
+          "lastTargetBlock": 105120,
+          "residuals": [
+            -1.9188312572435215,
+            -4.663506542960773,
+            5.2287856701581426,
+            4.497240712936286
+          ]
+        },
+        {
+          "originBlock": 105120,
+          "lastTargetBlock": 105124,
+          "residuals": [
+            3.683730115910862,
+            4.728776221548426,
+            19.11806113960823,
+            -2.330988336818649
+          ]
+        },
+        {
+          "originBlock": 105124,
+          "lastTargetBlock": 105128,
+          "residuals": [
+            -11.856682912147036,
+            -22.408244423545966,
+            -3.6677402481904764,
+            0.581029412063053
+          ]
+        },
+        {
+          "originBlock": 105128,
+          "lastTargetBlock": 105132,
+          "residuals": [
+            -3.7800356260570425,
+            14.0974164630933,
+            3.536907216446764,
+            3.7208599240638662
+          ]
+        },
+        {
+          "originBlock": 105132,
+          "lastTargetBlock": 105136,
+          "residuals": [
+            5.882162932163574,
+            -20.818121113415714,
+            1.903880176085508,
+            -5.544053513376902
+          ]
+        },
+        {
+          "originBlock": 105136,
+          "lastTargetBlock": 105140,
+          "residuals": [
+            -3.8070264997136576,
+            -14.656728368718404,
+            -7.373663217535146,
+            -11.982888398163645
+          ]
+        },
+        {
+          "originBlock": 105140,
+          "lastTargetBlock": 105144,
+          "residuals": [
+            -10.117879948816757,
+            -14.855309044870651,
+            -20.444261943234984,
+            -23.990162010043612
+          ]
+        },
+        {
+          "originBlock": 105144,
+          "lastTargetBlock": 105148,
+          "residuals": [
+            -11.405196190392026,
+            0.49667581621403656,
+            -5.852111210839407,
+            -6.815002313114757
+          ]
+        },
+        {
+          "originBlock": 105148,
+          "lastTargetBlock": 105152,
+          "residuals": [
+            4.155565505751543,
+            -7.381182543176319,
+            -1.2759160269555458,
+            1.2863445427770728
+          ]
+        },
+        {
+          "originBlock": 105152,
+          "lastTargetBlock": 105156,
+          "residuals": [
+            -4.53229519128897,
+            -4.550798543818022,
+            -2.2861492949463376,
+            1.3704102536247902
+          ]
+        },
+        {
+          "originBlock": 105156,
+          "lastTargetBlock": 105160,
+          "residuals": [
+            3.0673247744974326,
+            0.8018186198431145,
+            2.919467873303663,
+            7.375323680978738
+          ]
+        },
+        {
+          "originBlock": 105160,
+          "lastTargetBlock": 105164,
+          "residuals": [
+            1.2028785658012495,
+            7.162787670354472,
+            14.372015839129908,
+            24.25966145764814
+          ]
+        },
+        {
+          "originBlock": 105164,
+          "lastTargetBlock": 105168,
+          "residuals": [
+            -14.49986878099125,
+            7.016163143949896,
+            30.13183835652952,
+            72.16287279266663
+          ]
+        },
+        {
+          "originBlock": 105168,
+          "lastTargetBlock": 105172,
+          "residuals": [
+            3.8655280363023934,
+            -37.86507929706903,
+            -50.431070380537335,
+            -137.82226538172324
+          ]
+        },
+        {
+          "originBlock": 105172,
+          "lastTargetBlock": 105176,
+          "residuals": [
+            -22.980666678972028,
+            -134.2418681849805,
+            -129.7987971414588,
+            -165.11852523947567
+          ]
+        },
+        {
+          "originBlock": 105176,
+          "lastTargetBlock": 105180,
+          "residuals": [
+            -0.5021246752733362,
+            -63.2176052900229,
+            -65.42909826916616,
+            -87.99265045284864
+          ]
+        },
+        {
+          "originBlock": 105180,
+          "lastTargetBlock": 105184,
+          "residuals": [
+            -12.90779151955411,
+            -42.561090807502325,
+            -41.544062697569444,
+            -53.980994121643135
+          ]
+        },
+        {
+          "originBlock": 105184,
+          "lastTargetBlock": 105188,
+          "residuals": [
+            -27.722189013984632,
+            -22.070765669435502,
+            -21.98564056363817,
+            -7.712701993823913
+          ]
+        },
+        {
+          "originBlock": 105188,
+          "lastTargetBlock": 105192,
+          "residuals": [
+            -9.467324356772934,
+            -21.482671563795847,
+            15.643914366572048,
+            5.001012084825078
+          ]
+        },
+        {
+          "originBlock": 105192,
+          "lastTargetBlock": 105196,
+          "residuals": [
+            -11.85595097431515,
+            -16.873894843613897,
+            -5.265258534262728,
+            -20.71273264008333
+          ]
+        },
+        {
+          "originBlock": 105196,
+          "lastTargetBlock": 105200,
+          "residuals": [
+            5.594151852270073,
+            1.5321820521639609,
+            0.3529850816654516,
+            3.8319770355353597
+          ]
+        },
+        {
+          "originBlock": 105200,
+          "lastTargetBlock": 105204,
+          "residuals": [
+            -5.822694532793527,
+            11.749713852705199,
+            -9.09303353512292,
+            -21.32927150737379
+          ]
+        },
+        {
+          "originBlock": 105204,
+          "lastTargetBlock": 105208,
+          "residuals": [
+            0.16585355913928623,
+            -7.924080142881309,
+            -5.193039366509993,
+            4.170464093046846
+          ]
+        },
+        {
+          "originBlock": 105208,
+          "lastTargetBlock": 105212,
+          "residuals": [
+            -22.6852038754294,
+            -1.2548264231077937,
+            3.765384594848733,
+            7.235531741802216
+          ]
+        },
+        {
+          "originBlock": 105212,
+          "lastTargetBlock": 105216,
+          "residuals": [
+            -17.36572875542295,
+            -7.209326914365882,
+            -0.17241152943378069,
+            -8.579402559409552
+          ]
+        },
+        {
+          "originBlock": 105216,
+          "lastTargetBlock": 105220,
+          "residuals": [
+            8.264089109789282,
+            21.656888128585308,
+            36.60928057899934,
+            39.84598502038803
+          ]
+        },
+        {
+          "originBlock": 105220,
+          "lastTargetBlock": 105224,
+          "residuals": [
+            -3.233775942393663,
+            -16.718865787006365,
+            -103.25963473003839,
+            -94.29464643575875
+          ]
+        },
+        {
+          "originBlock": 105224,
+          "lastTargetBlock": 105228,
+          "residuals": [
+            -14.557745142480272,
+            -24.11448083258179,
+            -12.776960364924179,
+            5.466770663033074
+          ]
+        },
+        {
+          "originBlock": 105228,
+          "lastTargetBlock": 105232,
+          "residuals": [
+            -35.00024184034973,
+            -29.159270870971,
+            -52.13276568489522,
+            -77.56141864288259
+          ]
+        },
+        {
+          "originBlock": 105232,
+          "lastTargetBlock": 105236,
+          "residuals": [
+            -1.9318350509400801,
+            4.988732273599894,
+            41.93243785585115,
+            56.307047505744094
+          ]
+        },
+        {
+          "originBlock": 105236,
+          "lastTargetBlock": 105240,
+          "residuals": [
+            -37.636003256604226,
+            -37.10787462941363,
+            -20.740270454519248,
+            16.968249297025935
+          ]
+        },
+        {
+          "originBlock": 105240,
+          "lastTargetBlock": 105244,
+          "residuals": [
+            -4.787890528945553,
+            24.86415529577394,
+            6.101916646436877,
+            -25.92782922677631
+          ]
+        },
+        {
+          "originBlock": 105244,
+          "lastTargetBlock": 105248,
+          "residuals": [
+            9.147357099529486,
+            0.3841503015559624,
+            4.74970470416423,
+            47.62995051618189
+          ]
+        },
+        {
+          "originBlock": 105248,
+          "lastTargetBlock": 105252,
+          "residuals": [
+            -10.266752027481502,
+            -10.411092552338687,
+            -3.738294264592824,
+            -8.327952752636762
+          ]
+        },
+        {
+          "originBlock": 105252,
+          "lastTargetBlock": 105256,
+          "residuals": [
+            1.2312428579153476,
+            2.669710861343731,
+            5.608598266055736,
+            15.557934936782367
+          ]
+        },
+        {
+          "originBlock": 105256,
+          "lastTargetBlock": 105260,
+          "residuals": [
+            -8.559714874602108,
+            -5.5105878941588315,
+            -0.37361514948305796,
+            -17.89267405200212
+          ]
+        },
+        {
+          "originBlock": 105260,
+          "lastTargetBlock": 105264,
+          "residuals": [
+            -3.1070853459225276,
+            2.5457623916592524,
+            0.8588082490071685,
+            -1.1956828483611872
+          ]
+        }
+      ],
+      "intervalCoverageTarget": 0.8,
+      "intervalCaveat": "Pre-origin empirical residual range; time-series exchangeability is not guaranteed. Barangay allocation uncertainty is not measured.",
+      "environmentalInputs": [
+        {
+          "sourceColumn": "RF_NASA",
+          "valueAtOrigin": 8.326701,
+          "unit": "mm/source block",
+          "measurementKind": "observed",
+          "geography": "QUEZON_CITY",
+          "lagsSourceBlocks": [
+            1,
+            2,
+            4
+          ]
+        },
+        {
+          "sourceColumn": "Temp_ERA5-Land",
+          "valueAtOrigin": 32.214286,
+          "unit": "degrees Celsius",
+          "measurementKind": "observed",
+          "geography": "QUEZON_CITY",
+          "lagsSourceBlocks": [
+            1,
+            2,
+            4
+          ]
+        },
+        {
+          "sourceColumn": "RH_ERA5-Land",
+          "valueAtOrigin": 57.0,
+          "unit": "%",
+          "measurementKind": "observed",
+          "geography": "QUEZON_CITY",
+          "lagsSourceBlocks": [
+            1,
+            2,
+            4
+          ]
+        }
+      ],
+      "observedCasesAtOrigin": 38.0,
+      "observedSourceYearToDateCases": 1155.0,
+      "availabilityAssumption": "Case/weather history through origin is assumed available; original publication delays and revision vintages unknown.",
+      "spatialCaveat": "Environmental inputs are citywide; annual barangay weights provide within-QC spatial shares, not measured barangay microclimate.",
+      "software": {
+        "sklearn": "1.8.0",
+        "numpy": "2.2.6"
+      }
+    },
+    {
+      "schemaVersion": "1.1",
+      "id": "qc-weather-residual-v2-QUEZON_CITY-2024-30",
+      "area": "QUEZON_CITY",
+      "mode": "historical_replay",
+      "issueBlock": {
+        "YR": 2024,
+        "WN": 30
+      },
+      "issueDate": null,
+      "trainingCutoffBlock": {
+        "YR": 2024,
+        "WN": 30
+      },
+      "sourceSha256": "94c65ce24e13c132007f67da9b4d10f7023e9429fff79c358b1de938f982dd78",
+      "calendarStatus": "UNRESOLVED_SOURCE_WEEK_DEFINITION",
+      "model": "cases_weather",
+      "methodVersion": "qc-weather-residual-v2",
+      "seed": 42,
+      "weeklyPredictions": [
+        {
+          "YR": 2024,
+          "WN": 31,
+          "meanCases": 148.6608162432901,
+          "lowerCases": 134.1030711008098,
+          "upperCases": 163.21856138577039,
+          "measurementKind": "forecast",
+          "observedCases": 195.0,
+          "observedMeasurementKind": "observed",
+          "intervalKind": "empirical_pre_origin_absolute_residual_80",
+          "calibrationSamples": 38,
+          "lastTrainingTargetBlock": 105277,
+          "trainingSamples": 706
+        },
+        {
+          "YR": 2024,
+          "WN": 32,
+          "meanCases": 180.96813572393776,
+          "lowerCases": 156.10398042816382,
+          "upperCases": 205.8322910197117,
+          "measurementKind": "forecast",
+          "observedCases": 229.0,
+          "observedMeasurementKind": "observed",
+          "intervalKind": "empirical_pre_origin_absolute_residual_80",
+          "calibrationSamples": 38,
+          "lastTrainingTargetBlock": 105277,
+          "trainingSamples": 705
+        },
+        {
+          "YR": 2024,
+          "WN": 33,
+          "meanCases": 205.50019791633585,
+          "lowerCases": 163.9561352187664,
+          "upperCases": 247.0442606139053,
+          "measurementKind": "forecast",
+          "observedCases": 222.0,
+          "observedMeasurementKind": "observed",
+          "intervalKind": "empirical_pre_origin_absolute_residual_80",
+          "calibrationSamples": 38,
+          "lastTrainingTargetBlock": 105277,
+          "trainingSamples": 704
+        },
+        {
+          "YR": 2024,
+          "WN": 34,
+          "meanCases": 177.27547815737574,
+          "lowerCases": 120.96843065163165,
+          "upperCases": 233.58252566311984,
+          "measurementKind": "forecast",
+          "observedCases": 232.0,
+          "observedMeasurementKind": "observed",
+          "intervalKind": "empirical_pre_origin_absolute_residual_80",
+          "calibrationSamples": 38,
+          "lastTrainingTargetBlock": 105277,
+          "trainingSamples": 703
+        }
+      ],
+      "calibrationResidualPaths": [
+        {
+          "originBlock": 105124,
+          "lastTargetBlock": 105128,
+          "residuals": [
+            -11.856682912147036,
+            -22.408244423545966,
+            -3.6677402481904764,
+            0.581029412063053
+          ]
+        },
+        {
+          "originBlock": 105128,
+          "lastTargetBlock": 105132,
+          "residuals": [
+            -3.7800356260570425,
+            14.0974164630933,
+            3.536907216446764,
+            3.7208599240638662
+          ]
+        },
+        {
+          "originBlock": 105132,
+          "lastTargetBlock": 105136,
+          "residuals": [
+            5.882162932163574,
+            -20.818121113415714,
+            1.903880176085508,
+            -5.544053513376902
+          ]
+        },
+        {
+          "originBlock": 105136,
+          "lastTargetBlock": 105140,
+          "residuals": [
+            -3.8070264997136576,
+            -14.656728368718404,
+            -7.373663217535146,
+            -11.982888398163645
+          ]
+        },
+        {
+          "originBlock": 105140,
+          "lastTargetBlock": 105144,
+          "residuals": [
+            -10.117879948816757,
+            -14.855309044870651,
+            -20.444261943234984,
+            -23.990162010043612
+          ]
+        },
+        {
+          "originBlock": 105144,
+          "lastTargetBlock": 105148,
+          "residuals": [
+            -11.405196190392026,
+            0.49667581621403656,
+            -5.852111210839407,
+            -6.815002313114757
+          ]
+        },
+        {
+          "originBlock": 105148,
+          "lastTargetBlock": 105152,
+          "residuals": [
+            4.155565505751543,
+            -7.381182543176319,
+            -1.2759160269555458,
+            1.2863445427770728
+          ]
+        },
+        {
+          "originBlock": 105152,
+          "lastTargetBlock": 105156,
+          "residuals": [
+            -4.53229519128897,
+            -4.550798543818022,
+            -2.2861492949463376,
+            1.3704102536247902
+          ]
+        },
+        {
+          "originBlock": 105156,
+          "lastTargetBlock": 105160,
+          "residuals": [
+            3.0673247744974326,
+            0.8018186198431145,
+            2.919467873303663,
+            7.375323680978738
+          ]
+        },
+        {
+          "originBlock": 105160,
+          "lastTargetBlock": 105164,
+          "residuals": [
+            1.2028785658012495,
+            7.162787670354472,
+            14.372015839129908,
+            24.25966145764814
+          ]
+        },
+        {
+          "originBlock": 105164,
+          "lastTargetBlock": 105168,
+          "residuals": [
+            -14.49986878099125,
+            7.016163143949896,
+            30.13183835652952,
+            72.16287279266663
+          ]
+        },
+        {
+          "originBlock": 105168,
+          "lastTargetBlock": 105172,
+          "residuals": [
+            3.8655280363023934,
+            -37.86507929706903,
+            -50.431070380537335,
+            -137.82226538172324
+          ]
+        },
+        {
+          "originBlock": 105172,
+          "lastTargetBlock": 105176,
+          "residuals": [
+            -22.980666678972028,
+            -134.2418681849805,
+            -129.7987971414588,
+            -165.11852523947567
+          ]
+        },
+        {
+          "originBlock": 105176,
+          "lastTargetBlock": 105180,
+          "residuals": [
+            -0.5021246752733362,
+            -63.2176052900229,
+            -65.42909826916616,
+            -87.99265045284864
+          ]
+        },
+        {
+          "originBlock": 105180,
+          "lastTargetBlock": 105184,
+          "residuals": [
+            -12.90779151955411,
+            -42.561090807502325,
+            -41.544062697569444,
+            -53.980994121643135
+          ]
+        },
+        {
+          "originBlock": 105184,
+          "lastTargetBlock": 105188,
+          "residuals": [
+            -27.722189013984632,
+            -22.070765669435502,
+            -21.98564056363817,
+            -7.712701993823913
+          ]
+        },
+        {
+          "originBlock": 105188,
+          "lastTargetBlock": 105192,
+          "residuals": [
+            -9.467324356772934,
+            -21.482671563795847,
+            15.643914366572048,
+            5.001012084825078
+          ]
+        },
+        {
+          "originBlock": 105192,
+          "lastTargetBlock": 105196,
+          "residuals": [
+            -11.85595097431515,
+            -16.873894843613897,
+            -5.265258534262728,
+            -20.71273264008333
+          ]
+        },
+        {
+          "originBlock": 105196,
+          "lastTargetBlock": 105200,
+          "residuals": [
+            5.594151852270073,
+            1.5321820521639609,
+            0.3529850816654516,
+            3.8319770355353597
+          ]
+        },
+        {
+          "originBlock": 105200,
+          "lastTargetBlock": 105204,
+          "residuals": [
+            -5.822694532793527,
+            11.749713852705199,
+            -9.09303353512292,
+            -21.32927150737379
+          ]
+        },
+        {
+          "originBlock": 105204,
+          "lastTargetBlock": 105208,
+          "residuals": [
+            0.16585355913928623,
+            -7.924080142881309,
+            -5.193039366509993,
+            4.170464093046846
+          ]
+        },
+        {
+          "originBlock": 105208,
+          "lastTargetBlock": 105212,
+          "residuals": [
+            -22.6852038754294,
+            -1.2548264231077937,
+            3.765384594848733,
+            7.235531741802216
+          ]
+        },
+        {
+          "originBlock": 105212,
+          "lastTargetBlock": 105216,
+          "residuals": [
+            -17.36572875542295,
+            -7.209326914365882,
+            -0.17241152943378069,
+            -8.579402559409552
+          ]
+        },
+        {
+          "originBlock": 105216,
+          "lastTargetBlock": 105220,
+          "residuals": [
+            8.264089109789282,
+            21.656888128585308,
+            36.60928057899934,
+            39.84598502038803
+          ]
+        },
+        {
+          "originBlock": 105220,
+          "lastTargetBlock": 105224,
+          "residuals": [
+            -3.233775942393663,
+            -16.718865787006365,
+            -103.25963473003839,
+            -94.29464643575875
+          ]
+        },
+        {
+          "originBlock": 105224,
+          "lastTargetBlock": 105228,
+          "residuals": [
+            -14.557745142480272,
+            -24.11448083258179,
+            -12.776960364924179,
+            5.466770663033074
+          ]
+        },
+        {
+          "originBlock": 105228,
+          "lastTargetBlock": 105232,
+          "residuals": [
+            -35.00024184034973,
+            -29.159270870971,
+            -52.13276568489522,
+            -77.56141864288259
+          ]
+        },
+        {
+          "originBlock": 105232,
+          "lastTargetBlock": 105236,
+          "residuals": [
+            -1.9318350509400801,
+            4.988732273599894,
+            41.93243785585115,
+            56.307047505744094
+          ]
+        },
+        {
+          "originBlock": 105236,
+          "lastTargetBlock": 105240,
+          "residuals": [
+            -37.636003256604226,
+            -37.10787462941363,
+            -20.740270454519248,
+            16.968249297025935
+          ]
+        },
+        {
+          "originBlock": 105240,
+          "lastTargetBlock": 105244,
+          "residuals": [
+            -4.787890528945553,
+            24.86415529577394,
+            6.101916646436877,
+            -25.92782922677631
+          ]
+        },
+        {
+          "originBlock": 105244,
+          "lastTargetBlock": 105248,
+          "residuals": [
+            9.147357099529486,
+            0.3841503015559624,
+            4.74970470416423,
+            47.62995051618189
+          ]
+        },
+        {
+          "originBlock": 105248,
+          "lastTargetBlock": 105252,
+          "residuals": [
+            -10.266752027481502,
+            -10.411092552338687,
+            -3.738294264592824,
+            -8.327952752636762
+          ]
+        },
+        {
+          "originBlock": 105252,
+          "lastTargetBlock": 105256,
+          "residuals": [
+            1.2312428579153476,
+            2.669710861343731,
+            5.608598266055736,
+            15.557934936782367
+          ]
+        },
+        {
+          "originBlock": 105256,
+          "lastTargetBlock": 105260,
+          "residuals": [
+            -8.559714874602108,
+            -5.5105878941588315,
+            -0.37361514948305796,
+            -17.89267405200212
+          ]
+        },
+        {
+          "originBlock": 105260,
+          "lastTargetBlock": 105264,
+          "residuals": [
+            -3.1070853459225276,
+            2.5457623916592524,
+            0.8588082490071685,
+            -1.1956828483611872
+          ]
+        },
+        {
+          "originBlock": 105264,
+          "lastTargetBlock": 105268,
+          "residuals": [
+            -3.735542099976385,
+            -13.212606719776055,
+            -21.06107299735983,
+            -22.112110682483824
+          ]
+        },
+        {
+          "originBlock": 105268,
+          "lastTargetBlock": 105272,
+          "residuals": [
+            10.210342198280273,
+            5.621852744393948,
+            -5.280068882901823,
+            20.768233355393036
+          ]
+        },
+        {
+          "originBlock": 105272,
+          "lastTargetBlock": 105276,
+          "residuals": [
+            -13.790878511152187,
+            -22.264921626531446,
+            -26.613777111938703,
+            3.2401997151700357
+          ]
+        }
+      ],
+      "intervalCoverageTarget": 0.8,
+      "intervalCaveat": "Pre-origin empirical residual range; time-series exchangeability is not guaranteed. Barangay allocation uncertainty is not measured.",
+      "environmentalInputs": [
+        {
+          "sourceColumn": "RF_NASA",
+          "valueAtOrigin": 220.292721,
+          "unit": "mm/source block",
+          "measurementKind": "observed",
+          "geography": "QUEZON_CITY",
+          "lagsSourceBlocks": [
+            1,
+            2,
+            4
+          ]
+        },
+        {
+          "sourceColumn": "Temp_ERA5-Land",
+          "valueAtOrigin": 27.257143,
+          "unit": "degrees Celsius",
+          "measurementKind": "observed",
+          "geography": "QUEZON_CITY",
+          "lagsSourceBlocks": [
+            1,
+            2,
+            4
+          ]
+        },
+        {
+          "sourceColumn": "RH_ERA5-Land",
+          "valueAtOrigin": 85.857143,
+          "unit": "%",
+          "measurementKind": "observed",
+          "geography": "QUEZON_CITY",
+          "lagsSourceBlocks": [
+            1,
+            2,
+            4
+          ]
+        }
+      ],
+      "observedCasesAtOrigin": 133.0,
+      "observedSourceYearToDateCases": 2008.0,
+      "availabilityAssumption": "Case/weather history through origin is assumed available; original publication delays and revision vintages unknown.",
+      "spatialCaveat": "Environmental inputs are citywide; annual barangay weights provide within-QC spatial shares, not measured barangay microclimate.",
+      "software": {
+        "sklearn": "1.8.0",
+        "numpy": "2.2.6"
+      }
+    },
+    {
+      "schemaVersion": "1.1",
+      "id": "qc-weather-residual-v2-QUEZON_CITY-2024-43",
+      "area": "QUEZON_CITY",
+      "mode": "historical_replay",
+      "issueBlock": {
+        "YR": 2024,
+        "WN": 43
+      },
+      "issueDate": null,
+      "trainingCutoffBlock": {
+        "YR": 2024,
+        "WN": 43
+      },
+      "sourceSha256": "94c65ce24e13c132007f67da9b4d10f7023e9429fff79c358b1de938f982dd78",
+      "calendarStatus": "UNRESOLVED_SOURCE_WEEK_DEFINITION",
+      "model": "cases_weather",
+      "methodVersion": "qc-weather-residual-v2",
+      "seed": 42,
+      "weeklyPredictions": [
+        {
+          "YR": 2024,
+          "WN": 44,
+          "meanCases": 228.9475103263377,
+          "lowerCases": 206.26230645090828,
+          "upperCases": 251.6327142017671,
+          "measurementKind": "forecast",
+          "observedCases": 351.0,
+          "observedMeasurementKind": "observed",
+          "intervalKind": "empirical_pre_origin_absolute_residual_80",
+          "calibrationSamples": 38,
+          "lastTrainingTargetBlock": 105290,
+          "trainingSamples": 719
+        },
+        {
+          "YR": 2024,
+          "WN": 45,
+          "meanCases": 238.04537775657738,
+          "lowerCases": 200.93750312716375,
+          "upperCases": 275.153252385991,
+          "measurementKind": "forecast",
+          "observedCases": 384.0,
+          "observedMeasurementKind": "observed",
+          "intervalKind": "empirical_pre_origin_absolute_residual_80",
+          "calibrationSamples": 38,
+          "lastTrainingTargetBlock": 105290,
+          "trainingSamples": 718
+        },
+        {
+          "YR": 2024,
+          "WN": 46,
+          "meanCases": 206.30517817418254,
+          "lowerCases": 162.5154948955315,
+          "upperCases": 250.09486145283358,
+          "measurementKind": "forecast",
+          "observedCases": 424.0,
+          "observedMeasurementKind": "observed",
+          "intervalKind": "empirical_pre_origin_absolute_residual_80",
+          "calibrationSamples": 38,
+          "lastTrainingTargetBlock": 105290,
+          "trainingSamples": 717
+        },
+        {
+          "YR": 2024,
+          "WN": 47,
+          "meanCases": 179.2687347709058,
+          "lowerCases": 101.70731612802322,
+          "upperCases": 256.83015341378837,
+          "measurementKind": "forecast",
+          "observedCases": 454.0,
+          "observedMeasurementKind": "observed",
+          "intervalKind": "empirical_pre_origin_absolute_residual_80",
+          "calibrationSamples": 38,
+          "lastTrainingTargetBlock": 105290,
+          "trainingSamples": 716
+        }
+      ],
+      "calibrationResidualPaths": [
+        {
+          "originBlock": 105136,
+          "lastTargetBlock": 105140,
+          "residuals": [
+            -3.8070264997136576,
+            -14.656728368718404,
+            -7.373663217535146,
+            -11.982888398163645
+          ]
+        },
+        {
+          "originBlock": 105140,
+          "lastTargetBlock": 105144,
+          "residuals": [
+            -10.117879948816757,
+            -14.855309044870651,
+            -20.444261943234984,
+            -23.990162010043612
+          ]
+        },
+        {
+          "originBlock": 105144,
+          "lastTargetBlock": 105148,
+          "residuals": [
+            -11.405196190392026,
+            0.49667581621403656,
+            -5.852111210839407,
+            -6.815002313114757
+          ]
+        },
+        {
+          "originBlock": 105148,
+          "lastTargetBlock": 105152,
+          "residuals": [
+            4.155565505751543,
+            -7.381182543176319,
+            -1.2759160269555458,
+            1.2863445427770728
+          ]
+        },
+        {
+          "originBlock": 105152,
+          "lastTargetBlock": 105156,
+          "residuals": [
+            -4.53229519128897,
+            -4.550798543818022,
+            -2.2861492949463376,
+            1.3704102536247902
+          ]
+        },
+        {
+          "originBlock": 105156,
+          "lastTargetBlock": 105160,
+          "residuals": [
+            3.0673247744974326,
+            0.8018186198431145,
+            2.919467873303663,
+            7.375323680978738
+          ]
+        },
+        {
+          "originBlock": 105160,
+          "lastTargetBlock": 105164,
+          "residuals": [
+            1.2028785658012495,
+            7.162787670354472,
+            14.372015839129908,
+            24.25966145764814
+          ]
+        },
+        {
+          "originBlock": 105164,
+          "lastTargetBlock": 105168,
+          "residuals": [
+            -14.49986878099125,
+            7.016163143949896,
+            30.13183835652952,
+            72.16287279266663
+          ]
+        },
+        {
+          "originBlock": 105168,
+          "lastTargetBlock": 105172,
+          "residuals": [
+            3.8655280363023934,
+            -37.86507929706903,
+            -50.431070380537335,
+            -137.82226538172324
+          ]
+        },
+        {
+          "originBlock": 105172,
+          "lastTargetBlock": 105176,
+          "residuals": [
+            -22.980666678972028,
+            -134.2418681849805,
+            -129.7987971414588,
+            -165.11852523947567
+          ]
+        },
+        {
+          "originBlock": 105176,
+          "lastTargetBlock": 105180,
+          "residuals": [
+            -0.5021246752733362,
+            -63.2176052900229,
+            -65.42909826916616,
+            -87.99265045284864
+          ]
+        },
+        {
+          "originBlock": 105180,
+          "lastTargetBlock": 105184,
+          "residuals": [
+            -12.90779151955411,
+            -42.561090807502325,
+            -41.544062697569444,
+            -53.980994121643135
+          ]
+        },
+        {
+          "originBlock": 105184,
+          "lastTargetBlock": 105188,
+          "residuals": [
+            -27.722189013984632,
+            -22.070765669435502,
+            -21.98564056363817,
+            -7.712701993823913
+          ]
+        },
+        {
+          "originBlock": 105188,
+          "lastTargetBlock": 105192,
+          "residuals": [
+            -9.467324356772934,
+            -21.482671563795847,
+            15.643914366572048,
+            5.001012084825078
+          ]
+        },
+        {
+          "originBlock": 105192,
+          "lastTargetBlock": 105196,
+          "residuals": [
+            -11.85595097431515,
+            -16.873894843613897,
+            -5.265258534262728,
+            -20.71273264008333
+          ]
+        },
+        {
+          "originBlock": 105196,
+          "lastTargetBlock": 105200,
+          "residuals": [
+            5.594151852270073,
+            1.5321820521639609,
+            0.3529850816654516,
+            3.8319770355353597
+          ]
+        },
+        {
+          "originBlock": 105200,
+          "lastTargetBlock": 105204,
+          "residuals": [
+            -5.822694532793527,
+            11.749713852705199,
+            -9.09303353512292,
+            -21.32927150737379
+          ]
+        },
+        {
+          "originBlock": 105204,
+          "lastTargetBlock": 105208,
+          "residuals": [
+            0.16585355913928623,
+            -7.924080142881309,
+            -5.193039366509993,
+            4.170464093046846
+          ]
+        },
+        {
+          "originBlock": 105208,
+          "lastTargetBlock": 105212,
+          "residuals": [
+            -22.6852038754294,
+            -1.2548264231077937,
+            3.765384594848733,
+            7.235531741802216
+          ]
+        },
+        {
+          "originBlock": 105212,
+          "lastTargetBlock": 105216,
+          "residuals": [
+            -17.36572875542295,
+            -7.209326914365882,
+            -0.17241152943378069,
+            -8.579402559409552
+          ]
+        },
+        {
+          "originBlock": 105216,
+          "lastTargetBlock": 105220,
+          "residuals": [
+            8.264089109789282,
+            21.656888128585308,
+            36.60928057899934,
+            39.84598502038803
+          ]
+        },
+        {
+          "originBlock": 105220,
+          "lastTargetBlock": 105224,
+          "residuals": [
+            -3.233775942393663,
+            -16.718865787006365,
+            -103.25963473003839,
+            -94.29464643575875
+          ]
+        },
+        {
+          "originBlock": 105224,
+          "lastTargetBlock": 105228,
+          "residuals": [
+            -14.557745142480272,
+            -24.11448083258179,
+            -12.776960364924179,
+            5.466770663033074
+          ]
+        },
+        {
+          "originBlock": 105228,
+          "lastTargetBlock": 105232,
+          "residuals": [
+            -35.00024184034973,
+            -29.159270870971,
+            -52.13276568489522,
+            -77.56141864288259
+          ]
+        },
+        {
+          "originBlock": 105232,
+          "lastTargetBlock": 105236,
+          "residuals": [
+            -1.9318350509400801,
+            4.988732273599894,
+            41.93243785585115,
+            56.307047505744094
+          ]
+        },
+        {
+          "originBlock": 105236,
+          "lastTargetBlock": 105240,
+          "residuals": [
+            -37.636003256604226,
+            -37.10787462941363,
+            -20.740270454519248,
+            16.968249297025935
+          ]
+        },
+        {
+          "originBlock": 105240,
+          "lastTargetBlock": 105244,
+          "residuals": [
+            -4.787890528945553,
+            24.86415529577394,
+            6.101916646436877,
+            -25.92782922677631
+          ]
+        },
+        {
+          "originBlock": 105244,
+          "lastTargetBlock": 105248,
+          "residuals": [
+            9.147357099529486,
+            0.3841503015559624,
+            4.74970470416423,
+            47.62995051618189
+          ]
+        },
+        {
+          "originBlock": 105248,
+          "lastTargetBlock": 105252,
+          "residuals": [
+            -10.266752027481502,
+            -10.411092552338687,
+            -3.738294264592824,
+            -8.327952752636762
+          ]
+        },
+        {
+          "originBlock": 105252,
+          "lastTargetBlock": 105256,
+          "residuals": [
+            1.2312428579153476,
+            2.669710861343731,
+            5.608598266055736,
+            15.557934936782367
+          ]
+        },
+        {
+          "originBlock": 105256,
+          "lastTargetBlock": 105260,
+          "residuals": [
+            -8.559714874602108,
+            -5.5105878941588315,
+            -0.37361514948305796,
+            -17.89267405200212
+          ]
+        },
+        {
+          "originBlock": 105260,
+          "lastTargetBlock": 105264,
+          "residuals": [
+            -3.1070853459225276,
+            2.5457623916592524,
+            0.8588082490071685,
+            -1.1956828483611872
+          ]
+        },
+        {
+          "originBlock": 105264,
+          "lastTargetBlock": 105268,
+          "residuals": [
+            -3.735542099976385,
+            -13.212606719776055,
+            -21.06107299735983,
+            -22.112110682483824
+          ]
+        },
+        {
+          "originBlock": 105268,
+          "lastTargetBlock": 105272,
+          "residuals": [
+            10.210342198280273,
+            5.621852744393948,
+            -5.280068882901823,
+            20.768233355393036
+          ]
+        },
+        {
+          "originBlock": 105272,
+          "lastTargetBlock": 105276,
+          "residuals": [
+            -13.790878511152187,
+            -22.264921626531446,
+            -26.613777111938703,
+            3.2401997151700357
+          ]
+        },
+        {
+          "originBlock": 105276,
+          "lastTargetBlock": 105280,
+          "residuals": [
+            -18.334792451637185,
+            27.22680869432733,
+            43.78968327865104,
+            45.37980434224107
+          ]
+        },
+        {
+          "originBlock": 105280,
+          "lastTargetBlock": 105284,
+          "residuals": [
+            -56.64486233993324,
+            -112.99111803484664,
+            8.537983102932117,
+            139.65754764902442
+          ]
+        },
+        {
+          "originBlock": 105284,
+          "lastTargetBlock": 105288,
+          "residuals": [
+            43.59074431701873,
+            37.926812118743214,
+            107.89681360536864,
+            139.52747596667515
+          ]
+        }
+      ],
+      "intervalCoverageTarget": 0.8,
+      "intervalCaveat": "Pre-origin empirical residual range; time-series exchangeability is not guaranteed. Barangay allocation uncertainty is not measured.",
+      "environmentalInputs": [
+        {
+          "sourceColumn": "RF_NASA",
+          "valueAtOrigin": 200.994932,
+          "unit": "mm/source block",
+          "measurementKind": "observed",
+          "geography": "QUEZON_CITY",
+          "lagsSourceBlocks": [
+            1,
+            2,
+            4
+          ]
+        },
+        {
+          "sourceColumn": "Temp_ERA5-Land",
+          "valueAtOrigin": 26.957143,
+          "unit": "degrees Celsius",
+          "measurementKind": "observed",
+          "geography": "QUEZON_CITY",
+          "lagsSourceBlocks": [
+            1,
+            2,
+            4
+          ]
+        },
+        {
+          "sourceColumn": "RH_ERA5-Land",
+          "valueAtOrigin": 83.857143,
+          "unit": "%",
+          "measurementKind": "observed",
+          "geography": "QUEZON_CITY",
+          "lagsSourceBlocks": [
+            1,
+            2,
+            4
+          ]
+        }
+      ],
+      "observedCasesAtOrigin": 253.0,
+      "observedSourceYearToDateCases": 5376.0,
+      "availabilityAssumption": "Case/weather history through origin is assumed available; original publication delays and revision vintages unknown.",
+      "spatialCaveat": "Environmental inputs are citywide; annual barangay weights provide within-QC spatial shares, not measured barangay microclimate.",
+      "software": {
+        "sklearn": "1.8.0",
+        "numpy": "2.2.6"
+      }
+    },
+    {
+      "schemaVersion": "1.1",
+      "id": "qc-weather-residual-v2-QUEZON_CITY-2025-4",
+      "area": "QUEZON_CITY",
+      "mode": "historical_replay",
+      "issueBlock": {
+        "YR": 2025,
+        "WN": 4
+      },
+      "issueDate": null,
+      "trainingCutoffBlock": {
+        "YR": 2025,
+        "WN": 4
+      },
+      "sourceSha256": "94c65ce24e13c132007f67da9b4d10f7023e9429fff79c358b1de938f982dd78",
+      "calendarStatus": "UNRESOLVED_SOURCE_WEEK_DEFINITION",
+      "model": "cases_weather",
+      "methodVersion": "qc-weather-residual-v2",
+      "seed": 42,
+      "weeklyPredictions": [
+        {
+          "YR": 2025,
+          "WN": 5,
+          "meanCases": 253.6812948978096,
+          "lowerCases": 225.95910588382498,
+          "upperCases": 281.40348391179424,
+          "measurementKind": "forecast",
+          "observedCases": 335.0,
+          "observedMeasurementKind": "observed",
+          "intervalKind": "empirical_pre_origin_absolute_residual_80",
+          "calibrationSamples": 38,
+          "lastTrainingTargetBlock": 105303,
+          "trainingSamples": 732
+        },
+        {
+          "YR": 2025,
+          "WN": 6,
+          "meanCases": 253.6062281093709,
+          "lowerCases": 215.6794159906277,
+          "upperCases": 291.53304022811415,
+          "measurementKind": "forecast",
+          "observedCases": 291.0,
+          "observedMeasurementKind": "observed",
+          "intervalKind": "empirical_pre_origin_absolute_residual_80",
+          "calibrationSamples": 38,
+          "lastTrainingTargetBlock": 105303,
+          "trainingSamples": 731
+        },
+        {
+          "YR": 2025,
+          "WN": 7,
+          "meanCases": 208.4837321936539,
+          "lowerCases": 156.3509665087587,
+          "upperCases": 260.6164978785491,
+          "measurementKind": "forecast",
+          "observedCases": 437.0,
+          "observedMeasurementKind": "observed",
+          "intervalKind": "empirical_pre_origin_absolute_residual_80",
+          "calibrationSamples": 38,
+          "lastTrainingTargetBlock": 105303,
+          "trainingSamples": 730
+        },
+        {
+          "YR": 2025,
+          "WN": 8,
+          "meanCases": 186.90207139946293,
+          "lowerCases": 92.60742496370418,
+          "upperCases": 281.19671783522165,
+          "measurementKind": "forecast",
+          "observedCases": 622.0,
+          "observedMeasurementKind": "observed",
+          "intervalKind": "empirical_pre_origin_absolute_residual_80",
+          "calibrationSamples": 38,
+          "lastTrainingTargetBlock": 105303,
+          "trainingSamples": 729
+        }
+      ],
+      "calibrationResidualPaths": [
+        {
+          "originBlock": 105148,
+          "lastTargetBlock": 105152,
+          "residuals": [
+            4.155565505751543,
+            -7.381182543176319,
+            -1.2759160269555458,
+            1.2863445427770728
+          ]
+        },
+        {
+          "originBlock": 105152,
+          "lastTargetBlock": 105156,
+          "residuals": [
+            -4.53229519128897,
+            -4.550798543818022,
+            -2.2861492949463376,
+            1.3704102536247902
+          ]
+        },
+        {
+          "originBlock": 105156,
+          "lastTargetBlock": 105160,
+          "residuals": [
+            3.0673247744974326,
+            0.8018186198431145,
+            2.919467873303663,
+            7.375323680978738
+          ]
+        },
+        {
+          "originBlock": 105160,
+          "lastTargetBlock": 105164,
+          "residuals": [
+            1.2028785658012495,
+            7.162787670354472,
+            14.372015839129908,
+            24.25966145764814
+          ]
+        },
+        {
+          "originBlock": 105164,
+          "lastTargetBlock": 105168,
+          "residuals": [
+            -14.49986878099125,
+            7.016163143949896,
+            30.13183835652952,
+            72.16287279266663
+          ]
+        },
+        {
+          "originBlock": 105168,
+          "lastTargetBlock": 105172,
+          "residuals": [
+            3.8655280363023934,
+            -37.86507929706903,
+            -50.431070380537335,
+            -137.82226538172324
+          ]
+        },
+        {
+          "originBlock": 105172,
+          "lastTargetBlock": 105176,
+          "residuals": [
+            -22.980666678972028,
+            -134.2418681849805,
+            -129.7987971414588,
+            -165.11852523947567
+          ]
+        },
+        {
+          "originBlock": 105176,
+          "lastTargetBlock": 105180,
+          "residuals": [
+            -0.5021246752733362,
+            -63.2176052900229,
+            -65.42909826916616,
+            -87.99265045284864
+          ]
+        },
+        {
+          "originBlock": 105180,
+          "lastTargetBlock": 105184,
+          "residuals": [
+            -12.90779151955411,
+            -42.561090807502325,
+            -41.544062697569444,
+            -53.980994121643135
+          ]
+        },
+        {
+          "originBlock": 105184,
+          "lastTargetBlock": 105188,
+          "residuals": [
+            -27.722189013984632,
+            -22.070765669435502,
+            -21.98564056363817,
+            -7.712701993823913
+          ]
+        },
+        {
+          "originBlock": 105188,
+          "lastTargetBlock": 105192,
+          "residuals": [
+            -9.467324356772934,
+            -21.482671563795847,
+            15.643914366572048,
+            5.001012084825078
+          ]
+        },
+        {
+          "originBlock": 105192,
+          "lastTargetBlock": 105196,
+          "residuals": [
+            -11.85595097431515,
+            -16.873894843613897,
+            -5.265258534262728,
+            -20.71273264008333
+          ]
+        },
+        {
+          "originBlock": 105196,
+          "lastTargetBlock": 105200,
+          "residuals": [
+            5.594151852270073,
+            1.5321820521639609,
+            0.3529850816654516,
+            3.8319770355353597
+          ]
+        },
+        {
+          "originBlock": 105200,
+          "lastTargetBlock": 105204,
+          "residuals": [
+            -5.822694532793527,
+            11.749713852705199,
+            -9.09303353512292,
+            -21.32927150737379
+          ]
+        },
+        {
+          "originBlock": 105204,
+          "lastTargetBlock": 105208,
+          "residuals": [
+            0.16585355913928623,
+            -7.924080142881309,
+            -5.193039366509993,
+            4.170464093046846
+          ]
+        },
+        {
+          "originBlock": 105208,
+          "lastTargetBlock": 105212,
+          "residuals": [
+            -22.6852038754294,
+            -1.2548264231077937,
+            3.765384594848733,
+            7.235531741802216
+          ]
+        },
+        {
+          "originBlock": 105212,
+          "lastTargetBlock": 105216,
+          "residuals": [
+            -17.36572875542295,
+            -7.209326914365882,
+            -0.17241152943378069,
+            -8.579402559409552
+          ]
+        },
+        {
+          "originBlock": 105216,
+          "lastTargetBlock": 105220,
+          "residuals": [
+            8.264089109789282,
+            21.656888128585308,
+            36.60928057899934,
+            39.84598502038803
+          ]
+        },
+        {
+          "originBlock": 105220,
+          "lastTargetBlock": 105224,
+          "residuals": [
+            -3.233775942393663,
+            -16.718865787006365,
+            -103.25963473003839,
+            -94.29464643575875
+          ]
+        },
+        {
+          "originBlock": 105224,
+          "lastTargetBlock": 105228,
+          "residuals": [
+            -14.557745142480272,
+            -24.11448083258179,
+            -12.776960364924179,
+            5.466770663033074
+          ]
+        },
+        {
+          "originBlock": 105228,
+          "lastTargetBlock": 105232,
+          "residuals": [
+            -35.00024184034973,
+            -29.159270870971,
+            -52.13276568489522,
+            -77.56141864288259
+          ]
+        },
+        {
+          "originBlock": 105232,
+          "lastTargetBlock": 105236,
+          "residuals": [
+            -1.9318350509400801,
+            4.988732273599894,
+            41.93243785585115,
+            56.307047505744094
+          ]
+        },
+        {
+          "originBlock": 105236,
+          "lastTargetBlock": 105240,
+          "residuals": [
+            -37.636003256604226,
+            -37.10787462941363,
+            -20.740270454519248,
+            16.968249297025935
+          ]
+        },
+        {
+          "originBlock": 105240,
+          "lastTargetBlock": 105244,
+          "residuals": [
+            -4.787890528945553,
+            24.86415529577394,
+            6.101916646436877,
+            -25.92782922677631
+          ]
+        },
+        {
+          "originBlock": 105244,
+          "lastTargetBlock": 105248,
+          "residuals": [
+            9.147357099529486,
+            0.3841503015559624,
+            4.74970470416423,
+            47.62995051618189
+          ]
+        },
+        {
+          "originBlock": 105248,
+          "lastTargetBlock": 105252,
+          "residuals": [
+            -10.266752027481502,
+            -10.411092552338687,
+            -3.738294264592824,
+            -8.327952752636762
+          ]
+        },
+        {
+          "originBlock": 105252,
+          "lastTargetBlock": 105256,
+          "residuals": [
+            1.2312428579153476,
+            2.669710861343731,
+            5.608598266055736,
+            15.557934936782367
+          ]
+        },
+        {
+          "originBlock": 105256,
+          "lastTargetBlock": 105260,
+          "residuals": [
+            -8.559714874602108,
+            -5.5105878941588315,
+            -0.37361514948305796,
+            -17.89267405200212
+          ]
+        },
+        {
+          "originBlock": 105260,
+          "lastTargetBlock": 105264,
+          "residuals": [
+            -3.1070853459225276,
+            2.5457623916592524,
+            0.8588082490071685,
+            -1.1956828483611872
+          ]
+        },
+        {
+          "originBlock": 105264,
+          "lastTargetBlock": 105268,
+          "residuals": [
+            -3.735542099976385,
+            -13.212606719776055,
+            -21.06107299735983,
+            -22.112110682483824
+          ]
+        },
+        {
+          "originBlock": 105268,
+          "lastTargetBlock": 105272,
+          "residuals": [
+            10.210342198280273,
+            5.621852744393948,
+            -5.280068882901823,
+            20.768233355393036
+          ]
+        },
+        {
+          "originBlock": 105272,
+          "lastTargetBlock": 105276,
+          "residuals": [
+            -13.790878511152187,
+            -22.264921626531446,
+            -26.613777111938703,
+            3.2401997151700357
+          ]
+        },
+        {
+          "originBlock": 105276,
+          "lastTargetBlock": 105280,
+          "residuals": [
+            -18.334792451637185,
+            27.22680869432733,
+            43.78968327865104,
+            45.37980434224107
+          ]
+        },
+        {
+          "originBlock": 105280,
+          "lastTargetBlock": 105284,
+          "residuals": [
+            -56.64486233993324,
+            -112.99111803484664,
+            8.537983102932117,
+            139.65754764902442
+          ]
+        },
+        {
+          "originBlock": 105284,
+          "lastTargetBlock": 105288,
+          "residuals": [
+            43.59074431701873,
+            37.926812118743214,
+            107.89681360536864,
+            139.52747596667515
+          ]
+        },
+        {
+          "originBlock": 105288,
+          "lastTargetBlock": 105292,
+          "residuals": [
+            50.65391469882178,
+            7.820635175649272,
+            127.40190275321979,
+            203.31704129968313
+          ]
+        },
+        {
+          "originBlock": 105292,
+          "lastTargetBlock": 105296,
+          "residuals": [
+            59.8211526131293,
+            111.92838403581112,
+            154.19900126138248,
+            121.59734569783117
+          ]
+        },
+        {
+          "originBlock": 105296,
+          "lastTargetBlock": 105300,
+          "residuals": [
+            -7.35535001067467,
+            -99.64987504702322,
+            -45.59935652863612,
+            -62.211505333370326
+          ]
+        }
+      ],
+      "intervalCoverageTarget": 0.8,
+      "intervalCaveat": "Pre-origin empirical residual range; time-series exchangeability is not guaranteed. Barangay allocation uncertainty is not measured.",
+      "environmentalInputs": [
+        {
+          "sourceColumn": "RF_NASA",
+          "valueAtOrigin": 10.932064,
+          "unit": "mm/source block",
+          "measurementKind": "observed",
+          "geography": "QUEZON_CITY",
+          "lagsSourceBlocks": [
+            1,
+            2,
+            4
+          ]
+        },
+        {
+          "sourceColumn": "Temp_ERA5-Land",
+          "valueAtOrigin": 26.985714,
+          "unit": "degrees Celsius",
+          "measurementKind": "observed",
+          "geography": "QUEZON_CITY",
+          "lagsSourceBlocks": [
+            1,
+            2,
+            4
+          ]
+        },
+        {
+          "sourceColumn": "RH_ERA5-Land",
+          "valueAtOrigin": 66.857143,
+          "unit": "%",
+          "measurementKind": "observed",
+          "geography": "QUEZON_CITY",
+          "lagsSourceBlocks": [
+            1,
+            2,
+            4
+          ]
+        }
+      ],
+      "observedCasesAtOrigin": 304.0,
+      "observedSourceYearToDateCases": 1156.0,
+      "availabilityAssumption": "Case/weather history through origin is assumed available; original publication delays and revision vintages unknown.",
+      "spatialCaveat": "Environmental inputs are citywide; annual barangay weights provide within-QC spatial shares, not measured barangay microclimate.",
+      "software": {
+        "sklearn": "1.8.0",
+        "numpy": "2.2.6"
+      }
+    },
+    {
+      "schemaVersion": "1.1",
+      "id": "qc-weather-residual-v2-QUEZON_CITY-2025-17",
+      "area": "QUEZON_CITY",
+      "mode": "historical_replay",
+      "issueBlock": {
+        "YR": 2025,
+        "WN": 17
+      },
+      "issueDate": null,
+      "trainingCutoffBlock": {
+        "YR": 2025,
+        "WN": 17
+      },
+      "sourceSha256": "94c65ce24e13c132007f67da9b4d10f7023e9429fff79c358b1de938f982dd78",
+      "calendarStatus": "UNRESOLVED_SOURCE_WEEK_DEFINITION",
+      "model": "cases_weather",
+      "methodVersion": "qc-weather-residual-v2",
+      "seed": 42,
+      "weeklyPredictions": [
+        {
+          "YR": 2025,
+          "WN": 18,
+          "meanCases": 88.68439337187291,
+          "lowerCases": 53.684151531523185,
+          "upperCases": 123.68463521222264,
+          "measurementKind": "forecast",
+          "observedCases": 80.0,
+          "observedMeasurementKind": "observed",
+          "intervalKind": "empirical_pre_origin_absolute_residual_80",
+          "calibrationSamples": 39,
+          "lastTrainingTargetBlock": 105316,
+          "trainingSamples": 745
+        },
+        {
+          "YR": 2025,
+          "WN": 19,
+          "meanCases": 84.47583395081425,
+          "lowerCases": 41.914743143311924,
+          "upperCases": 127.03692475831657,
+          "measurementKind": "forecast",
+          "observedCases": 77.0,
+          "observedMeasurementKind": "observed",
+          "intervalKind": "empirical_pre_origin_absolute_residual_80",
+          "calibrationSamples": 39,
+          "lastTrainingTargetBlock": 105316,
+          "trainingSamples": 744
+        },
+        {
+          "YR": 2025,
+          "WN": 20,
+          "meanCases": 80.74757632350082,
+          "lowerCases": 15.318478054334662,
+          "upperCases": 146.17667459266698,
+          "measurementKind": "forecast",
+          "observedCases": 59.0,
+          "observedMeasurementKind": "observed",
+          "intervalKind": "empirical_pre_origin_absolute_residual_80",
+          "calibrationSamples": 39,
+          "lastTrainingTargetBlock": 105316,
+          "trainingSamples": 743
+        },
+        {
+          "YR": 2025,
+          "WN": 21,
+          "meanCases": 86.71612895811911,
+          "lowerCases": 0,
+          "upperCases": 209.74602185656028,
+          "measurementKind": "forecast",
+          "observedCases": 76.0,
+          "observedMeasurementKind": "observed",
+          "intervalKind": "empirical_pre_origin_absolute_residual_80",
+          "calibrationSamples": 39,
+          "lastTrainingTargetBlock": 105316,
+          "trainingSamples": 742
+        }
+      ],
+      "calibrationResidualPaths": [
+        {
+          "originBlock": 105160,
+          "lastTargetBlock": 105164,
+          "residuals": [
+            1.2028785658012495,
+            7.162787670354472,
+            14.372015839129908,
+            24.25966145764814
+          ]
+        },
+        {
+          "originBlock": 105164,
+          "lastTargetBlock": 105168,
+          "residuals": [
+            -14.49986878099125,
+            7.016163143949896,
+            30.13183835652952,
+            72.16287279266663
+          ]
+        },
+        {
+          "originBlock": 105168,
+          "lastTargetBlock": 105172,
+          "residuals": [
+            3.8655280363023934,
+            -37.86507929706903,
+            -50.431070380537335,
+            -137.82226538172324
+          ]
+        },
+        {
+          "originBlock": 105172,
+          "lastTargetBlock": 105176,
+          "residuals": [
+            -22.980666678972028,
+            -134.2418681849805,
+            -129.7987971414588,
+            -165.11852523947567
+          ]
+        },
+        {
+          "originBlock": 105176,
+          "lastTargetBlock": 105180,
+          "residuals": [
+            -0.5021246752733362,
+            -63.2176052900229,
+            -65.42909826916616,
+            -87.99265045284864
+          ]
+        },
+        {
+          "originBlock": 105180,
+          "lastTargetBlock": 105184,
+          "residuals": [
+            -12.90779151955411,
+            -42.561090807502325,
+            -41.544062697569444,
+            -53.980994121643135
+          ]
+        },
+        {
+          "originBlock": 105184,
+          "lastTargetBlock": 105188,
+          "residuals": [
+            -27.722189013984632,
+            -22.070765669435502,
+            -21.98564056363817,
+            -7.712701993823913
+          ]
+        },
+        {
+          "originBlock": 105188,
+          "lastTargetBlock": 105192,
+          "residuals": [
+            -9.467324356772934,
+            -21.482671563795847,
+            15.643914366572048,
+            5.001012084825078
+          ]
+        },
+        {
+          "originBlock": 105192,
+          "lastTargetBlock": 105196,
+          "residuals": [
+            -11.85595097431515,
+            -16.873894843613897,
+            -5.265258534262728,
+            -20.71273264008333
+          ]
+        },
+        {
+          "originBlock": 105196,
+          "lastTargetBlock": 105200,
+          "residuals": [
+            5.594151852270073,
+            1.5321820521639609,
+            0.3529850816654516,
+            3.8319770355353597
+          ]
+        },
+        {
+          "originBlock": 105200,
+          "lastTargetBlock": 105204,
+          "residuals": [
+            -5.822694532793527,
+            11.749713852705199,
+            -9.09303353512292,
+            -21.32927150737379
+          ]
+        },
+        {
+          "originBlock": 105204,
+          "lastTargetBlock": 105208,
+          "residuals": [
+            0.16585355913928623,
+            -7.924080142881309,
+            -5.193039366509993,
+            4.170464093046846
+          ]
+        },
+        {
+          "originBlock": 105208,
+          "lastTargetBlock": 105212,
+          "residuals": [
+            -22.6852038754294,
+            -1.2548264231077937,
+            3.765384594848733,
+            7.235531741802216
+          ]
+        },
+        {
+          "originBlock": 105212,
+          "lastTargetBlock": 105216,
+          "residuals": [
+            -17.36572875542295,
+            -7.209326914365882,
+            -0.17241152943378069,
+            -8.579402559409552
+          ]
+        },
+        {
+          "originBlock": 105216,
+          "lastTargetBlock": 105220,
+          "residuals": [
+            8.264089109789282,
+            21.656888128585308,
+            36.60928057899934,
+            39.84598502038803
+          ]
+        },
+        {
+          "originBlock": 105220,
+          "lastTargetBlock": 105224,
+          "residuals": [
+            -3.233775942393663,
+            -16.718865787006365,
+            -103.25963473003839,
+            -94.29464643575875
+          ]
+        },
+        {
+          "originBlock": 105224,
+          "lastTargetBlock": 105228,
+          "residuals": [
+            -14.557745142480272,
+            -24.11448083258179,
+            -12.776960364924179,
+            5.466770663033074
+          ]
+        },
+        {
+          "originBlock": 105228,
+          "lastTargetBlock": 105232,
+          "residuals": [
+            -35.00024184034973,
+            -29.159270870971,
+            -52.13276568489522,
+            -77.56141864288259
+          ]
+        },
+        {
+          "originBlock": 105232,
+          "lastTargetBlock": 105236,
+          "residuals": [
+            -1.9318350509400801,
+            4.988732273599894,
+            41.93243785585115,
+            56.307047505744094
+          ]
+        },
+        {
+          "originBlock": 105236,
+          "lastTargetBlock": 105240,
+          "residuals": [
+            -37.636003256604226,
+            -37.10787462941363,
+            -20.740270454519248,
+            16.968249297025935
+          ]
+        },
+        {
+          "originBlock": 105240,
+          "lastTargetBlock": 105244,
+          "residuals": [
+            -4.787890528945553,
+            24.86415529577394,
+            6.101916646436877,
+            -25.92782922677631
+          ]
+        },
+        {
+          "originBlock": 105244,
+          "lastTargetBlock": 105248,
+          "residuals": [
+            9.147357099529486,
+            0.3841503015559624,
+            4.74970470416423,
+            47.62995051618189
+          ]
+        },
+        {
+          "originBlock": 105248,
+          "lastTargetBlock": 105252,
+          "residuals": [
+            -10.266752027481502,
+            -10.411092552338687,
+            -3.738294264592824,
+            -8.327952752636762
+          ]
+        },
+        {
+          "originBlock": 105252,
+          "lastTargetBlock": 105256,
+          "residuals": [
+            1.2312428579153476,
+            2.669710861343731,
+            5.608598266055736,
+            15.557934936782367
+          ]
+        },
+        {
+          "originBlock": 105256,
+          "lastTargetBlock": 105260,
+          "residuals": [
+            -8.559714874602108,
+            -5.5105878941588315,
+            -0.37361514948305796,
+            -17.89267405200212
+          ]
+        },
+        {
+          "originBlock": 105260,
+          "lastTargetBlock": 105264,
+          "residuals": [
+            -3.1070853459225276,
+            2.5457623916592524,
+            0.8588082490071685,
+            -1.1956828483611872
+          ]
+        },
+        {
+          "originBlock": 105264,
+          "lastTargetBlock": 105268,
+          "residuals": [
+            -3.735542099976385,
+            -13.212606719776055,
+            -21.06107299735983,
+            -22.112110682483824
+          ]
+        },
+        {
+          "originBlock": 105268,
+          "lastTargetBlock": 105272,
+          "residuals": [
+            10.210342198280273,
+            5.621852744393948,
+            -5.280068882901823,
+            20.768233355393036
+          ]
+        },
+        {
+          "originBlock": 105272,
+          "lastTargetBlock": 105276,
+          "residuals": [
+            -13.790878511152187,
+            -22.264921626531446,
+            -26.613777111938703,
+            3.2401997151700357
+          ]
+        },
+        {
+          "originBlock": 105276,
+          "lastTargetBlock": 105280,
+          "residuals": [
+            -18.334792451637185,
+            27.22680869432733,
+            43.78968327865104,
+            45.37980434224107
+          ]
+        },
+        {
+          "originBlock": 105280,
+          "lastTargetBlock": 105284,
+          "residuals": [
+            -56.64486233993324,
+            -112.99111803484664,
+            8.537983102932117,
+            139.65754764902442
+          ]
+        },
+        {
+          "originBlock": 105284,
+          "lastTargetBlock": 105288,
+          "residuals": [
+            43.59074431701873,
+            37.926812118743214,
+            107.89681360536864,
+            139.52747596667515
+          ]
+        },
+        {
+          "originBlock": 105288,
+          "lastTargetBlock": 105292,
+          "residuals": [
+            50.65391469882178,
+            7.820635175649272,
+            127.40190275321979,
+            203.31704129968313
+          ]
+        },
+        {
+          "originBlock": 105292,
+          "lastTargetBlock": 105296,
+          "residuals": [
+            59.8211526131293,
+            111.92838403581112,
+            154.19900126138248,
+            121.59734569783117
+          ]
+        },
+        {
+          "originBlock": 105296,
+          "lastTargetBlock": 105300,
+          "residuals": [
+            -7.35535001067467,
+            -99.64987504702322,
+            -45.59935652863612,
+            -62.211505333370326
+          ]
+        },
+        {
+          "originBlock": 105300,
+          "lastTargetBlock": 105304,
+          "residuals": [
+            171.32895831285612,
+            130.35863736695973,
+            126.04531258566229,
+            184.08583157919682
+          ]
+        },
+        {
+          "originBlock": 105304,
+          "lastTargetBlock": 105308,
+          "residuals": [
+            16.100712225078894,
+            166.90676623521694,
+            381.0266012509697,
+            250.11577710386916
+          ]
+        },
+        {
+          "originBlock": 105308,
+          "lastTargetBlock": 105312,
+          "residuals": [
+            -121.47926503176774,
+            -35.43814727337377,
+            -21.380000211087065,
+            -123.02989289844118
+          ]
+        },
+        {
+          "originBlock": 105312,
+          "lastTargetBlock": 105316,
+          "residuals": [
+            32.75620204889924,
+            -6.464549340101968,
+            -25.1185442056356,
+            -14.314386331576117
+          ]
+        }
+      ],
+      "intervalCoverageTarget": 0.8,
+      "intervalCaveat": "Pre-origin empirical residual range; time-series exchangeability is not guaranteed. Barangay allocation uncertainty is not measured.",
+      "environmentalInputs": [
+        {
+          "sourceColumn": "RF_NASA",
+          "valueAtOrigin": 49.83131,
+          "unit": "mm/source block",
+          "measurementKind": "observed",
+          "geography": "QUEZON_CITY",
+          "lagsSourceBlocks": [
+            1,
+            2,
+            4
+          ]
+        },
+        {
+          "sourceColumn": "Temp_ERA5-Land",
+          "valueAtOrigin": 30.985714,
+          "unit": "degrees Celsius",
+          "measurementKind": "observed",
+          "geography": "QUEZON_CITY",
+          "lagsSourceBlocks": [
+            1,
+            2,
+            4
+          ]
+        },
+        {
+          "sourceColumn": "RH_ERA5-Land",
+          "valueAtOrigin": 58.428571,
+          "unit": "%",
+          "measurementKind": "observed",
+          "geography": "QUEZON_CITY",
+          "lagsSourceBlocks": [
+            1,
+            2,
+            4
+          ]
+        }
+      ],
+      "observedCasesAtOrigin": 99.0,
+      "observedSourceYearToDateCases": 4766.0,
+      "availabilityAssumption": "Case/weather history through origin is assumed available; original publication delays and revision vintages unknown.",
+      "spatialCaveat": "Environmental inputs are citywide; annual barangay weights provide within-QC spatial shares, not measured barangay microclimate.",
+      "software": {
+        "sklearn": "1.8.0",
+        "numpy": "2.2.6"
+      }
+    },
+    {
+      "schemaVersion": "1.1",
+      "id": "qc-weather-residual-v2-QUEZON_CITY-2025-30",
+      "area": "QUEZON_CITY",
+      "mode": "historical_replay",
+      "issueBlock": {
+        "YR": 2025,
+        "WN": 30
+      },
+      "issueDate": null,
+      "trainingCutoffBlock": {
+        "YR": 2025,
+        "WN": 30
+      },
+      "sourceSha256": "94c65ce24e13c132007f67da9b4d10f7023e9429fff79c358b1de938f982dd78",
+      "calendarStatus": "UNRESOLVED_SOURCE_WEEK_DEFINITION",
+      "model": "cases_weather",
+      "methodVersion": "qc-weather-residual-v2",
+      "seed": 42,
+      "weeklyPredictions": [
+        {
+          "YR": 2025,
+          "WN": 31,
+          "meanCases": 248.39690947149776,
+          "lowerCases": 210.76090621489354,
+          "upperCases": 286.032912728102,
+          "measurementKind": "forecast",
+          "observedCases": 268.0,
+          "observedMeasurementKind": "observed",
+          "intervalKind": "empirical_pre_origin_absolute_residual_80",
+          "calibrationSamples": 38,
+          "lastTrainingTargetBlock": 105329,
+          "trainingSamples": 758
+        },
+        {
+          "YR": 2025,
+          "WN": 32,
+          "meanCases": 287.5845715388035,
+          "lowerCases": 245.0234807313012,
+          "upperCases": 330.1456623463058,
+          "measurementKind": "forecast",
+          "observedCases": 295.0,
+          "observedMeasurementKind": "observed",
+          "intervalKind": "empirical_pre_origin_absolute_residual_80",
+          "calibrationSamples": 38,
+          "lastTrainingTargetBlock": 105329,
+          "trainingSamples": 757
+        },
+        {
+          "YR": 2025,
+          "WN": 33,
+          "meanCases": 285.9065985559685,
+          "lowerCases": 220.47750028680235,
+          "upperCases": 351.3356968251347,
+          "measurementKind": "forecast",
+          "observedCases": 267.0,
+          "observedMeasurementKind": "observed",
+          "intervalKind": "empirical_pre_origin_absolute_residual_80",
+          "calibrationSamples": 38,
+          "lastTrainingTargetBlock": 105329,
+          "trainingSamples": 756
+        },
+        {
+          "YR": 2025,
+          "WN": 34,
+          "meanCases": 251.34973805581976,
+          "lowerCases": 129.75239235798858,
+          "upperCases": 372.94708375365093,
+          "measurementKind": "forecast",
+          "observedCases": 213.0,
+          "observedMeasurementKind": "observed",
+          "intervalKind": "empirical_pre_origin_absolute_residual_80",
+          "calibrationSamples": 38,
+          "lastTrainingTargetBlock": 105329,
+          "trainingSamples": 755
+        }
+      ],
+      "calibrationResidualPaths": [
+        {
+          "originBlock": 105176,
+          "lastTargetBlock": 105180,
+          "residuals": [
+            -0.5021246752733362,
+            -63.2176052900229,
+            -65.42909826916616,
+            -87.99265045284864
+          ]
+        },
+        {
+          "originBlock": 105180,
+          "lastTargetBlock": 105184,
+          "residuals": [
+            -12.90779151955411,
+            -42.561090807502325,
+            -41.544062697569444,
+            -53.980994121643135
+          ]
+        },
+        {
+          "originBlock": 105184,
+          "lastTargetBlock": 105188,
+          "residuals": [
+            -27.722189013984632,
+            -22.070765669435502,
+            -21.98564056363817,
+            -7.712701993823913
+          ]
+        },
+        {
+          "originBlock": 105188,
+          "lastTargetBlock": 105192,
+          "residuals": [
+            -9.467324356772934,
+            -21.482671563795847,
+            15.643914366572048,
+            5.001012084825078
+          ]
+        },
+        {
+          "originBlock": 105192,
+          "lastTargetBlock": 105196,
+          "residuals": [
+            -11.85595097431515,
+            -16.873894843613897,
+            -5.265258534262728,
+            -20.71273264008333
+          ]
+        },
+        {
+          "originBlock": 105196,
+          "lastTargetBlock": 105200,
+          "residuals": [
+            5.594151852270073,
+            1.5321820521639609,
+            0.3529850816654516,
+            3.8319770355353597
+          ]
+        },
+        {
+          "originBlock": 105200,
+          "lastTargetBlock": 105204,
+          "residuals": [
+            -5.822694532793527,
+            11.749713852705199,
+            -9.09303353512292,
+            -21.32927150737379
+          ]
+        },
+        {
+          "originBlock": 105204,
+          "lastTargetBlock": 105208,
+          "residuals": [
+            0.16585355913928623,
+            -7.924080142881309,
+            -5.193039366509993,
+            4.170464093046846
+          ]
+        },
+        {
+          "originBlock": 105208,
+          "lastTargetBlock": 105212,
+          "residuals": [
+            -22.6852038754294,
+            -1.2548264231077937,
+            3.765384594848733,
+            7.235531741802216
+          ]
+        },
+        {
+          "originBlock": 105212,
+          "lastTargetBlock": 105216,
+          "residuals": [
+            -17.36572875542295,
+            -7.209326914365882,
+            -0.17241152943378069,
+            -8.579402559409552
+          ]
+        },
+        {
+          "originBlock": 105216,
+          "lastTargetBlock": 105220,
+          "residuals": [
+            8.264089109789282,
+            21.656888128585308,
+            36.60928057899934,
+            39.84598502038803
+          ]
+        },
+        {
+          "originBlock": 105220,
+          "lastTargetBlock": 105224,
+          "residuals": [
+            -3.233775942393663,
+            -16.718865787006365,
+            -103.25963473003839,
+            -94.29464643575875
+          ]
+        },
+        {
+          "originBlock": 105224,
+          "lastTargetBlock": 105228,
+          "residuals": [
+            -14.557745142480272,
+            -24.11448083258179,
+            -12.776960364924179,
+            5.466770663033074
+          ]
+        },
+        {
+          "originBlock": 105228,
+          "lastTargetBlock": 105232,
+          "residuals": [
+            -35.00024184034973,
+            -29.159270870971,
+            -52.13276568489522,
+            -77.56141864288259
+          ]
+        },
+        {
+          "originBlock": 105232,
+          "lastTargetBlock": 105236,
+          "residuals": [
+            -1.9318350509400801,
+            4.988732273599894,
+            41.93243785585115,
+            56.307047505744094
+          ]
+        },
+        {
+          "originBlock": 105236,
+          "lastTargetBlock": 105240,
+          "residuals": [
+            -37.636003256604226,
+            -37.10787462941363,
+            -20.740270454519248,
+            16.968249297025935
+          ]
+        },
+        {
+          "originBlock": 105240,
+          "lastTargetBlock": 105244,
+          "residuals": [
+            -4.787890528945553,
+            24.86415529577394,
+            6.101916646436877,
+            -25.92782922677631
+          ]
+        },
+        {
+          "originBlock": 105244,
+          "lastTargetBlock": 105248,
+          "residuals": [
+            9.147357099529486,
+            0.3841503015559624,
+            4.74970470416423,
+            47.62995051618189
+          ]
+        },
+        {
+          "originBlock": 105248,
+          "lastTargetBlock": 105252,
+          "residuals": [
+            -10.266752027481502,
+            -10.411092552338687,
+            -3.738294264592824,
+            -8.327952752636762
+          ]
+        },
+        {
+          "originBlock": 105252,
+          "lastTargetBlock": 105256,
+          "residuals": [
+            1.2312428579153476,
+            2.669710861343731,
+            5.608598266055736,
+            15.557934936782367
+          ]
+        },
+        {
+          "originBlock": 105256,
+          "lastTargetBlock": 105260,
+          "residuals": [
+            -8.559714874602108,
+            -5.5105878941588315,
+            -0.37361514948305796,
+            -17.89267405200212
+          ]
+        },
+        {
+          "originBlock": 105260,
+          "lastTargetBlock": 105264,
+          "residuals": [
+            -3.1070853459225276,
+            2.5457623916592524,
+            0.8588082490071685,
+            -1.1956828483611872
+          ]
+        },
+        {
+          "originBlock": 105264,
+          "lastTargetBlock": 105268,
+          "residuals": [
+            -3.735542099976385,
+            -13.212606719776055,
+            -21.06107299735983,
+            -22.112110682483824
+          ]
+        },
+        {
+          "originBlock": 105268,
+          "lastTargetBlock": 105272,
+          "residuals": [
+            10.210342198280273,
+            5.621852744393948,
+            -5.280068882901823,
+            20.768233355393036
+          ]
+        },
+        {
+          "originBlock": 105272,
+          "lastTargetBlock": 105276,
+          "residuals": [
+            -13.790878511152187,
+            -22.264921626531446,
+            -26.613777111938703,
+            3.2401997151700357
+          ]
+        },
+        {
+          "originBlock": 105276,
+          "lastTargetBlock": 105280,
+          "residuals": [
+            -18.334792451637185,
+            27.22680869432733,
+            43.78968327865104,
+            45.37980434224107
+          ]
+        },
+        {
+          "originBlock": 105280,
+          "lastTargetBlock": 105284,
+          "residuals": [
+            -56.64486233993324,
+            -112.99111803484664,
+            8.537983102932117,
+            139.65754764902442
+          ]
+        },
+        {
+          "originBlock": 105284,
+          "lastTargetBlock": 105288,
+          "residuals": [
+            43.59074431701873,
+            37.926812118743214,
+            107.89681360536864,
+            139.52747596667515
+          ]
+        },
+        {
+          "originBlock": 105288,
+          "lastTargetBlock": 105292,
+          "residuals": [
+            50.65391469882178,
+            7.820635175649272,
+            127.40190275321979,
+            203.31704129968313
+          ]
+        },
+        {
+          "originBlock": 105292,
+          "lastTargetBlock": 105296,
+          "residuals": [
+            59.8211526131293,
+            111.92838403581112,
+            154.19900126138248,
+            121.59734569783117
+          ]
+        },
+        {
+          "originBlock": 105296,
+          "lastTargetBlock": 105300,
+          "residuals": [
+            -7.35535001067467,
+            -99.64987504702322,
+            -45.59935652863612,
+            -62.211505333370326
+          ]
+        },
+        {
+          "originBlock": 105300,
+          "lastTargetBlock": 105304,
+          "residuals": [
+            171.32895831285612,
+            130.35863736695973,
+            126.04531258566229,
+            184.08583157919682
+          ]
+        },
+        {
+          "originBlock": 105304,
+          "lastTargetBlock": 105308,
+          "residuals": [
+            16.100712225078894,
+            166.90676623521694,
+            381.0266012509697,
+            250.11577710386916
+          ]
+        },
+        {
+          "originBlock": 105308,
+          "lastTargetBlock": 105312,
+          "residuals": [
+            -121.47926503176774,
+            -35.43814727337377,
+            -21.380000211087065,
+            -123.02989289844118
+          ]
+        },
+        {
+          "originBlock": 105312,
+          "lastTargetBlock": 105316,
+          "residuals": [
+            32.75620204889924,
+            -6.464549340101968,
+            -25.1185442056356,
+            -14.314386331576117
+          ]
+        },
+        {
+          "originBlock": 105316,
+          "lastTargetBlock": 105320,
+          "residuals": [
+            -8.684393371872915,
+            -7.475833950814248,
+            -21.747576323500823,
+            -10.716128958119114
+          ]
+        },
+        {
+          "originBlock": 105320,
+          "lastTargetBlock": 105324,
+          "residuals": [
+            -6.720302549359118,
+            1.516786438345406,
+            -1.738047786312734,
+            -4.343106190122228
+          ]
+        },
+        {
+          "originBlock": 105324,
+          "lastTargetBlock": 105328,
+          "residuals": [
+            4.1483303401138585,
+            22.7748171537107,
+            -5.350310937567883,
+            -47.86419254769774
+          ]
+        }
+      ],
+      "intervalCoverageTarget": 0.8,
+      "intervalCaveat": "Pre-origin empirical residual range; time-series exchangeability is not guaranteed. Barangay allocation uncertainty is not measured.",
+      "environmentalInputs": [
+        {
+          "sourceColumn": "RF_NASA",
+          "valueAtOrigin": 11.603848,
+          "unit": "mm/source block",
+          "measurementKind": "observed",
+          "geography": "QUEZON_CITY",
+          "lagsSourceBlocks": [
+            1,
+            2,
+            4
+          ]
+        },
+        {
+          "sourceColumn": "Temp_ERA5-Land",
+          "valueAtOrigin": 27.828571,
+          "unit": "degrees Celsius",
+          "measurementKind": "observed",
+          "geography": "QUEZON_CITY",
+          "lagsSourceBlocks": [
+            1,
+            2,
+            4
+          ]
+        },
+        {
+          "sourceColumn": "RH_ERA5-Land",
+          "valueAtOrigin": 79.714286,
+          "unit": "%",
+          "measurementKind": "observed",
+          "geography": "QUEZON_CITY",
+          "lagsSourceBlocks": [
+            1,
+            2,
+            4
+          ]
+        }
+      ],
+      "observedCasesAtOrigin": 215.0,
+      "observedSourceYearToDateCases": 6215.0,
+      "availabilityAssumption": "Case/weather history through origin is assumed available; original publication delays and revision vintages unknown.",
+      "spatialCaveat": "Environmental inputs are citywide; annual barangay weights provide within-QC spatial shares, not measured barangay microclimate.",
+      "software": {
+        "sklearn": "1.8.0",
+        "numpy": "2.2.6"
+      }
+    },
+    {
+      "schemaVersion": "1.1",
+      "id": "qc-weather-residual-v2-QUEZON_CITY-2025-43",
+      "area": "QUEZON_CITY",
+      "mode": "historical_replay",
+      "issueBlock": {
+        "YR": 2025,
+        "WN": 43
+      },
+      "issueDate": null,
+      "trainingCutoffBlock": {
+        "YR": 2025,
+        "WN": 43
+      },
+      "sourceSha256": "94c65ce24e13c132007f67da9b4d10f7023e9429fff79c358b1de938f982dd78",
+      "calendarStatus": "UNRESOLVED_SOURCE_WEEK_DEFINITION",
+      "model": "cases_weather",
+      "methodVersion": "qc-weather-residual-v2",
+      "seed": 42,
+      "weeklyPredictions": [
+        {
+          "YR": 2025,
+          "WN": 44,
+          "meanCases": 300.4423391667973,
+          "lowerCases": 256.85159484977856,
+          "upperCases": 344.03308348381603,
+          "measurementKind": "forecast",
+          "observedCases": 205.0,
+          "observedMeasurementKind": "observed",
+          "intervalKind": "empirical_pre_origin_absolute_residual_80",
+          "calibrationSamples": 38,
+          "lastTrainingTargetBlock": 105342,
+          "trainingSamples": 771
+        },
+        {
+          "YR": 2025,
+          "WN": 45,
+          "meanCases": 335.27684896940855,
+          "lowerCases": 279.00701487380616,
+          "upperCases": 391.54668306501094,
+          "measurementKind": "forecast",
+          "observedCases": 194.0,
+          "observedMeasurementKind": "observed",
+          "intervalKind": "empirical_pre_origin_absolute_residual_80",
+          "calibrationSamples": 38,
+          "lastTrainingTargetBlock": 105342,
+          "trainingSamples": 770
+        },
+        {
+          "YR": 2025,
+          "WN": 46,
+          "meanCases": 346.80874846437246,
+          "lowerCases": 243.54911373433407,
+          "upperCases": 450.06838319441084,
+          "measurementKind": "forecast",
+          "observedCases": 164.0,
+          "observedMeasurementKind": "observed",
+          "intervalKind": "empirical_pre_origin_absolute_residual_80",
+          "calibrationSamples": 38,
+          "lastTrainingTargetBlock": 105342,
+          "trainingSamples": 769
+        },
+        {
+          "YR": 2025,
+          "WN": 47,
+          "meanCases": 327.24788786350626,
+          "lowerCases": 205.6505421656751,
+          "upperCases": 448.8452335613374,
+          "measurementKind": "forecast",
+          "observedCases": 201.0,
+          "observedMeasurementKind": "observed",
+          "intervalKind": "empirical_pre_origin_absolute_residual_80",
+          "calibrationSamples": 38,
+          "lastTrainingTargetBlock": 105342,
+          "trainingSamples": 768
+        }
+      ],
+      "calibrationResidualPaths": [
+        {
+          "originBlock": 105188,
+          "lastTargetBlock": 105192,
+          "residuals": [
+            -9.467324356772934,
+            -21.482671563795847,
+            15.643914366572048,
+            5.001012084825078
+          ]
+        },
+        {
+          "originBlock": 105192,
+          "lastTargetBlock": 105196,
+          "residuals": [
+            -11.85595097431515,
+            -16.873894843613897,
+            -5.265258534262728,
+            -20.71273264008333
+          ]
+        },
+        {
+          "originBlock": 105196,
+          "lastTargetBlock": 105200,
+          "residuals": [
+            5.594151852270073,
+            1.5321820521639609,
+            0.3529850816654516,
+            3.8319770355353597
+          ]
+        },
+        {
+          "originBlock": 105200,
+          "lastTargetBlock": 105204,
+          "residuals": [
+            -5.822694532793527,
+            11.749713852705199,
+            -9.09303353512292,
+            -21.32927150737379
+          ]
+        },
+        {
+          "originBlock": 105204,
+          "lastTargetBlock": 105208,
+          "residuals": [
+            0.16585355913928623,
+            -7.924080142881309,
+            -5.193039366509993,
+            4.170464093046846
+          ]
+        },
+        {
+          "originBlock": 105208,
+          "lastTargetBlock": 105212,
+          "residuals": [
+            -22.6852038754294,
+            -1.2548264231077937,
+            3.765384594848733,
+            7.235531741802216
+          ]
+        },
+        {
+          "originBlock": 105212,
+          "lastTargetBlock": 105216,
+          "residuals": [
+            -17.36572875542295,
+            -7.209326914365882,
+            -0.17241152943378069,
+            -8.579402559409552
+          ]
+        },
+        {
+          "originBlock": 105216,
+          "lastTargetBlock": 105220,
+          "residuals": [
+            8.264089109789282,
+            21.656888128585308,
+            36.60928057899934,
+            39.84598502038803
+          ]
+        },
+        {
+          "originBlock": 105220,
+          "lastTargetBlock": 105224,
+          "residuals": [
+            -3.233775942393663,
+            -16.718865787006365,
+            -103.25963473003839,
+            -94.29464643575875
+          ]
+        },
+        {
+          "originBlock": 105224,
+          "lastTargetBlock": 105228,
+          "residuals": [
+            -14.557745142480272,
+            -24.11448083258179,
+            -12.776960364924179,
+            5.466770663033074
+          ]
+        },
+        {
+          "originBlock": 105228,
+          "lastTargetBlock": 105232,
+          "residuals": [
+            -35.00024184034973,
+            -29.159270870971,
+            -52.13276568489522,
+            -77.56141864288259
+          ]
+        },
+        {
+          "originBlock": 105232,
+          "lastTargetBlock": 105236,
+          "residuals": [
+            -1.9318350509400801,
+            4.988732273599894,
+            41.93243785585115,
+            56.307047505744094
+          ]
+        },
+        {
+          "originBlock": 105236,
+          "lastTargetBlock": 105240,
+          "residuals": [
+            -37.636003256604226,
+            -37.10787462941363,
+            -20.740270454519248,
+            16.968249297025935
+          ]
+        },
+        {
+          "originBlock": 105240,
+          "lastTargetBlock": 105244,
+          "residuals": [
+            -4.787890528945553,
+            24.86415529577394,
+            6.101916646436877,
+            -25.92782922677631
+          ]
+        },
+        {
+          "originBlock": 105244,
+          "lastTargetBlock": 105248,
+          "residuals": [
+            9.147357099529486,
+            0.3841503015559624,
+            4.74970470416423,
+            47.62995051618189
+          ]
+        },
+        {
+          "originBlock": 105248,
+          "lastTargetBlock": 105252,
+          "residuals": [
+            -10.266752027481502,
+            -10.411092552338687,
+            -3.738294264592824,
+            -8.327952752636762
+          ]
+        },
+        {
+          "originBlock": 105252,
+          "lastTargetBlock": 105256,
+          "residuals": [
+            1.2312428579153476,
+            2.669710861343731,
+            5.608598266055736,
+            15.557934936782367
+          ]
+        },
+        {
+          "originBlock": 105256,
+          "lastTargetBlock": 105260,
+          "residuals": [
+            -8.559714874602108,
+            -5.5105878941588315,
+            -0.37361514948305796,
+            -17.89267405200212
+          ]
+        },
+        {
+          "originBlock": 105260,
+          "lastTargetBlock": 105264,
+          "residuals": [
+            -3.1070853459225276,
+            2.5457623916592524,
+            0.8588082490071685,
+            -1.1956828483611872
+          ]
+        },
+        {
+          "originBlock": 105264,
+          "lastTargetBlock": 105268,
+          "residuals": [
+            -3.735542099976385,
+            -13.212606719776055,
+            -21.06107299735983,
+            -22.112110682483824
+          ]
+        },
+        {
+          "originBlock": 105268,
+          "lastTargetBlock": 105272,
+          "residuals": [
+            10.210342198280273,
+            5.621852744393948,
+            -5.280068882901823,
+            20.768233355393036
+          ]
+        },
+        {
+          "originBlock": 105272,
+          "lastTargetBlock": 105276,
+          "residuals": [
+            -13.790878511152187,
+            -22.264921626531446,
+            -26.613777111938703,
+            3.2401997151700357
+          ]
+        },
+        {
+          "originBlock": 105276,
+          "lastTargetBlock": 105280,
+          "residuals": [
+            -18.334792451637185,
+            27.22680869432733,
+            43.78968327865104,
+            45.37980434224107
+          ]
+        },
+        {
+          "originBlock": 105280,
+          "lastTargetBlock": 105284,
+          "residuals": [
+            -56.64486233993324,
+            -112.99111803484664,
+            8.537983102932117,
+            139.65754764902442
+          ]
+        },
+        {
+          "originBlock": 105284,
+          "lastTargetBlock": 105288,
+          "residuals": [
+            43.59074431701873,
+            37.926812118743214,
+            107.89681360536864,
+            139.52747596667515
+          ]
+        },
+        {
+          "originBlock": 105288,
+          "lastTargetBlock": 105292,
+          "residuals": [
+            50.65391469882178,
+            7.820635175649272,
+            127.40190275321979,
+            203.31704129968313
+          ]
+        },
+        {
+          "originBlock": 105292,
+          "lastTargetBlock": 105296,
+          "residuals": [
+            59.8211526131293,
+            111.92838403581112,
+            154.19900126138248,
+            121.59734569783117
+          ]
+        },
+        {
+          "originBlock": 105296,
+          "lastTargetBlock": 105300,
+          "residuals": [
+            -7.35535001067467,
+            -99.64987504702322,
+            -45.59935652863612,
+            -62.211505333370326
+          ]
+        },
+        {
+          "originBlock": 105300,
+          "lastTargetBlock": 105304,
+          "residuals": [
+            171.32895831285612,
+            130.35863736695973,
+            126.04531258566229,
+            184.08583157919682
+          ]
+        },
+        {
+          "originBlock": 105304,
+          "lastTargetBlock": 105308,
+          "residuals": [
+            16.100712225078894,
+            166.90676623521694,
+            381.0266012509697,
+            250.11577710386916
+          ]
+        },
+        {
+          "originBlock": 105308,
+          "lastTargetBlock": 105312,
+          "residuals": [
+            -121.47926503176774,
+            -35.43814727337377,
+            -21.380000211087065,
+            -123.02989289844118
+          ]
+        },
+        {
+          "originBlock": 105312,
+          "lastTargetBlock": 105316,
+          "residuals": [
+            32.75620204889924,
+            -6.464549340101968,
+            -25.1185442056356,
+            -14.314386331576117
+          ]
+        },
+        {
+          "originBlock": 105316,
+          "lastTargetBlock": 105320,
+          "residuals": [
+            -8.684393371872915,
+            -7.475833950814248,
+            -21.747576323500823,
+            -10.716128958119114
+          ]
+        },
+        {
+          "originBlock": 105320,
+          "lastTargetBlock": 105324,
+          "residuals": [
+            -6.720302549359118,
+            1.516786438345406,
+            -1.738047786312734,
+            -4.343106190122228
+          ]
+        },
+        {
+          "originBlock": 105324,
+          "lastTargetBlock": 105328,
+          "residuals": [
+            4.1483303401138585,
+            22.7748171537107,
+            -5.350310937567883,
+            -47.86419254769774
+          ]
+        },
+        {
+          "originBlock": 105328,
+          "lastTargetBlock": 105332,
+          "residuals": [
+            31.898021327115543,
+            53.8353367505527,
+            77.0076287706232,
+            -8.836181280731864
+          ]
+        },
+        {
+          "originBlock": 105332,
+          "lastTargetBlock": 105336,
+          "residuals": [
+            -51.55059117697965,
+            -64.34977908524661,
+            -5.619466042561385,
+            -62.008147497984965
+          ]
+        },
+        {
+          "originBlock": 105336,
+          "lastTargetBlock": 105340,
+          "residuals": [
+            -17.46465940138134,
+            56.26983409560236,
+            122.59955733931719,
+            90.0082710251283
+          ]
+        }
+      ],
+      "intervalCoverageTarget": 0.8,
+      "intervalCaveat": "Pre-origin empirical residual range; time-series exchangeability is not guaranteed. Barangay allocation uncertainty is not measured.",
+      "environmentalInputs": [
+        {
+          "sourceColumn": "RF_NASA",
+          "valueAtOrigin": 93.741842,
+          "unit": "mm/source block",
+          "measurementKind": "observed",
+          "geography": "QUEZON_CITY",
+          "lagsSourceBlocks": [
+            1,
+            2,
+            4
+          ]
+        },
+        {
+          "sourceColumn": "Temp_ERA5-Land",
+          "valueAtOrigin": 27.257143,
+          "unit": "degrees Celsius",
+          "measurementKind": "observed",
+          "geography": "QUEZON_CITY",
+          "lagsSourceBlocks": [
+            1,
+            2,
+            4
+          ]
+        },
+        {
+          "sourceColumn": "RH_ERA5-Land",
+          "valueAtOrigin": 86.285714,
+          "unit": "%",
+          "measurementKind": "observed",
+          "geography": "QUEZON_CITY",
+          "lagsSourceBlocks": [
+            1,
+            2,
+            4
+          ]
+        }
+      ],
+      "observedCasesAtOrigin": 302.0,
+      "observedSourceYearToDateCases": 9728.0,
+      "availabilityAssumption": "Case/weather history through origin is assumed available; original publication delays and revision vintages unknown.",
+      "spatialCaveat": "Environmental inputs are citywide; annual barangay weights provide within-QC spatial shares, not measured barangay microclimate.",
+      "software": {
+        "sklearn": "1.8.0",
+        "numpy": "2.2.6"
+      }
+    }
+  ],
+  "backtest": {
+    "scores": [
+      {
+        "horizon": 1,
+        "n": 8,
+        "weatherMae": 47.51446454022544,
+        "casesOnlyMae": 50.799400896653424,
+        "persistenceMae": 45.5,
+        "empiricalRangeCoverage": 0.5
+      },
+      {
+        "horizon": 2,
+        "n": 8,
+        "weatherMae": 51.20273544174512,
+        "casesOnlyMae": 57.82074977694097,
+        "persistenceMae": 58.625,
+        "empiricalRangeCoverage": 0.625
+      },
+      {
+        "horizon": 3,
+        "n": 8,
+        "weatherMae": 90.06938293992411,
+        "casesOnlyMae": 97.1373770779946,
+        "persistenceMae": 80.875,
+        "empiricalRangeCoverage": 0.625
+      },
+      {
+        "horizon": 4,
+        "n": 8,
+        "weatherMae": 121.26515210183771,
+        "casesOnlyMae": 125.2039839900126,
+        "persistenceMae": 96.25,
+        "empiricalRangeCoverage": 0.625
+      }
+    ],
+    "predictions": [
+      {
+        "originBlock": 105251,
+        "horizon": 1,
+        "observedCases": 84.0,
+        "weatherForecast": 81.06002737790793,
+        "casesOnlyForecast": 79.31938661120738,
+        "persistenceForecast": 87.0,
+        "lowerCases": 66.50228223542766,
+        "upperCases": 95.6177725203882,
+        "lastCalibrationTargetBlock": 105248,
+        "lastTrainingTargetBlock": 105251
+      },
+      {
+        "originBlock": 105251,
+        "horizon": 2,
+        "observedCases": 81.0,
+        "weatherForecast": 72.13909297734828,
+        "casesOnlyForecast": 74.8982007891531,
+        "persistenceForecast": 87.0,
+        "lowerCases": 47.27493768157434,
+        "upperCases": 97.00324827312222,
+        "lastCalibrationTargetBlock": 105248,
+        "lastTrainingTargetBlock": 105251
+      },
+      {
+        "originBlock": 105251,
+        "horizon": 3,
+        "observedCases": 77.0,
+        "weatherForecast": 63.6798245376365,
+        "casesOnlyForecast": 68.96779221196174,
+        "persistenceForecast": 87.0,
+        "lowerCases": 22.135761840067055,
+        "upperCases": 105.22388723520595,
+        "lastCalibrationTargetBlock": 105248,
+        "lastTrainingTargetBlock": 105251
+      },
+      {
+        "originBlock": 105251,
+        "horizon": 4,
+        "observedCases": 68.0,
+        "weatherForecast": 59.85836441748281,
+        "casesOnlyForecast": 61.56193965321948,
+        "persistenceForecast": 87.0,
+        "lowerCases": 3.5513169117387164,
+        "upperCases": 116.16541192322691,
+        "lastCalibrationTargetBlock": 105248,
+        "lastTrainingTargetBlock": 105251
+      },
+      {
+        "originBlock": 105264,
+        "horizon": 1,
+        "observedCases": 37.0,
+        "weatherForecast": 40.735542099976385,
+        "casesOnlyForecast": 41.2391964422478,
+        "persistenceForecast": 38.0,
+        "lowerCases": 26.235673318985135,
+        "upperCases": 55.235410880967635,
+        "lastCalibrationTargetBlock": 105264,
+        "lastTrainingTargetBlock": 105264
+      },
+      {
+        "originBlock": 105264,
+        "horizon": 2,
+        "observedCases": 25.0,
+        "weatherForecast": 38.212606719776055,
+        "casesOnlyForecast": 37.38898167412396,
+        "persistenceForecast": 38.0,
+        "lowerCases": 14.098125887194264,
+        "upperCases": 62.327087552357845,
+        "lastCalibrationTargetBlock": 105264,
+        "lastTrainingTargetBlock": 105264
+      },
+      {
+        "originBlock": 105264,
+        "horizon": 3,
+        "observedCases": 24.0,
+        "weatherForecast": 45.06107299735983,
+        "casesOnlyForecast": 43.787854004805176,
+        "persistenceForecast": 38.0,
+        "lowerCases": 8.45179241836049,
+        "upperCases": 81.67035357635916,
+        "lastCalibrationTargetBlock": 105264,
+        "lastTrainingTargetBlock": 105264
+      },
+      {
+        "originBlock": 105264,
+        "horizon": 4,
+        "observedCases": 31.0,
+        "weatherForecast": 53.112110682483824,
+        "casesOnlyForecast": 51.23524209648138,
+        "persistenceForecast": 38.0,
+        "lowerCases": 0,
+        "upperCases": 107.09310480412697,
+        "lastCalibrationTargetBlock": 105264,
+        "lastTrainingTargetBlock": 105264
+      },
+      {
+        "originBlock": 105277,
+        "horizon": 1,
+        "observedCases": 195.0,
+        "weatherForecast": 148.6608162432901,
+        "casesOnlyForecast": 142.43044768724252,
+        "persistenceForecast": 133.0,
+        "lowerCases": 134.1030711008098,
+        "upperCases": 163.21856138577039,
+        "lastCalibrationTargetBlock": 105276,
+        "lastTrainingTargetBlock": 105277
+      },
+      {
+        "originBlock": 105277,
+        "horizon": 2,
+        "observedCases": 229.0,
+        "weatherForecast": 180.96813572393776,
+        "casesOnlyForecast": 172.85232924802034,
+        "persistenceForecast": 133.0,
+        "lowerCases": 156.10398042816382,
+        "upperCases": 205.8322910197117,
+        "lastCalibrationTargetBlock": 105276,
+        "lastTrainingTargetBlock": 105277
+      },
+      {
+        "originBlock": 105277,
+        "horizon": 3,
+        "observedCases": 222.0,
+        "weatherForecast": 205.50019791633585,
+        "casesOnlyForecast": 155.5622553507886,
+        "persistenceForecast": 133.0,
+        "lowerCases": 163.9561352187664,
+        "upperCases": 247.0442606139053,
+        "lastCalibrationTargetBlock": 105276,
+        "lastTrainingTargetBlock": 105277
+      },
+      {
+        "originBlock": 105277,
+        "horizon": 4,
+        "observedCases": 232.0,
+        "weatherForecast": 177.27547815737574,
+        "casesOnlyForecast": 159.4668532305968,
+        "persistenceForecast": 133.0,
+        "lowerCases": 120.96843065163165,
+        "upperCases": 233.58252566311984,
+        "lastCalibrationTargetBlock": 105276,
+        "lastTrainingTargetBlock": 105277
+      },
+      {
+        "originBlock": 105290,
+        "horizon": 1,
+        "observedCases": 351.0,
+        "weatherForecast": 228.9475103263377,
+        "casesOnlyForecast": 221.7017706473578,
+        "persistenceForecast": 253.0,
+        "lowerCases": 206.26230645090828,
+        "upperCases": 251.6327142017671,
+        "lastCalibrationTargetBlock": 105288,
+        "lastTrainingTargetBlock": 105290
+      },
+      {
+        "originBlock": 105290,
+        "horizon": 2,
+        "observedCases": 384.0,
+        "weatherForecast": 238.04537775657738,
+        "casesOnlyForecast": 226.09857309203483,
+        "persistenceForecast": 253.0,
+        "lowerCases": 200.93750312716375,
+        "upperCases": 275.153252385991,
+        "lastCalibrationTargetBlock": 105288,
+        "lastTrainingTargetBlock": 105290
+      },
+      {
+        "originBlock": 105290,
+        "horizon": 3,
+        "observedCases": 424.0,
+        "weatherForecast": 206.30517817418254,
+        "casesOnlyForecast": 210.53038314516348,
+        "persistenceForecast": 253.0,
+        "lowerCases": 162.5154948955315,
+        "upperCases": 250.09486145283358,
+        "lastCalibrationTargetBlock": 105288,
+        "lastTrainingTargetBlock": 105290
+      },
+      {
+        "originBlock": 105290,
+        "horizon": 4,
+        "observedCases": 454.0,
+        "weatherForecast": 179.2687347709058,
+        "casesOnlyForecast": 165.65727706797347,
+        "persistenceForecast": 253.0,
+        "lowerCases": 101.70731612802322,
+        "upperCases": 256.83015341378837,
+        "lastCalibrationTargetBlock": 105288,
+        "lastTrainingTargetBlock": 105290
+      },
+      {
+        "originBlock": 105303,
+        "horizon": 1,
+        "observedCases": 335.0,
+        "weatherForecast": 253.6812948978096,
+        "casesOnlyForecast": 263.98381665097213,
+        "persistenceForecast": 304.0,
+        "lowerCases": 225.95910588382498,
+        "upperCases": 281.40348391179424,
+        "lastCalibrationTargetBlock": 105300,
+        "lastTrainingTargetBlock": 105303
+      },
+      {
+        "originBlock": 105303,
+        "horizon": 2,
+        "observedCases": 291.0,
+        "weatherForecast": 253.6062281093709,
+        "casesOnlyForecast": 251.28359300638974,
+        "persistenceForecast": 304.0,
+        "lowerCases": 215.6794159906277,
+        "upperCases": 291.53304022811415,
+        "lastCalibrationTargetBlock": 105300,
+        "lastTrainingTargetBlock": 105303
+      },
+      {
+        "originBlock": 105303,
+        "horizon": 3,
+        "observedCases": 437.0,
+        "weatherForecast": 208.4837321936539,
+        "casesOnlyForecast": 210.2631623594397,
+        "persistenceForecast": 304.0,
+        "lowerCases": 156.3509665087587,
+        "upperCases": 260.6164978785491,
+        "lastCalibrationTargetBlock": 105300,
+        "lastTrainingTargetBlock": 105303
+      },
+      {
+        "originBlock": 105303,
+        "horizon": 4,
+        "observedCases": 622.0,
+        "weatherForecast": 186.90207139946293,
+        "casesOnlyForecast": 237.39684744762064,
+        "persistenceForecast": 304.0,
+        "lowerCases": 92.60742496370418,
+        "upperCases": 281.19671783522165,
+        "lastCalibrationTargetBlock": 105300,
+        "lastTrainingTargetBlock": 105303
+      },
+      {
+        "originBlock": 105316,
+        "horizon": 1,
+        "observedCases": 80.0,
+        "weatherForecast": 88.68439337187291,
+        "casesOnlyForecast": 90.01937618660244,
+        "persistenceForecast": 99.0,
+        "lowerCases": 53.684151531523185,
+        "upperCases": 123.68463521222264,
+        "lastCalibrationTargetBlock": 105316,
+        "lastTrainingTargetBlock": 105316
+      },
+      {
+        "originBlock": 105316,
+        "horizon": 2,
+        "observedCases": 77.0,
+        "weatherForecast": 84.47583395081425,
+        "casesOnlyForecast": 91.35017484490581,
+        "persistenceForecast": 99.0,
+        "lowerCases": 41.914743143311924,
+        "upperCases": 127.03692475831657,
+        "lastCalibrationTargetBlock": 105316,
+        "lastTrainingTargetBlock": 105316
+      },
+      {
+        "originBlock": 105316,
+        "horizon": 3,
+        "observedCases": 59.0,
+        "weatherForecast": 80.74757632350082,
+        "casesOnlyForecast": 94.4145960004575,
+        "persistenceForecast": 99.0,
+        "lowerCases": 15.318478054334662,
+        "upperCases": 146.17667459266698,
+        "lastCalibrationTargetBlock": 105316,
+        "lastTrainingTargetBlock": 105316
+      },
+      {
+        "originBlock": 105316,
+        "horizon": 4,
+        "observedCases": 76.0,
+        "weatherForecast": 86.71612895811911,
+        "casesOnlyForecast": 87.52230635025887,
+        "persistenceForecast": 99.0,
+        "lowerCases": 0,
+        "upperCases": 209.74602185656028,
+        "lastCalibrationTargetBlock": 105316,
+        "lastTrainingTargetBlock": 105316
+      },
+      {
+        "originBlock": 105329,
+        "horizon": 1,
+        "observedCases": 268.0,
+        "weatherForecast": 248.39690947149776,
+        "casesOnlyForecast": 253.7750578326328,
+        "persistenceForecast": 215.0,
+        "lowerCases": 210.76090621489354,
+        "upperCases": 286.032912728102,
+        "lastCalibrationTargetBlock": 105328,
+        "lastTrainingTargetBlock": 105329
+      },
+      {
+        "originBlock": 105329,
+        "horizon": 2,
+        "observedCases": 295.0,
+        "weatherForecast": 287.5845715388035,
+        "casesOnlyForecast": 280.8253257189167,
+        "persistenceForecast": 215.0,
+        "lowerCases": 245.0234807313012,
+        "upperCases": 330.1456623463058,
+        "lastCalibrationTargetBlock": 105328,
+        "lastTrainingTargetBlock": 105329
+      },
+      {
+        "originBlock": 105329,
+        "horizon": 3,
+        "observedCases": 267.0,
+        "weatherForecast": 285.9065985559685,
+        "casesOnlyForecast": 271.09872936360637,
+        "persistenceForecast": 215.0,
+        "lowerCases": 220.47750028680235,
+        "upperCases": 351.3356968251347,
+        "lastCalibrationTargetBlock": 105328,
+        "lastTrainingTargetBlock": 105329
+      },
+      {
+        "originBlock": 105329,
+        "horizon": 4,
+        "observedCases": 213.0,
+        "weatherForecast": 251.34973805581976,
+        "casesOnlyForecast": 274.3727359801835,
+        "persistenceForecast": 215.0,
+        "lowerCases": 129.75239235798858,
+        "upperCases": 372.94708375365093,
+        "lastCalibrationTargetBlock": 105328,
+        "lastTrainingTargetBlock": 105329
+      },
+      {
+        "originBlock": 105342,
+        "horizon": 1,
+        "observedCases": 205.0,
+        "weatherForecast": 300.4423391667973,
+        "casesOnlyForecast": 325.34711397378976,
+        "persistenceForecast": 302.0,
+        "lowerCases": 256.85159484977856,
+        "upperCases": 344.03308348381603,
+        "lastCalibrationTargetBlock": 105340,
+        "lastTrainingTargetBlock": 105342
+      },
+      {
+        "originBlock": 105342,
+        "horizon": 2,
+        "observedCases": 194.0,
+        "weatherForecast": 335.27684896940855,
+        "casesOnlyForecast": 355.7848635510127,
+        "persistenceForecast": 302.0,
+        "lowerCases": 279.00701487380616,
+        "upperCases": 391.54668306501094,
+        "lastCalibrationTargetBlock": 105340,
+        "lastTrainingTargetBlock": 105342
+      },
+      {
+        "originBlock": 105342,
+        "horizon": 3,
+        "observedCases": 164.0,
+        "weatherForecast": 346.80874846437246,
+        "casesOnlyForecast": 367.1214303224413,
+        "persistenceForecast": 302.0,
+        "lowerCases": 243.54911373433407,
+        "upperCases": 450.06838319441084,
+        "lastCalibrationTargetBlock": 105340,
+        "lastTrainingTargetBlock": 105342
+      },
+      {
+        "originBlock": 105342,
+        "horizon": 4,
+        "observedCases": 201.0,
+        "weatherForecast": 327.24788786350626,
+        "casesOnlyForecast": 357.58450489258746,
+        "persistenceForecast": 302.0,
+        "lowerCases": 205.6505421656751,
+        "upperCases": 448.8452335613374,
+        "lastCalibrationTargetBlock": 105340,
+        "lastTrainingTargetBlock": 105342
+      }
+    ],
+    "caveat": "Eight retrospective matched origins; weather use is a requested model variant, not a claim of superiority. Coverage sample sizes are small."
+  }
+}

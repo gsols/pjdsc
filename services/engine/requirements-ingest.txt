@@ -1,0 +1,4 @@
+# Offline source audit uses base requirements; these add split-archive/GIS processing.
+-r requirements.txt
+py7zr==1.1.0
+geopandas==1.1.1

@@ -157,14 +157,14 @@ export default function NCRMap({
               : '#51d0bb';
       const el = document.createElement('button');
       el.type = 'button';
-      el.title = f.name;
-      el.setAttribute('aria-label', f.name);
+      el.title = `${f.name} - provisional point, unverified entrance`;
+      el.setAttribute('aria-label', `${f.name}, provisional point, unverified entrance`);
       Object.assign(el.style, {
         width: '15px',
         height: '15px',
         borderRadius: '50%',
         background: color,
-        border: '2px solid #ffffff',
+        border: '2px dashed #ffffff',
         boxShadow: '0 2px 10px #111b29',
       });
       el.addEventListener('click', (e) => {

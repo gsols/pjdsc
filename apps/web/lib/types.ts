@@ -5,11 +5,23 @@ export interface Facility {
   city: string;
   latitude: number | null;
   longitude: number | null;
-  authorizedBeds: number | null;
-  source: string;
-  verifiedAt: string | null;
-  coordinateStatus?:
-    'UNAVAILABLE' | 'PROVISIONAL_HISTORICAL_MATCH' | 'VERIFIED';
+  accreditedBeds: number;
+  authorizedBeds: null;
+  implementedBeds: null;
+  normalStaffedCapacity: null;
+  dengueUsableBeds: null;
+  dengueInpatientEligible: null;
+  sourceAsOf: string;
+  primarySourceUrl: string;
+  address: string;
+  ownership: string;
+  philHealthCategory: string;
+  coordinateStatus: 'UNAVAILABLE' | 'PROVISIONAL_HISTORICAL_MATCH' | 'VERIFIED';
+  coordinateEvidenceStatus: string;
+  coordinateSourceUrl: string;
+  coordinateQualityNote: string;
+  coordinateIsVerifiedEntrance: false;
+  coordinateVerifiedAt: null;
 }
 export interface FacilityResult {
   facilityId: string;

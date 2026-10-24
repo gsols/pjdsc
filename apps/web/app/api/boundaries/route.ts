@@ -16,7 +16,7 @@ export async function GET() {
     return NextResponse.json(
       {
         error:
-          'NCR city boundary GeoJSON not yet imported. See docs/data-sources.md.',
+          'NCR boundary data could not be read. Restore the packaged ncr-cities.geojson and check the server working directory.',
       },
       { status: 503 }
     );

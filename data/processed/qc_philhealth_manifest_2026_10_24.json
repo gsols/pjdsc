@@ -1,0 +1,36 @@
+{
+  "datasetId": "PHIC_QC_HOSP_2026_09_30_GEO_REVIEW_2026_10_24",
+  "primaryPublisher": "Philippine Health Insurance Corporation (PhilHealth)",
+  "publishedAsOf": "2026-09-30",
+  "geocodeReviewOn": "2026-10-24",
+  "region": "QUEZON_CITY",
+  "activeHospitals": 46,
+  "admissionOrLyingInDirectoryRecords": 116,
+  "maternityAndOtherSupplemental": 70,
+  "activeHospitalCoordinatesPresent": 46,
+  "activeHospitalVerifiedEntrances": 0,
+  "supplementalCoordinatesPresent": 3,
+  "accreditedHospitalBedsSum": 9389,
+  "hospitalBedMeaning": "PhilHealth accredited bed counts from 2026-09-30 register; not free, staffed, operational, dengue-specific or guaranteed unique across facilities until entity review",
+  "coordinateMeaning": "Third-party point candidates within QC; source-attached; no coordinate should be represented as confirmed emergency entrance",
+  "oldRegistryStatus": "DOH/NHFR 165 NCR facility JSON kept solely for archive/entity crosswalk, not used in QC simulator or QC hospital map.",
+  "facilityScope": "Hospitals and infirmaries only for QC core simulation; maternity and lying-in kept in separate non-dengue-primary research layer",
+  "sources": {
+    "philhealthHosp": "https://www.philhealth.gov.ph/partners/providers/facilities/accredited/HOSP_093026.pdf",
+    "philhealthMaternity": "https://www.philhealth.gov.ph/partners/providers/facilities/accredited/MCC_093026.pdf",
+    "qcHealthDept": "https://quezoncity.gov.ph/departments/city-healthdepartment/"
+  },
+  "fileSHA256": {
+    "data/processed/qc_philhealth_admissions_2026_09_30.csv": "5dd4c22aec63c6c58dd8485726312970383a133a585850fedd4277bf778b2c69",
+    "apps/web/public/data/qc-philhealth-hospitals.json": "929cbeb97a0edffdfeb8257ad5857347b9b56661004dbdaa364f4873fbd620c5",
+    "apps/web/public/data/qc-philhealth-admissions.json": "287d4cb733b4e847eb136d5a7053ca087c2cd93695cbb42b91d985f8647d2d92",
+    "apps/web/public/data/qc-philhealth-hospitals.geojson": "a0692a46c87dd013df08c41fbfde1455f50f72d21d40499d61c07008f2670d9a",
+    "data/processed/qc_hospital_geocode_audit_2026_10_24.csv": "2553053bcb82ea566edb70cf7387eba7e808de056c2682d84aea2b1db7ce5db5"
+  },
+  "knownIssues": [
+    "Potentially related Dr. Montano branches have distinct addresses and map positions; do not merge records without regulatory identity review.",
+    "70 supplementary lying-in/maternity provider records have only three provisional geocoded points; those are NOT geospatially complete.",
+    "No site coordinates have been verified against current emergency entrances. Historical reference points may have moved.",
+    "Bed counts are accredited counts; verified dengue-admitting services and staffed dengue beds are unavailable."
+  ]
+}
