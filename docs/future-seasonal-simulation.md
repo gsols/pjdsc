@@ -12,10 +12,47 @@ untrusted case arrays, facility registers, NCR scope and unsupported live mode.
 
 ## Future seasonal engine
 
+The current bed-demand percentage is expected dengue bed demand / scenario-assumed
+dengue slots × 100. It is calculated before diversions, can exceed 100%, and is
+null if no dengue slots are assumed. It is distinct from assumed patient-choice
+shares and post-placement modeled occupancy. Nearby cards and the right sidebar
+show the ratio explicitly; it never represents verified current bed availability.
+
+### Current v2 update — XGBoost, 2026-10-25
+
+The current future case model is `seasonal_xgboost` using pinned XGBoost 3.1.3,
+`XGBRegressor`, `count:poisson`, CPU `hist`, fixed seed and bounded threads. The
+official [Python API reference](https://xgboost.readthedocs.io/en/release_3.1.0/python/python_api.html)
+documents the estimator. It uses the same audited QC data, past-only features,
+training-only weather analogs and 2018–2025 expanding year folds. Raw files are
+unchanged. Historical replay retains its previously audited environmental runs.
+
+XGBoost is an explicit user choice, not the calibration winner. Pre-2024 MAE is
+65.15 for XGBoost, 64.28 for original boosting and 65.88 for the seasonal baseline.
+2024/2025 XGBoost MAE is 79.06/112.94 versus baseline 74.43/110.75. Experimental
+80%-target range coverage is 76.92%/55.77%. Report/manifest record the comparison,
+requested model, software and source/code hashes. There is no superiority claim.
+
+Required beds are **not a directly trained XGBoost occupancy model**: no observed
+admissions, LOS or census labels are available. XGBoost supplies conditional future
+cases, then configured admission fraction/delay/LOS produces bed-demand curves.
+The workspace defaults to equal arrival shares across the nearest three assumed
+eligible hospitals; a nearest-only comparator remains available. Per-place/hospital
+outputs show baseline and surge demand, expected admissions, additional required
+staffing and finite-capacity shortfall. Staffed supply/vacancy remains unknown.
+Extra surge staffing compares whole-bed requirements with the no-added-surge
+counterfactual on the same day; it does not round a fractional difference into an
+extra bed when baseline rounding already covers that demand. Reported peak extra
+staffing is the largest such daily increment, which need not equal the difference
+between two peaks occurring on different days.
+This supersedes the original v1 implementation description below.
+
+### Original v1 implementation and evaluation history
+
 `scripts/train_qc_seasonal.py` checks the original audit/source hashes first. It
 preserves the workbook and trains on QC `YR`/`WN` observations from 2010–2025.
-It compares an existing scikit-learn histogram gradient boosting Poisson model
-with a within-season historical mean. No additional XGBoost dependency is needed.
+The original v1 compared an existing scikit-learn histogram gradient boosting
+Poisson model with a within-season historical mean. V2 additionally requires XGBoost.
 Features comprise seasonal harmonics and lag-1/2/4 rainfall, temperature and
 humidity. Future inputs use labeled historical weather analogs selected from
 past within-season rows; they are assumptions, not operational weather forecasts.
@@ -84,3 +121,20 @@ timestamp and content hash. Model binaries and scenario results are local ignore
 artifacts, regenerated from audited raw files. See `docs/SESSION_HANDOFF.md` for
 the current verification checkpoint and `docs/qc-simulation-workspace.md` for
 historical workspace methods.
+
+### Windows artifact validation repair (2026-10-24)
+
+The prior seasonal manifest pinned a CRLF validation report while Git stored LF
+bytes; Windows checkout also converted the two hash-pinned Python files to CRLF.
+Both changes invalidated byte hashes without changing data or model behavior.
+The training script now publishes JSON as explicit UTF-8/LF bytes with atomic
+replacement, publishes the model atomically and writes the manifest last.
+`.gitattributes` pins the training/domain code to LF. Rebuild with the command
+above after an actual code/source/software change; validation remains strict and
+never substitutes historical curves or another model. The regenerated model
+reproduces the previous checksum and evaluation results.
+
+`/readiness` includes `seasonalForecast.ready` and safe failure diagnostics.
+Future workspace artifact failures return HTTP 503 with
+`SEASONAL_ARTIFACTS_UNAVAILABLE`, the failed validation category and the rebuild
+command. The reload button retries the active tab's current dates and controls.

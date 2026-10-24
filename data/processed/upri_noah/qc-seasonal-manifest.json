@@ -1,6 +1,6 @@
 {
   "schemaVersion": "1.0",
-  "methodVersion": "qc-seasonal-boosted-engine-v1",
+  "methodVersion": "qc-seasonal-xgboost-engine-v2",
   "sources": {
     "repository": "pelitro-rcw/dengue-environmental-dataset",
     "referenceCommit": "02926278d570db8950da368d44db544ae0097615",
@@ -61,27 +61,28 @@
     "YR": 2025,
     "WN": 52
   },
-  "selectedModel": "seasonal_boosted_trees",
-  "trainedAt": "2026-10-24T14:01:53.888881+00:00",
-  "modelSha256": "4b36f7236f5772d652d6da2d3356fdb0b2fcaf388d4d860623dfd494a6c13865",
-  "validationSha256": "02f7d830ea9f36a6c219947c02f261675179b6dd51b81b16993a8e29228a70bc",
+  "selectedModel": "seasonal_xgboost",
+  "trainedAt": "2026-10-24T16:21:34.990487+00:00",
+  "modelSha256": "f5be53f108e88081c55b59d4fe354c12ac5d4084eaee284528a5c8088e0a8c1d",
+  "validationSha256": "1a7643a9e5c257eb6010220fc68fe716d0ae551488bd66af2d7fe8e6ec8a523a",
   "trainingRows": 828,
   "trainingCutoffBlock": 105351,
   "codeHashes": {
-    "scripts/train_qc_seasonal.py": "eae3131a550d6e97bc93748b485ddf153d25566cef351bb1d2a9ae0cd522cd85",
-    "services/engine/domain/seasonal_forecast.py": "d5a0ba257d06600fb15fce0c3172c714be94ac8575af222844368dc09c3dca2a"
+    "scripts/train_qc_seasonal.py": "aa3d1606e10ed4b859ca89f10e9bf30b1f2ce96eaa580c9668bc980f5030511f",
+    "services/engine/domain/seasonal_forecast.py": "4b74b9bb2232c8eb63d3a77a2778fdedf8e359179dd9c19fbdb2df612c7e7fc2"
   },
   "software": {
     "python": "3.13.3 (tags/v3.13.3:6280bb5, Apr  8 2025, 14:47:33) [MSC v.1943 64 bit (AMD64)]",
     "sklearn": "1.8.0",
+    "xgboost": "3.1.3",
     "numpy": "2.2.6",
     "joblib": "1.5.3"
   },
   "transformations": [
     "Preserve raw YR/WN, cases, weather and quality flags",
-    "Train seasonal harmonics + lagged weather boosted trees without unavailable current case lags",
-    "Select against seasonal baseline using only 2018\u20132023 calibration",
+    "Train XGBoost count:poisson plus original boosted and seasonal baselines using training-only features",
+    "Explicit user-selected XGBoost; baseline calibration uses only 2018\u20132023",
     "Evaluate 2024\u20132025 using training-only weather analogs",
-    "Refit on all historical QC observations through 2025; future weather remains assumed"
+    "Refit through 2025; future weather remains assumed; no direct hospital occupancy training targets exist"
   ]
 }

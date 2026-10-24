@@ -13,13 +13,18 @@ from fastapi import APIRouter, HTTPException
 from pydantic import Field, model_validator
 
 from .research import StrictModel, FacilityAssumption, forecast, annual_data, unavailable
-from ..domain import outbreak, patient_flow, spatial, optimizer, bed_forecast
+from ..domain import outbreak, patient_flow, spatial, optimizer, bed_forecast, hospital_demand, barangay_forecast
 from ..domain.outbreak import make_context, build_movie, VERSION
 from ..repositories.facility import load_facilities, DATASET_ID, HOSPITAL_SHA256
 from ..repositories.forecast_runs import FOLDER, load_runs, load_environmental_runs
 from ..upri_data import ROOT, sha256
+from ..repositories.barangay_runs import BarangayRankingUnavailable
 
 router = APIRouter(prefix="/v1")
+_CODE_MODULES = [("outbreak", outbreak), ("patient_flow", patient_flow), ("spatial", spatial),
+    ("optimizer", optimizer), ("bed_forecast", bed_forecast), ("hospital_demand", hospital_demand),
+    ("barangay_forecast", barangay_forecast)]
+_LOADED_CODE_HASHES = {name: sha256(module.__file__) for name, module in _CODE_MODULES}
 
 
 @router.get("/outbreak-demo")
@@ -50,6 +55,7 @@ class OutbreakInput(StrictModel):
     scenarioKind: Literal["hypothetical_shock", "historical_replay"]
     autoHotspots: bool = False
     allocationPolicy: Literal["nearest", "optimized"] = "nearest"
+    arrivalSplitPolicy: Literal["nearest", "nearest_three_equal"] = "nearest"
     surgeEnabled: bool = False
     surgeOnsetDay: int = Field(default=0, strict=True, ge=0, le=27)
     surgeMultiplier: float = Field(default=1, ge=1, le=10)
@@ -83,7 +89,7 @@ class OutbreakInput(StrictModel):
         return self
 
 
-def inputs(ident, cutoff_year=None):
+def inputs(ident, cutoff_year=None, use_xgboost=False):
     run = forecast(ident)
     if run["area"] != "QUEZON_CITY":
         raise HTTPException(422, detail={"code": "QC_DEMAND_REQUIRED", "message": "Spatial movies require QC demand, not NCR totals."})
@@ -93,7 +99,9 @@ def inputs(ident, cutoff_year=None):
         raise ValueError("Geometry checksum mismatch")
     hospitals = load_facilities()
     try:
-        context = make_context(run, annual_data()["records"], json.loads(path.read_text()), hospitals, cutoff_year)
+        context = make_context(run, annual_data()["records"], json.loads(path.read_text()), hospitals, cutoff_year, use_xgboost)
+    except BarangayRankingUnavailable as error:
+        raise HTTPException(503, detail={"code": "BARANGAY_RANKING_UNAVAILABLE", "message": str(error)}) from None
     except ValueError as error:
         if "No complete annual year" in str(error):
             raise HTTPException(422, detail={"code": "ANNUAL_WEIGHTS_UNAVAILABLE", "message": "No complete annual burden year is available before this scenario cutoff. Choose a later hypothetical onset; missing counts cannot be treated as zero."}) from None
@@ -114,7 +122,10 @@ def context(ident: str):
 @router.post("/outbreak-scenarios")
 def create_movie(params: OutbreakInput):
     try:
-        run, geo, manifest = inputs(params.forecastRunId, params.startDate.year)
+        if any(sha256(module.__file__) != _LOADED_CODE_HASHES[name] for name, module in _CODE_MODULES):
+            raise HTTPException(503, detail={"code": "ENGINE_RESTART_REQUIRED",
+                "message": "Simulation code changed while this worker was running. Restart the engine and reload the forecast; no outdated result was substituted."})
+        run, geo, manifest = inputs(params.forecastRunId, params.startDate.year, params.autoHotspots)
         if params.surgeEnabled and not run.get("dailyPredictions"):
             raise HTTPException(422, detail={"code": "SEASONAL_FORECAST_REQUIRED", "message": "Multiplicative future surges require the seasonal future engine."})
         approved = {h["id"] for h in geo["hospitals"]}
@@ -130,8 +141,9 @@ def create_movie(params: OutbreakInput):
             "facilitySourceSha256": HOSPITAL_SHA256, "forecastArtifactSha256": sha256(FOLDER / "forecast-runs.json"),
             "environmentalForecastSha256": sha256(FOLDER / "qc-environmental-forecasts.json") if run["model"] == "cases_weather" else None,
             "seasonalModelSha256": run.get("seasonalModelSha256"), "forecastRunSha256": run.get("runSha256"),
+            "spatialForecastSha256": geo["hotspotRanking"]["artifactSha256"] if geo.get("hotspotRanking") else None,
             "referenceSourceSha256": run["sourceSha256"], "sourceHashes": manifest["outputs"],
-            "codeHashes": {name: sha256(module.__file__) for name, module in [("outbreak", outbreak), ("patient_flow", patient_flow), ("spatial", spatial), ("optimizer", optimizer), ("bed_forecast", bed_forecast)]}}
+            "codeHashes": dict(_LOADED_CODE_HASHES)}
         ident = hashlib.sha256(json.dumps(identity, sort_keys=True).encode()).hexdigest()
         folder = FOLDER / "scenarios/movies"
         target = folder / (ident + ".json")
@@ -183,7 +195,9 @@ def saved_movie(ident: str):
             if approved_model()[1]["modelSha256"] != result["seasonalModelSha256"] or load_seasonal_run(result["parameters"]["forecastRunId"])["runSha256"] != result["forecastRunSha256"]:
                 raise ValueError("Seasonal model/forecast version changed")
         # Revalidate all canonical inputs, including polygon and annual table hashes.
-        _, _, manifest = inputs(result["parameters"]["forecastRunId"], date.fromisoformat(result["parameters"]["startDate"]).year)
+        _, current_context, manifest = inputs(result["parameters"]["forecastRunId"], date.fromisoformat(result["parameters"]["startDate"]).year, result["parameters"].get("autoHotspots", False))
+        if result.get("spatialForecastSha256") != (current_context["hotspotRanking"]["artifactSha256"] if current_context.get("hotspotRanking") else None):
+            raise ValueError("Saved spatial model version mismatch")
         if result["sourceHashes"] != manifest["outputs"] or result["scenarioId"] != ident:
             raise ValueError("Saved movie source version mismatch")
         result["resultSha256"] = expected

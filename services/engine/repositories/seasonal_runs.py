@@ -9,11 +9,21 @@ from uuid import uuid4
 
 import joblib
 import sklearn
+import xgboost
 
 from ..domain.seasonal_forecast import project_days, residual_paths, source_week, weather_analog, WEATHER, VERSION
 from ..upri_data import ROOT, sha256, verify_sources
 
 FOLDER = ROOT / "data/processed/upri_noah"
+
+
+class SeasonalArtifactError(ValueError):
+    """Safe actionable diagnostic; never substitute another model or source."""
+
+    def __init__(self, reason):
+        self.reason = reason
+        super().__init__("Seasonal forecast artifacts failed validation (" + reason +
+            "). Rebuild with python scripts/train_qc_seasonal.py, then retry. No fallback.")
 
 
 @lru_cache(maxsize=2)
@@ -25,13 +35,28 @@ def _read_model(digest):
 
 
 def approved_model():
+    try:
+        return _approved_model()
+    except SeasonalArtifactError:
+        raise
+    except FileNotFoundError:
+        raise SeasonalArtifactError("missing artifact") from None
+    except (OSError, ValueError, KeyError, TypeError):
+        raise SeasonalArtifactError("unreadable or invalid artifact") from None
+
+
+def _approved_model():
     manifest = json.loads((FOLDER / "qc-seasonal-manifest.json").read_text())
-    if manifest["sources"] != verify_sources() or manifest["software"]["sklearn"] != sklearn.__version__:
-        raise ValueError("Seasonal model source/software mismatch; retrain the approved model")
-    if sha256(FOLDER / "qc-seasonal-model.joblib") != manifest["modelSha256"] or sha256(FOLDER / "qc-seasonal-validation.json") != manifest["validationSha256"]:
-        raise ValueError("Seasonal model/validation checksum mismatch")
+    if manifest["sources"] != verify_sources():
+        raise SeasonalArtifactError("source mismatch")
+    if manifest["software"]["sklearn"] != sklearn.__version__ or manifest["software"].get("xgboost") != xgboost.__version__:
+        raise SeasonalArtifactError("software mismatch")
+    if sha256(FOLDER / "qc-seasonal-model.joblib") != manifest["modelSha256"]:
+        raise SeasonalArtifactError("model checksum mismatch")
+    if sha256(FOLDER / "qc-seasonal-validation.json") != manifest["validationSha256"]:
+        raise SeasonalArtifactError("validation report checksum mismatch")
     if any(sha256(ROOT / name) != digest for name, digest in manifest["codeHashes"].items()):
-        raise ValueError("Seasonal training code changed; retrain the approved model")
+        raise SeasonalArtifactError("training code checksum mismatch")
     return _read_model(manifest["modelSha256"]), manifest
 
 

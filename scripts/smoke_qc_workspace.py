@@ -24,15 +24,23 @@ def main():
         status, html = request(page)
         assert status == 200, (page, status)
         if page in {"/outbreak-response", "/simulate"}:
-            assert "Quezon City forecast" in html and "Observed cases already" in html and "Nearest hospital capacity" in html
+            assert "SurgeWise" in html and "Base cases for selected date" in html and "Nearest hospital capacity" in html
+            assert "Simulation not started" in html
             assert "Historical replay" in html and "Future surge forecast" in html
+            assert "Hotspot guide" in html and "Nearest hospital" in html
             assert "Expansion origin" not in html
     status, country = request("/data/philippines-context.geojson")
     assert status == 200 and len(country["features"]) == 17
     status, data = request("/api/research/qc-simulation")
     assert status == 200, data
     assert data["scope"] == "QUEZON_CITY" and data["forecastEvidence"]["model"] == "cases_weather"
+    assert data["progressionMethod"] == "dated_QC_forecast_allocated_by_xgboost_annual_burden_shares"
+    assert len(data["context"]["hotspotRanking"]["candidateIds"]) == 10
+    assert {b["id"] for b in data["context"]["barangays"] if b["isHighBurdenCandidate"]} == set(data["days"][-1]["hotspotIds"])
     assert len(data["periodSummary"]["barangays"]) == 142 and len(data["days"][-1]["facilities"]) == 46
+    assert any(len(b["hospitalsWithinBarangay"]) > 1 for b in data["context"]["barangays"])
+    assert all(f["nearestHotspot"] is None for f in data["days"][0]["facilities"])
+    assert all(f["nearestHotspot"]["barangayId"] in data["days"][-1]["hotspotIds"] for f in data["days"][-1]["facilities"])
     assert data["forecastEvidence"]["observedSourceYearToDateCases"] > 0
     for frame in data["days"]:
         assert frame["caseRange"]["lowerCases"] <= frame["cumulativeCases"] <= frame["caseRange"]["upperCases"]
@@ -50,7 +58,21 @@ def main():
     status, future = request("/api/research/future-simulation")
     assert status == 200, future
     assert future["workspaceTab"] == "future" and future["futureForecast"]["trainingCutoffBlock"]["YR"] == 2025
+    assert future["futureForecast"]["selectedModel"] == "seasonal_xgboost"
+    assert future["bedProjection"]["arrivalSplitPolicy"] == "nearest_three_equal"
+    assert len(future["bedProjection"]["placePeaks"]) == 142
+    assert all(len(p["hospitals"]) == 3 and abs(sum(h["share"] for h in p["hospitals"]) - 1) < 1e-9 for p in future["bedProjection"]["placePeaks"])
+    assert future["progressionMethod"] == "dated_QC_forecast_allocated_by_xgboost_annual_burden_shares"
+    assert all(f["nearestHotspot"]["barangayId"] in future["days"][-1]["hotspotIds"] for f in future["days"][-1]["facilities"])
     assert future["bedProjection"]["staffedBedsRequired"] >= 0
+    for day in future["days"]:
+        for facility in day["facilities"]:
+            beds = facility["bedForecast"]
+            capacity = beds["assumedSupportedDengueCapacity"]
+            if capacity > 0:
+                assert abs(beds["demandUtilizationPct"] - beds["expectedBeds"] / capacity * 100) < 1e-7
+            else:
+                assert beds["demandUtilizationPct"] is None
     baseline_january = None
     for days in [2, 12, 14, 28]:
         status, window = request("/api/research/future-simulation", {"startDate": "2027-01-01", "horizonDays": days, "surgeEnabled": False})
@@ -63,6 +85,8 @@ def main():
     assert status == 200, today
     assert baseline_january != today["periodSummary"]["expectedCases"]
     assert future["periodSummary"]["expectedCases"] > today["periodSummary"]["expectedCases"]
+    assert future["bedProjection"]["peakAdditionalStaffedBedsDueToSurge"] > 0
+    assert today["bedProjection"]["peakAdditionalStaffedBedsDueToSurge"] == 0
     for patch in [{"horizonDays": 29}, {"area": "NCR"}, {"facilities": []}]:
         status, _ = request("/api/research/future-simulation", patch)
         assert status == 422

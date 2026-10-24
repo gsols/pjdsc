@@ -1,6 +1,6 @@
 .qc-workspace {
   min-height: 100vh;
-  padding-bottom: 128px;
+  padding-bottom: 0;
   background: #091923;
   color: #e1edf4;
   font-size: 12px;
@@ -45,6 +45,20 @@
 .qc-environment strong { color: #cde3e8; font-weight: 500; }
 .qc-environment strong small { display: inline; font-size: 8px; }
 .qc-main { min-width: 0; }
+.qc-simulation-pending { margin: 0; padding: 12px 22px; background: #1b343d; border-bottom: 1px solid #48616e; color: #c0d4da; font-size: 11px; line-height: 1.7; }
+.qc-local-hospitals { display: grid; gap: 6px; margin-top: 12px; }
+.qc-local-hospitals button { text-align: left; font-size: 10px; }
+.qc-local-hospitals small { display: block; }
+.qc-results-footer { flex-shrink: 0; min-width: 0; background: #102733; }
+.qc-results-footer > summary { cursor: pointer; padding: 10px 22px; color: #bdd8df; border-top: 1px solid #48616e; font-size: 11px; }
+.qc-results-footer > summary span { display: inline; }
+.qc-results-footer[open] .qc-footer-collapsed, .qc-results-footer:not([open]) .qc-footer-expanded { display: none; }
+.qc-results-footer > summary:focus-visible { outline: 2px solid #74dbca; outline-offset: -3px; }
+.qc-results-footer .qc-statusbar { position: static; }
+.qc-case-summary > summary { cursor: pointer; padding: 11px 22px; background: #102733; border-bottom: 1px solid #2c4957; color: #bdd8df; font-size: 11px; }
+.qc-case-summary > summary span { display: inline; }
+.qc-case-summary[open] .qc-summary-collapsed, .qc-case-summary:not([open]) .qc-summary-expanded { display: none; }
+.qc-case-summary > summary:focus-visible { outline: 2px solid #74dbca; outline-offset: -3px; }
 .qc-period-summary { display: flex; gap: 10px 28px; flex-wrap: wrap; padding: 18px 22px; background: #102733; border-bottom: 1px solid #2c4957; }
 .qc-period-summary > div { flex: 1; min-width: 160px; }
 .qc-period-summary span { display: block; color: #97b5c2; font-size: 10px; }
@@ -54,7 +68,8 @@
 .qc-period-summary > p { width: 100%; margin: 2px 0 0; color: #8ba7b5; font-size: 9px; line-height: 1.7; }
 .qc-range-caution { margin: 0; padding: 9px 22px; background: #332e24; color: #d8bf96; font-size: 9px; line-height: 1.75; border-bottom: 1px solid #5e4d35; }
 .qc-map-shell { position: relative; height: 565px; border-bottom: 1px solid #355260; overflow: hidden; }
-.outbreak-map { width: 100%; height: 100%; min-height: 350px; }
+.outbreak-map { position: relative; isolation: isolate; z-index: 0; width: 100%; height: 100%; min-height: 350px; }
+.qc-map-date, .qc-map-switch, .qc-country-overview { z-index: 10; }
 .qc-map-date { position: absolute; left: 17px; top: 17px; pointer-events: none; padding: 12px 16px; background: #0c2230ed; border: 1px solid #3b5e6c; border-radius: 6px; box-shadow: 0 5px 22px #0004; }
 .qc-map-date span { display: block; font-size: 9px; letter-spacing: .1em; text-transform: uppercase; color: #a6d6cb; }
 .qc-map-date strong { display: block; font-size: 23px; font-weight: 500; margin: 5px 0; }
@@ -64,12 +79,53 @@
 .qc-country-overview { position: absolute; width: 148px; height: 182px; right: 15px; bottom: 114px; border: 1px solid #557277; border-radius: 6px; overflow: hidden; box-shadow: 0 4px 20px #0005; background: #102733; }
 .qc-country-overview > div { width: 100%; height: 159px; }
 .qc-country-overview > span { display: block; text-align: center; font-size: 8px; padding: 6px 2px; color: #c5dbd8; }
-.qc-map-legend { position: absolute; bottom: 0; left: 0; right: 0; padding: 11px 17px; background: #0d2330f2; color: #a2bcc6; font-size: 9px; pointer-events: none; }
+.qc-map-legend { position: absolute; z-index: 20; bottom: 0; left: 0; right: 0; padding: 11px 17px; background: #0d2330; color: #a2bcc6; font-size: 9px; }
 .qc-map-legend strong { display: block; font-size: 10px; font-weight: 500; color: #d1e3e7; margin-bottom: 6px; }
 .qc-map-legend > div { display: flex; gap: 10px 15px; flex-wrap: wrap; }
 .qc-map-legend span { display: flex; align-items: center; gap: 5px; }
 .qc-map-legend i { width: 15px; height: 8px; display: inline-block; border-radius: 2px; }
 .qc-map-legend small { display: block; margin-top: 6px; color: #93adb9; font-size: 8px; line-height: 1.6; }
+.qc-map-legend .qc-line-key { margin-top: 9px; font-size: 10px; color: #e5eaf4; }
+.qc-map-legend .qc-marker-key { margin-top: 9px; font-size: 10px; color: #e5eaf4; align-items: center; }
+.qc-map-legend .qc-other-barangay { background: #20394c; border: 1px solid #65899c; }
+.qc-marker-hotspot { color: #27180f; border: 2px solid #fff3dd; background: #ff984f; border-radius: 50%; width: 21px; height: 21px; display: inline-flex; align-items: center; justify-content: center; font-size: 10px; box-shadow: 0 0 0 3px #ff8d5233; }
+.qc-workspace .movie-hotspot-icon { display: flex; align-items: center; justify-content: center; width: 29px; height: 29px; padding: 0; border: 2px solid #fff3dd; border-radius: 50%; color: #27180f; background: #ff984f; box-shadow: 0 0 0 4px #ff8d5238, 0 3px 7px #0009; font: 500 12px/1 sans-serif; cursor: pointer; z-index: 4; }
+.qc-workspace .movie-hotspot-icon:focus-visible { outline: 3px solid #fff3dd; outline-offset: 4px; }
+.qc-workspace button.movie-hotspot-icon:hover:not(:disabled) { background: #ffb477; border-color: #fff3dd; }
+.qc-marker-hospital { display: inline-flex; align-items: center; justify-content: center; border: 1px dashed #b5e1e7; border-radius: 4px; width: 19px; height: 19px; background: #135a68; color: #efffff; font-size: 15px; }
+.qc-workspace .movie-hospital-icon { display: flex; align-items: center; justify-content: center; width: 25px; height: 25px; padding: 0; border: 1.5px dashed #c5e9ec; border-radius: 6px; color: #efffff; background: #135a68; box-shadow: 0 2px 5px #0008; font: 700 19px/1 sans-serif; cursor: pointer; z-index: 3; }
+.qc-workspace .movie-hospital-icon.selected-hospital { width: 31px; height: 31px; border: 2px solid #ffe09a; background: #52644b; box-shadow: 0 0 0 4px #ffe09a33; z-index: 5; }
+.qc-workspace .movie-hospital-icon:focus-visible { outline: 3px solid #ffe09a; outline-offset: 3px; }
+.qc-hotspot-inspection { border-color: #ffad78; }
+.qc-map-legend .qc-line-key i { width: 26px; height: 0; border-radius: 0; background: none; border-top: 3px dashed #c9b4ff; }
+.qc-map-legend .qc-line-key .placement-line { border-top: 3px solid #52e0d2; }
+.qc-map-legend .qc-line-key .inspected-line { border-top: 3px dotted #ffe09a; }
+.qc-map-inspection { position: absolute; z-index: 15; top: 60px; right: 14px; width: min(280px, calc(100% - 28px)); padding: 14px; border: 1px solid #e4c67f; border-radius: 8px; background: #0b2332; box-shadow: 0 8px 25px #0007; font-size: 11px; line-height: 1.6; }
+.qc-map-inspection > span { display: block; color: #e7cc8e; font-size: 9px; padding-right: 22px; }
+.qc-map-inspection > strong { display: block; color: #fff3cf; margin: 5px 18px 10px 0; font-size: 13px; font-weight: 500; }
+.qc-map-inspection small { color: #b8c9d3; font-size: 10px; }
+.qc-map-inspection p { margin: 10px 0 0; border-top: 1px solid #49616c; padding-top: 9px; }
+.qc-map-inspection .qc-inspection-close { position: absolute; right: 7px; top: 7px; padding: 1px 7px; font-size: 18px; }
+.qc-hotspot-key { padding: 20px 22px; border-bottom: 1px solid #365260; background: #102b38; }
+.qc-hotspot-key h2 { font-size: 15px; margin: 0 0 7px; color: #f1e3c1; }
+.qc-hotspot-key > p { font-size: 11px; line-height: 1.7; color: #adbdc9; }
+.qc-hotspot-key table { width: 100%; border-collapse: collapse; text-align: left; font-size: 12px; }
+.qc-hotspot-key th { color: #b8cbd3; font-size: 10px; font-weight: 500; }
+.qc-hotspot-key td, .qc-hotspot-key th { padding: 10px 8px; border-bottom: 1px solid #355260; }
+.qc-hotspot-key button { text-align: left; font-size: 11px; }
+.qc-hotspot-key td small { display: block; margin-top: 5px; font-size: 10px; color: #a4bfcb; }
+.qc-hotspot-key tr.selected { background: #31515a; box-shadow: inset 3px 0 #ffe09a; }
+.qc-hotspot-key tr.selected button { font-weight: 400; color: #fff1cc; }
+.qc-selected-place, .qc-hospital-hotspot { display: grid; gap: 7px; padding: 13px; margin-top: 14px; background: #1d3b47; border: 1px solid #7b969b; border-radius: 6px; font-size: 11px; line-height: 1.6; }
+.qc-selected-place strong { color: #fff1cc; font-weight: 500; }
+.qc-hospital-hotspot { grid-column: 1/-1; }
+.qc-hospital-picker { display: grid; grid-column: 1/-1; gap: 7px; margin-top: 12px; color: #bad0d9; font-size: 11px; }
+.qc-hospital-picker select { width: 100%; min-width: 0; padding: 8px; border: 1px solid #78939e; border-radius: 5px; background: #102a38; color: #e6f1f5; font-size: 11px; }
+.qc-hospital-hotspot small { color: #b2c5ce; }
+.qc-hospital-card h3 button { width: 100%; text-align: left; }
+.qc-hospital-card.active { border: 2px solid #ffe09a; box-shadow: 0 0 0 3px #ffe09a16; }
+.qc-workspace .movie-location-label, .qc-workspace .movie-location-label.selected-location { font-weight: 400; font-size: 9px; }
+.qc-workspace .movie-location-label.selected-location { max-width: 245px; padding: 4px 7px; background: #243b35ef; border: 1px solid #8dbf93; box-shadow: 0 3px 10px #0005; color: #e7f2cf; }
 .qc-workspace .movie-location-label { padding: 4px 7px; background: #243b35ef; border: 1px solid #8dbf93; color: #e7f2cf; font-size: 9px; max-width: 155px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; box-shadow: 0 3px 10px #0005; }
 .qc-workspace .hospital-location { background: #173440ee; border-color: #6daab9; color: #caf1ee; font-size: 8px; max-width: 135px; }
 .movie-map-error { position: absolute; z-index: 5; top: 200px; left: 30px; max-width: 70%; padding: 18px; color: #f8ccb1; background: #372c2a; border-radius: 5px; }
@@ -150,3 +206,43 @@
 @media (max-width: 1180px) { .qc-layout { grid-template-columns: 235px minmax(350px, 1fr); }.qc-hospital-sidebar { grid-column: 1/-1; border: 0; border-top: 1px solid #2d4b59; display: grid; grid-template-columns: repeat(3, 1fr); gap: 0 12px; }.qc-hospital-sidebar > .qc-section-heading, .qc-hospital-sidebar > h2, .qc-hospital-sidebar > p, .qc-hospital-sidebar > .qc-area-estimate { grid-column: 1/-1; }.qc-hospital-card { margin-top: 4px; }.qc-map-shell { height: 530px; }.qc-statusbar > div { padding: 12px; }.qc-header h1 { font-size: 21px; } }
 @media (max-width: 700px) { .qc-header { align-items: flex-start; padding: 17px; gap: 12px; }.qc-header h1 { font-size: 18px; }.qc-header p { font-size: 9px; line-height: 1.7; }.qc-header nav { max-width: 120px; gap: 8px; font-size: 9px; }.qc-header nav > span { font-size: 8px; line-height: 1.6; border-radius: 6px; }.qc-scope-note { padding: 11px 17px; font-size: 10px; }.qc-layout { display: flex; flex-direction: column; }.qc-controls { width: 100%; border: 0; border-bottom: 1px solid #2b4856; max-height: 370px; overflow-y: auto; }.qc-main { width: 100%; }.qc-map-shell { height: 530px; }.qc-country-overview { width: 112px; height: 147px; bottom: 125px; right: 10px; }.qc-country-overview > div { height: 123px; }.qc-country-overview > span { font-size: 7px; }.qc-map-date { left: 12px; top: 12px; padding: 10px 12px; }.qc-map-date strong { font-size: 20px; }.qc-map-switch { left: 12px; top: 125px; }.qc-period-summary { padding: 16px; gap: 12px; }.qc-period-summary strong { font-size: 25px; }.qc-hospital-sidebar { display: block; width: 100%; }.qc-hospital-card { margin-top: 12px; }.qc-hotspots, .qc-playback-panel { padding: 17px; }.qc-table-scroll table { min-width: 450px; }.qc-chart-heading span { font-size: 8px; max-width: 140px; text-align: right; }.qc-provenance { flex-direction: column; padding: 17px; }.qc-view-controls > span { margin-left: 0; width: 100%; font-size: 8px; }.qc-statusbar { grid-template-columns: repeat(6, 148px); }.qc-statusbar strong { font-size: 24px; }.qc-error { padding: 14px 17px; flex-direction: column; align-items: flex-start; } }
 @media (prefers-reduced-motion: reduce) { .qc-workspace * { transition: none !important; animation: none !important; scroll-behavior: auto !important; } }
+
+/* Keep the entire map viewport free of panels that could conceal markers. */
+.qc-workspace .qc-map-shell { height: auto; overflow: visible; display: flex; flex-direction: column; }
+.qc-map-toolbar { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; padding: 12px 16px; background: #102733; }
+.qc-workspace .qc-map-date { position: static; padding: 0; border: 0; box-shadow: none; }
+.qc-workspace .qc-map-switch { position: static; flex-wrap: wrap; }
+.qc-map-stage { position: relative; height: 480px; min-height: 380px; }
+.qc-progression-note { margin: 0; padding: 10px 16px; color: #b8d0d6; background: #18333d; font-size: 10px; line-height: 1.7; border-top: 1px solid #36525e; }
+.qc-map-information { display: flex; flex-wrap: wrap; gap: 10px; background: #0d2330; align-items: flex-start; padding: 12px; }
+.qc-workspace .qc-map-information .qc-map-legend { position: static; order: 0; flex: 1; min-width: 220px; padding: 5px; }
+.qc-workspace .qc-map-information .qc-country-overview { position: relative; order: 1; inset: auto; flex-shrink: 0; margin: 0; }
+.qc-workspace .qc-map-information .qc-map-inspection { position: relative; order: 2; inset: auto; width: 100%; margin: 0; box-sizing: border-box; }
+.qc-workspace .movie-hotspot-icon.secondary-hotspot { width: 16px; height: 16px; font-size: 10px; box-shadow: 0 1px 4px #0008; border-width: 1.5px; }
+.qc-selected-place svg { width: 100%; height: 90px; }
+.qc-local-bed-forecast { padding: 20px 22px; border-bottom: 1px solid #365260; background: #132d38; }
+.qc-local-bed-forecast h2 { margin: 0 0 10px; font-size: 15px; font-weight: 500; color: #d9e8e9; }
+.qc-local-bed-forecast p, .qc-local-bed-forecast small { color: #abc2ce; font-size: 11px; line-height: 1.7; }
+.qc-local-bed-forecast table { min-width: 640px; width: 100%; border-collapse: collapse; text-align: left; font-size: 11px; }
+.qc-local-bed-forecast th, .qc-local-bed-forecast td { padding: 10px 8px; border-bottom: 1px solid #3a5561; }
+.qc-local-bed-forecast th { font-size: 10px; font-weight: 500; }.qc-local-bed-forecast button { text-align: left; }
+.qc-local-bed-summary { grid-column: 1/-1; padding: 12px; margin-top: 12px; border: 1px solid #64878b; border-radius: 6px; background: #173843; }
+.qc-local-bed-summary h3 { margin: 0 0 8px; font-size: 12px; font-weight: 500; }
+.qc-local-bed-summary > div { display: grid; gap: 5px; padding: 9px 0; border-bottom: 1px solid #42606b; font-size: 10px; line-height: 1.6; }
+.qc-local-bed-summary button { text-align: left; }.qc-local-bed-summary small { display: block; margin-top: 8px; color: #b7cbd3; font-size: 10px; }
+.qc-workspace .qc-bed-summary { grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); }
+.qc-case-color-ramp { height: 9px; border-radius: 4px; margin-bottom: 7px; background: linear-gradient(90deg, #284f61 0%, #488c8a 10%, #b7b06b 20%, #e89a5c 50%, #ed645b 100%); }
+.qc-surge-status { padding: 10px 12px; margin: 10px 0; border: 1px solid #56727a; border-radius: 6px; color: #d8e7e9; background: #173541; font-size: 12px; }
+.qc-surge-status.active { border-color: #e2a46d; color: #ffe2ba; background: #443727; }.qc-surge-status small { display: block; margin-top: 5px; }
+.qc-nearby-bed-use { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; margin: 16px 0; }
+.qc-nearby-bed-use > article { padding: 12px; border: 1px solid #587780; border-radius: 7px; background: #0d2733; }
+.qc-nearby-bed-use > article > button { width: 100%; text-align: left; font-size: 12px; }
+.qc-bed-use { padding: 12px; margin: 10px 0; border: 1px solid #508b87; border-radius: 6px; background: #123a40; color: #d8eee9; }
+.qc-bed-use > strong { font-size: 11px; font-weight: 500; }
+.qc-bed-use-ratio { display: flex; align-items: baseline; gap: 8px; margin: 10px 0; }.qc-bed-use-ratio > b { font-size: 25px; font-weight: 500; }.qc-bed-use-ratio span { font-size: 11px; line-height: 1.6; }
+.qc-bed-use-percent { font-size: 17px; margin: 8px 0; color: #c3f2df; font-variant-numeric: tabular-nums; }
+.qc-bed-use-track { height: 7px; background: #08232a; border-radius: 5px; overflow: hidden; margin: 8px 0; }.qc-bed-use-track > div { height: 100%; background: #75dac1; transition: width .35s ease; }
+.qc-bed-use.over-capacity { border-color: #e8ac74; background: #403328; }.qc-bed-use.over-capacity .qc-bed-use-percent { color: #ffd1a2; }.qc-bed-use.over-capacity .qc-bed-use-track > div { background: #f1aa71; }
+.qc-bed-use small, .qc-bed-use p { display: block; font-size: 10px; line-height: 1.7; color: #b9d0d5; }.qc-bed-use p { border-top: 1px solid #537178; margin: 10px 0; padding-top: 8px; }
+@media (min-width: 1600px) { .qc-map-stage { height: 550px; } }
+@media (max-width: 700px) { .qc-map-toolbar { align-items: flex-start; }.qc-map-stage { height: 420px; } }

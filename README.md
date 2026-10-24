@@ -1,4 +1,4 @@
-# PJDSC - NCR Dengue Intelligence
+# SurgeWise
 
 Map-first public-health research and preparedness prototype using Next.js/MapLibre and FastAPI. Not live surveillance, verified hospital vacancy reporting, clinical triage or a referral service.
 
@@ -6,8 +6,8 @@ Map-first public-health research and preparedness prototype using Next.js/MapLib
 
 - The simulation sidebar now separates **Historical replay** and **Future surge
   forecast**, with arbitrary **1–28-day** windows and 2/7/12/14/28 shortcuts.
-  Future dates, including January 2027, use newly generated seasonal gradient
-  boosting forecasts and assumed historical weather analogs. Configure surge
+  Future dates, including January 2027, use newly generated XGBoost seasonal
+  case forecasts and assumed historical weather analogs. Configure surge
   onset/ramp/multiplier; view daily/peak required staffed beds, sensitivity bounds
   and hospital catchment demand. Actual vacancies remain unknown. The simpler
   baseline outperformed the selected model on later holdouts; the validation table
@@ -15,12 +15,18 @@ Map-first public-health research and preparedness prototype using Next.js/MapLib
   and [model-switch handoff](docs/SESSION_HANDOFF.md). Historical behavior below
   remains available in its own tab. Future mode requires the local approved model:
   `python scripts/train_qc_seasonal.py` regenerates it from audited source inputs.
+  `python scripts/train_qc_barangay.py` separately rebuilds the approved annual
+  barangay-burden ranking and its validation/manifests. Both local artifacts are
+  required for the QC workspace; missing/invalid artifacts block it without fallback.
 
 - `/outbreak-response` is the automatic QC forecast/capacity workspace
   (`/simulate` redirects there). No place selection is required. Choose a date
   window or 7/14/28-day horizon; source case history and lagged rainfall,
-  temperature and humidity inform QC forecasts, with prior annual burden
-  allocating them to all 142 barangays. The entire Philippines remains geographic
+  temperature and humidity inform QC forecasts. A separate annual XGBoost model
+  supplies modeled spatial shares across 142 barangays; only its ten highest-burden
+  candidates receive hotspot markers/coloring. Positive demand alone does not mean
+  hotspot status. See [annual ranking methods](docs/barangay-xgboost-ranking.md).
+  The entire Philippines remains geographic
   context, including a permanent overview; numerical simulation is QC only.
   The bottom bar starts with dated observed source cases and retains daily/
   cumulative expected cases, supported census, holding and unresolved demand.

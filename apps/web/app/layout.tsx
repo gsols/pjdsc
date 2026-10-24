@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import './globals.css';
 export const metadata: Metadata = {
-  title: 'PJDSC | NCR Dengue Intelligence',
+  title: 'SurgeWise',
   description:
     'Map-first dengue forecasting and preparedness research prototype',
 };

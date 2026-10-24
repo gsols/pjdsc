@@ -1,0 +1,72 @@
+{
+  "schemaVersion": "1.0",
+  "methodVersion": "qc-barangay-xgboost-two-year-v1",
+  "builtAt": "2026-10-24T17:01:06.665895+00:00",
+  "sources": {
+    "repository": "pelitro-rcw/dengue-environmental-dataset",
+    "referenceCommit": "02926278d570db8950da368d44db544ae0097615",
+    "license": "ODC-ODbL-1.0 (source README)",
+    "datasetDoiAsCitedBySource": "10.5281/zenodo.19448854",
+    "sources": [
+      {
+        "path": "data/raw/upri_noah/DC_Regional-Brgy.7z.001",
+        "sha256": "357544d7b563c2b22c1ed2573bd550ae3e7d74d660e9772a1bd1d4dffe7251d4",
+        "sourceUrl": "https://github.com/pelitro-rcw/dengue-environmental-dataset/blob/02926278d570db8950da368d44db544ae0097615/DC_Regional-Brgy.7z.001",
+        "sourceCommitId": "02926278d570db8950da368d44db544ae0097615",
+        "commitVerification": "exact_git_blob_match"
+      },
+      {
+        "path": "data/raw/upri_noah/DC_Regional-Brgy.7z.002",
+        "sha256": "15f7bca16ed1574a8c9e2b1782d7e97e08edeb92be0ec5e46603fb8a9b8e5a73",
+        "sourceUrl": "https://github.com/pelitro-rcw/dengue-environmental-dataset/blob/02926278d570db8950da368d44db544ae0097615/DC_Regional-Brgy.7z.002",
+        "sourceCommitId": "02926278d570db8950da368d44db544ae0097615",
+        "commitVerification": "exact_git_blob_match"
+      },
+      {
+        "path": "data/raw/upri_noah/Dengue_Environmental Vars_Dataset.xlsx",
+        "sha256": "94c65ce24e13c132007f67da9b4d10f7023e9429fff79c358b1de938f982dd78",
+        "sourceUrl": "https://github.com/pelitro-rcw/dengue-environmental-dataset/blob/02926278d570db8950da368d44db544ae0097615/Dengue_Environmental%20Vars_Dataset.xlsx",
+        "sourceCommitId": "02926278d570db8950da368d44db544ae0097615",
+        "commitVerification": "exact_git_blob_match"
+      },
+      {
+        "path": "data/raw/upri_noah/Dengue_Environmental Vars_Validation.R",
+        "sha256": "2be6cdaa401fb29564b5e1f03914c4abff29d501297f68e7013ae6e3f11bf8d0",
+        "sourceUrl": "https://github.com/pelitro-rcw/dengue-environmental-dataset/blob/02926278d570db8950da368d44db544ae0097615/Dengue_Environmental%20Vars_Validation.R",
+        "sourceCommitId": "02926278d570db8950da368d44db544ae0097615",
+        "commitVerification": "exact_git_blob_match"
+      },
+      {
+        "path": "data/raw/upri_noah/QC_YearlyData-Barangay(CSV).csv",
+        "sha256": "50a26b5395d0a096d895932b82832207946133f3c92b66b2a4a3158c81c5ddbd",
+        "sourceUrl": "https://github.com/pelitro-rcw/dengue-environmental-dataset/blob/02926278d570db8950da368d44db544ae0097615/QC_YearlyData-Barangay%28CSV%29.csv",
+        "sourceCommitId": "02926278d570db8950da368d44db544ae0097615",
+        "commitVerification": "exact_git_blob_match"
+      },
+      {
+        "path": "data/raw/upri_noah/README.md",
+        "sha256": "342eabe7e5742cbce77c09f45ecfb8ce8e253573a6de5292b0f5f5e637fbdde4",
+        "sourceUrl": "https://github.com/pelitro-rcw/dengue-environmental-dataset/blob/02926278d570db8950da368d44db544ae0097615/README.md",
+        "sourceCommitId": "02926278d570db8950da368d44db544ae0097615",
+        "commitVerification": "exact_git_blob_match"
+      },
+      {
+        "path": "data/reference/upri_noah/environmental_validation_report.xlsx",
+        "sha256": "9c00abb3b4e8ac8637d7be8e0e159346d201b8c68cd6f298077442ec0c11b254",
+        "sourceUrl": "https://raw.githubusercontent.com/pelitro-rcw/dengue-environmental-dataset/02926278d570db8950da368d44db544ae0097615/environmental_validation_report.xlsx",
+        "sourceCommitId": "02926278d570db8950da368d44db544ae0097615"
+      }
+    ]
+  },
+  "outputSha256": "8d134e13bb991e896c0b4529c6b4e1560e8b1e81eb56ab3c18b9dbd740ee3653",
+  "modelSha256": "cf07eb70d10cd8808bf1f1b34a340ce305734047b237553c8ab2b4b91b927c06",
+  "software": {
+    "xgboost": "3.1.3",
+    "numpy": "2.2.6"
+  },
+  "codeHashes": {
+    "scripts/train_qc_barangay.py": "1a2b58748164064a9f3a547dba903989055b0c574c6b995e528420abd6c0a17d",
+    "services/engine/domain/barangay_forecast.py": "c00e4ae49b107c9ebbc01657f8773226693065e94fa470a29fe513a895cbefa3"
+  },
+  "availabilityAssumption": "One additional full year publication lag: issue year Y only uses annual records through Y-2"
+}

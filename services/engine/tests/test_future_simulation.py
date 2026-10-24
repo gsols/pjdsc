@@ -38,7 +38,10 @@ def test_seasonal_evidence_uses_only_past_training_and_frozen_selection():
     scores = {name: sum(abs(r["observed"] - r[name]) for r in engine["calibrationRecords"]) / len(engine["calibrationRecords"])
               for name in evidence["selection"]["scores"]}
     assert scores == pytest.approx(evidence["selection"]["scores"])
-    assert engine["selectedModel"] == min(scores, key=scores.get)
+    from xgboost import XGBRegressor
+    assert isinstance(engine["xgboostModel"], XGBRegressor)
+    assert engine["selectedModel"] == evidence["selection"]["userRequestedModel"] == "seasonal_xgboost"
+    assert evidence["selection"]["bestCalibrationModel"] == min(scores, key=scores.get)
     assert all(r["n"] == 52 for r in evidence["backtest"])
     for profile in ["typical", "wetter", "drier", "hotter"]:
         assert weather_analog(engine["history"], 1, profile).YR <= 2025
