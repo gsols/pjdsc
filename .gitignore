@@ -10,6 +10,7 @@ __pycache__/
 .DS_Store
 
 services/engine/models/*.joblib
+data/processed/upri_noah/*.joblib
 
 *.tsbuildinfo
 .pytest_cache/

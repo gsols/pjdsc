@@ -1,5 +1,22 @@
 # User-requested extensions
 
+## 2026-10-24 21:19:03 +08:00 — two simulation tabs, future seasons and beds
+
+Request: separate historical replay from future surge forecasting in the left
+sidebar; allow flexible horizons such as 2, 12, 14 and 28 days and future seasonal
+dates such as January 2027; implement a trained forecasting engine and bed forecasts.
+Implemented contracts, methods, provenance and limitations are documented in
+`docs/future-seasonal-simulation.md`. Future cases use a new seasonal curve with
+assumed weather and configurable surge; beds use admission/LOS cohorts. No
+current surveillance, actual vacancies or weekly barangay observations are invented.
+
+## 2026-10-24 21:52:42 +08:00 — continuity between models
+
+Request: continue implementation and preserve progress when changing models.
+`docs/SESSION_HANDOFF.md` records implementation state, source boundaries,
+reproduction, verification and outstanding work. Root instructions require reading
+and updating the handoff. It is a checkpoint to verify, not a substitute for files.
+
 ## 2026-10-24 20:14:55 +08:00 — automatic QC forecast UI and hospital sidebar
 
 User request: remove mandatory place selection; use historical cases and

@@ -8,6 +8,7 @@ from shapely.geometry import shape
 
 from .patient_flow import simulate_flow
 from .spatial import annual_weights
+from .bed_forecast import add_bed_forecasts
 
 VERSION = "spatial-expansion-nearest-capacity-v1"
 
@@ -33,7 +34,7 @@ def distance_km(a, b):
 
 def make_context(run, annual, geojson, hospitals, cutoff_year=None):
     records = {r["ADM4_PCODE"]: r for r in annual}
-    year, weights = annual_weights(annual, min(run["issueBlock"]["YR"], cutoff_year or 9999))
+    year, weights = annual_weights(annual, min(run.get("spatialWeightsIssueYear", run["issueBlock"]["YR"]), cutoff_year or 9999))
     weight_map = dict(weights)
     to_utm = Transformer.from_crs(4326, 32651, always_xy=True).transform
     to_wgs = Transformer.from_crs(32651, 4326, always_xy=True).transform
@@ -100,9 +101,20 @@ def build_movie(run, context, config):
         config["initialRadiusKm"], config["expansionKmPerDay"], config["growthDays"], duration, config["shockProfile"])
     if config.get("autoHotspots"):
         for d in days:
+            i = d["dayIndex"] - 1
+            if run.get("dailyPredictions"):
+                d["baselineCases"] = run["dailyPredictions"][i]["meanCases"] if i < duration else 0.0
+                factor = 1.0
+                if config.get("surgeEnabled") and i >= config.get("surgeOnsetDay", 0):
+                    ramp = min(1.0, (i - config["surgeOnsetDay"] + 1) / config["growthDays"])
+                    factor += (config["surgeMultiplier"] - 1) * ramp
+                d["surgeFactor"] = factor
+                d["shockCases"] = d["baselineCases"] * (factor - 1)
+                d["expectedCases"] = d["baselineCases"] + d["shockCases"]
             d["assumedRadiusKm"] = 0.0
             for b in d["barangays"]:
                 weight = next(c["weight"] for c in context["barangays"] if c["id"] == b["barangayId"])
+                b["baselineCases"] = d["baselineCases"] * weight
                 b["shockCases"] = d["shockCases"] * weight
                 b["expectedCases"] = b["baselineCases"] + b["shockCases"]
     hospital_map = {h["id"]: h for h in context["hospitals"]}
@@ -149,17 +161,29 @@ def build_movie(run, context, config):
         d["hotspotIds"] = [b["barangayId"] for b in sorted(d["barangays"], key=lambda b: (-b[ranking_field], b["barangayId"]))[:10] if b[ranking_field] > 0]
         if run.get("calibrationResidualPaths"):
             d["caseRange"] = period_case_range(run, index, d["cumulativeShockCases"])
+            if run.get("dailyPredictions") and index:
+                # Fixed hypothetical surge scales the baseline error path too.
+                factors = [d0.get("surgeFactor", 1.0) for d0 in days[:index]]
+                errors = sorted(abs(sum(e * f for e, f in zip(p["errors"][:index], factors))) for p in run["dailyResidualPaths"])
+                radius = errors[min(len(errors), math.ceil((len(errors) + 1) * .8)) - 1]
+                d["caseRange"].update({"lowerCases": max(0, d["cumulativeCases"] - radius), "upperCases": d["cumulativeCases"] + radius})
             h = max(0, (index - 1) // 7)
             p = run["weeklyPredictions"][h]
             d["dailyCaseRange"] = {"lowerCases": (p["lowerCases"] / 7 + d["shockCases"]) if index else 0.0,
                 "upperCases": (p["upperCases"] / 7 + d["shockCases"]) if index else 0.0}
+            if run.get("dailyPredictions") and index:
+                row = run["dailyPredictions"][index - 1]
+                factor = days[index - 1].get("surgeFactor", 1.0)
+                d["dailyCaseRange"] = {"lowerCases": row["lowerCases"] * factor, "upperCases": row["upperCases"] * factor}
             for b in d["barangays"]:
                 weight = barangay_map[b["barangayId"]]["weight"]
                 b["caseRange"] = {k: (v - d["cumulativeShockCases"]) * weight + cumulative_shock[b["barangayId"]]
                     for k, v in d["caseRange"].items() if k in {"lowerCases", "upperCases"}}
+                b["caseRange"] = {k: max(0.0, v) for k, v in b["caseRange"].items()}
         for route in d["assignments"]:
             route["distanceKm"] = distance_km(barangay_map[route["barangayId"]]["coordinates"], hospital_map[route["facilityId"]]["coordinates"])
-    return {"days": flow[:duration + 1], "context": context, "durationDays": duration,
+    bed_projection = add_bed_forecasts(flow[:duration + 1], days, run, context, config, orders)
+    return {"days": flow[:duration + 1], "context": context, "durationDays": duration, "bedProjection": bed_projection,
         "mapScaleMaxDailyCases": max(b["expectedCases"] for d in days[:duration] for b in d["barangays"]),
         "measurementKind": "modeled_allocation", "capacityMeasurementKind": "assumption",
         "calendarStatus": "USER_SELECTED_HYPOTHETICAL_DATES_NOT_SOURCE_WEEK_ALIGNMENT",
@@ -170,12 +194,12 @@ def build_movie(run, context, config):
 def period_case_range(run, elapsed_days, assumed_extra_cases=0):
     """Joint-horizon errors from complete past paths, preserving temporal covariance."""
     fractions = [min(7, max(0, elapsed_days - 7 * h)) / 7 for h in range(4)]
-    errors = sorted(abs(sum(v * f for v, f in zip(p["residuals"], fractions))) for p in run["calibrationResidualPaths"])
+    errors = sorted(abs(sum(p["errors"][:elapsed_days])) for p in run["dailyResidualPaths"]) if run.get("dailyResidualPaths") else sorted(abs(sum(v * f for v, f in zip(p["residuals"], fractions))) for p in run["calibrationResidualPaths"])
     if len(errors) < 20:
         raise ValueError("Insufficient pre-origin range evidence")
     rank = min(len(errors), math.ceil((len(errors) + 1) * .8))
     radius = errors[rank - 1]
-    reference = sum(p["meanCases"] * f for p, f in zip(run["weeklyPredictions"], fractions))
+    reference = sum(d["meanCases"] for d in run["dailyPredictions"][:elapsed_days]) if run.get("dailyPredictions") else sum(p["meanCases"] * f for p, f in zip(run["weeklyPredictions"], fractions))
     return {"lowerCases": max(0, reference - radius) + assumed_extra_cases,
         "upperCases": reference + radius + assumed_extra_cases, "coverageTarget": .8,
         "calibrationSamples": len(errors), "method": "Pre-origin joint residual trajectories; conditional on fixed annual spatial weights. Allocation and hospital uncertainty not calibrated."}

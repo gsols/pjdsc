@@ -1,10 +1,10 @@
 import { NextResponse } from 'next/server';
 
 export const runtime = 'nodejs';
-const allowed = /^(forecast-runs(?:\/[A-Za-z0-9_-]{1,120})?|research-evidence|qc-simulation|outbreak-demo|spatial-allocations\/[A-Za-z0-9_-]{1,120}|outbreak-context\/[A-Za-z0-9_-]{1,120}|(?:outbreak-scenarios|scenarios)(?:\/[a-f0-9]{64})?)$/;
+const allowed = /^(forecast-runs(?:\/[A-Za-z0-9_-]{1,120})?|research-evidence|qc-simulation|future-simulation|outbreak-demo|spatial-allocations\/[A-Za-z0-9_-]{1,120}|outbreak-context\/[A-Za-z0-9_-]{1,120}|(?:outbreak-scenarios|scenarios)(?:\/[a-f0-9]{64})?)$/;
 async function proxy(request: Request, context: { params: Promise<{ path: string[] }> }) {
   const path = (await context.params).path.join('/');
-  if (!allowed.test(path) || (request.method === 'POST' && !['scenarios', 'outbreak-scenarios', 'qc-simulation'].includes(path)))
+  if (!allowed.test(path) || (request.method === 'POST' && !['scenarios', 'outbreak-scenarios', 'qc-simulation', 'future-simulation'].includes(path)))
     return NextResponse.json({ error: 'Unsupported research endpoint' }, { status: 404 });
   const base = process.env.ENGINE_BASE_URL;
   if (!base) return NextResponse.json({ error: 'Set server-only ENGINE_BASE_URL to connect the audited research engine.' }, { status: 503 });

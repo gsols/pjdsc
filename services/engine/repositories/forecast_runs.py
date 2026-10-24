@@ -46,6 +46,9 @@ def load_runs(area=None):
 def load_run(ident):
     if not re.fullmatch(r"[A-Za-z0-9_-]{1,120}", ident):
         raise ForecastRunNotFound("Invalid forecast ID")
+    if ident.startswith("qc-seasonal-run-"):
+        from .seasonal_runs import load_seasonal_run
+        return load_seasonal_run(ident)
     candidates = load_environmental_runs() if ident.startswith("qc-weather-residual-") else load_runs()
     runs = [r for r in candidates if r["id"] == ident]
     if len(runs) != 1:

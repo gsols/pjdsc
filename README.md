@@ -4,6 +4,18 @@ Map-first public-health research and preparedness prototype using Next.js/MapLib
 
 ## Current implementation
 
+- The simulation sidebar now separates **Historical replay** and **Future surge
+  forecast**, with arbitrary **1–28-day** windows and 2/7/12/14/28 shortcuts.
+  Future dates, including January 2027, use newly generated seasonal gradient
+  boosting forecasts and assumed historical weather analogs. Configure surge
+  onset/ramp/multiplier; view daily/peak required staffed beds, sensitivity bounds
+  and hospital catchment demand. Actual vacancies remain unknown. The simpler
+  baseline outperformed the selected model on later holdouts; the validation table
+  exposes this limitation. See [future methods](docs/future-seasonal-simulation.md)
+  and [model-switch handoff](docs/SESSION_HANDOFF.md). Historical behavior below
+  remains available in its own tab. Future mode requires the local approved model:
+  `python scripts/train_qc_seasonal.py` regenerates it from audited source inputs.
+
 - `/outbreak-response` is the automatic QC forecast/capacity workspace
   (`/simulate` redirects there). No place selection is required. Choose a date
   window or 7/14/28-day horizon; source case history and lagged rainfall,

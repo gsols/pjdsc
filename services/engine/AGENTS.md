@@ -5,6 +5,14 @@
 Read the root instructions and all `docs/*-spec.md` first. Maintain separation of `forecasting`, `spatial`, `simulation`, `optimization`, `api` and `validation` code, using testable pure functions; avoid a monolithic `main.py`.
 
 ## Current code and what not to assume
+
+Implemented extension, 2026-10-24 21:19:03 +08:00: the approved seasonal model,
+future-run repository and `/v1/future-simulation` now support conditional future
+season planning. `domain/bed_forecast.py` provides unconstrained case-to-LOS bed
+demand separately from finite placements. Read `docs/future-seasonal-simulation.md`
+and `docs/SESSION_HANDOFF.md`; descriptions of missing models below describe the
+original upload, not the current generated local artifacts. Actual census and
+staffed capacity remain unavailable. Preserve held-out evaluation warnings.
 - `main.py` currently implements `GET /health` and `POST /simulate`, but the latter deliberately returns 503. The Python engine is **not a finished simulation**.
 - `requirements.txt`: FastAPI/Pydantic, pandas, NumPy, scikit-learn, joblib, openpyxl. `requirements-benchmarks.txt` optionally adds `statsforecast` for AutoETS. A solver such as SciPy `linprog` or OR-Tools is **not preinstalled as a declared dependency**; add/relock dependencies before using one.
 - Historical forecast comparisons live in `scripts/` and `services/engine/models/*.json`. Model objects (`.joblib`), the source workbook, observed hospital admissions and staff/operational bed counts are **not provided in the uploaded repository**. Never imply they exist at runtime.

@@ -1,0 +1,3794 @@
+{
+  "schemaVersion": "1.0",
+  "selectedModel": "seasonal_boosted_trees",
+  "selection": {
+    "criterion": "Lowest pre-2024 past-only seasonal calibration MAE; frozen before 2024\u20132025 evaluation",
+    "scores": {
+      "seasonal_boosted_trees": 64.27698944970966,
+      "seasonal_baseline": 65.87846886019962
+    }
+  },
+  "backtest": [
+    {
+      "year": 2024,
+      "model": "seasonal_boosted_trees",
+      "n": 52,
+      "mae": 83.3358984201948,
+      "rmse": 132.02669414483327,
+      "empiricalRangeCoverage": 0.75
+    },
+    {
+      "year": 2024,
+      "model": "seasonal_baseline",
+      "n": 52,
+      "mae": 74.43076923076923,
+      "rmse": 127.67658237135052,
+      "empiricalRangeCoverage": 0.7692307692307693
+    },
+    {
+      "year": 2025,
+      "model": "seasonal_boosted_trees",
+      "n": 52,
+      "mae": 118.7398947779825,
+      "rmse": 164.50728121738442,
+      "empiricalRangeCoverage": 0.5384615384615384
+    },
+    {
+      "year": 2025,
+      "model": "seasonal_baseline",
+      "n": 52,
+      "mae": 110.74538461538461,
+      "rmse": 157.92888483955892,
+      "empiricalRangeCoverage": 0.5384615384615384
+    }
+  ],
+  "records": [
+    {
+      "block": 104936,
+      "year": 2018,
+      "week": 1,
+      "observed": 167.0,
+      "lastTrainingBlock": 104935,
+      "seasonal_boosted_trees": 63.09935489836131,
+      "seasonal_baseline": 62.975
+    },
+    {
+      "block": 104937,
+      "year": 2018,
+      "week": 2,
+      "observed": 154.0,
+      "lastTrainingBlock": 104935,
+      "seasonal_boosted_trees": 80.7352631872862,
+      "seasonal_baseline": 65.375
+    },
+    {
+      "block": 104938,
+      "year": 2018,
+      "week": 3,
+      "observed": 160.0,
+      "lastTrainingBlock": 104935,
+      "seasonal_boosted_trees": 74.2895873961097,
+      "seasonal_baseline": 70.425
+    },
+    {
+      "block": 104939,
+      "year": 2018,
+      "week": 4,
+      "observed": 138.0,
+      "lastTrainingBlock": 104935,
+      "seasonal_boosted_trees": 72.72371800584317,
+      "seasonal_baseline": 71.75
+    },
+    {
+      "block": 104940,
+      "year": 2018,
+      "week": 5,
+      "observed": 127.0,
+      "lastTrainingBlock": 104935,
+      "seasonal_boosted_trees": 50.6842478241159,
+      "seasonal_baseline": 66.7
+    },
+    {
+      "block": 104941,
+      "year": 2018,
+      "week": 6,
+      "observed": 149.0,
+      "lastTrainingBlock": 104935,
+      "seasonal_boosted_trees": 42.52154473010353,
+      "seasonal_baseline": 62.825
+    },
+    {
+      "block": 104942,
+      "year": 2018,
+      "week": 7,
+      "observed": 122.0,
+      "lastTrainingBlock": 104935,
+      "seasonal_boosted_trees": 46.22026944113944,
+      "seasonal_baseline": 58.275
+    },
+    {
+      "block": 104943,
+      "year": 2018,
+      "week": 8,
+      "observed": 102.0,
+      "lastTrainingBlock": 104935,
+      "seasonal_boosted_trees": 47.803355450802755,
+      "seasonal_baseline": 57.3
+    },
+    {
+      "block": 104944,
+      "year": 2018,
+      "week": 9,
+      "observed": 95.0,
+      "lastTrainingBlock": 104935,
+      "seasonal_boosted_trees": 35.139197679048806,
+      "seasonal_baseline": 54.475
+    },
+    {
+      "block": 104945,
+      "year": 2018,
+      "week": 10,
+      "observed": 91.0,
+      "lastTrainingBlock": 104935,
+      "seasonal_boosted_trees": 39.03812829047732,
+      "seasonal_baseline": 51.3
+    },
+    {
+      "block": 104946,
+      "year": 2018,
+      "week": 11,
+      "observed": 104.0,
+      "lastTrainingBlock": 104935,
+      "seasonal_boosted_trees": 29.47333593883495,
+      "seasonal_baseline": 48.725
+    },
+    {
+      "block": 104947,
+      "year": 2018,
+      "week": 12,
+      "observed": 77.0,
+      "lastTrainingBlock": 104935,
+      "seasonal_boosted_trees": 29.25916368089185,
+      "seasonal_baseline": 45.775
+    },
+    {
+      "block": 104948,
+      "year": 2018,
+      "week": 13,
+      "observed": 76.0,
+      "lastTrainingBlock": 104935,
+      "seasonal_boosted_trees": 31.827477686303368,
+      "seasonal_baseline": 40.7
+    },
+    {
+      "block": 104949,
+      "year": 2018,
+      "week": 14,
+      "observed": 80.0,
+      "lastTrainingBlock": 104935,
+      "seasonal_boosted_trees": 32.72534147093043,
+      "seasonal_baseline": 37.625
+    },
+    {
+      "block": 104950,
+      "year": 2018,
+      "week": 15,
+      "observed": 71.0,
+      "lastTrainingBlock": 104935,
+      "seasonal_boosted_trees": 28.946436055032045,
+      "seasonal_baseline": 36.4
+    },
+    {
+      "block": 104951,
+      "year": 2018,
+      "week": 16,
+      "observed": 84.0,
+      "lastTrainingBlock": 104935,
+      "seasonal_boosted_trees": 29.27381839782948,
+      "seasonal_baseline": 35.25
+    },
+    {
+      "block": 104952,
+      "year": 2018,
+      "week": 17,
+      "observed": 51.0,
+      "lastTrainingBlock": 104935,
+      "seasonal_boosted_trees": 30.712369809176025,
+      "seasonal_baseline": 34.275
+    },
+    {
+      "block": 104953,
+      "year": 2018,
+      "week": 18,
+      "observed": 76.0,
+      "lastTrainingBlock": 104935,
+      "seasonal_boosted_trees": 27.54213416242376,
+      "seasonal_baseline": 34.85
+    },
+    {
+      "block": 104954,
+      "year": 2018,
+      "week": 19,
+      "observed": 81.0,
+      "lastTrainingBlock": 104935,
+      "seasonal_boosted_trees": 31.470718256608166,
+      "seasonal_baseline": 36.675
+    },
+    {
+      "block": 104955,
+      "year": 2018,
+      "week": 20,
+      "observed": 67.0,
+      "lastTrainingBlock": 104935,
+      "seasonal_boosted_trees": 32.72575507776593,
+      "seasonal_baseline": 38.325
+    },
+    {
+      "block": 104956,
+      "year": 2018,
+      "week": 21,
+      "observed": 72.0,
+      "lastTrainingBlock": 104935,
+      "seasonal_boosted_trees": 35.24092924797203,
+      "seasonal_baseline": 40.925
+    },
+    {
+      "block": 104957,
+      "year": 2018,
+      "week": 22,
+      "observed": 81.0,
+      "lastTrainingBlock": 104935,
+      "seasonal_boosted_trees": 37.55065604504308,
+      "seasonal_baseline": 47.1
+    },
+    {
+      "block": 104958,
+      "year": 2018,
+      "week": 23,
+      "observed": 77.0,
+      "lastTrainingBlock": 104935,
+      "seasonal_boosted_trees": 56.19931733332451,
+      "seasonal_baseline": 56.2
+    },
+    {
+      "block": 104959,
+      "year": 2018,
+      "week": 24,
+      "observed": 100.0,
+      "lastTrainingBlock": 104935,
+      "seasonal_boosted_trees": 61.527545436082924,
+      "seasonal_baseline": 69.8
+    },
+    {
+      "block": 104960,
+      "year": 2018,
+      "week": 25,
+      "observed": 114.0,
+      "lastTrainingBlock": 104935,
+      "seasonal_boosted_trees": 96.82181644597543,
+      "seasonal_baseline": 87.35
+    },
+    {
+      "block": 104961,
+      "year": 2018,
+      "week": 26,
+      "observed": 202.0,
+      "lastTrainingBlock": 104935,
+      "seasonal_boosted_trees": 142.5852969823889,
+      "seasonal_baseline": 107.65
+    },
+    {
+      "block": 104962,
+      "year": 2018,
+      "week": 27,
+      "observed": 184.0,
+      "lastTrainingBlock": 104935,
+      "seasonal_boosted_trees": 119.05765259534776,
+      "seasonal_baseline": 132.9
+    },
+    {
+      "block": 104963,
+      "year": 2018,
+      "week": 28,
+      "observed": 131.0,
+      "lastTrainingBlock": 104935,
+      "seasonal_boosted_trees": 145.25354061518377,
+      "seasonal_baseline": 155.125
+    },
+    {
+      "block": 104964,
+      "year": 2018,
+      "week": 29,
+      "observed": 277.0,
+      "lastTrainingBlock": 104935,
+      "seasonal_boosted_trees": 194.39476773514494,
+      "seasonal_baseline": 172.6
+    },
+    {
+      "block": 104965,
+      "year": 2018,
+      "week": 30,
+      "observed": 188.0,
+      "lastTrainingBlock": 104935,
+      "seasonal_boosted_trees": 201.012899181487,
+      "seasonal_baseline": 192.8
+    },
+    {
+      "block": 104966,
+      "year": 2018,
+      "week": 31,
+      "observed": 261.0,
+      "lastTrainingBlock": 104935,
+      "seasonal_boosted_trees": 148.88528703841604,
+      "seasonal_baseline": 214.025
+    },
+    {
+      "block": 104967,
+      "year": 2018,
+      "week": 32,
+      "observed": 355.0,
+      "lastTrainingBlock": 104935,
+      "seasonal_boosted_trees": 247.2720122623842,
+      "seasonal_baseline": 230.725
+    },
+    {
+      "block": 104968,
+      "year": 2018,
+      "week": 33,
+      "observed": 278.0,
+      "lastTrainingBlock": 104935,
+      "seasonal_boosted_trees": 270.0835101614712,
+      "seasonal_baseline": 240.525
+    },
+    {
+      "block": 104969,
+      "year": 2018,
+      "week": 34,
+      "observed": 331.0,
+      "lastTrainingBlock": 104935,
+      "seasonal_boosted_trees": 258.3955417492396,
+      "seasonal_baseline": 245.725
+    },
+    {
+      "block": 104970,
+      "year": 2018,
+      "week": 35,
+      "observed": 256.0,
+      "lastTrainingBlock": 104935,
+      "seasonal_boosted_trees": 245.65939776587302,
+      "seasonal_baseline": 242.45
+    },
+    {
+      "block": 104971,
+      "year": 2018,
+      "week": 36,
+      "observed": 273.0,
+      "lastTrainingBlock": 104935,
+      "seasonal_boosted_trees": 213.95596701241465,
+      "seasonal_baseline": 232.8
+    },
+    {
+      "block": 104972,
+      "year": 2018,
+      "week": 37,
+      "observed": 217.0,
+      "lastTrainingBlock": 104935,
+      "seasonal_boosted_trees": 233.3556367998849,
+      "seasonal_baseline": 213.075
+    },
+    {
+      "block": 104973,
+      "year": 2018,
+      "week": 38,
+      "observed": 231.0,
+      "lastTrainingBlock": 104935,
+      "seasonal_boosted_trees": 192.84638738140714,
+      "seasonal_baseline": 195.825
+    },
+    {
+      "block": 104974,
+      "year": 2018,
+      "week": 39,
+      "observed": 280.0,
+      "lastTrainingBlock": 104935,
+      "seasonal_boosted_trees": 203.51365656213824,
+      "seasonal_baseline": 179.025
+    },
+    {
+      "block": 104975,
+      "year": 2018,
+      "week": 40,
+      "observed": 325.0,
+      "lastTrainingBlock": 104935,
+      "seasonal_boosted_trees": 162.02851394925298,
+      "seasonal_baseline": 162.925
+    },
+    {
+      "block": 104976,
+      "year": 2018,
+      "week": 41,
+      "observed": 243.0,
+      "lastTrainingBlock": 104935,
+      "seasonal_boosted_trees": 130.55767155263828,
+      "seasonal_baseline": 148.125
+    },
+    {
+      "block": 104977,
+      "year": 2018,
+      "week": 42,
+      "observed": 216.0,
+      "lastTrainingBlock": 104935,
+      "seasonal_boosted_trees": 178.64202785827817,
+      "seasonal_baseline": 133.6
+    },
+    {
+      "block": 104978,
+      "year": 2018,
+      "week": 43,
+      "observed": 211.0,
+      "lastTrainingBlock": 104935,
+      "seasonal_boosted_trees": 120.07370503720217,
+      "seasonal_baseline": 123.625
+    },
+    {
+      "block": 104979,
+      "year": 2018,
+      "week": 44,
+      "observed": 176.0,
+      "lastTrainingBlock": 104935,
+      "seasonal_boosted_trees": 116.14530330185544,
+      "seasonal_baseline": 113.575
+    },
+    {
+      "block": 104980,
+      "year": 2018,
+      "week": 45,
+      "observed": 127.0,
+      "lastTrainingBlock": 104935,
+      "seasonal_boosted_trees": 107.2843500225104,
+      "seasonal_baseline": 102.825
+    },
+    {
+      "block": 104981,
+      "year": 2018,
+      "week": 46,
+      "observed": 160.0,
+      "lastTrainingBlock": 104935,
+      "seasonal_boosted_trees": 75.36875150705188,
+      "seasonal_baseline": 91.625
+    },
+    {
+      "block": 104982,
+      "year": 2018,
+      "week": 47,
+      "observed": 129.0,
+      "lastTrainingBlock": 104935,
+      "seasonal_boosted_trees": 84.77300693246131,
+      "seasonal_baseline": 87.425
+    },
+    {
+      "block": 104983,
+      "year": 2018,
+      "week": 48,
+      "observed": 142.0,
+      "lastTrainingBlock": 104935,
+      "seasonal_boosted_trees": 111.24228675923281,
+      "seasonal_baseline": 80.275
+    },
+    {
+      "block": 104984,
+      "year": 2018,
+      "week": 49,
+      "observed": 120.0,
+      "lastTrainingBlock": 104935,
+      "seasonal_boosted_trees": 71.09986539747494,
+      "seasonal_baseline": 75.6
+    },
+    {
+      "block": 104985,
+      "year": 2018,
+      "week": 50,
+      "observed": 143.0,
+      "lastTrainingBlock": 104935,
+      "seasonal_boosted_trees": 58.47593665149448,
+      "seasonal_baseline": 67.575
+    },
+    {
+      "block": 104986,
+      "year": 2018,
+      "week": 51,
+      "observed": 93.0,
+      "lastTrainingBlock": 104935,
+      "seasonal_boosted_trees": 62.83849070589972,
+      "seasonal_baseline": 62.9
+    },
+    {
+      "block": 104987,
+      "year": 2018,
+      "week": 52,
+      "observed": 93.0,
+      "lastTrainingBlock": 104935,
+      "seasonal_boosted_trees": 59.43708978795615,
+      "seasonal_baseline": 62.3
+    },
+    {
+      "block": 104988,
+      "year": 2019,
+      "week": 1,
+      "observed": 169.0,
+      "lastTrainingBlock": 104987,
+      "seasonal_boosted_trees": 63.95501126421428,
+      "seasonal_baseline": 70.8
+    },
+    {
+      "block": 104989,
+      "year": 2019,
+      "week": 2,
+      "observed": 206.0,
+      "lastTrainingBlock": 104987,
+      "seasonal_boosted_trees": 88.32820094553902,
+      "seasonal_baseline": 73.93333333333334
+    },
+    {
+      "block": 104990,
+      "year": 2019,
+      "week": 3,
+      "observed": 186.0,
+      "lastTrainingBlock": 104987,
+      "seasonal_boosted_trees": 105.95835453938396,
+      "seasonal_baseline": 79.17777777777778
+    },
+    {
+      "block": 104991,
+      "year": 2019,
+      "week": 4,
+      "observed": 142.0,
+      "lastTrainingBlock": 104987,
+      "seasonal_boosted_trees": 112.62205292609038,
+      "seasonal_baseline": 79.95555555555555
+    },
+    {
+      "block": 104992,
+      "year": 2019,
+      "week": 5,
+      "observed": 183.0,
+      "lastTrainingBlock": 104987,
+      "seasonal_boosted_trees": 58.60671525564358,
+      "seasonal_baseline": 74.75555555555556
+    },
+    {
+      "block": 104993,
+      "year": 2019,
+      "week": 6,
+      "observed": 122.0,
+      "lastTrainingBlock": 104987,
+      "seasonal_boosted_trees": 68.64797563174012,
+      "seasonal_baseline": 70.02222222222223
+    },
+    {
+      "block": 104994,
+      "year": 2019,
+      "week": 7,
+      "observed": 109.0,
+      "lastTrainingBlock": 104987,
+      "seasonal_boosted_trees": 67.04412812055499,
+      "seasonal_baseline": 65.02222222222223
+    },
+    {
+      "block": 104995,
+      "year": 2019,
+      "week": 8,
+      "observed": 118.0,
+      "lastTrainingBlock": 104987,
+      "seasonal_boosted_trees": 43.15755489727036,
+      "seasonal_baseline": 63.355555555555554
+    },
+    {
+      "block": 104996,
+      "year": 2019,
+      "week": 9,
+      "observed": 88.0,
+      "lastTrainingBlock": 104987,
+      "seasonal_boosted_trees": 41.16543058707742,
+      "seasonal_baseline": 59.84444444444444
+    },
+    {
+      "block": 104997,
+      "year": 2019,
+      "week": 10,
+      "observed": 81.0,
+      "lastTrainingBlock": 104987,
+      "seasonal_boosted_trees": 42.83634762304764,
+      "seasonal_baseline": 56.022222222222226
+    },
+    {
+      "block": 104998,
+      "year": 2019,
+      "week": 11,
+      "observed": 53.0,
+      "lastTrainingBlock": 104987,
+      "seasonal_boosted_trees": 42.997593590498376,
+      "seasonal_baseline": 53.15555555555556
+    },
+    {
+      "block": 104999,
+      "year": 2019,
+      "week": 12,
+      "observed": 56.0,
+      "lastTrainingBlock": 104987,
+      "seasonal_boosted_trees": 39.0063857123694,
+      "seasonal_baseline": 50.2
+    },
+    {
+      "block": 105000,
+      "year": 2019,
+      "week": 13,
+      "observed": 48.0,
+      "lastTrainingBlock": 104987,
+      "seasonal_boosted_trees": 35.4666410766666,
+      "seasonal_baseline": 45.24444444444445
+    },
+    {
+      "block": 105001,
+      "year": 2019,
+      "week": 14,
+      "observed": 29.0,
+      "lastTrainingBlock": 104987,
+      "seasonal_boosted_trees": 49.923165269486326,
+      "seasonal_baseline": 42.06666666666667
+    },
+    {
+      "block": 105002,
+      "year": 2019,
+      "week": 15,
+      "observed": 42.0,
+      "lastTrainingBlock": 104987,
+      "seasonal_boosted_trees": 35.02897836959061,
+      "seasonal_baseline": 40.4
+    },
+    {
+      "block": 105003,
+      "year": 2019,
+      "week": 16,
+      "observed": 66.0,
+      "lastTrainingBlock": 104987,
+      "seasonal_boosted_trees": 37.25280806762011,
+      "seasonal_baseline": 39.37777777777778
+    },
+    {
+      "block": 105004,
+      "year": 2019,
+      "week": 17,
+      "observed": 53.0,
+      "lastTrainingBlock": 104987,
+      "seasonal_boosted_trees": 39.57203040834965,
+      "seasonal_baseline": 38.53333333333333
+    },
+    {
+      "block": 105005,
+      "year": 2019,
+      "week": 18,
+      "observed": 30.0,
+      "lastTrainingBlock": 104987,
+      "seasonal_boosted_trees": 37.155659681122124,
+      "seasonal_baseline": 38.955555555555556
+    },
+    {
+      "block": 105006,
+      "year": 2019,
+      "week": 19,
+      "observed": 21.0,
+      "lastTrainingBlock": 104987,
+      "seasonal_boosted_trees": 41.211476648563334,
+      "seasonal_baseline": 40.31111111111111
+    },
+    {
+      "block": 105007,
+      "year": 2019,
+      "week": 20,
+      "observed": 35.0,
+      "lastTrainingBlock": 104987,
+      "seasonal_boosted_trees": 42.55446584317496,
+      "seasonal_baseline": 42.44444444444444
+    },
+    {
+      "block": 105008,
+      "year": 2019,
+      "week": 21,
+      "observed": 101.0,
+      "lastTrainingBlock": 104987,
+      "seasonal_boosted_trees": 46.79748747054307,
+      "seasonal_baseline": 44.77777777777778
+    },
+    {
+      "block": 105009,
+      "year": 2019,
+      "week": 22,
+      "observed": 79.0,
+      "lastTrainingBlock": 104987,
+      "seasonal_boosted_trees": 58.847805796835544,
+      "seasonal_baseline": 50.68888888888889
+    },
+    {
+      "block": 105010,
+      "year": 2019,
+      "week": 23,
+      "observed": 50.0,
+      "lastTrainingBlock": 104987,
+      "seasonal_boosted_trees": 60.099577125193285,
+      "seasonal_baseline": 59.82222222222222
+    },
+    {
+      "block": 105011,
+      "year": 2019,
+      "week": 24,
+      "observed": 43.0,
+      "lastTrainingBlock": 104987,
+      "seasonal_boosted_trees": 81.47592410953587,
+      "seasonal_baseline": 74.8
+    },
+    {
+      "block": 105012,
+      "year": 2019,
+      "week": 25,
+      "observed": 64.0,
+      "lastTrainingBlock": 104987,
+      "seasonal_boosted_trees": 106.22642489454292,
+      "seasonal_baseline": 92.68888888888888
+    },
+    {
+      "block": 105013,
+      "year": 2019,
+      "week": 26,
+      "observed": 91.0,
+      "lastTrainingBlock": 104987,
+      "seasonal_boosted_trees": 111.71132089707709,
+      "seasonal_baseline": 111.93333333333334
+    },
+    {
+      "block": 105014,
+      "year": 2019,
+      "week": 27,
+      "observed": 111.0,
+      "lastTrainingBlock": 104987,
+      "seasonal_boosted_trees": 126.38182820995561,
+      "seasonal_baseline": 138.3111111111111
+    },
+    {
+      "block": 105015,
+      "year": 2019,
+      "week": 28,
+      "observed": 164.0,
+      "lastTrainingBlock": 104987,
+      "seasonal_boosted_trees": 127.46318880038982,
+      "seasonal_baseline": 159.7111111111111
+    },
+    {
+      "block": 105016,
+      "year": 2019,
+      "week": 29,
+      "observed": 219.0,
+      "lastTrainingBlock": 104987,
+      "seasonal_boosted_trees": 212.41485954546872,
+      "seasonal_baseline": 176.55555555555554
+    },
+    {
+      "block": 105017,
+      "year": 2019,
+      "week": 30,
+      "observed": 374.0,
+      "lastTrainingBlock": 104987,
+      "seasonal_boosted_trees": 192.46275840417806,
+      "seasonal_baseline": 198.3111111111111
+    },
+    {
+      "block": 105018,
+      "year": 2019,
+      "week": 31,
+      "observed": 407.0,
+      "lastTrainingBlock": 104987,
+      "seasonal_boosted_trees": 219.03212169602685,
+      "seasonal_baseline": 220.44444444444446
+    },
+    {
+      "block": 105019,
+      "year": 2019,
+      "week": 32,
+      "observed": 398.0,
+      "lastTrainingBlock": 104987,
+      "seasonal_boosted_trees": 244.27852512941044,
+      "seasonal_baseline": 236.48888888888888
+    },
+    {
+      "block": 105020,
+      "year": 2019,
+      "week": 33,
+      "observed": 509.0,
+      "lastTrainingBlock": 104987,
+      "seasonal_boosted_trees": 258.5818596570625,
+      "seasonal_baseline": 246.7111111111111
+    },
+    {
+      "block": 105021,
+      "year": 2019,
+      "week": 34,
+      "observed": 612.0,
+      "lastTrainingBlock": 104987,
+      "seasonal_boosted_trees": 251.2562997079721,
+      "seasonal_baseline": 251.6
+    },
+    {
+      "block": 105022,
+      "year": 2019,
+      "week": 35,
+      "observed": 697.0,
+      "lastTrainingBlock": 104987,
+      "seasonal_boosted_trees": 234.3625781617617,
+      "seasonal_baseline": 245.62222222222223
+    },
+    {
+      "block": 105023,
+      "year": 2019,
+      "week": 36,
+      "observed": 597.0,
+      "lastTrainingBlock": 104987,
+      "seasonal_boosted_trees": 231.1786382676878,
+      "seasonal_baseline": 236.0
+    },
+    {
+      "block": 105024,
+      "year": 2019,
+      "week": 37,
+      "observed": 416.0,
+      "lastTrainingBlock": 104987,
+      "seasonal_boosted_trees": 207.3427765585125,
+      "seasonal_baseline": 217.33333333333334
+    },
+    {
+      "block": 105025,
+      "year": 2019,
+      "week": 38,
+      "observed": 374.0,
+      "lastTrainingBlock": 104987,
+      "seasonal_boosted_trees": 207.84385432326678,
+      "seasonal_baseline": 203.53333333333333
+    },
+    {
+      "block": 105026,
+      "year": 2019,
+      "week": 39,
+      "observed": 309.0,
+      "lastTrainingBlock": 104987,
+      "seasonal_boosted_trees": 181.74520518419956,
+      "seasonal_baseline": 187.93333333333334
+    },
+    {
+      "block": 105027,
+      "year": 2019,
+      "week": 40,
+      "observed": 335.0,
+      "lastTrainingBlock": 104987,
+      "seasonal_boosted_trees": 157.98717613165576,
+      "seasonal_baseline": 173.6
+    },
+    {
+      "block": 105028,
+      "year": 2019,
+      "week": 41,
+      "observed": 346.0,
+      "lastTrainingBlock": 104987,
+      "seasonal_boosted_trees": 134.6160602515313,
+      "seasonal_baseline": 160.0
+    },
+    {
+      "block": 105029,
+      "year": 2019,
+      "week": 42,
+      "observed": 238.0,
+      "lastTrainingBlock": 104987,
+      "seasonal_boosted_trees": 128.13749170129063,
+      "seasonal_baseline": 144.77777777777777
+    },
+    {
+      "block": 105030,
+      "year": 2019,
+      "week": 43,
+      "observed": 235.0,
+      "lastTrainingBlock": 104987,
+      "seasonal_boosted_trees": 112.96977070401853,
+      "seasonal_baseline": 131.51111111111112
+    },
+    {
+      "block": 105031,
+      "year": 2019,
+      "week": 44,
+      "observed": 215.0,
+      "lastTrainingBlock": 104987,
+      "seasonal_boosted_trees": 103.02409837829555,
+      "seasonal_baseline": 120.73333333333333
+    },
+    {
+      "block": 105032,
+      "year": 2019,
+      "week": 45,
+      "observed": 213.0,
+      "lastTrainingBlock": 104987,
+      "seasonal_boosted_trees": 93.95173823581885,
+      "seasonal_baseline": 109.24444444444444
+    },
+    {
+      "block": 105033,
+      "year": 2019,
+      "week": 46,
+      "observed": 181.0,
+      "lastTrainingBlock": 104987,
+      "seasonal_boosted_trees": 111.4796606811889,
+      "seasonal_baseline": 97.75555555555556
+    },
+    {
+      "block": 105034,
+      "year": 2019,
+      "week": 47,
+      "observed": 172.0,
+      "lastTrainingBlock": 104987,
+      "seasonal_boosted_trees": 105.20326756876291,
+      "seasonal_baseline": 92.77777777777777
+    },
+    {
+      "block": 105035,
+      "year": 2019,
+      "week": 48,
+      "observed": 165.0,
+      "lastTrainingBlock": 104987,
+      "seasonal_boosted_trees": 109.95565873210833,
+      "seasonal_baseline": 86.77777777777777
+    },
+    {
+      "block": 105036,
+      "year": 2019,
+      "week": 49,
+      "observed": 169.0,
+      "lastTrainingBlock": 104987,
+      "seasonal_boosted_trees": 84.0494488112227,
+      "seasonal_baseline": 81.13333333333334
+    },
+    {
+      "block": 105037,
+      "year": 2019,
+      "week": 50,
+      "observed": 139.0,
+      "lastTrainingBlock": 104987,
+      "seasonal_boosted_trees": 68.57378632235707,
+      "seasonal_baseline": 73.2
+    },
+    {
+      "block": 105038,
+      "year": 2019,
+      "week": 51,
+      "observed": 151.0,
+      "lastTrainingBlock": 104987,
+      "seasonal_boosted_trees": 81.31826116133055,
+      "seasonal_baseline": 69.6
+    },
+    {
+      "block": 105039,
+      "year": 2019,
+      "week": 52,
+      "observed": 157.0,
+      "lastTrainingBlock": 104987,
+      "seasonal_boosted_trees": 59.04928552024227,
+      "seasonal_baseline": 69.82222222222222
+    },
+    {
+      "block": 105040,
+      "year": 2020,
+      "week": 1,
+      "observed": 104.0,
+      "lastTrainingBlock": 105039,
+      "seasonal_boosted_trees": 72.39950056147207,
+      "seasonal_baseline": 81.1
+    },
+    {
+      "block": 105041,
+      "year": 2020,
+      "week": 2,
+      "observed": 183.0,
+      "lastTrainingBlock": 105039,
+      "seasonal_boosted_trees": 80.9123299670231,
+      "seasonal_baseline": 83.74
+    },
+    {
+      "block": 105042,
+      "year": 2020,
+      "week": 3,
+      "observed": 136.0,
+      "lastTrainingBlock": 105039,
+      "seasonal_boosted_trees": 89.66894951044002,
+      "seasonal_baseline": 88.98
+    },
+    {
+      "block": 105043,
+      "year": 2020,
+      "week": 4,
+      "observed": 133.0,
+      "lastTrainingBlock": 105039,
+      "seasonal_boosted_trees": 80.20617248608909,
+      "seasonal_baseline": 88.74
+    },
+    {
+      "block": 105044,
+      "year": 2020,
+      "week": 5,
+      "observed": 116.0,
+      "lastTrainingBlock": 105039,
+      "seasonal_boosted_trees": 63.369007147175815,
+      "seasonal_baseline": 82.12
+    },
+    {
+      "block": 105045,
+      "year": 2020,
+      "week": 6,
+      "observed": 77.0,
+      "lastTrainingBlock": 105039,
+      "seasonal_boosted_trees": 52.76993018077021,
+      "seasonal_baseline": 76.5
+    },
+    {
+      "block": 105046,
+      "year": 2020,
+      "week": 7,
+      "observed": 52.0,
+      "lastTrainingBlock": 105039,
+      "seasonal_boosted_trees": 50.50758103768177,
+      "seasonal_baseline": 70.92
+    },
+    {
+      "block": 105047,
+      "year": 2020,
+      "week": 8,
+      "observed": 70.0,
+      "lastTrainingBlock": 105039,
+      "seasonal_boosted_trees": 51.18465817255991,
+      "seasonal_baseline": 67.38
+    },
+    {
+      "block": 105048,
+      "year": 2020,
+      "week": 9,
+      "observed": 64.0,
+      "lastTrainingBlock": 105039,
+      "seasonal_boosted_trees": 54.013599296736366,
+      "seasonal_baseline": 62.84
+    },
+    {
+      "block": 105049,
+      "year": 2020,
+      "week": 10,
+      "observed": 50.0,
+      "lastTrainingBlock": 105039,
+      "seasonal_boosted_trees": 48.86552994506214,
+      "seasonal_baseline": 58.34
+    },
+    {
+      "block": 105050,
+      "year": 2020,
+      "week": 11,
+      "observed": 38.0,
+      "lastTrainingBlock": 105039,
+      "seasonal_boosted_trees": 55.63082601143499,
+      "seasonal_baseline": 54.36
+    },
+    {
+      "block": 105051,
+      "year": 2020,
+      "week": 12,
+      "observed": 23.0,
+      "lastTrainingBlock": 105039,
+      "seasonal_boosted_trees": 39.61136301420846,
+      "seasonal_baseline": 50.52
+    },
+    {
+      "block": 105052,
+      "year": 2020,
+      "week": 13,
+      "observed": 6.0,
+      "lastTrainingBlock": 105039,
+      "seasonal_boosted_trees": 36.40074515419546,
+      "seasonal_baseline": 45.28
+    },
+    {
+      "block": 105053,
+      "year": 2020,
+      "week": 14,
+      "observed": 5.0,
+      "lastTrainingBlock": 105039,
+      "seasonal_boosted_trees": 36.79649327590873,
+      "seasonal_baseline": 42.68
+    },
+    {
+      "block": 105054,
+      "year": 2020,
+      "week": 15,
+      "observed": 1.0,
+      "lastTrainingBlock": 105039,
+      "seasonal_boosted_trees": 37.80169833271298,
+      "seasonal_baseline": 41.12
+    },
+    {
+      "block": 105055,
+      "year": 2020,
+      "week": 16,
+      "observed": 3.0,
+      "lastTrainingBlock": 105039,
+      "seasonal_boosted_trees": 36.951125881561026,
+      "seasonal_baseline": 39.84
+    },
+    {
+      "block": 105056,
+      "year": 2020,
+      "week": 17,
+      "observed": 4.0,
+      "lastTrainingBlock": 105039,
+      "seasonal_boosted_trees": 45.99465252866739,
+      "seasonal_baseline": 38.92
+    },
+    {
+      "block": 105057,
+      "year": 2020,
+      "week": 18,
+      "observed": 1.0,
+      "lastTrainingBlock": 105039,
+      "seasonal_boosted_trees": 46.72661148130732,
+      "seasonal_baseline": 39.16
+    },
+    {
+      "block": 105058,
+      "year": 2020,
+      "week": 19,
+      "observed": 2.0,
+      "lastTrainingBlock": 105039,
+      "seasonal_boosted_trees": 48.547495785230474,
+      "seasonal_baseline": 41.08
+    },
+    {
+      "block": 105059,
+      "year": 2020,
+      "week": 20,
+      "observed": 1.0,
+      "lastTrainingBlock": 105039,
+      "seasonal_boosted_trees": 41.63372937358376,
+      "seasonal_baseline": 43.52
+    },
+    {
+      "block": 105060,
+      "year": 2020,
+      "week": 21,
+      "observed": 2.0,
+      "lastTrainingBlock": 105039,
+      "seasonal_boosted_trees": 42.41418364391685,
+      "seasonal_baseline": 46.02
+    },
+    {
+      "block": 105061,
+      "year": 2020,
+      "week": 22,
+      "observed": 1.0,
+      "lastTrainingBlock": 105039,
+      "seasonal_boosted_trees": 53.39550519704427,
+      "seasonal_baseline": 51.78
+    },
+    {
+      "block": 105062,
+      "year": 2020,
+      "week": 23,
+      "observed": 3.0,
+      "lastTrainingBlock": 105039,
+      "seasonal_boosted_trees": 52.775202883775236,
+      "seasonal_baseline": 60.58
+    },
+    {
+      "block": 105063,
+      "year": 2020,
+      "week": 24,
+      "observed": 5.0,
+      "lastTrainingBlock": 105039,
+      "seasonal_boosted_trees": 75.27206324260159,
+      "seasonal_baseline": 73.86
+    },
+    {
+      "block": 105064,
+      "year": 2020,
+      "week": 25,
+      "observed": 5.0,
+      "lastTrainingBlock": 105039,
+      "seasonal_boosted_trees": 87.03352915204476,
+      "seasonal_baseline": 90.6
+    },
+    {
+      "block": 105065,
+      "year": 2020,
+      "week": 26,
+      "observed": 5.0,
+      "lastTrainingBlock": 105039,
+      "seasonal_boosted_trees": 111.44693805401538,
+      "seasonal_baseline": 110.2
+    },
+    {
+      "block": 105066,
+      "year": 2020,
+      "week": 27,
+      "observed": 6.0,
+      "lastTrainingBlock": 105039,
+      "seasonal_boosted_trees": 125.72954247278632,
+      "seasonal_baseline": 137.46
+    },
+    {
+      "block": 105067,
+      "year": 2020,
+      "week": 28,
+      "observed": 9.0,
+      "lastTrainingBlock": 105039,
+      "seasonal_boosted_trees": 139.81058929538085,
+      "seasonal_baseline": 162.92
+    },
+    {
+      "block": 105068,
+      "year": 2020,
+      "week": 29,
+      "observed": 8.0,
+      "lastTrainingBlock": 105039,
+      "seasonal_boosted_trees": 206.54673670921514,
+      "seasonal_baseline": 184.4
+    },
+    {
+      "block": 105069,
+      "year": 2020,
+      "week": 30,
+      "observed": 7.0,
+      "lastTrainingBlock": 105039,
+      "seasonal_boosted_trees": 180.38449241111834,
+      "seasonal_baseline": 209.72
+    },
+    {
+      "block": 105070,
+      "year": 2020,
+      "week": 31,
+      "observed": 9.0,
+      "lastTrainingBlock": 105039,
+      "seasonal_boosted_trees": 212.46580508515117,
+      "seasonal_baseline": 236.54
+    },
+    {
+      "block": 105071,
+      "year": 2020,
+      "week": 32,
+      "observed": 12.0,
+      "lastTrainingBlock": 105039,
+      "seasonal_boosted_trees": 252.52309368025573,
+      "seasonal_baseline": 258.84
+    },
+    {
+      "block": 105072,
+      "year": 2020,
+      "week": 33,
+      "observed": 8.0,
+      "lastTrainingBlock": 105039,
+      "seasonal_boosted_trees": 252.51013877140036,
+      "seasonal_baseline": 274.5
+    },
+    {
+      "block": 105073,
+      "year": 2020,
+      "week": 34,
+      "observed": 10.0,
+      "lastTrainingBlock": 105039,
+      "seasonal_boosted_trees": 236.5256015270012,
+      "seasonal_baseline": 282.7
+    },
+    {
+      "block": 105074,
+      "year": 2020,
+      "week": 35,
+      "observed": 13.0,
+      "lastTrainingBlock": 105039,
+      "seasonal_boosted_trees": 252.88949417027814,
+      "seasonal_baseline": 277.68
+    },
+    {
+      "block": 105075,
+      "year": 2020,
+      "week": 36,
+      "observed": 16.0,
+      "lastTrainingBlock": 105039,
+      "seasonal_boosted_trees": 228.92372904526215,
+      "seasonal_baseline": 266.32
+    },
+    {
+      "block": 105076,
+      "year": 2020,
+      "week": 37,
+      "observed": 27.0,
+      "lastTrainingBlock": 105039,
+      "seasonal_boosted_trees": 207.32024862577407,
+      "seasonal_baseline": 243.46
+    },
+    {
+      "block": 105077,
+      "year": 2020,
+      "week": 38,
+      "observed": 13.0,
+      "lastTrainingBlock": 105039,
+      "seasonal_boosted_trees": 178.83498137449817,
+      "seasonal_baseline": 223.8
+    },
+    {
+      "block": 105078,
+      "year": 2020,
+      "week": 39,
+      "observed": 12.0,
+      "lastTrainingBlock": 105039,
+      "seasonal_boosted_trees": 228.89871105987672,
+      "seasonal_baseline": 204.74
+    },
+    {
+      "block": 105079,
+      "year": 2020,
+      "week": 40,
+      "observed": 11.0,
+      "lastTrainingBlock": 105039,
+      "seasonal_boosted_trees": 119.19457466219895,
+      "seasonal_baseline": 188.28
+    },
+    {
+      "block": 105080,
+      "year": 2020,
+      "week": 41,
+      "observed": 13.0,
+      "lastTrainingBlock": 105039,
+      "seasonal_boosted_trees": 157.0514675861897,
+      "seasonal_baseline": 173.26
+    },
+    {
+      "block": 105081,
+      "year": 2020,
+      "week": 42,
+      "observed": 10.0,
+      "lastTrainingBlock": 105039,
+      "seasonal_boosted_trees": 202.86215750069354,
+      "seasonal_baseline": 157.68
+    },
+    {
+      "block": 105082,
+      "year": 2020,
+      "week": 43,
+      "observed": 20.0,
+      "lastTrainingBlock": 105039,
+      "seasonal_boosted_trees": 166.7775565549905,
+      "seasonal_baseline": 143.3
+    },
+    {
+      "block": 105083,
+      "year": 2020,
+      "week": 44,
+      "observed": 19.0,
+      "lastTrainingBlock": 105039,
+      "seasonal_boosted_trees": 94.0762948265484,
+      "seasonal_baseline": 130.3
+    },
+    {
+      "block": 105084,
+      "year": 2020,
+      "week": 45,
+      "observed": 24.0,
+      "lastTrainingBlock": 105039,
+      "seasonal_boosted_trees": 87.09861329883206,
+      "seasonal_baseline": 118.64
+    },
+    {
+      "block": 105085,
+      "year": 2020,
+      "week": 46,
+      "observed": 27.0,
+      "lastTrainingBlock": 105039,
+      "seasonal_boosted_trees": 57.01488531783944,
+      "seasonal_baseline": 106.9
+    },
+    {
+      "block": 105086,
+      "year": 2020,
+      "week": 47,
+      "observed": 31.0,
+      "lastTrainingBlock": 105039,
+      "seasonal_boosted_trees": 80.79885240324813,
+      "seasonal_baseline": 101.5
+    },
+    {
+      "block": 105087,
+      "year": 2020,
+      "week": 48,
+      "observed": 35.0,
+      "lastTrainingBlock": 105039,
+      "seasonal_boosted_trees": 91.13762044110351,
+      "seasonal_baseline": 94.62
+    },
+    {
+      "block": 105088,
+      "year": 2020,
+      "week": 49,
+      "observed": 30.0,
+      "lastTrainingBlock": 105039,
+      "seasonal_boosted_trees": 58.97480332440139,
+      "seasonal_baseline": 88.94
+    },
+    {
+      "block": 105089,
+      "year": 2020,
+      "week": 50,
+      "observed": 17.0,
+      "lastTrainingBlock": 105039,
+      "seasonal_boosted_trees": 76.17755434419188,
+      "seasonal_baseline": 81.5
+    },
+    {
+      "block": 105090,
+      "year": 2020,
+      "week": 51,
+      "observed": 26.0,
+      "lastTrainingBlock": 105039,
+      "seasonal_boosted_trees": 65.13965404356068,
+      "seasonal_baseline": 78.34
+    },
+    {
+      "block": 105091,
+      "year": 2020,
+      "week": 52,
+      "observed": 35.0,
+      "lastTrainingBlock": 105039,
+      "seasonal_boosted_trees": 66.41536866447801,
+      "seasonal_baseline": 79.28
+    },
+    {
+      "block": 105092,
+      "year": 2021,
+      "week": 1,
+      "observed": 38.0,
+      "lastTrainingBlock": 105091,
+      "seasonal_boosted_trees": 95.16334118969549,
+      "seasonal_baseline": 82.52727272727273
+    },
+    {
+      "block": 105093,
+      "year": 2021,
+      "week": 2,
+      "observed": 25.0,
+      "lastTrainingBlock": 105091,
+      "seasonal_boosted_trees": 83.49696339586694,
+      "seasonal_baseline": 86.87272727272727
+    },
+    {
+      "block": 105094,
+      "year": 2021,
+      "week": 3,
+      "observed": 32.0,
+      "lastTrainingBlock": 105091,
+      "seasonal_boosted_trees": 91.59604951495577,
+      "seasonal_baseline": 93.10909090909091
+    },
+    {
+      "block": 105095,
+      "year": 2021,
+      "week": 4,
+      "observed": 26.0,
+      "lastTrainingBlock": 105091,
+      "seasonal_boosted_trees": 109.45551839047148,
+      "seasonal_baseline": 92.4
+    },
+    {
+      "block": 105096,
+      "year": 2021,
+      "week": 5,
+      "observed": 28.0,
+      "lastTrainingBlock": 105091,
+      "seasonal_boosted_trees": 81.01257559973456,
+      "seasonal_baseline": 84.0
+    },
+    {
+      "block": 105097,
+      "year": 2021,
+      "week": 6,
+      "observed": 24.0,
+      "lastTrainingBlock": 105091,
+      "seasonal_boosted_trees": 88.28397133665983,
+      "seasonal_baseline": 77.69090909090909
+    },
+    {
+      "block": 105098,
+      "year": 2021,
+      "week": 7,
+      "observed": 21.0,
+      "lastTrainingBlock": 105091,
+      "seasonal_boosted_trees": 88.59698139629073,
+      "seasonal_baseline": 71.36363636363636
+    },
+    {
+      "block": 105099,
+      "year": 2021,
+      "week": 8,
+      "observed": 38.0,
+      "lastTrainingBlock": 105091,
+      "seasonal_boosted_trees": 61.70590276454687,
+      "seasonal_baseline": 66.94545454545455
+    },
+    {
+      "block": 105100,
+      "year": 2021,
+      "week": 9,
+      "observed": 23.0,
+      "lastTrainingBlock": 105091,
+      "seasonal_boosted_trees": 52.98122998533428,
+      "seasonal_baseline": 62.10909090909091
+    },
+    {
+      "block": 105101,
+      "year": 2021,
+      "week": 10,
+      "observed": 22.0,
+      "lastTrainingBlock": 105091,
+      "seasonal_boosted_trees": 57.1224260166861,
+      "seasonal_baseline": 57.49090909090909
+    },
+    {
+      "block": 105102,
+      "year": 2021,
+      "week": 11,
+      "observed": 15.0,
+      "lastTrainingBlock": 105091,
+      "seasonal_boosted_trees": 52.03102199129892,
+      "seasonal_baseline": 52.70909090909091
+    },
+    {
+      "block": 105103,
+      "year": 2021,
+      "week": 12,
+      "observed": 14.0,
+      "lastTrainingBlock": 105091,
+      "seasonal_boosted_trees": 39.671394458578185,
+      "seasonal_baseline": 48.14545454545455
+    },
+    {
+      "block": 105104,
+      "year": 2021,
+      "week": 13,
+      "observed": 11.0,
+      "lastTrainingBlock": 105091,
+      "seasonal_boosted_trees": 38.10116700504062,
+      "seasonal_baseline": 42.49090909090909
+    },
+    {
+      "block": 105105,
+      "year": 2021,
+      "week": 14,
+      "observed": 12.0,
+      "lastTrainingBlock": 105091,
+      "seasonal_boosted_trees": 36.349859343094,
+      "seasonal_baseline": 39.49090909090909
+    },
+    {
+      "block": 105106,
+      "year": 2021,
+      "week": 15,
+      "observed": 7.0,
+      "lastTrainingBlock": 105091,
+      "seasonal_boosted_trees": 38.477965731697715,
+      "seasonal_baseline": 37.72727272727273
+    },
+    {
+      "block": 105107,
+      "year": 2021,
+      "week": 16,
+      "observed": 11.0,
+      "lastTrainingBlock": 105091,
+      "seasonal_boosted_trees": 34.054499642116625,
+      "seasonal_baseline": 36.472727272727276
+    },
+    {
+      "block": 105108,
+      "year": 2021,
+      "week": 17,
+      "observed": 13.0,
+      "lastTrainingBlock": 105091,
+      "seasonal_boosted_trees": 32.5655672509284,
+      "seasonal_baseline": 35.58181818181818
+    },
+    {
+      "block": 105109,
+      "year": 2021,
+      "week": 18,
+      "observed": 10.0,
+      "lastTrainingBlock": 105091,
+      "seasonal_boosted_trees": 42.95985407074288,
+      "seasonal_baseline": 35.8
+    },
+    {
+      "block": 105110,
+      "year": 2021,
+      "week": 19,
+      "observed": 13.0,
+      "lastTrainingBlock": 105091,
+      "seasonal_boosted_trees": 38.18145244418562,
+      "seasonal_baseline": 37.527272727272724
+    },
+    {
+      "block": 105111,
+      "year": 2021,
+      "week": 20,
+      "observed": 16.0,
+      "lastTrainingBlock": 105091,
+      "seasonal_boosted_trees": 31.910008171408638,
+      "seasonal_baseline": 39.69090909090909
+    },
+    {
+      "block": 105112,
+      "year": 2021,
+      "week": 21,
+      "observed": 6.0,
+      "lastTrainingBlock": 105091,
+      "seasonal_boosted_trees": 43.15974471238253,
+      "seasonal_baseline": 42.0
+    },
+    {
+      "block": 105113,
+      "year": 2021,
+      "week": 22,
+      "observed": 15.0,
+      "lastTrainingBlock": 105091,
+      "seasonal_boosted_trees": 53.605915321915816,
+      "seasonal_baseline": 47.29090909090909
+    },
+    {
+      "block": 105114,
+      "year": 2021,
+      "week": 23,
+      "observed": 4.0,
+      "lastTrainingBlock": 105091,
+      "seasonal_boosted_trees": 67.87790101530067,
+      "seasonal_baseline": 55.36363636363637
+    },
+    {
+      "block": 105115,
+      "year": 2021,
+      "week": 24,
+      "observed": 10.0,
+      "lastTrainingBlock": 105091,
+      "seasonal_boosted_trees": 75.74712491660625,
+      "seasonal_baseline": 67.49090909090908
+    },
+    {
+      "block": 105116,
+      "year": 2021,
+      "week": 25,
+      "observed": 11.0,
+      "lastTrainingBlock": 105091,
+      "seasonal_boosted_trees": 106.02716102973373,
+      "seasonal_baseline": 82.8
+    },
+    {
+      "block": 105117,
+      "year": 2021,
+      "week": 26,
+      "observed": 15.0,
+      "lastTrainingBlock": 105091,
+      "seasonal_boosted_trees": 191.06269243964658,
+      "seasonal_baseline": 100.72727272727273
+    },
+    {
+      "block": 105118,
+      "year": 2021,
+      "week": 27,
+      "observed": 11.0,
+      "lastTrainingBlock": 105091,
+      "seasonal_boosted_trees": 122.34472783432251,
+      "seasonal_baseline": 125.56363636363636
+    },
+    {
+      "block": 105119,
+      "year": 2021,
+      "week": 28,
+      "observed": 22.0,
+      "lastTrainingBlock": 105091,
+      "seasonal_boosted_trees": 174.98744813042128,
+      "seasonal_baseline": 148.74545454545455
+    },
+    {
+      "block": 105120,
+      "year": 2021,
+      "week": 29,
+      "observed": 20.0,
+      "lastTrainingBlock": 105091,
+      "seasonal_boosted_trees": 167.45068019842998,
+      "seasonal_baseline": 168.34545454545454
+    },
+    {
+      "block": 105121,
+      "year": 2021,
+      "week": 30,
+      "observed": 31.0,
+      "lastTrainingBlock": 105091,
+      "seasonal_boosted_trees": 213.23067451148347,
+      "seasonal_baseline": 191.47272727272727
+    },
+    {
+      "block": 105122,
+      "year": 2021,
+      "week": 31,
+      "observed": 34.0,
+      "lastTrainingBlock": 105091,
+      "seasonal_boosted_trees": 199.46825895237606,
+      "seasonal_baseline": 215.83636363636364
+    },
+    {
+      "block": 105123,
+      "year": 2021,
+      "week": 32,
+      "observed": 45.0,
+      "lastTrainingBlock": 105091,
+      "seasonal_boosted_trees": 337.6857908698781,
+      "seasonal_baseline": 236.14545454545456
+    },
+    {
+      "block": 105124,
+      "year": 2021,
+      "week": 33,
+      "observed": 27.0,
+      "lastTrainingBlock": 105091,
+      "seasonal_boosted_trees": 246.78098229302358,
+      "seasonal_baseline": 250.4909090909091
+    },
+    {
+      "block": 105125,
+      "year": 2021,
+      "week": 34,
+      "observed": 26.0,
+      "lastTrainingBlock": 105091,
+      "seasonal_boosted_trees": 224.49199249563355,
+      "seasonal_baseline": 258.07272727272726
+    },
+    {
+      "block": 105126,
+      "year": 2021,
+      "week": 35,
+      "observed": 28.0,
+      "lastTrainingBlock": 105091,
+      "seasonal_boosted_trees": 217.54416627986467,
+      "seasonal_baseline": 253.78181818181818
+    },
+    {
+      "block": 105127,
+      "year": 2021,
+      "week": 36,
+      "observed": 36.0,
+      "lastTrainingBlock": 105091,
+      "seasonal_boosted_trees": 195.9207554150793,
+      "seasonal_baseline": 243.54545454545453
+    },
+    {
+      "block": 105128,
+      "year": 2021,
+      "week": 37,
+      "observed": 39.0,
+      "lastTrainingBlock": 105091,
+      "seasonal_boosted_trees": 188.38595137360954,
+      "seasonal_baseline": 222.8
+    },
+    {
+      "block": 105129,
+      "year": 2021,
+      "week": 38,
+      "observed": 35.0,
+      "lastTrainingBlock": 105091,
+      "seasonal_boosted_trees": 185.4849536463531,
+      "seasonal_baseline": 204.8909090909091
+    },
+    {
+      "block": 105130,
+      "year": 2021,
+      "week": 39,
+      "observed": 46.0,
+      "lastTrainingBlock": 105091,
+      "seasonal_boosted_trees": 183.04936337780543,
+      "seasonal_baseline": 187.5090909090909
+    },
+    {
+      "block": 105131,
+      "year": 2021,
+      "week": 40,
+      "observed": 37.0,
+      "lastTrainingBlock": 105091,
+      "seasonal_boosted_trees": 160.57255139286633,
+      "seasonal_baseline": 172.23636363636365
+    },
+    {
+      "block": 105132,
+      "year": 2021,
+      "week": 41,
+      "observed": 38.0,
+      "lastTrainingBlock": 105091,
+      "seasonal_boosted_trees": 145.0694323979488,
+      "seasonal_baseline": 158.70909090909092
+    },
+    {
+      "block": 105133,
+      "year": 2021,
+      "week": 42,
+      "observed": 49.0,
+      "lastTrainingBlock": 105091,
+      "seasonal_boosted_trees": 138.96455674649042,
+      "seasonal_baseline": 144.6727272727273
+    },
+    {
+      "block": 105134,
+      "year": 2021,
+      "week": 43,
+      "observed": 25.0,
+      "lastTrainingBlock": 105091,
+      "seasonal_boosted_trees": 155.31142841626445,
+      "seasonal_baseline": 131.83636363636364
+    },
+    {
+      "block": 105135,
+      "year": 2021,
+      "week": 44,
+      "observed": 43.0,
+      "lastTrainingBlock": 105091,
+      "seasonal_boosted_trees": 99.88005526868486,
+      "seasonal_baseline": 120.27272727272727
+    },
+    {
+      "block": 105136,
+      "year": 2021,
+      "week": 45,
+      "observed": 32.0,
+      "lastTrainingBlock": 105091,
+      "seasonal_boosted_trees": 98.24251304423255,
+      "seasonal_baseline": 110.05454545454545
+    },
+    {
+      "block": 105137,
+      "year": 2021,
+      "week": 46,
+      "observed": 36.0,
+      "lastTrainingBlock": 105091,
+      "seasonal_boosted_trees": 88.99866773638762,
+      "seasonal_baseline": 99.65454545454546
+    },
+    {
+      "block": 105138,
+      "year": 2021,
+      "week": 47,
+      "observed": 34.0,
+      "lastTrainingBlock": 105091,
+      "seasonal_boosted_trees": 66.46978907890472,
+      "seasonal_baseline": 94.94545454545455
+    },
+    {
+      "block": 105139,
+      "year": 2021,
+      "week": 48,
+      "observed": 33.0,
+      "lastTrainingBlock": 105091,
+      "seasonal_boosted_trees": 102.00761632220318,
+      "seasonal_baseline": 88.56363636363636
+    },
+    {
+      "block": 105140,
+      "year": 2021,
+      "week": 49,
+      "observed": 28.0,
+      "lastTrainingBlock": 105091,
+      "seasonal_boosted_trees": 79.73708378973772,
+      "seasonal_baseline": 83.38181818181818
+    },
+    {
+      "block": 105141,
+      "year": 2021,
+      "week": 50,
+      "observed": 23.0,
+      "lastTrainingBlock": 105091,
+      "seasonal_boosted_trees": 70.94525324763754,
+      "seasonal_baseline": 76.69090909090909
+    },
+    {
+      "block": 105142,
+      "year": 2021,
+      "week": 51,
+      "observed": 22.0,
+      "lastTrainingBlock": 105091,
+      "seasonal_boosted_trees": 78.83848946274767,
+      "seasonal_baseline": 75.07272727272728
+    },
+    {
+      "block": 105143,
+      "year": 2021,
+      "week": 52,
+      "observed": 15.0,
+      "lastTrainingBlock": 105091,
+      "seasonal_boosted_trees": 56.00123289789728,
+      "seasonal_baseline": 78.7090909090909
+    },
+    {
+      "block": 105144,
+      "year": 2022,
+      "week": 1,
+      "observed": 11.0,
+      "lastTrainingBlock": 105143,
+      "seasonal_boosted_trees": 82.51207466206034,
+      "seasonal_baseline": 77.85
+    },
+    {
+      "block": 105145,
+      "year": 2022,
+      "week": 2,
+      "observed": 7.0,
+      "lastTrainingBlock": 105143,
+      "seasonal_boosted_trees": 76.52966386835499,
+      "seasonal_baseline": 81.9
+    },
+    {
+      "block": 105146,
+      "year": 2022,
+      "week": 3,
+      "observed": 18.0,
+      "lastTrainingBlock": 105143,
+      "seasonal_boosted_trees": 79.714138657587,
+      "seasonal_baseline": 87.83333333333333
+    },
+    {
+      "block": 105147,
+      "year": 2022,
+      "week": 4,
+      "observed": 16.0,
+      "lastTrainingBlock": 105143,
+      "seasonal_boosted_trees": 82.03049359872355,
+      "seasonal_baseline": 86.95
+    },
+    {
+      "block": 105148,
+      "year": 2022,
+      "week": 5,
+      "observed": 16.0,
+      "lastTrainingBlock": 105143,
+      "seasonal_boosted_trees": 63.28325455228552,
+      "seasonal_baseline": 79.18333333333334
+    },
+    {
+      "block": 105149,
+      "year": 2022,
+      "week": 6,
+      "observed": 26.0,
+      "lastTrainingBlock": 105143,
+      "seasonal_boosted_trees": 56.05081772650664,
+      "seasonal_baseline": 73.5
+    },
+    {
+      "block": 105150,
+      "year": 2022,
+      "week": 7,
+      "observed": 12.0,
+      "lastTrainingBlock": 105143,
+      "seasonal_boosted_trees": 55.186780677781336,
+      "seasonal_baseline": 67.65
+    },
+    {
+      "block": 105151,
+      "year": 2022,
+      "week": 8,
+      "observed": 19.0,
+      "lastTrainingBlock": 105143,
+      "seasonal_boosted_trees": 52.83235071083177,
+      "seasonal_baseline": 63.5
+    },
+    {
+      "block": 105152,
+      "year": 2022,
+      "week": 9,
+      "observed": 23.0,
+      "lastTrainingBlock": 105143,
+      "seasonal_boosted_trees": 51.96019981929546,
+      "seasonal_baseline": 58.916666666666664
+    },
+    {
+      "block": 105153,
+      "year": 2022,
+      "week": 10,
+      "observed": 20.0,
+      "lastTrainingBlock": 105143,
+      "seasonal_boosted_trees": 55.1495399597862,
+      "seasonal_baseline": 54.56666666666667
+    },
+    {
+      "block": 105154,
+      "year": 2022,
+      "week": 11,
+      "observed": 19.0,
+      "lastTrainingBlock": 105143,
+      "seasonal_boosted_trees": 46.1638700930609,
+      "seasonal_baseline": 49.733333333333334
+    },
+    {
+      "block": 105155,
+      "year": 2022,
+      "week": 12,
+      "observed": 17.0,
+      "lastTrainingBlock": 105143,
+      "seasonal_boosted_trees": 42.15398644698271,
+      "seasonal_baseline": 45.36666666666667
+    },
+    {
+      "block": 105156,
+      "year": 2022,
+      "week": 13,
+      "observed": 19.0,
+      "lastTrainingBlock": 105143,
+      "seasonal_boosted_trees": 37.6400728512323,
+      "seasonal_baseline": 39.93333333333333
+    },
+    {
+      "block": 105157,
+      "year": 2022,
+      "week": 14,
+      "observed": 27.0,
+      "lastTrainingBlock": 105143,
+      "seasonal_boosted_trees": 29.84247696426121,
+      "seasonal_baseline": 37.11666666666667
+    },
+    {
+      "block": 105158,
+      "year": 2022,
+      "week": 15,
+      "observed": 23.0,
+      "lastTrainingBlock": 105143,
+      "seasonal_boosted_trees": 38.63081904207446,
+      "seasonal_baseline": 35.483333333333334
+    },
+    {
+      "block": 105159,
+      "year": 2022,
+      "week": 16,
+      "observed": 22.0,
+      "lastTrainingBlock": 105143,
+      "seasonal_boosted_trees": 43.36896131475632,
+      "seasonal_baseline": 34.31666666666667
+    },
+    {
+      "block": 105160,
+      "year": 2022,
+      "week": 17,
+      "observed": 24.0,
+      "lastTrainingBlock": 105143,
+      "seasonal_boosted_trees": 34.463142660050096,
+      "seasonal_baseline": 33.516666666666666
+    },
+    {
+      "block": 105161,
+      "year": 2022,
+      "week": 18,
+      "observed": 27.0,
+      "lastTrainingBlock": 105143,
+      "seasonal_boosted_trees": 32.35039265500157,
+      "seasonal_baseline": 33.86666666666667
+    },
+    {
+      "block": 105162,
+      "year": 2022,
+      "week": 19,
+      "observed": 31.0,
+      "lastTrainingBlock": 105143,
+      "seasonal_boosted_trees": 34.085242597274316,
+      "seasonal_baseline": 35.36666666666667
+    },
+    {
+      "block": 105163,
+      "year": 2022,
+      "week": 20,
+      "observed": 37.0,
+      "lastTrainingBlock": 105143,
+      "seasonal_boosted_trees": 33.96563776906724,
+      "seasonal_baseline": 37.38333333333333
+    },
+    {
+      "block": 105164,
+      "year": 2022,
+      "week": 21,
+      "observed": 44.0,
+      "lastTrainingBlock": 105143,
+      "seasonal_boosted_trees": 32.19345863610125,
+      "seasonal_baseline": 39.4
+    },
+    {
+      "block": 105165,
+      "year": 2022,
+      "week": 22,
+      "observed": 36.0,
+      "lastTrainingBlock": 105143,
+      "seasonal_boosted_trees": 37.126659894276166,
+      "seasonal_baseline": 44.2
+    },
+    {
+      "block": 105166,
+      "year": 2022,
+      "week": 23,
+      "observed": 51.0,
+      "lastTrainingBlock": 105143,
+      "seasonal_boosted_trees": 41.90362234099751,
+      "seasonal_baseline": 51.516666666666666
+    },
+    {
+      "block": 105167,
+      "year": 2022,
+      "week": 24,
+      "observed": 75.0,
+      "lastTrainingBlock": 105143,
+      "seasonal_boosted_trees": 46.19179909749247,
+      "seasonal_baseline": 62.78333333333333
+    },
+    {
+      "block": 105168,
+      "year": 2022,
+      "week": 25,
+      "observed": 114.0,
+      "lastTrainingBlock": 105143,
+      "seasonal_boosted_trees": 91.88765649199766,
+      "seasonal_baseline": 76.75
+    },
+    {
+      "block": 105169,
+      "year": 2022,
+      "week": 26,
+      "observed": 125.0,
+      "lastTrainingBlock": 105143,
+      "seasonal_boosted_trees": 101.27555186026383,
+      "seasonal_baseline": 93.48333333333333
+    },
+    {
+      "block": 105170,
+      "year": 2022,
+      "week": 27,
+      "observed": 107.0,
+      "lastTrainingBlock": 105143,
+      "seasonal_boosted_trees": 99.729361023558,
+      "seasonal_baseline": 116.41666666666667
+    },
+    {
+      "block": 105171,
+      "year": 2022,
+      "week": 28,
+      "observed": 159.0,
+      "lastTrainingBlock": 105143,
+      "seasonal_boosted_trees": 132.9001225246295,
+      "seasonal_baseline": 138.0
+    },
+    {
+      "block": 105172,
+      "year": 2022,
+      "week": 29,
+      "observed": 177.0,
+      "lastTrainingBlock": 105143,
+      "seasonal_boosted_trees": 133.1602796365735,
+      "seasonal_baseline": 156.28333333333333
+    },
+    {
+      "block": 105173,
+      "year": 2022,
+      "week": 30,
+      "observed": 172.0,
+      "lastTrainingBlock": 105143,
+      "seasonal_boosted_trees": 175.46319810655805,
+      "seasonal_baseline": 178.05
+    },
+    {
+      "block": 105174,
+      "year": 2022,
+      "week": 31,
+      "observed": 183.0,
+      "lastTrainingBlock": 105143,
+      "seasonal_boosted_trees": 169.13902846425057,
+      "seasonal_baseline": 200.46666666666667
+    },
+    {
+      "block": 105175,
+      "year": 2022,
+      "week": 32,
+      "observed": 188.0,
+      "lastTrainingBlock": 105143,
+      "seasonal_boosted_trees": 234.98731193333057,
+      "seasonal_baseline": 219.18333333333334
+    },
+    {
+      "block": 105176,
+      "year": 2022,
+      "week": 33,
+      "observed": 146.0,
+      "lastTrainingBlock": 105143,
+      "seasonal_boosted_trees": 262.8234998534228,
+      "seasonal_baseline": 232.28333333333333
+    },
+    {
+      "block": 105177,
+      "year": 2022,
+      "week": 34,
+      "observed": 172.0,
+      "lastTrainingBlock": 105143,
+      "seasonal_boosted_trees": 253.48339930604658,
+      "seasonal_baseline": 239.26666666666668
+    },
+    {
+      "block": 105178,
+      "year": 2022,
+      "week": 35,
+      "observed": 151.0,
+      "lastTrainingBlock": 105143,
+      "seasonal_boosted_trees": 242.5946962844751,
+      "seasonal_baseline": 235.23333333333332
+    },
+    {
+      "block": 105179,
+      "year": 2022,
+      "week": 36,
+      "observed": 140.0,
+      "lastTrainingBlock": 105143,
+      "seasonal_boosted_trees": 199.87213661941857,
+      "seasonal_baseline": 225.98333333333332
+    },
+    {
+      "block": 105180,
+      "year": 2022,
+      "week": 37,
+      "observed": 172.0,
+      "lastTrainingBlock": 105143,
+      "seasonal_boosted_trees": 184.63396767125332,
+      "seasonal_baseline": 207.3
+    },
+    {
+      "block": 105181,
+      "year": 2022,
+      "week": 38,
+      "observed": 137.0,
+      "lastTrainingBlock": 105143,
+      "seasonal_boosted_trees": 166.86973994039388,
+      "seasonal_baseline": 191.03333333333333
+    },
+    {
+      "block": 105182,
+      "year": 2022,
+      "week": 39,
+      "observed": 93.0,
+      "lastTrainingBlock": 105143,
+      "seasonal_boosted_trees": 154.48080741571837,
+      "seasonal_baseline": 175.13333333333333
+    },
+    {
+      "block": 105183,
+      "year": 2022,
+      "week": 40,
+      "observed": 108.0,
+      "lastTrainingBlock": 105143,
+      "seasonal_boosted_trees": 122.85405791061255,
+      "seasonal_baseline": 161.3
+    },
+    {
+      "block": 105184,
+      "year": 2022,
+      "week": 41,
+      "observed": 107.0,
+      "lastTrainingBlock": 105143,
+      "seasonal_boosted_trees": 117.36615370551418,
+      "seasonal_baseline": 148.73333333333332
+    },
+    {
+      "block": 105185,
+      "year": 2022,
+      "week": 42,
+      "observed": 76.0,
+      "lastTrainingBlock": 105143,
+      "seasonal_boosted_trees": 91.78204125287715,
+      "seasonal_baseline": 135.81666666666666
+    },
+    {
+      "block": 105186,
+      "year": 2022,
+      "week": 43,
+      "observed": 71.0,
+      "lastTrainingBlock": 105143,
+      "seasonal_boosted_trees": 119.55298832354451,
+      "seasonal_baseline": 123.96666666666667
+    },
+    {
+      "block": 105187,
+      "year": 2022,
+      "week": 44,
+      "observed": 69.0,
+      "lastTrainingBlock": 105143,
+      "seasonal_boosted_trees": 91.56028595589895,
+      "seasonal_baseline": 113.33333333333333
+    },
+    {
+      "block": 105188,
+      "year": 2022,
+      "week": 45,
+      "observed": 82.0,
+      "lastTrainingBlock": 105143,
+      "seasonal_boosted_trees": 100.09248168790718,
+      "seasonal_baseline": 103.71666666666667
+    },
+    {
+      "block": 105189,
+      "year": 2022,
+      "week": 46,
+      "observed": 67.0,
+      "lastTrainingBlock": 105143,
+      "seasonal_boosted_trees": 76.30218478071305,
+      "seasonal_baseline": 94.31666666666666
+    },
+    {
+      "block": 105190,
+      "year": 2022,
+      "week": 47,
+      "observed": 60.0,
+      "lastTrainingBlock": 105143,
+      "seasonal_boosted_trees": 72.33215649027369,
+      "seasonal_baseline": 89.75
+    },
+    {
+      "block": 105191,
+      "year": 2022,
+      "week": 48,
+      "observed": 81.0,
+      "lastTrainingBlock": 105143,
+      "seasonal_boosted_trees": 102.20393888991292,
+      "seasonal_baseline": 83.75
+    },
+    {
+      "block": 105192,
+      "year": 2022,
+      "week": 49,
+      "observed": 68.0,
+      "lastTrainingBlock": 105143,
+      "seasonal_boosted_trees": 81.58886803686286,
+      "seasonal_baseline": 78.76666666666667
+    },
+    {
+      "block": 105193,
+      "year": 2022,
+      "week": 50,
+      "observed": 66.0,
+      "lastTrainingBlock": 105143,
+      "seasonal_boosted_trees": 74.72077578403143,
+      "seasonal_baseline": 72.31666666666666
+    },
+    {
+      "block": 105194,
+      "year": 2022,
+      "week": 51,
+      "observed": 54.0,
+      "lastTrainingBlock": 105143,
+      "seasonal_boosted_trees": 70.13740223119771,
+      "seasonal_baseline": 70.91666666666667
+    },
+    {
+      "block": 105195,
+      "year": 2022,
+      "week": 52,
+      "observed": 67.0,
+      "lastTrainingBlock": 105143,
+      "seasonal_boosted_trees": 67.74501834166128,
+      "seasonal_baseline": 74.2
+    },
+    {
+      "block": 105196,
+      "year": 2023,
+      "week": 1,
+      "observed": 55.0,
+      "lastTrainingBlock": 105195,
+      "seasonal_boosted_trees": 68.55015576397277,
+      "seasonal_baseline": 74.27692307692308
+    },
+    {
+      "block": 105197,
+      "year": 2023,
+      "week": 2,
+      "observed": 68.0,
+      "lastTrainingBlock": 105195,
+      "seasonal_boosted_trees": 67.79319977404803,
+      "seasonal_baseline": 77.43076923076923
+    },
+    {
+      "block": 105198,
+      "year": 2023,
+      "week": 3,
+      "observed": 64.0,
+      "lastTrainingBlock": 105195,
+      "seasonal_boosted_trees": 62.96795861911215,
+      "seasonal_baseline": 82.12307692307692
+    },
+    {
+      "block": 105199,
+      "year": 2023,
+      "week": 4,
+      "observed": 58.0,
+      "lastTrainingBlock": 105195,
+      "seasonal_boosted_trees": 77.49660429841157,
+      "seasonal_baseline": 81.53846153846153
+    },
+    {
+      "block": 105200,
+      "year": 2023,
+      "week": 5,
+      "observed": 67.0,
+      "lastTrainingBlock": 105195,
+      "seasonal_boosted_trees": 58.238852199098964,
+      "seasonal_baseline": 74.44615384615385
+    },
+    {
+      "block": 105201,
+      "year": 2023,
+      "week": 6,
+      "observed": 58.0,
+      "lastTrainingBlock": 105195,
+      "seasonal_boosted_trees": 51.379511413257816,
+      "seasonal_baseline": 69.21538461538462
+    },
+    {
+      "block": 105202,
+      "year": 2023,
+      "week": 7,
+      "observed": 78.0,
+      "lastTrainingBlock": 105195,
+      "seasonal_boosted_trees": 53.34684192539552,
+      "seasonal_baseline": 63.92307692307692
+    },
+    {
+      "block": 105203,
+      "year": 2023,
+      "week": 8,
+      "observed": 52.0,
+      "lastTrainingBlock": 105195,
+      "seasonal_boosted_trees": 53.69772833457261,
+      "seasonal_baseline": 60.15384615384615
+    },
+    {
+      "block": 105204,
+      "year": 2023,
+      "week": 9,
+      "observed": 33.0,
+      "lastTrainingBlock": 105195,
+      "seasonal_boosted_trees": 49.369009473114886,
+      "seasonal_baseline": 55.815384615384616
+    },
+    {
+      "block": 105205,
+      "year": 2023,
+      "week": 10,
+      "observed": 39.0,
+      "lastTrainingBlock": 105195,
+      "seasonal_boosted_trees": 49.03486980360404,
+      "seasonal_baseline": 51.87692307692308
+    },
+    {
+      "block": 105206,
+      "year": 2023,
+      "week": 11,
+      "observed": 34.0,
+      "lastTrainingBlock": 105195,
+      "seasonal_boosted_trees": 45.05617008993045,
+      "seasonal_baseline": 47.41538461538462
+    },
+    {
+      "block": 105207,
+      "year": 2023,
+      "week": 12,
+      "observed": 31.0,
+      "lastTrainingBlock": 105195,
+      "seasonal_boosted_trees": 41.08710621365114,
+      "seasonal_baseline": 43.44615384615385
+    },
+    {
+      "block": 105208,
+      "year": 2023,
+      "week": 13,
+      "observed": 39.0,
+      "lastTrainingBlock": 105195,
+      "seasonal_boosted_trees": 47.225130745617314,
+      "seasonal_baseline": 38.47692307692308
+    },
+    {
+      "block": 105209,
+      "year": 2023,
+      "week": 14,
+      "observed": 19.0,
+      "lastTrainingBlock": 105195,
+      "seasonal_boosted_trees": 33.85401832401056,
+      "seasonal_baseline": 35.92307692307692
+    },
+    {
+      "block": 105210,
+      "year": 2023,
+      "week": 15,
+      "observed": 35.0,
+      "lastTrainingBlock": 105195,
+      "seasonal_boosted_trees": 29.622663443948205,
+      "seasonal_baseline": 34.52307692307692
+    },
+    {
+      "block": 105211,
+      "year": 2023,
+      "week": 16,
+      "observed": 38.0,
+      "lastTrainingBlock": 105195,
+      "seasonal_boosted_trees": 33.09989362941518,
+      "seasonal_baseline": 33.56923076923077
+    },
+    {
+      "block": 105212,
+      "year": 2023,
+      "week": 17,
+      "observed": 37.0,
+      "lastTrainingBlock": 105195,
+      "seasonal_boosted_trees": 30.50511304737885,
+      "seasonal_baseline": 32.89230769230769
+    },
+    {
+      "block": 105213,
+      "year": 2023,
+      "week": 18,
+      "observed": 20.0,
+      "lastTrainingBlock": 105195,
+      "seasonal_boosted_trees": 31.042104378128478,
+      "seasonal_baseline": 33.43076923076923
+    },
+    {
+      "block": 105214,
+      "year": 2023,
+      "week": 19,
+      "observed": 27.0,
+      "lastTrainingBlock": 105195,
+      "seasonal_boosted_trees": 31.365432396379937,
+      "seasonal_baseline": 35.15384615384615
+    },
+    {
+      "block": 105215,
+      "year": 2023,
+      "week": 20,
+      "observed": 39.0,
+      "lastTrainingBlock": 105195,
+      "seasonal_boosted_trees": 31.00497406854019,
+      "seasonal_baseline": 37.2
+    },
+    {
+      "block": 105216,
+      "year": 2023,
+      "week": 21,
+      "observed": 32.0,
+      "lastTrainingBlock": 105195,
+      "seasonal_boosted_trees": 43.67890949004199,
+      "seasonal_baseline": 39.43076923076923
+    },
+    {
+      "block": 105217,
+      "year": 2023,
+      "week": 22,
+      "observed": 43.0,
+      "lastTrainingBlock": 105195,
+      "seasonal_boosted_trees": 40.58588637921923,
+      "seasonal_baseline": 44.53846153846154
+    },
+    {
+      "block": 105218,
+      "year": 2023,
+      "week": 23,
+      "observed": 55.0,
+      "lastTrainingBlock": 105195,
+      "seasonal_boosted_trees": 37.021626423583754,
+      "seasonal_baseline": 52.47692307692308
+    },
+    {
+      "block": 105219,
+      "year": 2023,
+      "week": 24,
+      "observed": 77.0,
+      "lastTrainingBlock": 105195,
+      "seasonal_boosted_trees": 60.12137075939961,
+      "seasonal_baseline": 64.12307692307692
+    },
+    {
+      "block": 105220,
+      "year": 2023,
+      "week": 25,
+      "observed": 87.0,
+      "lastTrainingBlock": 105195,
+      "seasonal_boosted_trees": 88.03459322028681,
+      "seasonal_baseline": 78.1076923076923
+    },
+    {
+      "block": 105221,
+      "year": 2023,
+      "week": 26,
+      "observed": 96.0,
+      "lastTrainingBlock": 105195,
+      "seasonal_boosted_trees": 94.72998399836523,
+      "seasonal_baseline": 95.21538461538462
+    },
+    {
+      "block": 105222,
+      "year": 2023,
+      "week": 27,
+      "observed": 95.0,
+      "lastTrainingBlock": 105195,
+      "seasonal_boosted_trees": 104.10862947828645,
+      "seasonal_baseline": 117.95384615384616
+    },
+    {
+      "block": 105223,
+      "year": 2023,
+      "week": 28,
+      "observed": 60.0,
+      "lastTrainingBlock": 105195,
+      "seasonal_boosted_trees": 125.86377646516155,
+      "seasonal_baseline": 138.76923076923077
+    },
+    {
+      "block": 105224,
+      "year": 2023,
+      "week": 29,
+      "observed": 75.0,
+      "lastTrainingBlock": 105195,
+      "seasonal_boosted_trees": 143.14591921788238,
+      "seasonal_baseline": 156.53846153846155
+    },
+    {
+      "block": 105225,
+      "year": 2023,
+      "week": 30,
+      "observed": 84.0,
+      "lastTrainingBlock": 105195,
+      "seasonal_boosted_trees": 176.34231134320515,
+      "seasonal_baseline": 177.87692307692308
+    },
+    {
+      "block": 105226,
+      "year": 2023,
+      "week": 31,
+      "observed": 82.0,
+      "lastTrainingBlock": 105195,
+      "seasonal_boosted_trees": 200.66416703656145,
+      "seasonal_baseline": 198.36923076923077
+    },
+    {
+      "block": 105227,
+      "year": 2023,
+      "week": 32,
+      "observed": 111.0,
+      "lastTrainingBlock": 105195,
+      "seasonal_boosted_trees": 233.27527365652298,
+      "seasonal_baseline": 215.56923076923076
+    },
+    {
+      "block": 105228,
+      "year": 2023,
+      "week": 33,
+      "observed": 132.0,
+      "lastTrainingBlock": 105195,
+      "seasonal_boosted_trees": 164.9689053025309,
+      "seasonal_baseline": 227.33846153846153
+    },
+    {
+      "block": 105229,
+      "year": 2023,
+      "week": 34,
+      "observed": 117.0,
+      "lastTrainingBlock": 105195,
+      "seasonal_boosted_trees": 219.71437899272496,
+      "seasonal_baseline": 233.12307692307692
+    },
+    {
+      "block": 105230,
+      "year": 2023,
+      "week": 35,
+      "observed": 124.0,
+      "lastTrainingBlock": 105195,
+      "seasonal_boosted_trees": 260.1754197270717,
+      "seasonal_baseline": 229.15384615384616
+    },
+    {
+      "block": 105231,
+      "year": 2023,
+      "week": 36,
+      "observed": 120.0,
+      "lastTrainingBlock": 105195,
+      "seasonal_boosted_trees": 194.71557480647397,
+      "seasonal_baseline": 220.47692307692307
+    },
+    {
+      "block": 105232,
+      "year": 2023,
+      "week": 37,
+      "observed": 111.0,
+      "lastTrainingBlock": 105195,
+      "seasonal_boosted_trees": 179.54394559733012,
+      "seasonal_baseline": 202.01538461538462
+    },
+    {
+      "block": 105233,
+      "year": 2023,
+      "week": 38,
+      "observed": 113.0,
+      "lastTrainingBlock": 105195,
+      "seasonal_boosted_trees": 146.688825293188,
+      "seasonal_baseline": 186.33846153846153
+    },
+    {
+      "block": 105234,
+      "year": 2023,
+      "week": 39,
+      "observed": 113.0,
+      "lastTrainingBlock": 105195,
+      "seasonal_boosted_trees": 134.23327400963825,
+      "seasonal_baseline": 171.15384615384616
+    },
+    {
+      "block": 105235,
+      "year": 2023,
+      "week": 40,
+      "observed": 147.0,
+      "lastTrainingBlock": 105195,
+      "seasonal_boosted_trees": 129.51188841495207,
+      "seasonal_baseline": 156.90769230769232
+    },
+    {
+      "block": 105236,
+      "year": 2023,
+      "week": 41,
+      "observed": 158.0,
+      "lastTrainingBlock": 105195,
+      "seasonal_boosted_trees": 107.83071444743186,
+      "seasonal_baseline": 144.2923076923077
+    },
+    {
+      "block": 105237,
+      "year": 2023,
+      "week": 42,
+      "observed": 110.0,
+      "lastTrainingBlock": 105195,
+      "seasonal_boosted_trees": 89.7769244581369,
+      "seasonal_baseline": 132.0
+    },
+    {
+      "block": 105238,
+      "year": 2023,
+      "week": 43,
+      "observed": 111.0,
+      "lastTrainingBlock": 105195,
+      "seasonal_boosted_trees": 99.46114307794313,
+      "seasonal_baseline": 120.66153846153846
+    },
+    {
+      "block": 105239,
+      "year": 2023,
+      "week": 44,
+      "observed": 98.0,
+      "lastTrainingBlock": 105195,
+      "seasonal_boosted_trees": 86.23244536293431,
+      "seasonal_baseline": 110.23076923076923
+    },
+    {
+      "block": 105240,
+      "year": 2023,
+      "week": 45,
+      "observed": 136.0,
+      "lastTrainingBlock": 105195,
+      "seasonal_boosted_trees": 68.28733115157976,
+      "seasonal_baseline": 101.1076923076923
+    },
+    {
+      "block": 105241,
+      "year": 2023,
+      "week": 46,
+      "observed": 108.0,
+      "lastTrainingBlock": 105195,
+      "seasonal_boosted_trees": 66.9629604583247,
+      "seasonal_baseline": 92.58461538461539
+    },
+    {
+      "block": 105242,
+      "year": 2023,
+      "week": 47,
+      "observed": 126.0,
+      "lastTrainingBlock": 105195,
+      "seasonal_boosted_trees": 73.80228862303038,
+      "seasonal_baseline": 88.35384615384615
+    },
+    {
+      "block": 105243,
+      "year": 2023,
+      "week": 48,
+      "observed": 100.0,
+      "lastTrainingBlock": 105195,
+      "seasonal_boosted_trees": 64.72184067772031,
+      "seasonal_baseline": 82.56923076923077
+    },
+    {
+      "block": 105244,
+      "year": 2023,
+      "week": 49,
+      "observed": 71.0,
+      "lastTrainingBlock": 105195,
+      "seasonal_boosted_trees": 64.23294662448157,
+      "seasonal_baseline": 77.76923076923077
+    },
+    {
+      "block": 105245,
+      "year": 2023,
+      "week": 50,
+      "observed": 85.0,
+      "lastTrainingBlock": 105195,
+      "seasonal_boosted_trees": 67.46649512006088,
+      "seasonal_baseline": 71.92307692307692
+    },
+    {
+      "block": 105246,
+      "year": 2023,
+      "week": 51,
+      "observed": 69.0,
+      "lastTrainingBlock": 105195,
+      "seasonal_boosted_trees": 60.289225611182964,
+      "seasonal_baseline": 69.55384615384615
+    },
+    {
+      "block": 105247,
+      "year": 2023,
+      "week": 52,
+      "observed": 72.0,
+      "lastTrainingBlock": 105195,
+      "seasonal_boosted_trees": 61.99724178729225,
+      "seasonal_baseline": 71.64615384615385
+    },
+    {
+      "block": 105248,
+      "year": 2024,
+      "week": 1,
+      "observed": 122.0,
+      "lastTrainingBlock": 105247,
+      "seasonal_boosted_trees": 69.2541034291452,
+      "seasonal_baseline": 73.65714285714286
+    },
+    {
+      "block": 105249,
+      "year": 2024,
+      "week": 2,
+      "observed": 98.0,
+      "lastTrainingBlock": 105247,
+      "seasonal_boosted_trees": 68.25300207165161,
+      "seasonal_baseline": 76.42857142857143
+    },
+    {
+      "block": 105250,
+      "year": 2024,
+      "week": 3,
+      "observed": 89.0,
+      "lastTrainingBlock": 105247,
+      "seasonal_boosted_trees": 65.3668450124011,
+      "seasonal_baseline": 80.71428571428571
+    },
+    {
+      "block": 105251,
+      "year": 2024,
+      "week": 4,
+      "observed": 87.0,
+      "lastTrainingBlock": 105247,
+      "seasonal_boosted_trees": 79.64727993904587,
+      "seasonal_baseline": 80.21428571428571
+    },
+    {
+      "block": 105252,
+      "year": 2024,
+      "week": 5,
+      "observed": 84.0,
+      "lastTrainingBlock": 105247,
+      "seasonal_boosted_trees": 58.20508249912539,
+      "seasonal_baseline": 73.77142857142857
+    },
+    {
+      "block": 105253,
+      "year": 2024,
+      "week": 6,
+      "observed": 81.0,
+      "lastTrainingBlock": 105247,
+      "seasonal_boosted_trees": 61.29067131575878,
+      "seasonal_baseline": 68.74285714285715
+    },
+    {
+      "block": 105254,
+      "year": 2024,
+      "week": 7,
+      "observed": 77.0,
+      "lastTrainingBlock": 105247,
+      "seasonal_boosted_trees": 49.56057747349513,
+      "seasonal_baseline": 63.47142857142857
+    },
+    {
+      "block": 105255,
+      "year": 2024,
+      "week": 8,
+      "observed": 68.0,
+      "lastTrainingBlock": 105247,
+      "seasonal_boosted_trees": 53.758789894386936,
+      "seasonal_baseline": 59.57142857142857
+    },
+    {
+      "block": 105256,
+      "year": 2024,
+      "week": 9,
+      "observed": 70.0,
+      "lastTrainingBlock": 105247,
+      "seasonal_boosted_trees": 51.78066336180573,
+      "seasonal_baseline": 55.2
+    },
+    {
+      "block": 105257,
+      "year": 2024,
+      "week": 10,
+      "observed": 64.0,
+      "lastTrainingBlock": 105247,
+      "seasonal_boosted_trees": 48.6903689022184,
+      "seasonal_baseline": 50.871428571428574
+    },
+    {
+      "block": 105258,
+      "year": 2024,
+      "week": 11,
+      "observed": 60.0,
+      "lastTrainingBlock": 105247,
+      "seasonal_boosted_trees": 46.026667408803064,
+      "seasonal_baseline": 46.542857142857144
+    },
+    {
+      "block": 105259,
+      "year": 2024,
+      "week": 12,
+      "observed": 56.0,
+      "lastTrainingBlock": 105247,
+      "seasonal_boosted_trees": 43.04542795914106,
+      "seasonal_baseline": 42.65714285714286
+    },
+    {
+      "block": 105260,
+      "year": 2024,
+      "week": 13,
+      "observed": 38.0,
+      "lastTrainingBlock": 105247,
+      "seasonal_boosted_trees": 45.49498531759074,
+      "seasonal_baseline": 37.98571428571429
+    },
+    {
+      "block": 105261,
+      "year": 2024,
+      "week": 14,
+      "observed": 38.0,
+      "lastTrainingBlock": 105247,
+      "seasonal_boosted_trees": 35.3656450572306,
+      "seasonal_baseline": 35.67142857142857
+    },
+    {
+      "block": 105262,
+      "year": 2024,
+      "week": 15,
+      "observed": 42.0,
+      "lastTrainingBlock": 105247,
+      "seasonal_boosted_trees": 41.50749071563505,
+      "seasonal_baseline": 34.457142857142856
+    },
+    {
+      "block": 105263,
+      "year": 2024,
+      "week": 16,
+      "observed": 43.0,
+      "lastTrainingBlock": 105247,
+      "seasonal_boosted_trees": 35.09568786184373,
+      "seasonal_baseline": 33.3
+    },
+    {
+      "block": 105264,
+      "year": 2024,
+      "week": 17,
+      "observed": 38.0,
+      "lastTrainingBlock": 105247,
+      "seasonal_boosted_trees": 29.72191542396453,
+      "seasonal_baseline": 32.785714285714285
+    },
+    {
+      "block": 105265,
+      "year": 2024,
+      "week": 18,
+      "observed": 37.0,
+      "lastTrainingBlock": 105247,
+      "seasonal_boosted_trees": 40.07989361590522,
+      "seasonal_baseline": 33.34285714285714
+    },
+    {
+      "block": 105266,
+      "year": 2024,
+      "week": 19,
+      "observed": 25.0,
+      "lastTrainingBlock": 105247,
+      "seasonal_boosted_trees": 31.130058471855175,
+      "seasonal_baseline": 34.857142857142854
+    },
+    {
+      "block": 105267,
+      "year": 2024,
+      "week": 20,
+      "observed": 24.0,
+      "lastTrainingBlock": 105247,
+      "seasonal_boosted_trees": 32.475180376340006,
+      "seasonal_baseline": 36.84285714285714
+    },
+    {
+      "block": 105268,
+      "year": 2024,
+      "week": 21,
+      "observed": 31.0,
+      "lastTrainingBlock": 105247,
+      "seasonal_boosted_trees": 42.9749878755876,
+      "seasonal_baseline": 39.41428571428571
+    },
+    {
+      "block": 105269,
+      "year": 2024,
+      "week": 22,
+      "observed": 47.0,
+      "lastTrainingBlock": 105247,
+      "seasonal_boosted_trees": 46.338465248934185,
+      "seasonal_baseline": 44.871428571428574
+    },
+    {
+      "block": 105270,
+      "year": 2024,
+      "week": 23,
+      "observed": 40.0,
+      "lastTrainingBlock": 105247,
+      "seasonal_boosted_trees": 39.192786523516595,
+      "seasonal_baseline": 52.92857142857143
+    },
+    {
+      "block": 105271,
+      "year": 2024,
+      "week": 24,
+      "observed": 45.0,
+      "lastTrainingBlock": 105247,
+      "seasonal_boosted_trees": 57.44567469087778,
+      "seasonal_baseline": 64.65714285714286
+    },
+    {
+      "block": 105272,
+      "year": 2024,
+      "week": 25,
+      "observed": 70.0,
+      "lastTrainingBlock": 105247,
+      "seasonal_boosted_trees": 101.23812711935909,
+      "seasonal_baseline": 78.38571428571429
+    },
+    {
+      "block": 105273,
+      "year": 2024,
+      "week": 26,
+      "observed": 79.0,
+      "lastTrainingBlock": 105247,
+      "seasonal_boosted_trees": 100.37232119923586,
+      "seasonal_baseline": 94.34285714285714
+    },
+    {
+      "block": 105274,
+      "year": 2024,
+      "week": 27,
+      "observed": 80.0,
+      "lastTrainingBlock": 105247,
+      "seasonal_boosted_trees": 116.51965178781388,
+      "seasonal_baseline": 115.42857142857143
+    },
+    {
+      "block": 105275,
+      "year": 2024,
+      "week": 28,
+      "observed": 102.0,
+      "lastTrainingBlock": 105247,
+      "seasonal_boosted_trees": 61.88079363181764,
+      "seasonal_baseline": 134.71428571428572
+    },
+    {
+      "block": 105276,
+      "year": 2024,
+      "week": 29,
+      "observed": 140.0,
+      "lastTrainingBlock": 105247,
+      "seasonal_boosted_trees": 85.9795173188645,
+      "seasonal_baseline": 151.0142857142857
+    },
+    {
+      "block": 105277,
+      "year": 2024,
+      "week": 30,
+      "observed": 133.0,
+      "lastTrainingBlock": 105247,
+      "seasonal_boosted_trees": 167.8832018922933,
+      "seasonal_baseline": 171.05714285714285
+    },
+    {
+      "block": 105278,
+      "year": 2024,
+      "week": 31,
+      "observed": 195.0,
+      "lastTrainingBlock": 105247,
+      "seasonal_boosted_trees": 102.58938616766702,
+      "seasonal_baseline": 191.11428571428573
+    },
+    {
+      "block": 105279,
+      "year": 2024,
+      "week": 32,
+      "observed": 229.0,
+      "lastTrainingBlock": 105247,
+      "seasonal_boosted_trees": 203.93895288011268,
+      "seasonal_baseline": 207.68571428571428
+    },
+    {
+      "block": 105280,
+      "year": 2024,
+      "week": 33,
+      "observed": 222.0,
+      "lastTrainingBlock": 105247,
+      "seasonal_boosted_trees": 149.92384532750555,
+      "seasonal_baseline": 219.18571428571428
+    },
+    {
+      "block": 105281,
+      "year": 2024,
+      "week": 34,
+      "observed": 232.0,
+      "lastTrainingBlock": 105247,
+      "seasonal_boosted_trees": 215.78903836732007,
+      "seasonal_baseline": 225.1
+    },
+    {
+      "block": 105282,
+      "year": 2024,
+      "week": 35,
+      "observed": 207.0,
+      "lastTrainingBlock": 105247,
+      "seasonal_boosted_trees": 209.33764522843273,
+      "seasonal_baseline": 221.4142857142857
+    },
+    {
+      "block": 105283,
+      "year": 2024,
+      "week": 36,
+      "observed": 216.0,
+      "lastTrainingBlock": 105247,
+      "seasonal_boosted_trees": 175.1233134330754,
+      "seasonal_baseline": 213.0857142857143
+    },
+    {
+      "block": 105284,
+      "year": 2024,
+      "week": 37,
+      "observed": 297.0,
+      "lastTrainingBlock": 105247,
+      "seasonal_boosted_trees": 180.26935576086902,
+      "seasonal_baseline": 195.88571428571427
+    },
+    {
+      "block": 105285,
+      "year": 2024,
+      "week": 38,
+      "observed": 319.0,
+      "lastTrainingBlock": 105247,
+      "seasonal_boosted_trees": 143.03891353578476,
+      "seasonal_baseline": 181.65714285714284
+    },
+    {
+      "block": 105286,
+      "year": 2024,
+      "week": 39,
+      "observed": 269.0,
+      "lastTrainingBlock": 105247,
+      "seasonal_boosted_trees": 146.64345537255318,
+      "seasonal_baseline": 168.1
+    },
+    {
+      "block": 105287,
+      "year": 2024,
+      "week": 40,
+      "observed": 305.0,
+      "lastTrainingBlock": 105247,
+      "seasonal_boosted_trees": 130.8084836586664,
+      "seasonal_baseline": 154.85714285714286
+    },
+    {
+      "block": 105288,
+      "year": 2024,
+      "week": 41,
+      "observed": 307.0,
+      "lastTrainingBlock": 105247,
+      "seasonal_boosted_trees": 125.53460374646906,
+      "seasonal_baseline": 143.11428571428573
+    },
+    {
+      "block": 105289,
+      "year": 2024,
+      "week": 42,
+      "observed": 317.0,
+      "lastTrainingBlock": 105247,
+      "seasonal_boosted_trees": 112.83393958946552,
+      "seasonal_baseline": 131.4857142857143
+    },
+    {
+      "block": 105290,
+      "year": 2024,
+      "week": 43,
+      "observed": 253.0,
+      "lastTrainingBlock": 105247,
+      "seasonal_boosted_trees": 112.47241630085684,
+      "seasonal_baseline": 120.8
+    },
+    {
+      "block": 105291,
+      "year": 2024,
+      "week": 44,
+      "observed": 351.0,
+      "lastTrainingBlock": 105247,
+      "seasonal_boosted_trees": 101.66098678297458,
+      "seasonal_baseline": 110.4
+    },
+    {
+      "block": 105292,
+      "year": 2024,
+      "week": 45,
+      "observed": 384.0,
+      "lastTrainingBlock": 105247,
+      "seasonal_boosted_trees": 115.1365739494331,
+      "seasonal_baseline": 102.15714285714286
+    },
+    {
+      "block": 105293,
+      "year": 2024,
+      "week": 46,
+      "observed": 424.0,
+      "lastTrainingBlock": 105247,
+      "seasonal_boosted_trees": 106.23756904016416,
+      "seasonal_baseline": 94.08571428571429
+    },
+    {
+      "block": 105294,
+      "year": 2024,
+      "week": 47,
+      "observed": 454.0,
+      "lastTrainingBlock": 105247,
+      "seasonal_boosted_trees": 79.7778661340057,
+      "seasonal_baseline": 89.77142857142857
+    },
+    {
+      "block": 105295,
+      "year": 2024,
+      "week": 48,
+      "observed": 439.0,
+      "lastTrainingBlock": 105247,
+      "seasonal_boosted_trees": 95.97827021384555,
+      "seasonal_baseline": 83.67142857142858
+    },
+    {
+      "block": 105296,
+      "year": 2024,
+      "week": 49,
+      "observed": 352.0,
+      "lastTrainingBlock": 105247,
+      "seasonal_boosted_trees": 81.27995189534789,
+      "seasonal_baseline": 78.65714285714286
+    },
+    {
+      "block": 105297,
+      "year": 2024,
+      "week": 50,
+      "observed": 301.0,
+      "lastTrainingBlock": 105247,
+      "seasonal_boosted_trees": 66.90687667184739,
+      "seasonal_baseline": 72.45714285714286
+    },
+    {
+      "block": 105298,
+      "year": 2024,
+      "week": 51,
+      "observed": 213.0,
+      "lastTrainingBlock": 105247,
+      "seasonal_boosted_trees": 70.81858339277242,
+      "seasonal_baseline": 69.61428571428571
+    },
+    {
+      "block": 105299,
+      "year": 2024,
+      "week": 52,
+      "observed": 282.0,
+      "lastTrainingBlock": 105247,
+      "seasonal_boosted_trees": 62.76084645564099,
+      "seasonal_baseline": 71.51428571428572
+    },
+    {
+      "block": 105300,
+      "year": 2025,
+      "week": 1,
+      "observed": 200.0,
+      "lastTrainingBlock": 105299,
+      "seasonal_boosted_trees": 69.64225475385058,
+      "seasonal_baseline": 79.46666666666667
+    },
+    {
+      "block": 105301,
+      "year": 2025,
+      "week": 2,
+      "observed": 357.0,
+      "lastTrainingBlock": 105299,
+      "seasonal_boosted_trees": 72.64753929590226,
+      "seasonal_baseline": 80.37333333333333
+    },
+    {
+      "block": 105302,
+      "year": 2025,
+      "week": 3,
+      "observed": 295.0,
+      "lastTrainingBlock": 105299,
+      "seasonal_boosted_trees": 73.59556030972257,
+      "seasonal_baseline": 81.73333333333333
+    },
+    {
+      "block": 105303,
+      "year": 2025,
+      "week": 4,
+      "observed": 304.0,
+      "lastTrainingBlock": 105299,
+      "seasonal_boosted_trees": 76.77946231371962,
+      "seasonal_baseline": 80.72
+    },
+    {
+      "block": 105304,
+      "year": 2025,
+      "week": 5,
+      "observed": 335.0,
+      "lastTrainingBlock": 105299,
+      "seasonal_boosted_trees": 56.31785953091546,
+      "seasonal_baseline": 74.42666666666666
+    },
+    {
+      "block": 105305,
+      "year": 2025,
+      "week": 6,
+      "observed": 291.0,
+      "lastTrainingBlock": 105299,
+      "seasonal_boosted_trees": 60.18157722246533,
+      "seasonal_baseline": 69.45333333333333
+    },
+    {
+      "block": 105306,
+      "year": 2025,
+      "week": 7,
+      "observed": 437.0,
+      "lastTrainingBlock": 105299,
+      "seasonal_boosted_trees": 49.58542896706669,
+      "seasonal_baseline": 64.30666666666667
+    },
+    {
+      "block": 105307,
+      "year": 2025,
+      "week": 8,
+      "observed": 622.0,
+      "lastTrainingBlock": 105299,
+      "seasonal_boosted_trees": 58.04417914586698,
+      "seasonal_baseline": 60.4
+    },
+    {
+      "block": 105308,
+      "year": 2025,
+      "week": 9,
+      "observed": 427.0,
+      "lastTrainingBlock": 105299,
+      "seasonal_boosted_trees": 54.6041831933013,
+      "seasonal_baseline": 56.04
+    },
+    {
+      "block": 105309,
+      "year": 2025,
+      "week": 10,
+      "observed": 321.0,
+      "lastTrainingBlock": 105299,
+      "seasonal_boosted_trees": 50.45026193605451,
+      "seasonal_baseline": 51.72
+    },
+    {
+      "block": 105310,
+      "year": 2025,
+      "week": 11,
+      "observed": 271.0,
+      "lastTrainingBlock": 105299,
+      "seasonal_boosted_trees": 41.51699338502461,
+      "seasonal_baseline": 47.28
+    },
+    {
+      "block": 105311,
+      "year": 2025,
+      "week": 12,
+      "observed": 246.0,
+      "lastTrainingBlock": 105299,
+      "seasonal_boosted_trees": 40.5430196335523,
+      "seasonal_baseline": 43.22666666666667
+    },
+    {
+      "block": 105312,
+      "year": 2025,
+      "week": 13,
+      "observed": 158.0,
+      "lastTrainingBlock": 105299,
+      "seasonal_boosted_trees": 43.85222629628817,
+      "seasonal_baseline": 38.57333333333333
+    },
+    {
+      "block": 105313,
+      "year": 2025,
+      "week": 14,
+      "observed": 173.0,
+      "lastTrainingBlock": 105299,
+      "seasonal_boosted_trees": 42.81447151651978,
+      "seasonal_baseline": 36.18666666666667
+    },
+    {
+      "block": 105314,
+      "year": 2025,
+      "week": 15,
+      "observed": 126.0,
+      "lastTrainingBlock": 105299,
+      "seasonal_boosted_trees": 41.806836693914455,
+      "seasonal_baseline": 34.81333333333333
+    },
+    {
+      "block": 105315,
+      "year": 2025,
+      "week": 16,
+      "observed": 104.0,
+      "lastTrainingBlock": 105299,
+      "seasonal_boosted_trees": 41.50176070754596,
+      "seasonal_baseline": 33.72
+    },
+    {
+      "block": 105316,
+      "year": 2025,
+      "week": 17,
+      "observed": 99.0,
+      "lastTrainingBlock": 105299,
+      "seasonal_boosted_trees": 41.7565004807783,
+      "seasonal_baseline": 33.06666666666667
+    },
+    {
+      "block": 105317,
+      "year": 2025,
+      "week": 18,
+      "observed": 80.0,
+      "lastTrainingBlock": 105299,
+      "seasonal_boosted_trees": 37.640016945830595,
+      "seasonal_baseline": 33.346666666666664
+    },
+    {
+      "block": 105318,
+      "year": 2025,
+      "week": 19,
+      "observed": 77.0,
+      "lastTrainingBlock": 105299,
+      "seasonal_boosted_trees": 36.62385122475139,
+      "seasonal_baseline": 34.6
+    },
+    {
+      "block": 105319,
+      "year": 2025,
+      "week": 20,
+      "observed": 59.0,
+      "lastTrainingBlock": 105299,
+      "seasonal_boosted_trees": 33.49957277995161,
+      "seasonal_baseline": 36.57333333333333
+    },
+    {
+      "block": 105320,
+      "year": 2025,
+      "week": 21,
+      "observed": 76.0,
+      "lastTrainingBlock": 105299,
+      "seasonal_boosted_trees": 38.319427760237765,
+      "seasonal_baseline": 39.013333333333335
+    },
+    {
+      "block": 105321,
+      "year": 2025,
+      "week": 22,
+      "observed": 69.0,
+      "lastTrainingBlock": 105299,
+      "seasonal_boosted_trees": 44.43267497428537,
+      "seasonal_baseline": 44.373333333333335
+    },
+    {
+      "block": 105322,
+      "year": 2025,
+      "week": 23,
+      "observed": 73.0,
+      "lastTrainingBlock": 105299,
+      "seasonal_boosted_trees": 49.21273007310576,
+      "seasonal_baseline": 52.50666666666667
+    },
+    {
+      "block": 105323,
+      "year": 2025,
+      "week": 24,
+      "observed": 85.0,
+      "lastTrainingBlock": 105299,
+      "seasonal_boosted_trees": 72.47577363220559,
+      "seasonal_baseline": 64.09333333333333
+    },
+    {
+      "block": 105324,
+      "year": 2025,
+      "week": 25,
+      "observed": 104.0,
+      "lastTrainingBlock": 105299,
+      "seasonal_boosted_trees": 85.82748843303115,
+      "seasonal_baseline": 77.34666666666666
+    },
+    {
+      "block": 105325,
+      "year": 2025,
+      "week": 26,
+      "observed": 133.0,
+      "lastTrainingBlock": 105299,
+      "seasonal_boosted_trees": 152.6855263418273,
+      "seasonal_baseline": 93.06666666666666
+    },
+    {
+      "block": 105326,
+      "year": 2025,
+      "week": 27,
+      "observed": 153.0,
+      "lastTrainingBlock": 105299,
+      "seasonal_boosted_trees": 97.69818430095685,
+      "seasonal_baseline": 114.01333333333334
+    },
+    {
+      "block": 105327,
+      "year": 2025,
+      "week": 28,
+      "observed": 163.0,
+      "lastTrainingBlock": 105299,
+      "seasonal_boosted_trees": 141.46344182416232,
+      "seasonal_baseline": 132.85333333333332
+    },
+    {
+      "block": 105328,
+      "year": 2025,
+      "week": 29,
+      "observed": 162.0,
+      "lastTrainingBlock": 105299,
+      "seasonal_boosted_trees": 156.89014713636777,
+      "seasonal_baseline": 149.61333333333334
+    },
+    {
+      "block": 105329,
+      "year": 2025,
+      "week": 30,
+      "observed": 215.0,
+      "lastTrainingBlock": 105299,
+      "seasonal_boosted_trees": 164.3904054729479,
+      "seasonal_baseline": 170.30666666666667
+    },
+    {
+      "block": 105330,
+      "year": 2025,
+      "week": 31,
+      "observed": 268.0,
+      "lastTrainingBlock": 105299,
+      "seasonal_boosted_trees": 172.4271422879599,
+      "seasonal_baseline": 190.62666666666667
+    },
+    {
+      "block": 105331,
+      "year": 2025,
+      "week": 32,
+      "observed": 295.0,
+      "lastTrainingBlock": 105299,
+      "seasonal_boosted_trees": 202.65604091615774,
+      "seasonal_baseline": 207.32
+    },
+    {
+      "block": 105332,
+      "year": 2025,
+      "week": 33,
+      "observed": 267.0,
+      "lastTrainingBlock": 105299,
+      "seasonal_boosted_trees": 216.99912048718159,
+      "seasonal_baseline": 219.04
+    },
+    {
+      "block": 105333,
+      "year": 2025,
+      "week": 34,
+      "observed": 213.0,
+      "lastTrainingBlock": 105299,
+      "seasonal_boosted_trees": 236.70171707611925,
+      "seasonal_baseline": 224.84
+    },
+    {
+      "block": 105334,
+      "year": 2025,
+      "week": 35,
+      "observed": 222.0,
+      "lastTrainingBlock": 105299,
+      "seasonal_boosted_trees": 196.48944229824644,
+      "seasonal_baseline": 222.30666666666667
+    },
+    {
+      "block": 105335,
+      "year": 2025,
+      "week": 36,
+      "observed": 273.0,
+      "lastTrainingBlock": 105299,
+      "seasonal_boosted_trees": 196.5633249837429,
+      "seasonal_baseline": 215.82666666666665
+    },
+    {
+      "block": 105336,
+      "year": 2025,
+      "week": 37,
+      "observed": 214.0,
+      "lastTrainingBlock": 105299,
+      "seasonal_boosted_trees": 184.39489880014864,
+      "seasonal_baseline": 200.26666666666668
+    },
+    {
+      "block": 105337,
+      "year": 2025,
+      "week": 38,
+      "observed": 220.0,
+      "lastTrainingBlock": 105299,
+      "seasonal_boosted_trees": 168.42353485624514,
+      "seasonal_baseline": 188.29333333333332
+    },
+    {
+      "block": 105338,
+      "year": 2025,
+      "week": 39,
+      "observed": 269.0,
+      "lastTrainingBlock": 105299,
+      "seasonal_boosted_trees": 145.09910086627366,
+      "seasonal_baseline": 176.85333333333332
+    },
+    {
+      "block": 105339,
+      "year": 2025,
+      "week": 40,
+      "observed": 357.0,
+      "lastTrainingBlock": 105299,
+      "seasonal_boosted_trees": 134.29115460840825,
+      "seasonal_baseline": 164.76
+    },
+    {
+      "block": 105340,
+      "year": 2025,
+      "week": 41,
+      "observed": 320.0,
+      "lastTrainingBlock": 105299,
+      "seasonal_boosted_trees": 118.24298532458621,
+      "seasonal_baseline": 152.92
+    },
+    {
+      "block": 105341,
+      "year": 2025,
+      "week": 42,
+      "observed": 293.0,
+      "lastTrainingBlock": 105299,
+      "seasonal_boosted_trees": 132.98516022567497,
+      "seasonal_baseline": 143.16
+    },
+    {
+      "block": 105342,
+      "year": 2025,
+      "week": 43,
+      "observed": 302.0,
+      "lastTrainingBlock": 105299,
+      "seasonal_boosted_trees": 112.00844533028898,
+      "seasonal_baseline": 134.24
+    },
+    {
+      "block": 105343,
+      "year": 2025,
+      "week": 44,
+      "observed": 205.0,
+      "lastTrainingBlock": 105299,
+      "seasonal_boosted_trees": 122.67471880064967,
+      "seasonal_baseline": 126.09333333333333
+    },
+    {
+      "block": 105344,
+      "year": 2025,
+      "week": 45,
+      "observed": 194.0,
+      "lastTrainingBlock": 105299,
+      "seasonal_boosted_trees": 89.9994825392267,
+      "seasonal_baseline": 120.22666666666667
+    },
+    {
+      "block": 105345,
+      "year": 2025,
+      "week": 46,
+      "observed": 164.0,
+      "lastTrainingBlock": 105299,
+      "seasonal_boosted_trees": 123.70149749221413,
+      "seasonal_baseline": 115.17333333333333
+    },
+    {
+      "block": 105346,
+      "year": 2025,
+      "week": 47,
+      "observed": 201.0,
+      "lastTrainingBlock": 105299,
+      "seasonal_boosted_trees": 102.41524708320807,
+      "seasonal_baseline": 111.16
+    },
+    {
+      "block": 105347,
+      "year": 2025,
+      "week": 48,
+      "observed": 150.0,
+      "lastTrainingBlock": 105299,
+      "seasonal_boosted_trees": 74.5561911678918,
+      "seasonal_baseline": 104.36
+    },
+    {
+      "block": 105348,
+      "year": 2025,
+      "week": 49,
+      "observed": 135.0,
+      "lastTrainingBlock": 105299,
+      "seasonal_boosted_trees": 66.82452382310315,
+      "seasonal_baseline": 96.86666666666666
+    },
+    {
+      "block": 105349,
+      "year": 2025,
+      "week": 50,
+      "observed": 132.0,
+      "lastTrainingBlock": 105299,
+      "seasonal_boosted_trees": 64.43316038763793,
+      "seasonal_baseline": 88.78666666666666
+    },
+    {
+      "block": 105350,
+      "year": 2025,
+      "week": 51,
+      "observed": 116.0,
+      "lastTrainingBlock": 105299,
+      "seasonal_boosted_trees": 62.180480618983985,
+      "seasonal_baseline": 81.90666666666667
+    },
+    {
+      "block": 105351,
+      "year": 2025,
+      "week": 52,
+      "observed": 82.0,
+      "lastTrainingBlock": 105299,
+      "seasonal_boosted_trees": 68.43323212470497,
+      "seasonal_baseline": 80.29333333333334
+    }
+  ],
+  "method": "Expanding calendar-year holdout; lagged weather climatology from training years only; no target-year measured weather or recent-case imputation.",
+  "calendarCaveat": "Evaluation uses native YR/WN; future calendar-to-source-week mapping remains an explicit assumption.",
+  "bedValidation": "No observed hospital admissions or occupancy labels: bed demand is conditional case-to-cohort modeling, not empirically validated occupancy prediction."
+}
