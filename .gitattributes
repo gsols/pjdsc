@@ -1,0 +1,8 @@
+# Preserve exact bytes for source files and artifacts pinned by SHA-256 manifests.
+# Platform newline conversion invalidates provenance even when values are unchanged.
+data/raw/upri_noah/** -text
+data/reference/upri_noah/** -text
+data/processed/upri_noah/** -text
+apps/web/public/data/qc-annual-burden.json -text
+apps/web/public/data/qc-barangays.geojson -text
+apps/web/public/data/philippines-context.geojson -text

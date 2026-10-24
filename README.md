@@ -92,6 +92,14 @@ Frontend data tests require Node.js 22.18+ (tested on Node 24). See [UPRI verifi
 
 ## Reproduce the UPRI integration
 
+UPRI source files and manifest-pinned outputs must retain their exact bytes.
+The repository's `.gitattributes` disables Git newline conversion for these
+paths on Windows and macOS. Converting CRLF to LF invalidates SHA-256 checks
+even when all values are unchanged. If the engine reports audited-input
+validation failure, verify the pinned bytes before rebuilding or retraining;
+do not replace expected hashes to accept an unverified checkout. See
+[the newline recovery verification](docs/upri-verification.md#cross-platform-newline-recovery).
+
 The immutable source inputs are in `data/raw/upri_noah/`. The embedded Data
 Dictionary, original README and R validation script were reviewed before
 preprocessing. The official validation report is separately pinned in
