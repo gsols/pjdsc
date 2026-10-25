@@ -10,6 +10,8 @@ from services.engine.api.future_simulation import FutureInput, future_workspace,
 from services.engine.api.outbreak import saved_movie
 from services.engine.domain.bed_forecast import rolling_bed_demand
 from services.engine.domain.seasonal_forecast import source_week, weather_analog
+from services.engine.domain.seasonal_forecast import project_days
+from services.engine.domain.outbreak import allocated_forecast_trajectory
 from services.engine.repositories.seasonal_runs import approved_model, create_seasonal_run, load_seasonal_run, FOLDER
 
 
@@ -35,6 +37,8 @@ def test_seasonal_evidence_uses_only_past_training_and_frozen_selection():
     assert engine["history"].YR.max() == 2025
     assert all(r["lastTrainingBlock"] < r["year"] * 52 <= r["block"] for r in evidence["records"])
     assert all(r["year"] < 2024 for r in engine["calibrationRecords"])
+    assert engine["rangeCalibrationRecords"] == evidence["records"]
+    assert max(r["year"] for r in engine["rangeCalibrationRecords"]) == manifest["sourceLastBlock"]["YR"]
     scores = {name: sum(abs(r["observed"] - r[name]) for r in engine["calibrationRecords"]) / len(engine["calibrationRecords"])
               for name in evidence["selection"]["scores"]}
     assert scores == pytest.approx(evidence["selection"]["scores"])
@@ -42,6 +46,27 @@ def test_seasonal_evidence_uses_only_past_training_and_frozen_selection():
     assert isinstance(engine["xgboostModel"], XGBRegressor)
     assert engine["selectedModel"] == evidence["selection"]["userRequestedModel"] == "seasonal_xgboost"
     assert evidence["selection"]["bestCalibrationModel"] == min(scores, key=scores.get)
+    candidate_scores = {name: sum(abs(r["observed"] - r["xgboost_" + name]) for r in engine["calibrationRecords"]) / len(engine["calibrationRecords"])
+                        for name in evidence["selection"]["xgboostCandidateScores"]}
+    assert candidate_scores == pytest.approx(evidence["selection"]["xgboostCandidateScores"])
+    assert engine["xgboostVariant"] == min(candidate_scores, key=candidate_scores.get)
+    assert evidence["selection"]["selectionLastYear"] == 2023
+    for year in [2024, 2025]:
+        rows = [r for r in evidence["records"] if r["year"] == year]
+        for name in scores:
+            score = next(r for r in evidence["backtest"] if r["year"] == year and r["model"] == name)
+            assert score["mae"] == pytest.approx(sum(abs(r[name] - r["observed"]) for r in rows) / 52)
+            months = [r for r in evidence["calendarDiagnostics"]["monthly"] if r["year"] == year and r["model"] == name]
+            assert len(months) == 12
+            assert sum(r["expectedCases"] for r in months) == pytest.approx(sum(r[name] for r in rows))
+            assert sum(r["sourceDerivedCases"] for r in months) == pytest.approx(sum(r["observed"] for r in rows))
+        assert {r["days"] for r in evidence["calendarDiagnostics"]["windowLengths"] if r["year"] == year} == {1, 2, 7, 12, 14, 28}
+    assert {row["sourceYearGap"] for row in evidence["leadYearGapValidation"]} == {1, 2, 3}
+    for row in evidence["leadYearGapValidation"]:
+        assert row["year"] - row["lastTrainingYear"] == row["sourceYearGap"]
+        if row["sourceYearGap"] > 1:
+            assert row["lastTrainingBlock"] < (row["year"] - row["sourceYearGap"] + 1) * 52
+        assert row["n"] == 52
     assert all(r["n"] == 52 for r in evidence["backtest"])
     for profile in ["typical", "wetter", "drier", "hotter"]:
         assert weather_analog(engine["history"], 1, profile).YR <= 2025
@@ -59,8 +84,32 @@ def test_future_runs_are_date_specific_reproducible_and_not_new_observations():
     assert jan["dailyPredictions"][-1]["date"] == "2027-01-28"
     assert all(p["observedCases"] is None for p in jan["weeklyPredictions"])
     assert all(p["measurementKind"] == "assumption" for p in jan["environmentalInputs"])
-    assert all(len(p["errors"]) == 28 and p["lastTargetBlock"] < 2024 * 52 for p in jan["dailyResidualPaths"])
+    assert all(len(p["errors"]) == 28 and p["lastTargetBlock"] < 2026 * 52 for p in jan["dailyResidualPaths"])
+    assert jan["rangeEvidenceCutoffBlock"] == {"YR": 2025, "WN": 52}
+    assert jan["registration"]["rangePolicy"] == "completed_past_years_v1"
     assert all(0 <= d["lowerCases"] <= d["meanCases"] <= d["upperCases"] for d in jan["dailyPredictions"])
+
+
+def test_all_months_weather_profiles_and_1_to_28_day_windows_use_the_same_dated_curve():
+    import math
+    engine, _ = approved_model()
+    totals = []
+    for month in range(1, 13):
+        start = date(2027, month, 1)
+        for profile in ["typical", "wetter", "drier", "hotter"]:
+            daily = project_days(engine, start, profile, engine["selectedModel"])
+            assert len(daily) == 28
+            assert all(row["date"] == (start + timedelta(days=i)).isoformat() for i, row in enumerate(daily))
+            assert all(math.isfinite(row["meanCases"]) and row["meanCases"] >= 0 for row in daily)
+            for horizon in range(1, 29):
+                context = {"barangays": [{"id": "A", "weight": .4}, {"id": "B", "weight": .6}]}
+                config = {"surgeEnabled": False, "extraCasesPerWeek": 0, "shockProfile": "ramp", "growthDays": 7}
+                path = allocated_forecast_trajectory({"dailyPredictions": daily}, context, config, horizon)
+                assert [row["expectedCases"] for row in path[:horizon]] == pytest.approx([row["meanCases"] for row in daily[:horizon]])
+                assert all(row["expectedCases"] == 0 for row in path[horizon:])
+            if profile == "typical":
+                totals.append(sum(row["meanCases"] for row in daily))
+    assert max(totals) > min(totals) * 1.1
 
 
 def test_surge_onset_bed_bounds_mass_balance_and_saved_result(future):
@@ -93,6 +142,39 @@ def test_delay_and_no_surge_scenarios():
     assert result["days"][1]["bedForecast"]["expectedBeds"] == 0
     assert result["days"][2]["bedForecast"]["expectedBeds"] == pytest.approx(result["days"][1]["expectedCases"] * params.hospitalizationRate)
     assert all(d["shockCases"] == 0 for d in result["days"])
+    one_times = future_workspace(params.model_copy(update={"surgeEnabled": True, "surgeMultiplier": 1}))
+    assert [d["expectedCases"] for d in one_times["days"]] == [d["expectedCases"] for d in result["days"]]
+    assert one_times["futureForecast"]["parameterAudit"]["surgeOnsetDate"] is None
+    assert one_times["bedProjection"]["peakAdditionalStaffedBedsDueToSurge"] == 0
+
+
+def test_parameter_audit_zero_admissions_and_unreached_surge_peak():
+    params = FutureInput(startDate="2028-02-28", horizonDays=2, surgeOnsetDay=1,
+        surgeMultiplier=10, growthDays=28, hospitalizationRate=0, surgeActivationDay=28)
+    result = future_workspace(params)
+    audit = result["futureForecast"]["parameterAudit"]
+    assert audit["endDateExclusive"] == "2028-03-01"
+    assert audit["surgeOnsetDate"] == "2028-02-29"
+    assert audit["fullMultiplierReached"] is False
+    assert audit["maximumAppliedMultiplier"] == pytest.approx(1 + 9 / 28)
+    assert audit["staffedSurgeActivationWithinWindow"] is False
+    assert audit["yearTrendModeled"] is False
+    assert audit["sourceYearGap"] == 3
+    assert audit["centralGapEvaluated"] is True
+    assert audit["rangeEvaluatedAtRequestedGap"] is False
+    assert all(d["bedForecast"]["expectedBeds"] == 0 and d["arrivals"] == 0 for d in result["days"])
+    assert result["days"][-1]["shockCases"] > 0
+    assert result["futureForecast"]["accuracyAssessment"]["status"] == "EXPERIMENTAL_NOT_OPERATIONALLY_VALIDATED"
+
+
+def test_year_crossing_and_weather_stress_do_not_overstate_matched_validation():
+    result = future_workspace(FutureInput(startDate="2026-12-30", horizonDays=3,
+        surgeEnabled=False, weatherProfile="wetter", hospitalizationRate=0))
+    audit = result["futureForecast"]["parameterAudit"]
+    assert audit["endDateExclusive"] == "2027-01-02"
+    assert audit["sourceYearGap"] == 2  # Includes the last case date, not only onset year.
+    assert audit["centralGapEvaluated"] is False
+    assert audit["rangeEvaluatedAtRequestedGap"] is False
 
 
 @pytest.mark.parametrize("horizon", [1, 2, 12, 14, 28])

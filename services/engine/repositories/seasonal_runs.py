@@ -11,7 +11,7 @@ import joblib
 import sklearn
 import xgboost
 
-from ..domain.seasonal_forecast import project_days, residual_paths, source_week, weather_analog, WEATHER, VERSION
+from ..domain.seasonal_forecast import project_days, daily_residual_paths, source_week, weather_analog, WEATHER, VERSION
 from ..upri_data import ROOT, sha256, verify_sources
 
 FOLDER = ROOT / "data/processed/upri_noah"
@@ -70,6 +70,7 @@ def _radius(values):
 def create_seasonal_run(start, profile, as_of):
     engine, manifest = approved_model()
     identity = {"startDate": start.isoformat(), "weatherProfile": profile, "asOfDate": as_of.isoformat(),
+        "rangePolicy": "completed_past_years_v1",
         "modelSha256": manifest["modelSha256"], "methodVersion": VERSION,
         "inferenceCodeSha256": sha256(Path(__file__))}
     digest = hashlib.sha256(json.dumps(identity, sort_keys=True).encode()).hexdigest()
@@ -80,10 +81,7 @@ def create_seasonal_run(start, profile, as_of):
     if path.exists():
         return load_seasonal_run(ident)
     days = project_days(engine, start, profile, engine["selectedModel"])
-    paths = residual_paths(engine["calibrationRecords"], source_week(start), engine["selectedModel"], 2024 * 52 - 1, length=5)
-    offset = (start.timetuple().tm_yday - 1) % 7
-    daily_errors = [{"lastTargetBlock": p["lastTargetBlock"],
-        "errors": [p["residuals"][(offset + i) // 7] / 7 for i in range(28)]} for p in paths]
+    paths, daily_errors = daily_residual_paths(engine["rangeCalibrationRecords"], start, engine["selectedModel"], engine["lastTrainingBlock"])
     for i, row in enumerate(days):
         radius = _radius([p["errors"][i] for p in daily_errors])
         row.update({"lowerCases": max(0, row["meanCases"] - radius), "upperCases": row["meanCases"] + radius})
@@ -113,6 +111,7 @@ def create_seasonal_run(start, profile, as_of):
         "seasonalModelSha256": manifest["modelSha256"], "model": engine["selectedModel"], "methodVersion": VERSION,
         "spatialWeightsIssueYear": as_of.year, "weeklyPredictions": predictions, "dailyPredictions": days,
         "calibrationResidualPaths": paths, "dailyResidualPaths": daily_errors,
+        "rangeEvidenceCutoffBlock": manifest["sourceLastBlock"],
         "environmentalFeatureInputs": feature_inputs,
         "environmentalInputs": [{"sourceColumn": column, "valueAtOrigin": float(analog[column]),
             "unit": "mm/source block" if column == "RF_NASA" else "degrees Celsius" if column.startswith("Temp") else "%",
@@ -147,7 +146,9 @@ def load_seasonal_run(ident):
     if hashlib.sha256(json.dumps(run, sort_keys=True, allow_nan=False).encode()).hexdigest() != checksum:
         raise ValueError("Seasonal run checksum mismatch")
     _, manifest = approved_model()
-    if run["seasonalModelSha256"] != manifest["modelSha256"] or run["id"] != ident or run["area"] != "QUEZON_CITY":
+    if (run["seasonalModelSha256"] != manifest["modelSha256"] or run["id"] != ident or run["area"] != "QUEZON_CITY"
+        or run["registration"].get("rangePolicy") != "completed_past_years_v1"
+        or run.get("rangeEvidenceCutoffBlock") != manifest["sourceLastBlock"]):
         raise ValueError("Seasonal run model/scope mismatch")
     run["runSha256"] = checksum
     return run

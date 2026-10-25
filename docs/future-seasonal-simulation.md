@@ -12,6 +12,15 @@ untrusted case arrays, facility registers, NCR scope and unsupported live mode.
 
 ## Future seasonal engine
 
+Current calendar/parameter audit (2026-10-25): see
+[forecast-parameter-audit.md](forecast-parameter-audit.md). V3 preserves annual
+mass in the extended final source block, aligns residuals across year boundaries,
+selects among four XGBoost variants using only 2018–2023, and exposes monthly,
+seasonal-quarter and window-length diagnostics. The original weather/all-years
+variant remains selected; its 2024/2025 errors remain worse than the seasonal
+baseline. Historical dates must now fit actual saved target windows. The audit
+supersedes older calendar descriptions below; no operational accuracy is claimed.
+
 The current bed-demand percentage is expected dengue bed demand / scenario-assumed
 dengue slots × 100. It is calculated before diversions, can exceed 100%, and is
 null if no dengue slots are assumed. It is distinct from assumed patient-choice

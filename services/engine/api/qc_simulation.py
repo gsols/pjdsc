@@ -10,6 +10,7 @@ from pydantic import Field, model_validator
 from .research import StrictModel, FacilityAssumption, unavailable
 from .outbreak import OutbreakInput, inputs, create_movie
 from ..repositories.forecast_runs import load_environmental_runs, FOLDER
+from ..domain.source_calendar import historical_window
 
 router = APIRouter(prefix="/v1")
 LIMITS = {
@@ -57,11 +58,14 @@ class QCInput(StrictModel):
         return self
 
 
-def select_reference(runs, start):
+def select_reference(runs, start, end=None):
     # Explicit UI dating assumption only, never asserted as reconciled source metadata.
-    eligible = [r for r in runs if date(r["issueBlock"]["YR"], 1, 1) + timedelta(days=7 * r["issueBlock"]["WN"]) <= start]
+    eligible = [r for r in runs if historical_window(r)[0] <= start < historical_window(r)[1]
+                and (end is None or end <= historical_window(r)[1])]
     if not eligible:
-        raise HTTPException(422, detail={"code": "NO_PRIOR_REFERENCE", "message": "Choose a window after the first available historical reference origin (2024-01-29 under the declared date-label assumption)."})
+        raise HTTPException(422, detail={"code": "HISTORICAL_WINDOW_UNAVAILABLE",
+            "message": "The selected dates are outside the saved historical forecast targets. Choose an available historical window; a forecast from another month will not be relabeled.",
+            "availableWindows": [{"startDate": historical_window(r)[0].isoformat(), "endDate": historical_window(r)[1].isoformat()} for r in runs]})
     return max(eligible, key=lambda r: (r["issueBlock"]["YR"], r["issueBlock"]["WN"]))
 
 
@@ -73,7 +77,8 @@ def default_workspace():
 @router.post("/qc-simulation")
 def workspace(params: QCInput):
     try:
-        run = select_reference(load_environmental_runs(), params.startDate)
+        historical_runs = load_environmental_runs()
+        run = select_reference(historical_runs, params.startDate, params.endDate)
         geo = inputs(run["id"], params.startDate.year, True)[1]
         # No place is requested from the browser; all QC weights determine rankings.
         automatic_origin = max(geo["barangays"], key=lambda b: b["weight"])["id"]
@@ -93,9 +98,10 @@ def workspace(params: QCInput):
         core_hash = result["resultSha256"]
         # These are presentation/evidence fields from approved artifacts, never browser facts.
         result = {**result, "controlValues": params.model_dump(mode="json"), "inputLimits": LIMITS,
+            "historicalWindows": [{"startDate": historical_window(r)[0].isoformat(), "endDate": historical_window(r)[1].isoformat()} for r in historical_runs],
             "forecastEvidence": {key: run[key] for key in ["id", "issueBlock", "model", "environmentalInputs", "observedCasesAtOrigin", "observedSourceYearToDateCases", "intervalCoverageTarget", "intervalCaveat", "spatialCaveat", "availabilityAssumption"]},
             "scope": "QUEZON_CITY", "mapContext": "PHILIPPINES_GEOMETRY_ONLY",
-            "referenceSelectionAssumption": "Automatic latest prior source origin, using Jan 1 + 7×WN as an explicitly assumed display-date cutoff. Original WN calendar remains unresolved; these are historical reference scenarios, not verified calendar-dated/live forecasts.",
+            "referenceSelectionAssumption": "Use only saved forecast target blocks covering the entire selected window, under the explicit Jan-1 52-block assumption. Partial windows preserve their actual source-block offset. Other months are rejected. Original WN dating remains unresolved.",
             "rangeInterpretation": "80% target empirical city forecast residual ranges, conditional on fixed annual barangay shares. Spatial allocation uncertainty and hospital admission/capacity uncertainty are not calibrated.",
             "forecastBacktest": json.loads((FOLDER / "qc-environmental-forecasts.json").read_text())["backtest"]["scores"]}
         final = result["days"][-1]

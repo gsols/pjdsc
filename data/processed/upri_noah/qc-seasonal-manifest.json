@@ -1,6 +1,6 @@
 {
   "schemaVersion": "1.0",
-  "methodVersion": "qc-seasonal-xgboost-engine-v2",
+  "methodVersion": "qc-seasonal-xgboost-calendar-v3",
   "sources": {
     "repository": "pelitro-rcw/dengue-environmental-dataset",
     "referenceCommit": "02926278d570db8950da368d44db544ae0097615",
@@ -62,14 +62,16 @@
     "WN": 52
   },
   "selectedModel": "seasonal_xgboost",
-  "trainedAt": "2026-10-24T16:21:34.990487+00:00",
-  "modelSha256": "f5be53f108e88081c55b59d4fe354c12ac5d4084eaee284528a5c8088e0a8c1d",
-  "validationSha256": "1a7643a9e5c257eb6010220fc68fe716d0ae551488bd66af2d7fe8e6ec8a523a",
+  "trainedAt": "2026-10-25T00:14:13.709559+00:00",
+  "modelSha256": "534adfc7fca142ed78458e930eaf85235856b5155a4d2e8bf98705c2e94eb55b",
+  "validationSha256": "35b8ec4f357974660a34b1de4e95fdc981370b8c9d69a7257b16db81b2dd9756",
   "trainingRows": 828,
   "trainingCutoffBlock": 105351,
   "codeHashes": {
-    "scripts/train_qc_seasonal.py": "aa3d1606e10ed4b859ca89f10e9bf30b1f2ce96eaa580c9668bc980f5030511f",
-    "services/engine/domain/seasonal_forecast.py": "4b74b9bb2232c8eb63d3a77a2778fdedf8e359179dd9c19fbdb2df612c7e7fc2"
+    "scripts/train_qc_seasonal.py": "0486fad86dbc126c02c724c996f39037e83f5c26687a61dc5521c19955fb76c1",
+    "services/engine/domain/seasonal_forecast.py": "a3a4548b3757f5f0d2845ce939199d5e9c947f865c4211e46e105ed2d29afcf0",
+    "services/engine/domain/source_calendar.py": "ed205b77a9804826a8007ec8014fdd9dc57ab70164793d17f1f80ca45597f3fe",
+    "services/engine/domain/seasonal_validation.py": "c0b134815b204d59cb55bb824339bec1df4ba67027a72a3b70159e6743f2a04d"
   },
   "software": {
     "python": "3.13.3 (tags/v3.13.3:6280bb5, Apr  8 2025, 14:47:33) [MSC v.1943 64 bit (AMD64)]",

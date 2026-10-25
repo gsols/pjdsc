@@ -11,6 +11,7 @@ from .qc_simulation import QCInput, LIMITS
 from .research import FacilityAssumption, unavailable
 from .outbreak import OutbreakInput, inputs, create_movie
 from ..repositories.seasonal_runs import create_seasonal_run, approved_model, FOLDER, SeasonalArtifactError
+from ..domain.seasonal_forecast import XGBOOST_CANDIDATES
 
 router = APIRouter(prefix="/v1")
 
@@ -87,14 +88,32 @@ def future_workspace(params: FutureInput):
                 for h in geo["hospitals"]])
         movie = create_movie(model)
         validation = json.loads((FOLDER / "qc-seasonal-validation.json").read_text())
-        _, manifest = approved_model()
+        engine, manifest = approved_model()
         final = movie["days"][-1]
+        has_added_surge = params.surgeEnabled and params.surgeMultiplier > 1
+        maximum_year_gap = (params.endDate - timedelta(days=1)).year - manifest["sourceLastBlock"]["YR"]
         result = {**movie, "workspaceTab": "future", "controlValues": params.model_dump(mode="json"),
             "inputLimits": {**LIMITS, "surgeMultiplier": {"min": 1, "max": 10, "units": "times the seasonal baseline"},
                 "surgeOnsetDay": {"min": 0, "max": params.horizonDays - 1, "units": "day index"}},
             "scope": "QUEZON_CITY", "mapContext": "PHILIPPINES_GEOMETRY_ONLY",
             "forecastEvidence": {key: run[key] for key in ["id", "issueBlock", "model", "environmentalInputs", "observedCasesAtOrigin", "observedSourceYearToDateCases", "intervalCoverageTarget", "intervalCaveat", "spatialCaveat", "availabilityAssumption"]},
             "futureForecast": {"asOfDate": as_of.isoformat(), "trainingCutoffBlock": manifest["sourceLastBlock"],
+                "xgboostVariant": engine["xgboostVariant"], "usesWeather": XGBOOST_CANDIDATES[engine["xgboostVariant"]]["weather"],
+                "accuracyAssessment": validation["accuracyAssessment"], "calendarDiagnostics": validation["calendarDiagnostics"],
+                "rangeEvidencePolicy": validation["rangeEvidencePolicy"],
+                "leadYearGapValidation": validation["leadYearGapValidation"],
+                "parameterAudit": {"startDate": params.startDate.isoformat(), "endDateExclusive": params.endDate.isoformat(),
+                    "horizonDays": params.horizonDays, "yearTrendModeled": False,
+                    "sourceYearGap": maximum_year_gap,
+                    "centralGapEvaluated": maximum_year_gap in {1, 2, 3} and params.weatherProfile == "typical",
+                    "rangeEvaluatedAtRequestedGap": maximum_year_gap == 1 and params.weatherProfile == "typical" and not has_added_surge,
+                    "surgeOnsetDate": (params.startDate + timedelta(days=params.surgeOnsetDay)).isoformat() if has_added_surge else None,
+                    "fullMultiplierDate": (params.startDate + timedelta(days=params.surgeOnsetDay + params.growthDays - 1)).isoformat() if has_added_surge else None,
+                    "fullMultiplierReached": has_added_surge and params.surgeOnsetDay + params.growthDays <= params.horizonDays,
+                    "maximumAppliedMultiplier": max(d.get("surgeFactor", 1) for d in movie["days"]),
+                    "staffedSurgeActivationSnapshotDate": (params.startDate + timedelta(days=params.surgeActivationDay)).isoformat(),
+                    "staffedSurgeActivationWithinWindow": params.surgeActivationDay <= params.horizonDays,
+                    "admissionDelayDays": params.admissionDelayDays, "lengthOfStayDays": params.lengthOfStayDays},
                 "weatherProfile": params.weatherProfile, "selectedModel": manifest["selectedModel"],
                 "selection": validation["selection"], "validation": validation["backtest"],
                 "modelSha256": manifest["modelSha256"], "methodVersion": manifest["methodVersion"],

@@ -78,6 +78,7 @@ export interface QCControls {
 export interface QCWorkspaceResult extends OutbreakMovie {
   workspaceTab?: 'future' | 'historical';
   controlValues: QCControls; inputLimits: Record<string, { min: number; max: number; units: string }>;
+  historicalWindows?: { startDate: string; endDate: string }[];
   forecastEvidence: { id: string; issueBlock: { YR: number; WN: number }; model: string;
     environmentalInputs: { sourceColumn: string; valueAtOrigin: number; unit: string; lagsSourceBlocks: number[] }[];
     observedCasesAtOrigin: number; observedSourceYearToDateCases: number; intervalCoverageTarget: number;
@@ -86,9 +87,22 @@ export interface QCWorkspaceResult extends OutbreakMovie {
   forecastBacktest: { horizon: number; n: number; weatherMae: number; casesOnlyMae: number; persistenceMae: number; empiricalRangeCoverage: number }[];
   referenceSelectionAssumption: string; rangeInterpretation: string; simulationResultSha256: string;
   futureForecast?: { asOfDate: string; trainingCutoffBlock: { YR: number; WN: number }; weatherProfile: string;
+    xgboostVariant?: string; usesWeather?: boolean;
+    rangeEvidencePolicy?: string;
+    leadYearGapValidation?: { year: number; sourceYearGap: number; lastTrainingYear: number; model: string; n: number; mae: number; wapePct: number | null; meanBias: number }[];
+    accuracyAssessment?: { status: string; message: string; comparison: { year: number; maeSkillVsSeasonalBaseline: number; rangeTargetAchieved: boolean }[] };
+    parameterAudit?: { startDate: string; endDateExclusive: string; horizonDays: number; yearTrendModeled: boolean;
+      sourceYearGap: number; centralGapEvaluated: boolean; rangeEvaluatedAtRequestedGap: boolean;
+      surgeOnsetDate: string | null; fullMultiplierDate: string | null; fullMultiplierReached: boolean;
+      maximumAppliedMultiplier: number; staffedSurgeActivationSnapshotDate: string; staffedSurgeActivationWithinWindow: boolean;
+      admissionDelayDays: number; lengthOfStayDays: number };
+    calendarDiagnostics?: { targetDefinition: string; evaluationDesign: string;
+      monthly: { year: number; month: number; model: string; expectedCases: number; sourceDerivedCases: number; absoluteError: number; calendarDays: number }[];
+      sourceQuarters: { year: number; sourceQuarter: number; model: string; n: number; mae: number; wapePct: number | null; meanBias: number }[];
+      windowLengths: { year: number; days: number; model: string; n: number; mae: number; wapePct: number | null; meanBias: number; empiricalRangeCoverage: number }[] };
     selectedModel: string; modelSha256: string; methodVersion: string;
     selection: { criterion: string; scores: Record<string, number> };
-    validation: { year: number; model: string; n: number; mae: number; rmse: number; empiricalRangeCoverage: number }[];
+    validation: { year: number; model: string; n: number; mae: number; rmse: number; meanBias?: number; wapePct?: number | null; empiricalRangeCoverage: number }[];
     stalenessCaveat: string; weatherCaveat: string };
   allocationComparison?: { nearest: AllocationMetrics; optimized: AllocationMetrics; caveat: string };
 }

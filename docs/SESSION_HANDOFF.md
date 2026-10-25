@@ -1,7 +1,62 @@
 # Simulation session handoff
 
-Updated 2026-10-25 07:26:41 +08:00 (Asia/Manila). Read root/scoped AGENTS.md first.
+Updated 2026-10-25 08:20:11 +08:00 (Asia/Manila). Read root/scoped AGENTS.md first.
 Preserve existing working-tree edits; do not restart the application or replace data.
+
+## Current continuation — forecasting/month/day/season/parameter audit
+
+See `docs/forecast-parameter-audit.md` for the complete audit, limits and reproduction.
+Raw sources remain unchanged. Corrected final-block daily normalization (8/9 days
+in week 52 under the explicit calendar assumption), dated residual indexing over
+year transitions, and historical partial-window offsets. Historical requests now
+reject dates outside actual saved target coverage with typed 422 and available
+windows. Historical selectors persist after control edits. The source's true
+epidemiological calendar remains unresolved; no calendar reconciliation is claimed.
+
+Seasonal model v3 compares four fixed XGBoost weather/season-only × all-year/
+4-year-half-life candidates using 2018–2023 only. Original weather/all-years wins
+65.148 MAE; retain it. Central 2024/2025 errors remain 79.06/112.94 cases/week,
+worse than seasonal baseline 74.43/110.75; WAPE 47.94%/52.88%, mean bias
+−72.07/−112.59. No claim of sufficient operational accuracy. The report/app now
+expose assumed-calendar monthly diagnostics, source-quarter errors, window-length
+diagnostics and parameter effects. Daily/monthly labels are disaggregated weekly
+proxies, not observed daily/monthly surveillance. Future year growth is unmodeled.
+
+Added matched central-case evaluation with source-year gaps 1, 2 and 3. XGBoost
+still loses to seasonal baseline in all comparisons (gap-2 MAE 80.56/121.10 vs
+74.36/115.14; gap-3 75.90/120.41 vs 72.84/114.05 for 2024/2025). Parameter audit
+reports the requested gap; >3 lacks matched evaluation. Range coverage is only
+evaluated at gap 1. January 2027 from 2025 evidence is gap 2. A 1× multiplier now
+explicitly means no added surge, including in the parameter-status metadata.
+Gap metadata covers the last case date too, including Dec/Jan windows. Weather
+stress has no matched error evaluation; added surge has no observed coverage
+validation. Flags/text do not claim otherwise for those combinations.
+
+Selection calibration stays pre-2024. Separate range evidence now uses completed
+out-of-sample errors available through each prior year; production through 2025.
+2025 weekly coverage improves from stale-pool 55.77% to 57.69%, still below 80%.
+2024 remains 76.92%. Residual paths never mix different fitted-model cutoffs.
+Production registration versions its range policy and validates its cutoff.
+Scenario method is dated-calendar-surge-capacity-v3; runtime code identity now
+also covers the source-calendar and seasonal inference/repository modules.
+
+All twelve months × four weather profiles × every 1–28-day horizon are tested.
+Added complete-year conservation/leap/year-crossing, historical-window rejection,
+surge equations, zero-admission and unreached-peak checks. Model selection and
+reported errors/monthly sums are independently recomputed in tests. Final checks:
+82 Python tests, 23 frontend tests, compileall, lint, TypeScript and production
+build passed. Live web/BFF/engine smoke passed historical offsets/rejection,
+future day windows/source gaps, conservation, surge and bed percentages. All
+seven immutable raw sources verified; no raw/reference changes. Browser visual
+QA remains unverified. This verifies implementation, not adequate model accuracy.
+
+Windows StatReload hung while reloading: stopped only the known engine processes
+and launched a stable hidden worker without --reload (port 8000, ignored logs
+`data/processed/upri_noah/scenarios/engine-runtime.*.log`), current PID 28640.
+Refresh the worker after engine Python changes; its guard blocks stale domain/
+inference calculations. Keep the
+existing Next.js dev server on port 3000. No dependency install or source edits.
+Production builds must restore next-env.d.ts to .next-dev/types/routes.d.ts.
 
 ## Latest request — color animation and explicit bed-demand percentages
 

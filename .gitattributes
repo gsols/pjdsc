@@ -12,3 +12,5 @@ scripts/train_qc_seasonal.py text eol=lf
 services/engine/domain/seasonal_forecast.py text eol=lf
 scripts/train_qc_barangay.py text eol=lf
 services/engine/domain/barangay_forecast.py text eol=lf
+services/engine/domain/source_calendar.py text eol=lf
+services/engine/domain/seasonal_validation.py text eol=lf
