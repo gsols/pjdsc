@@ -9,7 +9,10 @@ from services.engine.domain.bed_forecast import surge_staffing
 
 
 def test_three_hospital_split_preserves_admissions_and_forecasts_surge_beds():
-    run = {"weeklyPredictions": [{"meanCases": 315, "lowerCases": 210, "upperCases": 420}] * 4}
+    run = {"weeklyPredictions": [{"YR": 2027, "WN": i + 1, "meanCases": 315,
+        "lowerCases": 210, "upperCases": 420} for i in range(4)],
+        "calibrationResidualPaths": [{"lastTargetBlock": 2026 * 52 - 1,
+            "residuals": [105] * 4} for _ in range(20)]}  # Explicit synthetic dated fixture.
     context = {"barangays": [{"id": "A", "coordinates": [121, 14], "weight": 1}],
                "hospitals": [{"id": ident, "coordinates": [121 + i * .01, 14]} for i, ident in enumerate(["H1", "H2", "H3"])]}
     config = {"startDate": date(2027, 1, 1), "endDate": date(2027, 1, 4), "autoHotspots": True,

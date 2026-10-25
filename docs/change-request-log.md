@@ -1,5 +1,14 @@
 # User-requested extensions
 
+## 2026-10-25 08:01:49 +08:00 — audit forecasting and overall parameters
+
+User requested verification of XGBoost, months/seasons, number of days, surge,
+accuracy and parameters overall; authorized continued development without routine
+confirmation. Scope/results: [forecast parameter audit](forecast-parameter-audit.md).
+Correct calendar mass, residual dating and historical target alignment; compare
+four XGBoost variants on pre-2024 data only; expose monthly/season/window evidence
+and explicit parameter effects. Preserve raw sources and accuracy limitations.
+
 ## 2026-10-25 07:11:55 +08:00 — restore color animation and clarify bed percentages
 
 Runtime follow-up 07:26 +08:00: restarted the stale local engine and versioned new

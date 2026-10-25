@@ -42,6 +42,14 @@ def main():
     assert all(f["nearestHotspot"] is None for f in data["days"][0]["facilities"])
     assert all(f["nearestHotspot"]["barangayId"] in data["days"][-1]["hotspotIds"] for f in data["days"][-1]["facilities"])
     assert data["forecastEvidence"]["observedSourceYearToDateCases"] > 0
+    assert len(data["historicalWindows"]) == 8
+    status, partial = request("/api/research/qc-simulation", {**data["controlValues"],
+        "startDate": "2025-02-03", "endDate": "2025-02-12"})
+    assert status == 200, partial
+    assert abs(partial["periodSummary"]["expectedCases"] - sum(d["expectedCases"] for d in data["days"][6:15])) < 1e-7
+    status, missing = request("/api/research/qc-simulation", {**data["controlValues"],
+        "startDate": "2025-03-01", "endDate": "2025-03-08"})
+    assert status == 422 and missing["detail"]["code"] == "HISTORICAL_WINDOW_UNAVAILABLE", missing
     for frame in data["days"]:
         assert frame["caseRange"]["lowerCases"] <= frame["cumulativeCases"] <= frame["caseRange"]["upperCases"]
         assert abs(frame["balanceError"]) < 1e-7
@@ -59,6 +67,10 @@ def main():
     assert status == 200, future
     assert future["workspaceTab"] == "future" and future["futureForecast"]["trainingCutoffBlock"]["YR"] == 2025
     assert future["futureForecast"]["selectedModel"] == "seasonal_xgboost"
+    assert future["futureForecast"]["parameterAudit"]["horizonDays"] == 28
+    assert future["futureForecast"]["accuracyAssessment"]["status"] == "EXPERIMENTAL_NOT_OPERATIONALLY_VALIDATED"
+    assert len(future["futureForecast"]["calendarDiagnostics"]["monthly"]) == 72
+    assert {r["days"] for r in future["futureForecast"]["calendarDiagnostics"]["windowLengths"]} == {1, 2, 7, 12, 14, 28}
     assert future["bedProjection"]["arrivalSplitPolicy"] == "nearest_three_equal"
     assert len(future["bedProjection"]["placePeaks"]) == 142
     assert all(len(p["hospitals"]) == 3 and abs(sum(h["share"] for h in p["hospitals"]) - 1) < 1e-9 for p in future["bedProjection"]["placePeaks"])
@@ -77,6 +89,9 @@ def main():
     for days in [2, 12, 14, 28]:
         status, window = request("/api/research/future-simulation", {"startDate": "2027-01-01", "horizonDays": days, "surgeEnabled": False})
         assert status == 200 and len(window["days"]) == days + 1, window
+        audit = window["futureForecast"]["parameterAudit"]
+        assert audit["sourceYearGap"] == 2 and audit["centralGapEvaluated"] is True
+        assert audit["rangeEvaluatedAtRequestedGap"] is False
         assert window["days"][-1]["bedForecast"]["staffedBedsRequired"] >= 0
         assert all(abs(d["balanceError"]) < 1e-7 for d in window["days"])
         if days == 28:

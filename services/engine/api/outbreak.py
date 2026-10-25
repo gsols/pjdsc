@@ -13,7 +13,8 @@ from fastapi import APIRouter, HTTPException
 from pydantic import Field, model_validator
 
 from .research import StrictModel, FacilityAssumption, forecast, annual_data, unavailable
-from ..domain import outbreak, patient_flow, spatial, optimizer, bed_forecast, hospital_demand, barangay_forecast
+from ..domain import outbreak, patient_flow, spatial, optimizer, bed_forecast, hospital_demand, barangay_forecast, source_calendar, seasonal_forecast
+from ..repositories import seasonal_runs
 from ..domain.outbreak import make_context, build_movie, VERSION
 from ..repositories.facility import load_facilities, DATASET_ID, HOSPITAL_SHA256
 from ..repositories.forecast_runs import FOLDER, load_runs, load_environmental_runs
@@ -23,7 +24,8 @@ from ..repositories.barangay_runs import BarangayRankingUnavailable
 router = APIRouter(prefix="/v1")
 _CODE_MODULES = [("outbreak", outbreak), ("patient_flow", patient_flow), ("spatial", spatial),
     ("optimizer", optimizer), ("bed_forecast", bed_forecast), ("hospital_demand", hospital_demand),
-    ("barangay_forecast", barangay_forecast)]
+    ("barangay_forecast", barangay_forecast), ("source_calendar", source_calendar),
+    ("seasonal_forecast", seasonal_forecast), ("seasonal_runs", seasonal_runs)]
 _LOADED_CODE_HASHES = {name: sha256(module.__file__) for name, module in _CODE_MODULES}
 
 
@@ -82,7 +84,7 @@ class OutbreakInput(StrictModel):
             raise ValueError("Choose an end date 1–28 elapsed days after onset.")
         if not 2012 <= self.startDate.year <= 2035:
             raise ValueError("Scenario onset must be between 2012 and 2035; future dates remain hypothetical.")
-        if self.scenarioKind == "historical_replay" and self.extraCasesPerWeek != 0:
+        if self.scenarioKind == "historical_replay" and (self.extraCasesPerWeek != 0 or self.surgeEnabled):
             raise ValueError("Historical reference mode cannot contain a hypothetical added shock.")
         if self.surgeEnabled and self.surgeOnsetDay >= (self.endDate - self.startDate).days:
             raise ValueError("Surge onset must be within the selected future window.")
@@ -126,6 +128,11 @@ def create_movie(params: OutbreakInput):
             raise HTTPException(503, detail={"code": "ENGINE_RESTART_REQUIRED",
                 "message": "Simulation code changed while this worker was running. Restart the engine and reload the forecast; no outdated result was substituted."})
         run, geo, manifest = inputs(params.forecastRunId, params.startDate.year, params.autoHotspots)
+        if params.autoHotspots and not run.get("dailyPredictions"):
+            first, last = source_calendar.historical_window(run)
+            if params.startDate < first or params.endDate > last:
+                raise HTTPException(422, detail={"code": "HISTORICAL_WINDOW_UNAVAILABLE",
+                    "message": f"This saved forecast covers [{first}, {last}) under the declared calendar assumption. Select dates within its targets."})
         if params.surgeEnabled and not run.get("dailyPredictions"):
             raise HTTPException(422, detail={"code": "SEASONAL_FORECAST_REQUIRED", "message": "Multiplicative future surges require the seasonal future engine."})
         approved = {h["id"] for h in geo["hospitals"]}

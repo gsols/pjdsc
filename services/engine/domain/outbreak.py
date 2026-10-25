@@ -10,8 +10,9 @@ from .patient_flow import simulate_flow
 from .spatial import annual_weights
 from .bed_forecast import add_bed_forecasts
 from .hospital_demand import hospital_shares
+from .source_calendar import align_historical_run
 
-VERSION = "dated-forecast-capacity-bed-percent-v2"
+VERSION = "dated-calendar-surge-capacity-v3"
 
 
 def expansion_ring(center, radius_km):
@@ -143,6 +144,8 @@ def allocated_forecast_trajectory(run, context, config, duration):
 
 def build_movie(run, context, config):
     duration = (config["endDate"] - config["startDate"]).days
+    if config.get("autoHotspots") and not run.get("dailyPredictions"):
+        run = align_historical_run(run, config["startDate"], duration)
     days = allocated_forecast_trajectory(run, context, config, duration) if config.get("autoHotspots") else spatial_trajectory(
         run, context, config["seedBarangayId"], config["extraCasesPerWeek"], config["initialRadiusKm"],
         config["expansionKmPerDay"], config["growthDays"], duration, config["shockProfile"])
@@ -217,7 +220,8 @@ def build_movie(run, context, config):
             if run.get("dailyPredictions") and index:
                 row = run["dailyPredictions"][index - 1]
                 factor = days[index - 1].get("surgeFactor", 1.0)
-                d["dailyCaseRange"] = {"lowerCases": row["lowerCases"] * factor, "upperCases": row["upperCases"] * factor}
+                additive = max(0, d["shockCases"] - d["baselineCases"] * (factor - 1))
+                d["dailyCaseRange"] = {"lowerCases": row["lowerCases"] * factor + additive, "upperCases": row["upperCases"] * factor + additive}
             for b in d["barangays"]:
                 weight = barangay_map[b["barangayId"]]["weight"]
                 b["caseRange"] = {k: (v - d["cumulativeShockCases"]) * weight + cumulative_shock[b["barangayId"]]
