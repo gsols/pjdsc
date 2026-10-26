@@ -1,7 +1,37 @@
 # Simulation session handoff
 
-Updated 2026-10-25 08:20:11 +08:00 (Asia/Manila). Read root/scoped AGENTS.md first.
+Updated 2026-10-26 15:39:47 +08:00 (Asia/Manila). Read root/scoped AGENTS.md first.
 Preserve existing working-tree edits; do not restart the application or replace data.
+
+## Current continuation — Render engine startup
+
+User's separate Render frontend/engine deployments work only after manually
+opening the engine URL, despite configured `ENGINE_BASE_URL`. The existing BFF
+times out after 20 seconds; Render documents roughly one minute for free-tier
+cold starts. Added on-demand `/api/engine/health` BFF to the existing `/health`
+endpoint (eight-second timeout, uncached, sanitized, server-only configuration).
+`lib/engine-connection.ts` polls liveness for at most 120 seconds, then performs
+the requested research/simulation call once. Both QC workspace tabs and the
+research page display connection/startup state. Cancellation propagates through
+the browser and BFF; tab/parameter changes and unmount discard old results.
+Typed configuration failures stop immediately, and model/data errors remain
+visible. No periodic keep-alive traffic or automatic POST retries were added.
+
+See [Render deployment](render-deployment.md) and the timestamped change-request
+log. Only frontend deployment is needed for this change; actual deployed Render
+cold-start behavior still requires verification. Models, raw sources, scientific
+assumptions, engine calculations and simulation validation gates are unchanged.
+
+Verification: 30 frontend tests passed, including cold-start/loading-page recovery,
+deadline, cancellation, late-response rejection, configuration failure, single
+POST and preserved model errors. Production build (including lint/type checks)
+passed. A temporary production Next server and constructed local upstream passed
+actual HTTP checks: hosting HTML startup response, liveness recovery, sanitized
+uncached health, single POST with preserved data error, and workspace loading
+markup. Both temporary servers were stopped. This is not a deployed Render or
+browser interaction test. Restored `next-env.d.ts` to its existing `.next-dev`
+reference after production build. Existing dependencies were reused; no install
+was needed. No Python changes or raw/reference edits.
 
 ## Current continuation — forecasting/month/day/season/parameter audit
 
