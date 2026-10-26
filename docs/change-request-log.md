@@ -1,5 +1,14 @@
 # User-requested extensions
 
+## 2026-10-26 15:27:18 +08:00 — automatically connect to a sleeping Render engine
+
+User reports that `ENGINE_BASE_URL` is configured but simulations fetch data only
+after manually opening the separately deployed engine URL. Add bounded on-demand
+liveness checks and visible startup status before simulation/research requests;
+cancel obsolete requests, stop after two minutes, and preserve model/data errors.
+Scope and deployment steps: [Render deployment](render-deployment.md). No periodic
+keep-alive traffic, repeated simulation POSTs or changes to scientific inputs.
+
 ## 2026-10-25 08:01:49 +08:00 — audit forecasting and overall parameters
 
 User requested verification of XGBoost, months/seasons, number of days, surge,

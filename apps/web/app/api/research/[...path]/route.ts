@@ -34,7 +34,7 @@ async function proxy(request: Request, context: { params: Promise<{ path: string
   try {
     const response = await fetch(`${base.replace(/\/$/, '')}/v1/${path}${area ? `?area=${area}` : ''}`, {
       method: request.method, headers: { 'content-type': 'application/json' }, body,
-      signal: AbortSignal.timeout(20000), cache: 'no-store',
+      signal: AbortSignal.any([request.signal, AbortSignal.timeout(20000)]), cache: 'no-store',
     });
     const data = await response.json();
     return NextResponse.json(data, { status: response.status });

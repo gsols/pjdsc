@@ -5,6 +5,7 @@ import { Activity, ArrowLeft, Download, Pause, Play, RotateCcw } from 'lucide-re
 import type { BedForecast, MovieContext, QCControls, QCWorkspaceResult } from '@/lib/outbreak-types';
 import { formatScenarioDate, nextPlaybackDay, validateDateWindow } from '@/lib/playback';
 import { addDateDays, CASE_BANDS } from '@/lib/case-bands';
+import { ENGINE_STARTING_MESSAGE, fetchResearch, type EngineConnectionStatus } from '@/lib/engine-connection';
 import QCWorkspaceSidebar from '@/components/qc-workspace-sidebar';
 
 const OutbreakMap = dynamic(() => import('@/components/outbreak-map'), { ssr: false });
@@ -27,10 +28,11 @@ function BedUse({ forecast, day, occupancyPct }: { forecast?: BedForecast; day: 
     <small>These are scenario estimates; actual staffed beds and occupancy are unknown.</small>
   </section>;
 }
-async function fetchWorkspace(controls?: QCControls, tab: WorkspaceTab = 'historical'): Promise<QCWorkspaceResult> {
-  const response = await fetch(`/api/research/${tab === 'future' ? 'future-simulation' : 'qc-simulation'}`, controls ? {
+async function fetchWorkspace(controls: QCControls | undefined, tab: WorkspaceTab, signal: AbortSignal, onStatus: (status: EngineConnectionStatus) => void): Promise<QCWorkspaceResult> {
+  const response = await fetchResearch(`/api/research/${tab === 'future' ? 'future-simulation' : 'qc-simulation'}`, controls ? {
     method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify(controls),
-  } : { cache: 'no-store' });
+    signal,
+  } : { signal }, onStatus);
   const data = await response.json();
   if (!response.ok) throw Error(data.error || data.detail?.message || data.detail?.code ||
     (Array.isArray(data.detail) ? data.detail.map((d: { msg: string }) => d.msg).join(' ') : `Request failed (${response.status})`));
@@ -54,6 +56,8 @@ export default function QCSimulationWorkspace() {
   const [loading, setLoading] = useState(true), [error, setError] = useState('');
   const [caseMetric, setCaseMetric] = useState<'daily' | 'cumulative'>('cumulative');
   const [historicalWindows, setHistoricalWindows] = useState<{ startDate: string; endDate: string }[]>([]);
+  const [connectionStatus, setConnectionStatus] = useState<EngineConnectionStatus>('connecting');
+  const activeRequest = useRef<AbortController | null>(null);
   const generation = useRef(0);
   const reducedRef = useRef(false);
   const tabRef = useRef<WorkspaceTab>('historical');
@@ -61,9 +65,14 @@ export default function QCSimulationWorkspace() {
   const calculate = useCallback(async (values?: QCControls, autoplay = false, targetTab: WorkspaceTab = tabRef.current) => {
     if (values) { const invalid = validateDateWindow(values.startDate, values.endDate); if (invalid) { setError(invalid); return; } }
     const token = ++generation.current;
+    activeRequest.current?.abort();
+    const controller = new AbortController();
+    activeRequest.current = controller;
     setLoading(true); setData(null); setContext(null); setControls(values ?? null); setPlaying(false); setDay(0); setError('');
     try {
-      const result = await fetchWorkspace(values, targetTab);
+      const result = await fetchWorkspace(values, targetTab, controller.signal, status => {
+        if (token === generation.current) setConnectionStatus(status);
+      });
       if (token !== generation.current) return;
       setData(result); setContext(result.context); setControls(result.controlValues); setCaseMetric('cumulative');
       savedForms.current[targetTab] = result.controlValues;
@@ -74,7 +83,11 @@ export default function QCSimulationWorkspace() {
     } catch (e) { if (token === generation.current) setError(e instanceof Error ? e.message : 'QC simulation unavailable.'); }
     finally { if (token === generation.current) setLoading(false); }
   }, []);
-  useEffect(() => { const requestGeneration = generation; void calculate(); return () => { requestGeneration.current++; }; }, [calculate]);
+  useEffect(() => {
+    const requestGeneration = generation, requestController = activeRequest;
+    void calculate();
+    return () => { requestGeneration.current++; requestController.current?.abort(); };
+  }, [calculate]);
   useEffect(() => {
     const media = window.matchMedia('(prefers-reduced-motion: reduce)');
     const update = () => { setReduced(media.matches); if (media.matches) setPlaying(false); };
@@ -88,6 +101,7 @@ export default function QCSimulationWorkspace() {
   }, [playing, data, speed]);
   useEffect(() => { if (data && day >= data.durationDays) setPlaying(false); }, [day, data]);
   function update(patch: Partial<QCControls>) {
+    activeRequest.current?.abort(); setLoading(false);
     generation.current++; setControls(c => c ? { ...c, ...patch } : c); setData(null); setPlaying(false); setDay(0); setError('');
   }
   function switchTab(next: WorkspaceTab) {
@@ -174,6 +188,7 @@ export default function QCSimulationWorkspace() {
       <p>Historical cases + environmental factors → barangay allocation → hospital strain</p></div>
       <nav><a href="/research">Forecast validation & sources</a><span>QC ONLY · 142 barangays · 46 hospital records</span></nav></header>
     <div className="qc-scope-note"><Activity size={16} /><span>{tab === 'future' ? 'Future seasonal surge planning: new seasonal curves and historical weather analogs; current 2026/2027 surveillance and real hospital census are unavailable.' : 'Historical replay: source-based case/environment forecasts for retrospective periods.'} <strong>No place selection is required.</strong> QC calculations; Philippines geography is context only.</span></div>
+    {loading && <p className="notice" role="status">{connectionStatus === 'starting' ? ENGINE_STARTING_MESSAGE : connectionStatus === 'connecting' ? 'Connecting to the simulation engine…' : 'Engine connected. Loading forecast and simulation…'}</p>}
     {error && <div className="qc-error" role="alert">{error}<button disabled={loading} onClick={() => calculate(controls ?? undefined)}>Reload data-based forecast</button></div>}
     <div className="qc-layout">
       <QCWorkspaceSidebar side="left" label="Forecast controls">

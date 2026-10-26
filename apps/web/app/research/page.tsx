@@ -3,12 +3,13 @@ import dynamic from 'next/dynamic';
 import { useEffect, useRef, useState } from 'react';
 import { loadFacilities } from '@/lib/facilities';
 import { parseAnnualRecords } from '@/lib/annual-burden';
+import { ENGINE_STARTING_MESSAGE, fetchResearch, type EngineConnectionStatus } from '@/lib/engine-connection';
 import type { Facility } from '@/lib/types';
 import type { AnnualRecord, ResearchRun, ResearchScenario, SpatialResult } from '@/lib/research-types';
 
 const BarangayMap = dynamic(() => import('@/components/barangay-map'), { ssr: false });
-async function read(url: string, init?: RequestInit) {
-  const response = await fetch(url, init);
+async function read(url: string, init?: RequestInit, onStatus?: (status: EngineConnectionStatus) => void) {
+  const response = await (url.startsWith('/api/research/') ? fetchResearch(url, init, onStatus) : fetch(url, init));
   const data = await response.json();
   if (!response.ok) throw Error(data.error || data.detail?.message || data.detail?.code || `Request failed (${response.status})`);
   return data;
@@ -37,7 +38,9 @@ export default function Research() {
   const [sourceError, setSourceError] = useState('');
   const [loading, setLoading] = useState(false);
   const generation = useRef(0);
+  const simulationRequest = useRef<AbortController | null>(null);
   const [scores, setScores] = useState<{ area: string; horizon: number; method: string; n: number; mae: number; rmse: number }[]>([]);
+  const [connectionStatus, setConnectionStatus] = useState<EngineConnectionStatus>('loading');
   useEffect(() => {
     const controller = new AbortController();
     read('/data/qc-annual-burden.json', { signal: controller.signal }).then(d => {
@@ -47,14 +50,14 @@ export default function Research() {
     })
       .catch(e => { if (!controller.signal.aborted) setSourceError(e.message); });
     loadFacilities(controller.signal).then(f => { setFacilities(f); }).catch(e => { if (!controller.signal.aborted) setSourceError(e.message); });
-    read('/api/research/research-evidence', { signal: controller.signal }).then(d => setScores(d.backtest.scores))
+    read('/api/research/research-evidence', { signal: controller.signal }, setConnectionStatus).then(d => setScores(d.backtest.scores))
       .catch(e => { if (!controller.signal.aborted) setError(e.message); });
     return () => controller.abort();
   }, []);
   useEffect(() => {
     const controller = new AbortController();
     setRuns([]); setId(''); setAllocation(null);
-    read(`/api/research/forecast-runs?area=${area}`, { signal: controller.signal }).then(d => {
+    read(`/api/research/forecast-runs?area=${area}`, { signal: controller.signal }, setConnectionStatus).then(d => {
       setRuns(d.runs); setId(d.runs.at(-1)?.id || ''); setError('');
     }).catch(e => { if (!controller.signal.aborted) setError(e.message); });
     return () => controller.abort();
@@ -62,12 +65,15 @@ export default function Research() {
   useEffect(() => {
     const controller = new AbortController();
     setAllocation(null);
-    if (id && area === 'QUEZON_CITY') read(`/api/research/spatial-allocations/${id}`, { signal: controller.signal })
+    if (id && area === 'QUEZON_CITY') read(`/api/research/spatial-allocations/${id}`, { signal: controller.signal }, setConnectionStatus)
       .then(setAllocation).catch(e => { if (!controller.signal.aborted) setError(e.message); });
     return () => controller.abort();
   }, [id, area]);
   useEffect(() => {
+    simulationRequest.current?.abort();
     generation.current += 1; setResult(null); setLoading(false);
+    const requestGeneration = generation, requestController = simulationRequest;
+    return () => { requestGeneration.current++; requestController.current?.abort(); };
   }, [id, area, normal, surge, holding, rate, los, occupancy, ack, selected]);
   const run = runs.find(r => r.id === id);
   const rec = reconciliation.find(r => r.year === year);
@@ -77,13 +83,16 @@ export default function Research() {
     : typeof r[`DC_${year}`] === 'number' ? r[`DC_${year}`] as number : null]));
   async function simulate() {
     const token = ++generation.current;
+    simulationRequest.current?.abort();
+    const controller = new AbortController();
+    simulationRequest.current = controller;
     setLoading(true); setResult(null); setError('');
     try {
-      const data = await read('/api/research/scenarios', { method: 'POST', headers: { 'content-type': 'application/json' },
+      const data = await read('/api/research/scenarios', { method: 'POST', signal: controller.signal, headers: { 'content-type': 'application/json' },
         body: JSON.stringify({ forecastRunId: id, scenarioKind: 'historical_replay', acknowledgeHypotheticalHospitalNetwork: ack,
           hospitalizationRate: rate, lengthOfStayDays: los, baselineOccupancy: occupancy, admissionDelayDays: 0,
           surgeActivationDay: 0, facilities: [{ facilityId: selected, assumedDengueEligible: true,
-            normalCapacity: normal, surgeCapacity: surge, holdingCapacity: holding }] }) });
+            normalCapacity: normal, surgeCapacity: surge, holdingCapacity: holding }] }) }, setConnectionStatus);
       if (token === generation.current) setResult(data);
     } catch (e) { if (token === generation.current) setError(e instanceof Error ? e.message : 'Simulation failed'); }
     finally { if (token === generation.current) setLoading(false); }
@@ -96,6 +105,7 @@ export default function Research() {
     <p>Observed source blocks, annual barangay burden, modeled allocations and hypothetical hospital flows. Calendar alignment is unresolved; no live surveillance or vacancy reporting.</p>
     <p>Source: Matavia et al. (2026), <a href="https://github.com/pelitro-rcw/dengue-environmental-dataset/tree/02926278d570db8950da368d44db544ae0097615">pinned official dataset</a>, ODC-ODbL 1.0. Original nulls and quality flags are retained in the processed observations.</p>
     {(error || sourceError) && <p role="alert" className="notice">{sourceError} {error}</p>}
+    {!error && connectionStatus !== 'loading' && <p role="status" className="notice">{connectionStatus === 'starting' ? ENGINE_STARTING_MESSAGE : 'Connecting to the research engine…'}</p>}
     <h2>Historical city and regional forecasts</h2>
     <label>Scope <select value={area} onChange={e => setArea(e.target.value)}><option value="QUEZON_CITY">Quezon City</option><option value="NCR">NCR</option></select></label>{' '}
     <label>Observed-through origin <select value={id} onChange={e => setId(e.target.value)}><option value="">Choose a source block</option>{runs.map(r => <option key={r.id} value={r.id}>{r.issueBlock.YR} / WN {r.issueBlock.WN}</option>)}</select></label>
