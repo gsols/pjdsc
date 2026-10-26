@@ -6,6 +6,7 @@ data/processed/upri_noah/** -text
 apps/web/public/data/qc-annual-burden.json -text
 apps/web/public/data/qc-barangays.geojson -text
 apps/web/public/data/philippines-context.geojson -text
+apps/web/public/data/qc-philhealth-hospitals.json -text
 
 # Training code is also pinned by byte hash in the seasonal manifest.
 scripts/train_qc_seasonal.py text eol=lf

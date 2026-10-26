@@ -1,7 +1,46 @@
 # Simulation session handoff
 
-Updated 2026-10-26 15:39:47 +08:00 (Asia/Manila). Read root/scoped AGENTS.md first.
+Updated 2026-10-27 06:57 +08:00 (Asia/Manila). Read root/scoped AGENTS.md first.
 Preserve existing working-tree edits; do not restart the application or replace data.
+
+## Current continuation — wake the engine from the landing dashboard
+
+User reports the separately deployed `https://surgewise.onrender.com` engine still
+does not wake when opening the frontend, despite `ENGINE_BASE_URL`. Verified `/`
+redirects to `/dashboard`, which reads static files and never called the existing
+wake helper. Added a client `EngineStartup` in the shared root layout: mount calls
+the existing bounded health polling, shows connection/startup status, hides on
+success, offers retry on failure and aborts on unmount. Research/simulation gates
+remain intact and still check liveness before their requests.
+
+Only `.env.example` exists in this checkout; the current shell has no
+`ENGINE_BASE_URL`. This does not establish the state of the deployed frontend.
+Requested its URL asynchronously; none was supplied during this work. Direct
+outbound Python HTTP requests fail with Windows socket permission errors, and
+the web tool could not retrieve engine `/health` or `/readiness`. No live Render
+health, deployment settings, logs or cold-start success has been verified.
+
+Both required trained `.joblib` models are Git-ignored and absent locally.
+Documented engine build-time training of seasonal and barangay artifacts, plus
+environment placement and endpoint diagnosis in `docs/render-deployment.md`.
+Dependency installation alone cannot supply those models on a fresh checkout.
+
+Tests also found a pre-existing Windows checkout newline conversion in the
+canonical hospital JSON: working SHA-256 `23bd4ba1...` differed from approved
+`929cbeb9...`. Confirmed the committed Git blob equals the approved hash and
+the working bytes differ only by CRLF. Restored the exact committed bytes and
+added a `.gitattributes -text` rule for this file. No hospital records, hashes,
+scientific validation or raw/reference inputs were changed.
+
+Verification: offline `npm.cmd ci --offline --no-audit --no-fund` succeeded;
+32 frontend tests, lint, standalone TypeScript and production build passed.
+Six Python facility/API tests and compileall passed. A temporary production Next
+server against a constructed local upstream verified startup markup, runtime
+`ENGINE_BASE_URL` forwarding to `/health`, HTML startup/503 recovery, sanitized
+uncached health success and preserved model-error responses. Both temporary
+servers were stopped. This is not deployed Render or browser interaction QA.
+Restored `next-env.d.ts` to its original `.next-dev` type reference after build.
+No model training, external deployment or commit was performed.
 
 ## Current continuation — Render engine startup
 

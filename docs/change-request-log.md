@@ -1,5 +1,18 @@
 # User-requested extensions
 
+## 2026-10-27 06:50 +08:00 — verify engine activation when the frontend opens
+
+User reports the Render engine at `surgewise.onrender.com` still fails to start
+despite configured `ENGINE_BASE_URL`. Traced `/` to `/dashboard`: it only reads
+static inventory/validation and never runs the existing simulation/research wake
+checks. Add a shared-layout mount check with connection status, retry and unmount
+cancellation. Document frontend environment placement and the separate deployment
+requirement to generate both ignored `.joblib` models with matching manifests.
+See [Render deployment](render-deployment.md). Live hosting state remains unverified.
+Tests also exposed Windows CRLF conversion in the hash-pinned hospital JSON;
+restored exact approved Git bytes and protected the file with `.gitattributes`.
+No hospital records or expected checksums were changed.
+
 ## 2026-10-26 15:27:18 +08:00 — automatically connect to a sleeping Render engine
 
 User reports that `ENGINE_BASE_URL` is configured but simulations fetch data only
