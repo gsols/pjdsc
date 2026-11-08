@@ -37,6 +37,9 @@ export default function OutbreakMap({ context, snapshot, selected, selectedHospi
     const resizeObserver = new ResizeObserver(() => instance.resize());
     resizeObserver.observe(root.current);
     instance.addControl(new maplibregl.NavigationControl(), 'top-right');
+    // Full screen covers the page's marked container (e.g. timeline + map) when present, so playback stays usable.
+    const fullscreenTarget = root.current.closest<HTMLElement>('[data-map-fullscreen]') ?? undefined;
+    instance.addControl(new maplibregl.FullscreenControl({ container: fullscreenTarget }), 'top-right');
     const controller = new AbortController();
     instance.on('load', async () => {
       try {
@@ -225,7 +228,7 @@ export default function OutbreakMap({ context, snapshot, selected, selectedHospi
       const layout = layoutMapMarkers(visibleEntries.map(entry => {
         const point = instance.project(entry.coordinates);
         return { id: entry.id, x: point.x, y: point.y, size: entry.size };
-      }), width, height, [{ left: width - 52, top: 0, width: 52, height: 116 }, { left: 0, top: height - 26, width, height: 26 }]);
+      }), width, height, [{ left: width - 52, top: 0, width: 52, height: 156 }, { left: 0, top: 0, width: 60, height: 60 }, { left: 0, top: height - 26, width, height: 26 }]);
       const stems: FeatureCollection<LineString> = { type: 'FeatureCollection', features: [] };
       layout.forEach((point, index) => {
         const entry = visibleEntries[index];
