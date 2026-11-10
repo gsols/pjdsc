@@ -16,6 +16,14 @@ type Props = { context: MovieContext | null; snapshot: MovieDay | null; maximum:
   caseColorMaximum?: number; animationDurationMs?: number;
   view?: 'qc' | 'philippines' };
 const empty = (): FeatureCollection => ({ type: 'FeatureCollection', features: [] });
+// Floating page panels drawn over the map (marked data-map-overlay) are kept free of map icons.
+const overlayElements = (mapRoot: HTMLElement | null) => [...(mapRoot?.parentElement?.querySelectorAll<HTMLElement>('[data-map-overlay]') ?? [])];
+const overlayRects = (mapRoot: HTMLElement | null) => {
+  const origin = mapRoot?.getBoundingClientRect();
+  if (!origin) return [];
+  return overlayElements(mapRoot).map(element => element.getBoundingClientRect()).filter(rect => rect.width && rect.height)
+    .map(rect => ({ left: rect.left - origin.left - 4, top: rect.top - origin.top - 4, width: rect.width + 8, height: rect.height + 8 }));
+};
 
 export default function OutbreakMap({ context, snapshot, selected, selectedHospital = '', hotspotIds, rankedHotspotIds, hospitalHotspot, onSelect, onHospital, reducedMotion, showLinks, view = 'qc', caseMetric = 'cumulative', caseColorMaximum = 50, animationDurationMs = 500 }: Props) {
   const root = useRef<HTMLDivElement>(null);
@@ -228,7 +236,7 @@ export default function OutbreakMap({ context, snapshot, selected, selectedHospi
       const layout = layoutMapMarkers(visibleEntries.map(entry => {
         const point = instance.project(entry.coordinates);
         return { id: entry.id, x: point.x, y: point.y, size: entry.size };
-      }), width, height, [{ left: width - 52, top: 0, width: 52, height: 156 }, { left: 0, top: 0, width: 60, height: 60 }, { left: 0, top: height - 26, width, height: 26 }]);
+      }), width, height, [{ left: width - 52, top: 0, width: 52, height: 156 }, ...overlayRects(root.current), { left: 0, top: height - 26, width, height: 26 }]);
       const stems: FeatureCollection<LineString> = { type: 'FeatureCollection', features: [] };
       layout.forEach((point, index) => {
         const entry = visibleEntries[index];
@@ -243,7 +251,11 @@ export default function OutbreakMap({ context, snapshot, selected, selectedHospi
     };
     position();
     instance.on('moveend', position); instance.on('resize', position);
+    // Re-run the layout when a floating panel is minimized or expanded.
+    const overlayObserver = new ResizeObserver(() => position());
+    overlayElements(root.current).forEach(element => overlayObserver.observe(element));
     return () => {
+      overlayObserver.disconnect();
       instance.off('moveend', position); instance.off('resize', position);
       entries.forEach(entry => entry.marker.remove());
       labels.current = [];
@@ -256,8 +268,10 @@ export default function OutbreakMap({ context, snapshot, selected, selectedHospi
       [Math.min(...points.map(p => p[0])), Math.min(...points.map(p => p[1]))],
       [Math.max(...points.map(p => p[0])), Math.max(...points.map(p => p[1]))],
     ] : [[121.0, 14.585], [121.153, 14.782]];
+    // Fit QC to the area right of the floating playback panel so it is not hidden underneath.
+    const leftPanel = Math.max(0, ...overlayRects(root.current).map(rect => rect.left + rect.width));
     map.current.fitBounds(view === 'philippines' ? [[116.8, 4.3], [126.8, 21.2]] : bounds,
-      { padding: view === 'philippines' ? 30 : 50, pitch: view === 'philippines' ? 0 : 30, duration: reducedMotion ? 0 : 650 });
+      { padding: view === 'philippines' ? 30 : { top: 50, bottom: 50, right: 70, left: Math.max(50, leftPanel + 20) }, pitch: view === 'philippines' ? 0 : 30, duration: reducedMotion ? 0 : 650 });
   }, [view, ready, reducedMotion, context]);
   return <div className="outbreak-map" ref={root} aria-label="QC dated place-forecast allocations and hospital demand map">
     {error && <div className="movie-map-error" role="status">{error}</div>}

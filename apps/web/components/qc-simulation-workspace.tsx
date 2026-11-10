@@ -2,7 +2,7 @@
 import dynamic from 'next/dynamic';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import type { KeyboardEvent, ReactNode } from 'react';
-import { Activity, ArrowLeft, BedDouble, CalendarDays, ChevronLeft, ChevronRight, CircleHelp, Download, History, Hourglass, Info, MapPin, Pause, Play, RotateCcw, SkipForward, SlidersHorizontal, TrendingUp, TriangleAlert, X } from 'lucide-react';
+import { Activity, ArrowLeft, BedDouble, CalendarDays, ChevronLeft, ChevronRight, ChevronsDown, CircleHelp, Download, History, Hourglass, Info, MapPin, Maximize2, Minimize2, Pause, Play, RotateCcw, SkipForward, SlidersHorizontal, TrendingUp, TriangleAlert, X } from 'lucide-react';
 import type { BedForecast, MovieContext, QCControls, QCWorkspaceResult } from '@/lib/outbreak-types';
 import { formatScenarioDate, nextPlaybackDay, validateDateWindow } from '@/lib/playback';
 import { addDateDays, CASE_BANDS } from '@/lib/case-bands';
@@ -78,6 +78,9 @@ export default function QCSimulationWorkspace() {
   const [panelView, setPanelView] = useState<PanelView>('overview');
   const [openInfo, setOpenInfo] = useState('');
   const [introToast, setIntroToast] = useState(true);
+  const [playbackCollapsed, setPlaybackCollapsed] = useState(false);
+  const [belowVisible, setBelowVisible] = useState(false);
+  const belowMap = useRef<HTMLDivElement>(null);
   const guideClose = useRef<HTMLButtonElement>(null);
   const activeRequest = useRef<AbortController | null>(null);
   const generation = useRef(0);
@@ -131,6 +134,14 @@ export default function QCSimulationWorkspace() {
   }, []);
   useEffect(() => { if (showGuide) guideClose.current?.focus(); }, [showGuide]);
   useEffect(() => { hospitalPanel.current?.scrollTo({ top: 0 }); }, [panelView]);
+  // Hide the "More details below" hint once the content under the map is on screen.
+  useEffect(() => {
+    const target = belowMap.current;
+    if (!target || typeof IntersectionObserver === 'undefined') return;
+    const observer = new IntersectionObserver(([entry]) => setBelowVisible(entry.isIntersecting), { threshold: 0.05 });
+    observer.observe(target);
+    return () => observer.disconnect();
+  }, []);
   // The arrival message is shown once: it hides after a few seconds, or as soon as the timeline moves.
   useEffect(() => { if (day > 0) setIntroToast(false); }, [day]);
   useEffect(() => {
@@ -282,17 +293,17 @@ export default function QCSimulationWorkspace() {
     <h2>{title}</h2></div>;
   return <main className="qc-workspace">
     <header className="qc-header">
-      <div className="qc-title"><a href="/dashboard"><ArrowLeft size={13} /> SurgeWise</a><h1>Quezon City forecast & hospital simulation</h1>
-        <p>Historical cases + environmental factors → barangay allocation → hospital strain</p></div>
+      <div className="qc-title"><a href="/dashboard"><ArrowLeft size={13} /> SurgeWise</a><h1>Quezon City forecast & hospital simulation</h1></div>
       <nav><span className="qc-header-links"><a href="/research">Forecast validation & sources</a><span>QC ONLY · 142 barangays · 46 hospital records</span></span></nav>
     </header>
     {showGuide && <div className="qc-guide-backdrop" onClick={event => { if (event.target === event.currentTarget) closeGuide(); }} onKeyDown={event => { if (event.key === 'Escape') closeGuide(); }}>
       <section id="qc-guide" className="qc-guide" role="dialog" aria-modal="true" aria-labelledby="qc-guide-title">
         <button ref={guideClose} className="qc-guide-close" aria-label="Close guide" onClick={closeGuide}><X size={16} /></button>
         <h2 id="qc-guide-title">How to use this page</h2>
+        <p className="qc-guide-intro">How the simulation works: historical cases + environmental factors → barangay allocation → hospital strain.</p>
         <div className="qc-guide-grid">
           <ol>
-            <li><strong>A default simulation loads automatically.</strong> Press <b>Play</b> in the timeline bar above the map, or drag the day slider to any day.</li>
+            <li><strong>A default simulation loads automatically.</strong> Press <b>Play</b> in the playback panel on the left of the map, or drag its day slider to any day. Use the minimize button to shrink the panel.</li>
             <li><strong>The panel on the right is your guide.</strong> Its overview shows the current scenario and the totals for the selected day. Tap <b>ⓘ</b> on any card for a plain explanation.</li>
             <li><strong>Try your own scenario.</strong> Click <b>Change settings</b>, adjust the mode, dates, surge or hospital assumptions, then click <b>Run simulation</b>. Results are cleared after any change, so old numbers are never mixed with new settings.</li>
             <li><strong>Click the map.</strong> Orange numbered circles are the ten high-burden candidate barangays; ✚ marks hospitals. The right panel then shows nearby hospital capacity. Use <b>←</b> to return to the overview.</li>
@@ -308,39 +319,55 @@ export default function QCSimulationWorkspace() {
     {error && <div className="qc-error" role="alert">{error}<button disabled={loading} onClick={() => calculate(controls ?? undefined)}>Reload data-based forecast</button></div>}
     <div className="qc-layout">
       <section className="qc-main" data-map-fullscreen>
-        <div className="qc-timeline" role="group" aria-label="Simulation timeline and playback">
-          <div className="qc-timeline-buttons">
-            <button className="qc-play-main" aria-label={playing ? 'Pause simulation' : 'Play simulation'} disabled={!data} onClick={() => { if (data && day === data.durationDays) setDay(0); setPlaying(p => !p); }}>{playing ? <Pause size={18} /> : <Play size={18} />}<span aria-hidden="true">{playing ? 'Pause' : 'Play'}</span></button>
-            <button className="qc-final-day" aria-label="Jump to final day" title="Jump to the final day" disabled={!data || day >= (data?.durationDays ?? 0)} onClick={() => { setPlaying(false); if (data) setDay(data.durationDays); }}><SkipForward size={16} /><span aria-hidden="true">Final day</span></button>
-            <button aria-label="Previous day" title="Previous day" disabled={!data || day === 0} onClick={() => { setPlaying(false); setDay(d => Math.max(0, d - 1)); }}><ChevronLeft size={16} /></button>
-            <button aria-label="Next day" title="Next day" disabled={!data || day >= (data?.durationDays ?? 0)} onClick={() => { setPlaying(false); setDay(d => data ? Math.min(data.durationDays, d + 1) : d); }}><ChevronRight size={16} /></button>
-            <button aria-label="Restart simulation" title="Back to day 0" disabled={!data} onClick={() => { setDay(0); setPlaying(false); }}><RotateCcw size={16} /></button>
-          </div>
-          <div className="qc-timeline-track">
-            <input aria-label="Simulation day" type="range" min={0} max={data?.durationDays ?? 28} step={1} value={day} disabled={!data} onChange={e => { setDay(Number(e.target.value)); setPlaying(false); }} />          </div>
-          <div className="qc-map-date"><span>{playing ? '● Playing' : scenario ? 'Paused' : data ? 'Ready · not started' : 'Awaiting update'}</span><strong>{snapshot ? formatScenarioDate(snapshot.date) : controls?.startDate ? formatScenarioDate(controls.startDate) : 'Quezon City'}</strong><small>Day {day} / {data?.durationDays ?? '—'} · {scenario ? 'modeled cumulative cases' : 'no modeled values yet'}</small></div>
-          <label className="qc-speed">Speed<select aria-label="Playback speed" value={speed} onChange={e => setSpeed(Number(e.target.value))}>{[.5, 1, 2, 4].map(s => <option key={s} value={s}>{s} days/s</option>)}</select></label>
-          <button className="qc-export" disabled={!scenario} onClick={download} title="Export cases, ranges & simulation (JSON)"><Download size={14} /> Export</button>
-        </div>
-        <div className="qc-map-shell"><div className="qc-map-toolbar">
-          <div className="qc-toolbar-group"><span className="qc-toolbar-label">Map area</span>
-            <div className="qc-map-switch" role="group" aria-label="Map extent"><button aria-pressed={view === 'qc'} onClick={() => setView('qc')}>QC detail</button><button aria-pressed={view === 'philippines'} onClick={() => setView('philippines')}>Philippines</button></div></div>
-          <div className="qc-toolbar-group"><span className="qc-toolbar-label">Color places by</span>
-            <div className="qc-map-switch" role="group" aria-label="Map case measure"><button aria-pressed={caseMetric === 'daily'} onClick={() => setCaseMetric('daily')}>Daily forecast</button><button aria-pressed={caseMetric === 'cumulative'} onClick={() => setCaseMetric('cumulative')}>Accumulated cases</button></div></div>
-          <div className="qc-toolbar-group qc-map-options"><span className="qc-toolbar-label">Show</span>
-            <label><input type="checkbox" checked={links} onChange={e => setLinks(e.target.checked)} /> Hospital connections</label><label><input type="checkbox" checked={reduced} onChange={e => { setReduced(e.target.checked); if (e.target.checked) setPlaying(false); }} /> Reduced motion</label></div>
-          </div>
+        {/* Map "hero": the map fills the visible height; chart, legend and tabs follow below the fold. */}
+        <div className="qc-map-hero">
           <div className="qc-map-stage"><OutbreakMap context={context} snapshot={snapshot ?? null} maximum={data?.mapScaleMaxDailyCases ?? 1} selected={selected}
             selectedHospital={hospital} hotspotIds={markerHotspotIds} rankedHotspotIds={rankedHotspotIds} hospitalHotspot={hospitalHotspot} caseMetric={caseMetric} caseColorMaximum={caseColorMaximum} animationDurationMs={Math.min(650, 800 / speed)}
             onSelect={inspectHotspot} onHospital={inspectHospital} playing={playing} reducedMotion={reduced} showLinks={links} view={view} />
             {stale ? <div className="qc-map-toast stale" role="status"><span>Settings changed. Run the simulation to see results for the new settings.</span>
                 <button className="qc-toast-action" onClick={runSimulation}>Run simulation</button></div>
-              : introToast && data && !scenario && <div className="qc-map-toast" role="status"><span>Ready. Press <b>Play</b> or <b>Final day</b> in the timeline bar to show modeled values.</span>
+              : introToast && data && !scenario && <div className="qc-map-toast" role="status"><span>Ready. Press <b>Play</b> or <b>Final day</b> in the playback panel on the left to show modeled values.</span>
                 <button className="qc-toast-close" aria-label="Dismiss message" onClick={() => setIntroToast(false)}><X size={14} /></button></div>}
+            {/* Left stack over the map: playback panel on top, help button below it. Map icons avoid both (data-map-overlay). */}
+            <div className="qc-map-left-stack">
+            <section className={`qc-playback-card${playbackCollapsed ? ' collapsed' : ''}`} data-map-overlay role="group" aria-label="Simulation timeline and playback">
+              <div className="qc-playback-head">
+                <div className="qc-map-date"><span>{playing ? '● Playing' : scenario ? 'Paused' : data ? 'Ready · not started' : 'Awaiting update'}</span><strong>{snapshot ? formatScenarioDate(snapshot.date) : controls?.startDate ? formatScenarioDate(controls.startDate) : 'Quezon City'}</strong><small>Day {day} / {data?.durationDays ?? '—'}{playbackCollapsed ? '' : ` · ${scenario ? 'modeled cumulative cases' : 'no modeled values yet'}`}</small></div>
+                <button className="qc-playback-toggle" aria-label={playbackCollapsed ? 'Expand playback panel' : 'Minimize playback panel'} title={playbackCollapsed ? 'Expand' : 'Minimize'}
+                  aria-expanded={!playbackCollapsed} onClick={() => setPlaybackCollapsed(value => !value)}>{playbackCollapsed ? <Maximize2 size={14} /> : <Minimize2 size={14} />}</button>
+              </div>
+              <input aria-label="Simulation day" type="range" min={0} max={data?.durationDays ?? 28} step={1} value={day} disabled={!data} onChange={e => { setDay(Number(e.target.value)); setPlaying(false); }} />
+              <div className="qc-playback-buttons">
+                <button className="qc-play-main" aria-label={playing ? 'Pause simulation' : 'Play simulation'} disabled={!data} onClick={() => { if (data && day === data.durationDays) setDay(0); setPlaying(p => !p); }}>{playing ? <Pause size={18} /> : <Play size={18} />}<span aria-hidden="true">{playing ? 'Pause' : 'Play'}</span></button>
+                <button className="qc-final-day" aria-label="Jump to final day" title="Jump to the final day" disabled={!data || day >= (data?.durationDays ?? 0)} onClick={() => { setPlaying(false); if (data) setDay(data.durationDays); }}><SkipForward size={16} /><span aria-hidden="true">Final day</span></button>
+              </div>
+              <div className="qc-playback-buttons qc-playback-secondary">
+                <button aria-label="Previous day" title="Previous day" disabled={!data || day === 0} onClick={() => { setPlaying(false); setDay(d => Math.max(0, d - 1)); }}><ChevronLeft size={16} /></button>
+                <button aria-label="Next day" title="Next day" disabled={!data || day >= (data?.durationDays ?? 0)} onClick={() => { setPlaying(false); setDay(d => data ? Math.min(data.durationDays, d + 1) : d); }}><ChevronRight size={16} /></button>
+                <button aria-label="Restart simulation" title="Back to day 0" disabled={!data} onClick={() => { setDay(0); setPlaying(false); }}><RotateCcw size={16} /></button>
+                <label className="qc-speed">Speed<select aria-label="Playback speed" value={speed} onChange={e => setSpeed(Number(e.target.value))}>{[.5, 1, 2, 4].map(s => <option key={s} value={s}>{s} days/s</option>)}</select></label>
+              </div>
+              <button className="qc-export" disabled={!scenario} onClick={download} title="Export cases, ranges & simulation (JSON)"><Download size={14} /> Export results</button>
+              <details className="qc-card-map-options" open><summary>Map options</summary>
+                <div className="qc-toolbar-group"><span className="qc-toolbar-label">Map area</span>
+                  <div className="qc-map-switch" role="group" aria-label="Map extent"><button aria-pressed={view === 'qc'} onClick={() => setView('qc')}>QC detail</button><button aria-pressed={view === 'philippines'} onClick={() => setView('philippines')}>Philippines</button></div></div>
+                <div className="qc-toolbar-group"><span className="qc-toolbar-label">Color places by</span>
+                  <div className="qc-map-switch" role="group" aria-label="Map case measure"><button aria-pressed={caseMetric === 'daily'} onClick={() => setCaseMetric('daily')}>Daily forecast</button><button aria-pressed={caseMetric === 'cumulative'} onClick={() => setCaseMetric('cumulative')}>Accumulated cases</button></div></div>
+                <div className="qc-toolbar-group qc-map-options"><span className="qc-toolbar-label">Show</span>
+                  <label><input type="checkbox" checked={links} onChange={e => setLinks(e.target.checked)} /> Hospital connections</label><label><input type="checkbox" checked={reduced} onChange={e => { setReduced(e.target.checked); if (e.target.checked) setPlaying(false); }} /> Reduced motion</label></div>
+              </details>
+            </section>
             {/* Floating help: hidden while the timeline plays, back when it pauses or ends. */}
-            <button className={`qc-map-help${playing ? ' is-hidden' : ''}`} aria-label="How to use this page" title="How to use this page"
+            <button className={`qc-map-help${playing ? ' is-hidden' : ''}`} data-map-overlay aria-label="How to use this page" title="How to use this page"
               aria-expanded={showGuide} aria-controls="qc-guide" tabIndex={playing ? -1 : 0} onClick={openGuide}><CircleHelp size={22} /></button>
+            </div>
+            {/* Scroll hint: shown while the content below the map is out of view. */}
+            <button className={`qc-scroll-hint${belowVisible ? ' is-hidden' : ''}`} data-map-overlay tabIndex={belowVisible ? -1 : 0}
+              onClick={() => belowMap.current?.scrollIntoView({ behavior: reduced ? 'auto' : 'smooth', block: 'start' })}>
+              More details below <ChevronsDown size={16} aria-hidden="true" /></button>
           </div>
+        </div>
+        <div className="qc-map-shell" ref={belowMap}>
           <div className="qc-playback-panel"><div className="qc-chart-heading"><strong>Daily expected cases{scenario ? ' · click a bar to jump to that day' : ''}</strong><span><i className="qc-swatch-baseline" aria-hidden="true" />Reference forecast <i className="qc-swatch-shock" aria-hidden="true" />Separately assumed shock</span></div>
             <svg viewBox="0 0 900 80" role="img" aria-label="QC daily case forecast trajectory, including a separately colored hypothetical shock">
               {scenario?.days.slice(1).map((d, i) => { const x = 10 + i * 880 / scenario.durationDays, width = 880 / scenario.durationDays - 4;
@@ -512,7 +539,7 @@ export default function QCSimulationWorkspace() {
           </div>
         </section>
       </section>
-      <QCWorkspaceSidebar side="right" label="Simulation panel" revealKey={hospitalInspection}>
+      <QCWorkspaceSidebar side="right" label="Simulation panel" revealKey={hospitalInspection} defaultCollapsed>
       <aside ref={hospitalPanel} className="qc-side-panel" aria-label="Simulation panel">
         {/* Overview: scenario summary, day totals, window totals, selection and notes. */}
         <div className="qc-panel-view qc-overview" hidden={panelView !== 'overview'}>
