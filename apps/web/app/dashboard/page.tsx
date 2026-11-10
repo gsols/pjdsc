@@ -5,6 +5,7 @@ import type { Facility, ScenarioResult } from '@/lib/types';
 import { loadFacilities, FACILITY_DATASET_ID } from '@/lib/facilities';
 import { ArrowUpRight, Play } from 'lucide-react';
 import FloatingMapPanel from '@/components/floating-map-panel';
+import SurgeWiseMark from '@/components/surgewise-mark';
 import './dashboard.css';
 const NCRMap = dynamic(() => import('@/components/ncr-map'), {
   ssr: false,
@@ -93,6 +94,7 @@ export default function Dashboard() {
       <header className="header dashboard-header">
         <div>
           <div className="brand">
+            <SurgeWiseMark size={38} />
             SurgeWise
           </div>
           <div className="subtle">NCR Preparedness Research Prototype</div>
@@ -116,15 +118,15 @@ export default function Dashboard() {
             </div>
             <div className="legend">
               <span>
-                <i className="dot" style={{ background: '#51d0bb' }} />
+                <i className="dot" style={{ background: '#457b9d' }} />
                 QC city boundary
               </span>
               <span>
-                <i className="dot" style={{ background: '#8ea4b3' }} />
+                <i className="dot" style={{ background: '#8fa9b6' }} />
                 Other NCR cities
               </span>
               <span>
-                <i className="dot" style={{ background: '#ffb45d' }} />
+                <i className="dot" style={{ background: '#457b9d', outline: '1.5px dashed #1d3557', outlineOffset: '-1.5px' }} />
                 Provisional QC hospital point
               </span>
             </div>

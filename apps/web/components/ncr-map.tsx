@@ -51,7 +51,7 @@ export default function NCRMap({
     if (!root.current || mapRef.current) return;
     const map = new maplibregl.Map({
       container: root.current,
-      style: 'https://basemaps.cartocdn.com/gl/dark-matter-gl-style/style.json',
+      style: 'https://basemaps.cartocdn.com/gl/positron-gl-style/style.json',
       center: [121.03, 14.64],
       zoom: 10.1,
     });
@@ -74,8 +74,8 @@ export default function NCRMap({
             'fill-color': [
               'case',
               ['==', ['get', 'area_id'], 'QUEZON_CITY'],
-              '#2c9e91',
-              '#566a7a',
+              '#457b9d',
+              '#8fa9b6',
             ],
             'fill-opacity': 0.24,
           },
@@ -84,7 +84,7 @@ export default function NCRMap({
           id: 'ncr-border',
           type: 'line',
           source: 'ncr-boundaries',
-          paint: { 'line-color': '#b8dfe3', 'line-width': 1.25 },
+          paint: { 'line-color': '#457b9d', 'line-width': 1.25 },
         });
         map.on('click', 'ncr-fill', (e) => {
           const p = e.features?.[0]?.properties;
@@ -120,10 +120,10 @@ export default function NCRMap({
         map.setPaintProperty('ncr-fill', 'fill-color', [
           'case',
           ['==', ['get', 'area_id'], selectedArea],
-          '#2ac8b0',
+          '#1d3557',
           ['==', ['get', 'area_id'], 'QUEZON_CITY'],
-          '#2c9e91',
-          '#566a7a',
+          '#457b9d',
+          '#8fa9b6',
         ]);
     };
     if (map.isStyleLoaded()) update();
@@ -147,16 +147,17 @@ export default function NCRMap({
       );
       const color =
         f.coordinateStatus === 'PROVISIONAL_HISTORICAL_MATCH'
-          ? '#ffb45d'
+          ? '#457b9d'
           : res?.capacityGap && res.capacityGap > 0
-            ? '#ef6666'
+            ? '#e63946'
             : res?.availablePct !== null &&
                 res?.availablePct !== undefined &&
                 res.availablePct <= 20
-              ? '#f6ad55'
-              : '#51d0bb';
+              ? '#f4a6ac'
+              : '#457b9d';
       const el = document.createElement('button');
       el.type = 'button';
+      el.className = 'map-marker';
       el.title = `${f.name} - provisional point, unverified entrance`;
       el.setAttribute('aria-label', `${f.name}, provisional point, unverified entrance`);
       Object.assign(el.style, {
@@ -164,8 +165,8 @@ export default function NCRMap({
         height: '15px',
         borderRadius: '50%',
         background: color,
-        border: '2px dashed #ffffff',
-        boxShadow: '0 2px 10px #111b29',
+        border: '2px dashed #f1faee',
+        boxShadow: '0 2px 8px rgb(29 53 87 / 0.3)',
       });
       el.addEventListener('click', (e) => {
         e.stopPropagation();

@@ -18,8 +18,8 @@ test('7/14/28 day windows preserve local display dates across month/year and lea
 test('forecast colors change smoothly inside a display band and across the full window scale', () => {
   assert.notEqual(caseColor(2, 50), caseColor(4, 50));
   assert.notEqual(caseColor(100, 1000), caseColor(500, 1000));
-  assert.equal(caseColor(1000, 1000), '#ed645b');
-  assert.equal(caseColor(5000, 1000), '#ed645b');
+  assert.equal(caseColor(1000, 1000), '#96374d');
+  assert.equal(caseColor(5000, 1000), '#96374d');
   for (const args of [[NaN, 1], [-1, 50], [1, 0], [1, Infinity]]) assert.throws(() => caseColor(...args));
   const start = new Map([['A', 0], ['B', 10]]), target = new Map([['A', 10], ['B', 2]]);
   assert.deepEqual([...interpolateCaseValues(start, target, .5)], [['A', 5], ['B', 6]]);

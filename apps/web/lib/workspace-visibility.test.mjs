@@ -49,6 +49,7 @@ function renderDay(day, stateOverrides = {}) {
     };
     if (name === 'next/dynamic') return { default: () => props => React.createElement('output', { 'data-hotspot-markers': props.hotspotIds?.join(',') ?? '' }) };
     if (name === '@/components/qc-workspace-sidebar') return { default: ({ children }) => children };
+    if (name === '@/components/surgewise-mark') return { default: () => null };
     if (name.startsWith('@/lib/')) return require(`./${name.slice('@/lib/'.length)}.ts`);
     return nativeRequire(name);
   };
@@ -103,6 +104,7 @@ test('switching tabs and leaving the workspace cancel requests; late old results
     };
     if (name === 'next/dynamic') return { default: () => () => null };
     if (name === '@/components/qc-workspace-sidebar') return { default: ({ children }) => children };
+    if (name === '@/components/surgewise-mark') return { default: () => null };
     if (name === '@/lib/engine-connection') return {
       ENGINE_STARTING_MESSAGE: 'Test startup status',
       // Deliberately permit late responses after abort to exercise the UI guard.

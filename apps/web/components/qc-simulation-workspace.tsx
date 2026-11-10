@@ -8,6 +8,7 @@ import { formatScenarioDate, nextPlaybackDay, validateDateWindow } from '@/lib/p
 import { addDateDays, CASE_BANDS } from '@/lib/case-bands';
 import { ENGINE_STARTING_MESSAGE, fetchResearch, type EngineConnectionStatus } from '@/lib/engine-connection';
 import QCWorkspaceSidebar from '@/components/qc-workspace-sidebar';
+import SurgeWiseMark from '@/components/surgewise-mark';
 
 const OutbreakMap = dynamic(() => import('@/components/outbreak-map'), { ssr: false });
 const PhilippinesOverview = dynamic(() => import('@/components/philippines-overview'), { ssr: false });
@@ -293,8 +294,8 @@ export default function QCSimulationWorkspace() {
     <h2>{title}</h2></div>;
   return <main className="qc-workspace">
     <header className="qc-header">
-      <div className="qc-title"><a href="/dashboard"><ArrowLeft size={13} /> SurgeWise</a><h1>Quezon City forecast & hospital simulation</h1></div>
-      <nav><span className="qc-header-links"><a href="/research">Forecast validation & sources</a><span>QC ONLY · 142 barangays · 46 hospital records</span></span></nav>
+      <div className="qc-title"><a href="/dashboard"><ArrowLeft size={13} /><SurgeWiseMark size={34} /> SurgeWise</a></div>
+      <nav><span className="qc-header-links"><a className="pill" href="/research">Forecast validation & sources</a></span></nav>
     </header>
     {showGuide && <div className="qc-guide-backdrop" onClick={event => { if (event.target === event.currentTarget) closeGuide(); }} onKeyDown={event => { if (event.key === 'Escape') closeGuide(); }}>
       <section id="qc-guide" className="qc-guide" role="dialog" aria-modal="true" aria-labelledby="qc-guide-title">
@@ -306,7 +307,7 @@ export default function QCSimulationWorkspace() {
             <li><strong>A default simulation loads automatically.</strong> Press <b>Play</b> in the playback panel on the left of the map, or drag its day slider to any day. Use the minimize button to shrink the panel.</li>
             <li><strong>The panel on the right is your guide.</strong> Its overview shows the current scenario and the totals for the selected day. Tap <b>ⓘ</b> on any card for a plain explanation.</li>
             <li><strong>Try your own scenario.</strong> Click <b>Change settings</b>, adjust the mode, dates, surge or hospital assumptions, then click <b>Run simulation</b>. Results are cleared after any change, so old numbers are never mixed with new settings.</li>
-            <li><strong>Click the map.</strong> Orange numbered circles are the ten high-burden candidate barangays; ✚ marks hospitals. The right panel then shows nearby hospital capacity. Use <b>←</b> to return to the overview.</li>
+            <li><strong>Click the map.</strong> Red numbered circles are the ten high-burden candidate barangays; ✚ marks hospitals. The right panel then shows nearby hospital capacity. Use <b>←</b> to return to the overview.</li>
             <li><strong>Read more below the map.</strong> Tabs there show hotspots, bed demand, all barangays, policy comparison and methods.</li>
           </ol>
           <div><h3>Key terms</h3><dl>{Object.values(GLOSSARY).map(([term, meaning]) => <div key={term}><dt>{term}</dt><dd>{meaning}</dd></div>)}</dl></div>
@@ -331,6 +332,8 @@ export default function QCSimulationWorkspace() {
             {/* Left stack over the map: playback panel on top, help button below it. Map icons avoid both (data-map-overlay). */}
             <div className="qc-map-left-stack">
             <section className={`qc-playback-card${playbackCollapsed ? ' collapsed' : ''}`} data-map-overlay role="group" aria-label="Simulation timeline and playback">
+              <h1 className="qc-card-title">Quezon City forecast & hospital simulation</h1>
+              <span className="qc-card-scope">QC ONLY · 142 barangays · 46 hospital records</span>
               <div className="qc-playback-head">
                 <div className="qc-map-date"><span>{playing ? '● Playing' : scenario ? 'Paused' : data ? 'Ready · not started' : 'Awaiting update'}</span><strong>{snapshot ? formatScenarioDate(snapshot.date) : controls?.startDate ? formatScenarioDate(controls.startDate) : 'Quezon City'}</strong><small>Day {day} / {data?.durationDays ?? '—'}{playbackCollapsed ? '' : ` · ${scenario ? 'modeled cumulative cases' : 'no modeled values yet'}`}</small></div>
                 <button className="qc-playback-toggle" aria-label={playbackCollapsed ? 'Expand playback panel' : 'Minimize playback panel'} title={playbackCollapsed ? 'Expand' : 'Minimize'}
@@ -372,9 +375,9 @@ export default function QCSimulationWorkspace() {
             <svg viewBox="0 0 900 80" role="img" aria-label="QC daily case forecast trajectory, including a separately colored hypothetical shock">
               {scenario?.days.slice(1).map((d, i) => { const x = 10 + i * 880 / scenario.durationDays, width = 880 / scenario.durationDays - 4;
                 return <g key={d.dayIndex} className="qc-chart-day" onClick={() => { setPlaying(false); setDay(d.dayIndex); }}><title>{`Day ${d.dayIndex} · ${d.date}: ${format(d.expectedCases)} expected cases`}</title>
-                  <rect x={x - 2} y={0} width={width + 4} height={80} fill={d.dayIndex === day ? '#ffffff15' : 'transparent'} />
-                  <rect x={x} y={75 - d.expectedCases / maxCases * 65} width={width} height={d.expectedCases / maxCases * 65} rx={2} fill="#dd9b65" />
-                  <rect x={x} y={75 - d.baselineCases / maxCases * 65} width={width} height={d.baselineCases / maxCases * 65} rx={2} fill="#629f9b" /></g>; })}
+                  <rect x={x - 2} y={0} width={width + 4} height={80} fill={d.dayIndex === day ? '#1d355714' : 'transparent'} />
+                  <rect x={x} y={75 - d.expectedCases / maxCases * 65} width={width} height={d.expectedCases / maxCases * 65} rx={2} fill="#e63946" />
+                  <rect x={x} y={75 - d.baselineCases / maxCases * 65} width={width} height={d.baselineCases / maxCases * 65} rx={2} fill="#457b9d" /></g>; })}
             </svg>
             <p className="qc-interval-note">Day {day} · cases during [{snapshot?.intervalStart.slice(0, 10) ?? '—'}, {snapshot?.intervalEnd.slice(0, 10) ?? '—'})</p>
           </div>
@@ -407,8 +410,8 @@ export default function QCSimulationWorkspace() {
             <details className="qc-legend-more"><summary>More about the map colors, markers and lines</summary>
               <p className="qc-progression-note">{hotspotRanking ? `XGBoost ranks predicted annual barangay burden for ${hotspotRanking.forecastYear}, trained only through ${hotspotRanking.trainingCutoffYear}. Only the ten highest-burden candidates are marked. Their modeled annual shares allocate the dated QC forecast; this is not validated weekly hotspot detection.` : 'Places follow dated modeled allocations; local weekly hotspot forecasts are unavailable.'} All places update together, without a neighbor-triggered outbreak sequence.</p>
               <small>Smooth shades between these reference values; scale is fixed for the selected window. Accumulated cases show daily growth; daily forecasts may stay flat within a source week. {reduced ? 'Reduced motion is on: color animation is disabled.' : 'Colors animate from each place’s forecast values; no geographic infection chain is implied.'}</small>
-              <small>Only the {markerHotspotIds?.length ?? '—'} highest predicted annual-burden candidates have orange markers and case-band coloring; other barangays remain neutral. Positive demand alone does not make a hotspot. Gray stems link separated icons to mapped points. {hotspotRanking?.model}; no confirmed weekly-outbreak claim.</small>
-              <small>Bold lines and decorative raised outline = selection. Orange solid = holding placement. Straight-line proximity only; provisional hospital points. Colors show modeled intensity, not official outbreak thresholds.</small>
+              <small>Only the {markerHotspotIds?.length ?? '—'} highest predicted annual-burden candidates have red markers and case-band coloring; other barangays remain neutral. Positive demand alone does not make a hotspot. Gray stems link separated icons to mapped points. {hotspotRanking?.model}; no confirmed weekly-outbreak claim.</small>
+              <small>Bold lines and decorative raised outline = selection. Red solid = holding placement. Straight-line proximity only; provisional hospital points. Colors show modeled intensity, not official outbreak thresholds.</small>
             </details></div>
           <PhilippinesOverview />
           </div>
@@ -450,7 +453,7 @@ export default function QCSimulationWorkspace() {
               {selectedDaily.map(d => {
                 const cases = d.expectedCases;
                 const height = cases / maxSelectedDaily * 60;
-                return <rect key={d.dayIndex} x={8 + (d.dayIndex - 1) * 424 / scenario.durationDays} y={68 - height} width={Math.max(2, 424 / scenario.durationDays - 3)} height={height} fill={d.dayIndex === day ? '#ffd09a' : '#6caeaa'}><title>{`${d.date}: ${format(cases)} expected cases in ${area.name}`}</title></rect>;
+                return <rect key={d.dayIndex} x={8 + (d.dayIndex - 1) * 424 / scenario.durationDays} y={68 - height} width={Math.max(2, 424 / scenario.durationDays - 3)} height={height} fill={d.dayIndex === day ? '#1d3557' : '#457b9d'}><title>{`${d.date}: ${format(cases)} expected cases in ${area.name}`}</title></rect>;
               })}
             </svg>}
           </div>}
@@ -493,9 +496,9 @@ export default function QCSimulationWorkspace() {
               <polygon points={[
                 ...scenario.days.map((d, i) => `${12 + i * 876 / scenario.durationDays},${90 - (d.bedForecast?.upperBeds ?? d.bedForecast?.expectedBeds ?? 0) / maxBeds * 78}`),
                 ...[...scenario.days].reverse().map(d => `${12 + d.dayIndex * 876 / scenario.durationDays},${90 - (d.bedForecast?.lowerBeds ?? d.bedForecast?.expectedBeds ?? 0) / maxBeds * 78}`),
-              ].join(' ')} fill="#6ea9d12b" />
-              <polyline points={scenario.days.map((d, i) => `${12 + i * 876 / scenario.durationDays},${90 - (d.bedForecast?.expectedBeds ?? 0) / maxBeds * 78}`).join(' ')} fill="none" stroke="#8bc9eb" strokeWidth={2} />
-              <line x1={12 + day * 876 / scenario.durationDays} x2={12 + day * 876 / scenario.durationDays} y1={8} y2={92} stroke="#b5cedb" strokeDasharray="3 4" />
+              ].join(' ')} fill="#457b9d33" />
+              <polyline points={scenario.days.map((d, i) => `${12 + i * 876 / scenario.durationDays},${90 - (d.bedForecast?.expectedBeds ?? 0) / maxBeds * 78}`).join(' ')} fill="none" stroke="#457b9d" strokeWidth={2} />
+              <line x1={12 + day * 876 / scenario.durationDays} x2={12 + day * 876 / scenario.durationDays} y1={8} y2={92} stroke="#2f5577" strokeDasharray="3 4" />
             </>}
           </svg>
           <p>Day {day}: {format(snapshot?.bedForecast?.staffedBedsRequired)} staffed dengue beds required; {format(snapshot?.bedForecast?.additionalStaffedBedsNeeded)} additional beds vs assumed supported capacity. This is demand before capacity rejection, not actual vacant beds.</p>
@@ -544,7 +547,7 @@ export default function QCSimulationWorkspace() {
         {/* Overview: scenario summary, day totals, window totals, selection and notes. */}
         <div className="qc-panel-view qc-overview" hidden={panelView !== 'overview'}>
           <div className="qc-panel-header"><h2>Simulation overview</h2></div>
-          <p className="qc-panel-tip"><b>Tip:</b> click an orange hotspot or a ✚ hospital on the map to see nearby hospital capacity.</p>
+          <p className="qc-panel-tip"><b>Tip:</b> click a red hotspot or a ✚ hospital on the map to see nearby hospital capacity.</p>
           <section className={`qc-scenario-card${stale ? ' stale' : ''}`} aria-label="Current scenario">
             <span className="qc-total-icon" aria-hidden="true"><SlidersHorizontal size={20} /></span>
             <div className="qc-total-text"><span>{tab === 'future' ? 'Future surge forecast' : 'Historical replay'}</span>
