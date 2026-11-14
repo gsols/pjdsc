@@ -20,7 +20,11 @@ type Props = { context: MovieContext | null; snapshot: MovieDay | null; maximum:
 const NEUTRAL_FILL = '#e1f3ea';
 const empty = (): FeatureCollection => ({ type: 'FeatureCollection', features: [] });
 // Floating page panels drawn over the map (marked data-map-overlay) are kept free of map icons.
-const overlayElements = (mapRoot: HTMLElement | null) => [...(mapRoot?.parentElement?.querySelectorAll<HTMLElement>('[data-map-overlay]') ?? [])];
+const overlayElements = (mapRoot: HTMLElement | null) => {
+  const container =
+    mapRoot?.closest('[data-map-fullscreen]') ?? mapRoot?.parentElement;
+  return [...(container?.querySelectorAll<HTMLElement>('[data-map-overlay]') ?? [])];
+};
 const overlayRects = (mapRoot: HTMLElement | null) => {
   const origin = mapRoot?.getBoundingClientRect();
   if (!origin) return [];
@@ -273,8 +277,13 @@ export default function OutbreakMap({ context, snapshot, selected, selectedHospi
     ] : [[121.0, 14.585], [121.153, 14.782]];
     // Fit QC to the area right of the floating playback panel so it is not hidden underneath.
     const leftPanel = Math.max(0, ...overlayRects(root.current).map(rect => rect.left + rect.width));
+    // Reserve 70 px on the right and at least 50 px of map on narrow screens.
+    const leftPadding = Math.min(
+      Math.max(50, leftPanel + 20),
+      Math.max(0, (root.current?.clientWidth ?? 320) - 120),
+    );
     map.current.fitBounds(view === 'philippines' ? [[116.8, 4.3], [126.8, 21.2]] : bounds,
-      { padding: view === 'philippines' ? 30 : { top: 50, bottom: 50, right: 70, left: Math.max(50, leftPanel + 20) }, pitch: view === 'philippines' ? 0 : 30, duration: reducedMotion ? 0 : 650 });
+      { padding: view === 'philippines' ? 30 : { top: 50, bottom: 50, right: 70, left: leftPadding }, pitch: view === 'philippines' ? 0 : 30, duration: reducedMotion ? 0 : 650 });
   }, [view, ready, reducedMotion, context]);
   return <div className="outbreak-map" ref={root} aria-label="QC dated place-forecast allocations and hospital demand map">
     {error && <div className="movie-map-error" role="status">{error}</div>}
