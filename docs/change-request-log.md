@@ -15,6 +15,29 @@ measurement kind, and the page states the claim boundary: no live surveillance,
 no vacancy reporting, no triage/referral, provisional hospital points. No data,
 models or engine behaviour changed.
 
+Revision (same day, user request): keep only the hero for now. The page is a
+single full-screen navy stage with the headline, the two calls to action (QC
+simulation, NCR map), three notes and the hospital scene with its three chips.
+The stats row, walkthrough, workspace cards, honesty panel and footer were
+removed. The navigation bar stays, linking to the QC simulation, NCR map and
+Research pages. The hero shows the 46-hospital and 28-day figures, still
+sourced from `lib/landing-facts.ts` and covered by its test.
+
+Revision (same day, user mockup): the floating cards now preview the product —
+a forecast card with a sample observed/forecast curve and legend, the hospital
+count card, and a 28-day bed surge card with a sample 10-bed strip (occupied,
+extra scenario bed, available) and an "Over capacity" tag. The curve and bed
+fill are decorative samples, so the page captions them "Illustrative preview:
+sample forecast curve and bed fill, not model output." Phones show two compact
+cards and hide the detailed surge card and its caption.
+
+Revision (same day, user request): one call to action only. The header button
+and the hero "Explore the NCR map" link were removed; the hero button reads
+"Open simulation". The header keeps text links to the QC simulation, NCR map
+and Research pages (badge-only logo on narrow phones). Floating cards are
+scaled to 84%, and "surge" in the headline is highlighted in powder blue
+instead of a wavy underline.
+
 ## 2026-10-27 06:50 +08:00 — verify engine activation when the frontend opens
 
 User reports the Render engine at `surgewise.onrender.com` still fails to start
