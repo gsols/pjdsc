@@ -1,5 +1,20 @@
 # User-requested extensions
 
+## 2026-11-15 00:38:57 +08:00 — public landing page
+
+User requested a landing page inspired by a supplied isometric hospital-on-map
+illustration and aligned with the SurgeWise light brand palette. `/` now renders
+the landing page instead of redirecting to `/dashboard`; `/dashboard`,
+`/outbreak-response`, `/research` and `/simulate` are unchanged and linked from it.
+The hero art (`components/landing-hero-art.tsx`) is a decorative SVG that encodes
+no data. Quoted figures (46 PhilHealth-accredited QC hospitals/infirmaries,
+9,389 accredited beds, 142 barangays with observed annual counts 2010–2025,
+28-day horizon) come from `lib/landing-facts.ts`; `lib/landing-facts.test.mjs`
+checks them against the shipped hash-pinned files. Each figure carries its
+measurement kind, and the page states the claim boundary: no live surveillance,
+no vacancy reporting, no triage/referral, provisional hospital points. No data,
+models or engine behaviour changed.
+
 ## 2026-10-27 06:50 +08:00 — verify engine activation when the frontend opens
 
 User reports the Render engine at `surgewise.onrender.com` still fails to start
