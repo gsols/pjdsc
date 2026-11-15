@@ -19,7 +19,7 @@ Keep `/dashboard` as overview and add routes as needed, preferably:
 - `/simulate`: 28-day hospital scenario workspace with admitted, surge, holding, unresolved demand, and methods/provenance.
 - `/outbreak-response`: dedicated unexpected/off-season outbreak lab with day 0–28 slider and days 7/14/28 shortcuts, interventions and side-by-side scenarios.
 - `/validation` and `/sources`: backtest details, caveats, bibliography, and dataset provenance.
-Existing `/dashboard` stays the landing entry; add navigational affordances without a disruptive rewrite.
+`/` is the public landing page (user request 2026-11-15, see `docs/change-request-log.md`); `/dashboard` remains the map overview. Landing figures must come from `lib/landing-facts.ts` and stay covered by its data-consistency test. Add navigational affordances without a disruptive rewrite.
 
 ## Functional UI contract
 

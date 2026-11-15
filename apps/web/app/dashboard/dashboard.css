@@ -17,19 +17,19 @@
   width: min(352px, calc(100% - 32px));
   max-height: calc(100% - 36px);
   overflow: hidden;
-  border: 1px solid #476271;
+  border: 1px solid var(--sw-border);
   border-radius: 14px;
-  background: #101f2df5;
-  box-shadow: 0 12px 40px #0006;
+  background: color-mix(in srgb, var(--sw-panel) 96%, transparent);
+  box-shadow: 0 12px 40px rgb(11 28 30 / 0.12);
   backdrop-filter: blur(12px);
 }
 .dashboard-panel-bar { display: flex; align-items: center; gap: 8px; padding: 8px; border-bottom: 1px solid var(--border); }
-.dashboard-panel-bar button { display: inline-flex; align-items: center; gap: 8px; border: 0; border-radius: 7px; background: transparent; color: #bfd9e2; padding: 8px; }
+.dashboard-panel-bar button { display: inline-flex; align-items: center; gap: 8px; border: 0; border-radius: 7px; background: transparent; color: var(--sw-text); padding: 8px; }
 .dashboard-panel-bar button:focus-visible { outline-offset: -2px; }
 .dashboard-panel-drag { flex: 1; min-width: 0; cursor: grab; touch-action: none; user-select: none; text-align: left; font-size: 12px; }
-.dashboard-panel-drag svg { color: #7e9dab; flex-shrink: 0; }
-.dashboard-panel-bar .dashboard-panel-toggle { background: #213b49; cursor: pointer; }
-.dashboard-panel-toggle:hover { color: #80e1cc; }
+.dashboard-panel-drag svg { color: var(--sw-muted); flex-shrink: 0; }
+.dashboard-panel-bar .dashboard-panel-toggle { background: var(--sw-hover); cursor: pointer; }
+.dashboard-panel-toggle:hover { color: var(--sw-link); }
 .dashboard-panel-content { min-height: 0; overflow-y: auto; overscroll-behavior: contain; }
 .dashboard-panel-content > .panel { background: transparent; border: 0; padding: 18px; overflow: visible; }
 .dashboard-floating-panel[data-collapsed=true] { width: 210px; }
@@ -42,20 +42,20 @@
   bottom: 24px;
   width: min(360px, calc(100% - 94px));
   padding: 20px;
-  border: 1px solid #49776f;
+  border: 1px solid var(--sw-border);
   border-radius: 14px;
-  background: #0d242dec;
-  box-shadow: 0 10px 32px #0004;
+  background: color-mix(in srgb, var(--sw-panel) 93%, transparent);
+  box-shadow: 0 10px 32px rgb(11 28 30 / 0.08);
   backdrop-filter: blur(12px);
 }
-.dashboard-simulation-launch > span { color: #81dcc5; font-size: 10px; letter-spacing: .12em; text-transform: uppercase; }
+.dashboard-simulation-launch > span { color: var(--sw-link); font-size: 10px; letter-spacing: .12em; text-transform: uppercase; }
 .dashboard-simulation-launch h2 { margin: 9px 0; font-size: 22px; line-height: 1.2; }
-.dashboard-simulation-launch p { margin: 0 0 15px; font-size: 12px; color: #afc6d0; }
-.dashboard-simulation-launch a { display: flex; justify-content: space-between; align-items: center; gap: 10px; padding: 13px 15px; background: #72ddc6; color: #092b2c; border-radius: 8px; text-decoration: none; font-size: 14px; font-weight: 700; }
-.dashboard-simulation-launch a:hover { background: #92edd8; }
-.dashboard-simulation-launch a:focus-visible { outline: 2px solid white; outline-offset: 3px; }
+.dashboard-simulation-launch p { margin: 0 0 15px; font-size: 12px; color: var(--sw-text); }
+.dashboard-simulation-launch a { display: flex; justify-content: space-between; align-items: center; gap: 10px; padding: 13px 15px; background: var(--sw-primary); color: var(--sw-on-primary); border-radius: 8px; text-decoration: none; font-size: 14px; font-weight: 700; }
+.dashboard-simulation-launch a:hover { background: var(--sw-primary-hover); }
+.dashboard-simulation-launch a:focus-visible { outline: 2px solid var(--sw-text-strong); outline-offset: 3px; }
 .dashboard-simulation-launch a > span { display: flex; align-items: center; gap: 8px; }
-.dashboard-simulation-launch small { display: block; margin-top: 10px; color: #8eafb8; font-size: 10px; line-height: 1.5; }
+.dashboard-simulation-launch small { display: block; margin-top: 10px; color: var(--sw-muted); font-size: 10px; line-height: 1.5; }
 .dashboard-map-layout .timeline { bottom: 245px; right: auto; max-width: calc(100% - 40px); }
 @media (max-width: 850px) {
   .dashboard-header { gap: 12px; }
