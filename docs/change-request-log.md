@@ -1,5 +1,73 @@
 # User-requested extensions
 
+## 2026-11-16 02:30:23 +08:00 — shared brand loading and stable, clean map opening
+
+User reported marker repositioning during refresh, hover-triggered lines and
+legend inconsistencies, then requested smooth opening comparable with Dashboard.
+The first camera/layout ordering and synchronous resize are corrected. Official
+QC geometry controls the initial extent independently of scenario response timing.
+
+Additional request: reuse a Facebook-style centered SurgeWise-logo loading screen
+in the main content area, with Home's background and a restrained pulse. Home
+shows it briefly before its existing animations start; maps use it while preparing.
+Keep the application rail available. Preserve reduced motion, readiness/error
+states and all backend features/data. Relevant specifications:
+`docs/workspace-loading-design.md`, `docs/home-workspace-design.md`,
+`docs/dashboard-workspace-design.md`, `docs/simulation-workspace-design.md`.
+
+Latest revision removes overlap-guide lines entirely, including on click, while
+preserving the intended proximity/context/saved-placement links. The optional
+all-connections view now uses the same marker-centered renderer as inspection.
+The legend shares line styles with the renderer and covers rank, provisional
+hospital dot, unranked linked barangays, neutral/selected polygons, holding and
+conditional expansion boundaries. Older hover/selection-guide requirements below
+are superseded. No coordinates, forecasts, admissions or capacity definitions change.
+
+## 2026-11-16 01:49:53 +08:00 — selection links, circular markers and smooth camera focus
+
+User reported stretched barangay markers and detached guide lines. Fix the marker
+layout rather than changing its data: MapLibre owns absolute geographic
+positioning, and the circular inner symbol must fill its square container.
+Only hovered/inspected icons reveal their overlap guide and coordinate anchor.
+
+Clicking a barangay reveals links to the engine-ranked three nearest hospitals
+and mapped hospitals inside it. Clicking a hospital shows incoming connections
+and saved modeled placements involving that hospital. Direction stays barangay
+to hospital, including hospital inspection; cosmetic chevrons do not imply live
+patient movement, verified travel routes or referral advice. Proximity, modeled
+placements and nearest-ranked context retain separate styles. Day zero has no
+invented placements. Repeated selection retriggers the reveal; reduced motion
+shows static links. The optional all-connections layer remains available.
+
+Additional request: clicking a place from a wide map view should smoothly focus
+the selected network, then move directly to another selected network. Frame all
+linked endpoints and the selected barangay's official boundary, account for the
+inspector and map overlays, cap close zoom, and avoid camera jumps during playback.
+
+Scoped specification: `docs/simulation-workspace-design.md`. No backend or
+scientific-model changes; all source coordinates remain unchanged.
+
+## 2026-11-16 01:16:42 +08:00 — simulation redesign and inspector/marker refinement
+
+User authorized the map-first simulation redesign while preserving important
+features and information. Use Dashboard cartography and styling, one optional
+contextual panel and a compact timeline. Consolidate redundant inspection and
+export controls; preserve the complete modes/forms, 1–28-day windows, comparison,
+charts/tables, assumptions, validation, sources and reproducible export.
+
+Subsequent feedback: organize place/hospital inspection with aligned facts and
+separate actions; remove thick marker outlines, unify hospital pins between pages,
+add subtle pulses and reduce selected polygon outline thickness. The empty
+red/green circles were duplicate underlying point/halo layers, not a new category.
+Visible duplicate halos are removed, with tiny neutral coordinate anchors retained
+for displaced icons. Pulses do not encode live status; reduced motion disables
+them. Both pages use the same provisional hospital symbol without its outer white
+border. Case colors use a darker ordered green/ochre/orange scale; rank numbers
+remain annual burden ranks, not case counts or confirmed outbreaks.
+
+Scoped specification: `docs/simulation-workspace-design.md`. No engine, API,
+source dataset, capacity definition or simulation calculation changes.
+
 ## 2026-11-16 00:06:56 +08:00 — dashboard refinement and imagery deferral
 
 Latest user revision: use a pin silhouette with a thick rounded medical cross

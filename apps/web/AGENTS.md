@@ -32,6 +32,19 @@ existing workspace controls and backend behavior when evolving the UI.
 
 ## Functional UI contract
 
+User revision 2026-11-16: `docs/simulation-workspace-design.md` supersedes the
+older left/right/bottom placement requirements below. Preserve both modes,
+independent forms, every assumption/control, day-zero gating and all results;
+use one optional contextual panel and a persistent bottom timeline. Hospital
+pins share their renderer and style with Dashboard. Marker pulses are cosmetic,
+respect reduced motion, and never indicate verified live availability. Explicit
+selection reveals directional barangay-to-hospital links and smoothly frames the
+selected network and boundary. Playback must not automatically recenter the map;
+source coordinates and saved placement direction remain unchanged. Shared logo
+loading and animation sequencing follow `docs/workspace-loading-design.md`.
+Overlap-guide lines are removed; hovering only reveals labels. Keep the legend
+consistent with the renderer through the shared line-style definitions.
+
 User extension 2026-10-24 21:19:03 +08:00: preserve the left-sidebar Historical
 replay/Future surge forecast tabs, independent controls, arbitrary 1–28-day
 windows, future month/weather/surge controls and daily/peak hospital bed-demand

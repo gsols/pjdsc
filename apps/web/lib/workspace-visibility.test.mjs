@@ -4,6 +4,7 @@ import { readFileSync } from 'node:fs';
 import { createRequire, Module } from 'node:module';
 import { fileURLToPath } from 'node:url';
 import React from 'react';
+import { SIMULATION_LINES } from './simulation-connections.ts';
 import { renderToStaticMarkup } from 'react-dom/server';
 import ts from 'typescript';
 
@@ -30,6 +31,7 @@ const dayFixture = (dayIndex) => ({
     },
   ],
   hotspotIds: ['fixture-hotspot'],
+  expansionRing: [],
   bedForecast: { staffedBedsRequired: 765432 },
   supportedCensus: 0,
   holdingCensus: 0,
@@ -124,8 +126,10 @@ function renderWorkspace(day, stateOverrides = {}) {
             'data-hotspot-markers': props.hotspotIds?.join(',') ?? '',
           }),
       };
+    if (name === '@/components/workspace-select') return { default: props => React.createElement('button', { type: 'button', role: 'combobox', 'aria-label': props.label, disabled: props.disabled }, props.options.find(option => option.value === props.value)?.label ?? props.value) };
     if (name === '@/components/qc-workspace-sidebar')
       return { default: ({ children }) => children };
+    if (name === '@/components/workspace-loader') return { default: () => null };
     if (name === '@/components/surgewise-mark') return { default: () => null };
     if (name.startsWith('@/lib/'))
       return require(`./${name.slice('@/lib/'.length)}.ts`);
@@ -138,6 +142,23 @@ function renderWorkspace(day, stateOverrides = {}) {
 function renderDay(day, stateOverrides = {}) {
   return renderToStaticMarkup(renderWorkspace(day, stateOverrides));
 }
+
+test('legend uses renderer line definitions, preserves day-zero gating and covers actual marker meanings', () => {
+  const lines = tree => findElements(tree, node => node.props?.['data-line-kind']);
+  const preview = renderWorkspace(0);
+  assert.deepEqual(lines(preview).map(({node})=>node.props['data-line-kind']), ['proximity','hospital-context']);
+  const started = renderWorkspace(1);
+  for (const { node } of lines(started)) {
+    const definition = SIMULATION_LINES[node.props['data-line-kind']];
+    const swatch = findElements(node, child=>child.type==='i')[0].node;
+    assert.equal(swatch.props.style.borderTop, `${definition.width}px ${definition.dash.length ? 'dashed' : 'solid'} ${definition.color}`);
+    assert.ok(renderToStaticMarkup(node).includes(definition.label));
+  }
+  assert.ok(lines(started).some(({node})=>node.props['data-line-kind']==='holding'));
+  const html=renderToStaticMarkup(started);
+  for(const label of ['amber dot = provisional point','unranked','Selected barangay boundary','Click a marker to reveal its links']) assert.ok(html.includes(label),label);
+  assert.ok(!html.includes('Hover or inspect a separated'));
+});
 
 function findElements(node, predicate, ancestors = []) {
   if (!node || typeof node !== 'object') return [];
@@ -167,171 +188,61 @@ const controlFixture = {
   arrivalSplitPolicy: 'nearest_three_equal',
 };
 
-test('mode tabs stay visible in the left controls across result views and loading states', () => {
-  for (const overrides of [
-    {},
-    { 23: 'hospitals' },
-    { 26: true },
-    { 2: null, 4: null, 16: true },
-    { 17: 'Unavailable' },
-  ]) {
-    const tree = renderWorkspace(0, { 3: controlFixture, ...overrides });
-    const tabs = findElements(
-      tree,
-      (node) =>
-        node.props?.role === 'tab' && node.props?.id?.startsWith('qc-tab-')
-    );
-    assert.equal(tabs.length, 2);
-    assert.equal(
-      tabs.filter(({ node }) => node.props['aria-selected']).length,
-      1
-    );
-    for (const { node, ancestors } of tabs) {
-      assert.ok(
-        ancestors.some(
-          (parent) => parent.props?.['aria-label'] === 'Simulation controls'
-        ),
-        node.props.id
-      );
-      assert.ok(
-        !ancestors.some((parent) => parent.props?.hidden),
-        `${node.props.id} has a hidden ancestor`
-      );
-      assert.ok(
-        !ancestors.some((parent) =>
-          parent.props?.className?.includes('qc-controls-scroll')
-        )
-      );
-    }
-  }
-});
-
-test('playback and scenario inputs share the left panel while the right panel owns results and export', () => {
-  const tree = renderWorkspace(1, { 3: controlFixture });
-  const left = findElements(
-    tree,
-    (node) => node.props?.['aria-label'] === 'Simulation controls'
-  );
-  const right = findElements(
-    tree,
-    (node) =>
-      node.type === 'aside' && node.props?.['aria-label'] === 'Simulation panel'
-  );
-  assert.equal(left.length, 1);
-  assert.equal(right.length, 1);
-  for (const label of [
-    'Simulation timeline and playback',
-    'Forecast start date',
-    'Forecast horizon in days',
-  ]) {
-    assert.equal(
-      findElements(left[0].node, (node) => node.props?.['aria-label'] === label)
-        .length,
-      1,
-      label
-    );
-    assert.equal(
-      findElements(
-        right[0].node,
-        (node) => node.props?.['aria-label'] === label
-      ).length,
-      0,
-      label
-    );
-  }
-  assert.equal(
-    findElements(right[0].node, (node) => node.type === 'input').length,
-    0
-  );
-  assert.equal(
-    findElements(
-      right[0].node,
-      (node) =>
-        node.type === 'button' && node.props?.onClick?.name === 'download'
-    ).length,
-    1
-  );
-  assert.equal(
-    findElements(
-      left[0].node,
-      (node) =>
-        node.type === 'button' && node.props?.onClick?.name === 'download'
-    ).length,
-    0
-  );
-});
-
-test('fullscreen includes the left controls alongside the map', () => {
+test('the initial view reserves the map, with one hidden contextual panel and an independent timeline', () => {
   const tree = renderWorkspace(0, { 3: controlFixture });
-  const fullscreen = findElements(
-    tree,
-    (node) => node.props?.['data-map-fullscreen'] !== undefined
-  );
-  assert.equal(fullscreen.length, 1);
-  assert.equal(
-    findElements(
-      fullscreen[0].node,
-      (node) => node.props?.['aria-label'] === 'Simulation controls'
-    ).length,
-    1
-  );
+  const panel = findElements(tree, node => node.props?.id === 'qs-context-panel')[0].node;
+  assert.equal(panel.props.hidden, true);
+  const timeline = findElements(tree, node => node.props?.['aria-label'] === 'Simulation timeline and playback');
+  assert.equal(timeline.length, 1);
+  assert.ok(!timeline[0].ancestors.some(node => node.props?.id === 'qs-context-panel'));
+  assert.equal(findElements(tree, node => node.type === 'header').length, 0);
+  assert.equal(findElements(tree, node => node.type === 'aside').length, 1);
 });
 
-test('minimized controls float over the map with visible modes and hidden settings', () => {
-  const tree = renderWorkspace(1, { 3: controlFixture, 26: true });
-  const left = findElements(
-    tree,
-    (node) => node.props?.['aria-label'] === 'Simulation controls'
-  )[0].node;
-  assert.equal(left.props['data-minimized'], true);
-  assert.equal(left.props['data-map-overlay'], true);
-  const form = findElements(
-    left,
-    (node) => node.props?.id === 'qc-controls-settings'
-  )[0]?.node;
-  assert.ok(form);
-  assert.equal(form.props.hidden, true);
-  assert.equal(
-    findElements(left, (node) => node.type === 'footer')[0].node.props.hidden,
-    true
-  );
-  assert.equal(
-    findElements(
-      left,
-      (node) => node.props?.['aria-label'] === 'Expand simulation controls'
-    ).length,
-    1
-  );
-  assert.equal(
-    findElements(
-      left,
-      (node) => node.props?.['aria-label'] === 'Play simulation'
-    ).length,
-    1
-  );
-});
-
-test('loading and error messages belong to the left panel without shifting the workspace', () => {
-  for (const overrides of [
-    { 2: null, 4: null, 16: true },
-    { 17: 'Forecast unavailable' },
-  ]) {
-    const tree = renderWorkspace(0, overrides);
-    const messages = findElements(
-      tree,
-      (node) =>
-        node.props?.role === 'alert' ||
-        (node.props?.role === 'status' && node.props?.className === 'notice')
-    );
-    assert.ok(messages.length > 0);
-    for (const { ancestors } of messages) {
-      assert.ok(
-        ancestors.some(
-          (node) => node.props?.['aria-label'] === 'Simulation controls'
-        )
-      );
-    }
+test('both modes and original inputs remain accessible in Scenario while export has one Results entry point', () => {
+  const tree = renderWorkspace(1, { 3: controlFixture, 23: 'scenario' });
+  const settings = findElements(tree, node => node.props?.['aria-label'] === 'Simulation controls')[0];
+  assert.equal(settings.node.props.hidden, false);
+  const tabs = findElements(settings.node, node => node.props?.role === 'tab' && node.props?.id?.startsWith('qc-tab-'));
+  assert.equal(tabs.length, 2); assert.equal(tabs.filter(item => item.node.props['aria-selected']).length, 1);
+  for (const label of ['Forecast start date', 'Forecast end date', 'Forecast horizon in days', 'Admission fraction', 'Length of stay', 'Non-dengue occupancy', 'Normal staffed beds / site', 'Supported surge beds / site', 'Unstaffed holding spaces / site']) {
+    assert.equal(findElements(settings.node, node => node.props?.['aria-label'] === label).length, 1, label);
   }
+  assert.equal(findElements(settings.node, node => node.props?.label === 'Hospital arrival split').length, 1);
+  assert.equal(findElements(settings.node, node => node.props?.label === 'Hospital allocation policy').length, 1);
+  const exports = findElements(tree, node => node.type === 'button' && node.props.onClick?.name === 'download');
+  assert.equal(exports.length, 1);
+  assert.ok(exports[0].ancestors.some(node => node.props?.['aria-label'] === 'Simulation results'));
+});
+
+test('fullscreen contains the timeline and contextual controls, and loading/errors stay visible outside closed panels', () => {
+  const tree = renderWorkspace(0, { 3: controlFixture });
+  const fullscreen = findElements(tree, node => node.props?.['data-map-fullscreen'] !== undefined);
+  assert.equal(fullscreen.length, 1);
+  assert.equal(findElements(fullscreen[0].node, node => node.props?.['aria-label'] === 'Simulation timeline and playback').length, 1);
+  assert.equal(findElements(fullscreen[0].node, node => node.props?.id === 'qs-context-panel').length, 1);
+  for (const overrides of [{ 2: null, 4: null, 16: true }, { 17: 'Forecast unavailable' }]) {
+    const current = renderWorkspace(0, overrides);
+    const messages = findElements(current, node => node.props?.className?.startsWith('qs-engine-status'));
+    assert.equal(messages.length, 1);
+    assert.ok(!messages[0].ancestors.some(node => node.props?.id === 'qs-context-panel'));
+  }
+});
+
+test('hospital inspection keeps actions outside explanatory paragraphs and retains separate capacity and occupancy facts', () => {
+  const context = {
+    barangays: ['fixture-hotspot','outside-top-ten'].map(id => ({ id,name:'Constructed barangay fixture',nearestHospitals:[{facilityId:'fixture-hospital',distanceKm:1}],hospitalsWithinBarangay:[] })),
+    hospitals: [{ id:'fixture-hospital',name:'Constructed hospital fixture',accreditedBeds:100,sourceAsOf:'2026-09-30',primarySourceUrl:'https://example.invalid/register',coordinateSourceUrl:'https://example.invalid/point' }],
+  };
+  const tree = renderWorkspace(1,{4:context,9:'fixture-hospital',23:'hospitals'});
+  const inspector = findElements(tree,node=>node.props?.className==='qs-panel-body qs-inspector-body')[0].node;
+  assert.equal(inspector.props.hidden,false);
+  for(const paragraph of findElements(inspector,node=>node.type==='p')) {
+    assert.equal(findElements(paragraph.node,node=>node.type==='button').length,0);
+  }
+  const html=renderToStaticMarkup(tree);
+  for(const label of ['Actual staffed / dengue beds','Unknown','Normal-relative occupancy','Supported-relative occupancy','Unstaffed holding','Activated surge capacity','Residual supported slots','Expected dengue census','Window peak staffing need','Coordinate evidence']) assert.ok(html.includes(label),label);
+  assert.match(html,/120% of modeled dengue slots/);
 });
 
 test('loaded day zero hides projection counts, bed forecasts and historic totals; advancing reveals them', () => {
@@ -342,7 +253,7 @@ test('loaded day zero hides projection counts, bed forecasts and historic totals
   assert.ok(
     !before.includes('data-hotspot-markers="fixture-hotspot,outside-top-ten"')
   );
-  assert.match(before, /Hotspot location preview/);
+  assert.match(before, /Forecast locations preview · case values hidden/);
   for (const count of [
     '987,654',
     '876,543',
@@ -369,7 +280,7 @@ test('workspace shows automatic engine startup status and a reload action on fai
   const starting = renderDay(0, { 2: null, 4: null, 16: true, 20: 'starting' });
   assert.match(
     starting,
-    /role="status"[^>]*>Engine starting or temporarily unavailable/
+    /Engine starting or temporarily unavailable/
   );
   assert.match(
     starting,
@@ -408,8 +319,10 @@ test('switching tabs and leaving the workspace cancel requests; late old results
         useCallback: (callback) => callback,
       };
     if (name === 'next/dynamic') return { default: () => () => null };
+    if (name === '@/components/workspace-select') return { default: props => React.createElement('button', { type: 'button', role: 'combobox', 'aria-label': props.label, disabled: props.disabled }, props.options.find(option => option.value === props.value)?.label ?? props.value) };
     if (name === '@/components/qc-workspace-sidebar')
       return { default: ({ children }) => children };
+    if (name === '@/components/workspace-loader') return { default: () => null };
     if (name === '@/components/surgewise-mark') return { default: () => null };
     if (name === '@/lib/engine-connection')
       return {
@@ -510,8 +423,10 @@ test('each mode restores its edited dates and input edits invalidate playback re
       };
     }
     if (name === 'next/dynamic') return { default: () => () => null };
+    if (name === '@/components/workspace-select') return { default: props => React.createElement('button', { type: 'button', role: 'combobox', 'aria-label': props.label, disabled: props.disabled }, props.options.find(option => option.value === props.value)?.label ?? props.value) };
     if (name === '@/components/qc-workspace-sidebar')
       return { default: ({ children }) => children };
+    if (name === '@/components/workspace-loader') return { default: () => null };
     if (name === '@/components/surgewise-mark') return { default: () => null };
     if (name === '@/lib/engine-connection') {
       return {
@@ -556,18 +471,12 @@ test('each mode restores its edited dates and input edits invalidate playback re
     await new Promise((resolve) => setImmediate(resolve));
   }
 
-  element(
-    render(),
-    (node) => node.props?.['aria-label'] === 'Minimize simulation controls'
-  ).props.onClick();
-  assert.equal(states.get(26), true);
+  element(render(), node => node.props?.['aria-label'] === 'Edit simulation scenario').props.onClick();
+  assert.equal(states.get(23), 'scenario');
   assert.equal(states.get(3), controlFixture);
   assert.equal(states.get(2), fixture);
-  element(
-    render(),
-    (node) => node.props?.['aria-label'] === 'Expand simulation controls'
-  ).props.onClick();
-  assert.equal(states.get(26), false);
+  element(render(), node => node.props?.['aria-label'] === 'Close simulation panel').props.onClick();
+  assert.equal(states.get(23), null);
   changeStart('2025-08-01');
   assert.equal(states.get(2), null, 'outdated results are cleared');
   assert.equal(states.get(5), 0, 'playback resets to day zero');
@@ -575,7 +484,7 @@ test('each mode restores its edited dates and input edits invalidate playback re
   const scrolls = [];
   const scrollRegion = element(
     render(),
-    (node) => node.props?.className === 'qc-controls-scroll'
+    (node) => node.props?.className === 'qs-settings-scroll qc-controls'
   );
   assert.ok(
     scrollRegion.props.ref,
@@ -631,5 +540,6 @@ test('the loaded mode form enters after asynchronous loading and manual reduced 
     loaded,
     (node) => node.props?.['aria-label'] === 'Simulation controls'
   )[0].node;
-  assert.equal(left.props['data-reduced-motion'], true);
+  const dock = findElements(loaded, node => node.props?.id === 'qs-context-panel')[0].node;
+  assert.ok(left); assert.equal(dock.props['data-reduced-motion'], true);
 });

@@ -25,6 +25,7 @@ function harness(overrides = {}) {
     };
     if (name === 'next/dynamic') return { default: () => props => React.createElement('div', { 'data-map-records': props.facilities.length, 'data-3d': String(props.buildings3d) }) };
     if (name === 'next/link') return { default: props => React.createElement('a', props) };
+    if (name === '@/components/workspace-loader') return { default: () => null };
     if (name === '@/components/workspace-select') return { default: props => React.createElement('button', { 'aria-label': props.label }, props.value) };
     if (name === '@/lib/dashboard-map') return { areaLabel };
     if (name === '@/lib/facilities') return { loadFacilities() {}, FACILITY_DATASET_ID: 'fixture-registry' };

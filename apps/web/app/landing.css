@@ -1,6 +1,7 @@
 /* Home is a workspace canvas, not a marketing page. The architectural hospital
    evolves the original tower-and-annex artwork into three navigation regions. */
 .sw-home {
+  position:relative;
   --home-bg: #eaf1f3; --home-text: #19354b; --home-muted: #536e7e;
   --home-line: #c5d5dc; --home-teal: #276d6b; --home-blue: #335e7c; --home-sand: #82613c;
   --model-lit-start: #edf4f5; --model-lit-end: #c5d8e0;
@@ -18,6 +19,12 @@
   overflow-x: clip; background: var(--home-bg); color: var(--home-text);
   font-family: 'DM Sans', sans-serif; -webkit-font-smoothing: antialiased;
 }
+.home-reveal-content { display:flex;flex:1;flex-direction:column;min-height:inherit;opacity:1;transition:opacity 200ms ease; }
+.home-reveal-content[data-ready='false'] { opacity:0;visibility:hidden; }
+.home-reveal-content[data-ready='false'] * { animation-play-state:paused!important; }
+.sw-home > .sw-workspace-loader { position:fixed;left:var(--sw-rail-width,72px); }
+@media(max-width:700px) { .sw-home > .sw-workspace-loader { left:0;bottom:calc(70px + env(safe-area-inset-bottom,0px)); } }
+@media(prefers-reduced-motion:reduce) { .home-reveal-content { transition:none; } }
 
 .sw-home a { color: inherit; text-decoration: none; }
 .sw-home a:focus-visible { outline: 2px solid var(--home-teal); outline-offset: 7px; border-radius: 3px; }

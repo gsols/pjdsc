@@ -13,6 +13,8 @@ export default function PhilippinesOverview() {
         style: { version: 8, sources: {}, layers: [{ id: 'ocean', type: 'background', paint: { 'background-color': '#d4ecea' } }] } });
     } catch { setError(true); return; }
     const controller = new AbortController();
+    const observer = new ResizeObserver(() => map.resize());
+    observer.observe(root.current);
     map.on('load', async () => {
       try {
         const response = await fetch('/data/philippines-context.geojson', { signal: controller.signal });
@@ -27,7 +29,7 @@ export default function PhilippinesOverview() {
         map.fitBounds([[116.8, 4.3], [126.8, 21.2]], { padding: 8, duration: 0 });
       } catch { if (!controller.signal.aborted) setError(true); }
     });
-    return () => { controller.abort(); map.remove(); };
+    return () => { observer.disconnect(); controller.abort(); map.remove(); };
   }, []);
   return <div className="qc-country-overview"><div ref={root} aria-label="Entire Philippines context with QC highlighted" />
     <span>{error ? 'Philippines overview unavailable' : 'Philippines · QC highlighted'}</span></div>;

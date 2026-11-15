@@ -3,6 +3,8 @@ import EngineStartup from '@/components/engine-startup';
 import AppNavigation from '@/components/app-navigation';
 import './globals.css';
 import './app-shell.css';
+import './map-markers.css';
+import './workspace-loading.css';
 export const metadata: Metadata = {
   title: 'SurgeWise',
   description:

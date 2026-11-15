@@ -1,0 +1,17 @@
+/* One hospital symbol for Dashboard and Simulation. Animate the inner symbol;
+   MapLibre owns the outer element's geographic transform. */
+.db-workspace .sw-hospital-pin,.qs-workspace .sw-hospital-pin {
+  position:absolute;z-index:2;display:block;width:28px;height:34px;min-height:0;padding:0;border:0;border-radius:0;background:transparent;box-shadow:none;cursor:pointer;
+}
+.sw-hospital-pin-symbol { display:block;width:100%;height:100%;transform-origin:50% 65%;animation:sw-hospital-breathe 3.4s ease-in-out infinite; }
+.sw-hospital-pin-symbol img { display:block;width:100%;height:100%;object-fit:contain;filter:drop-shadow(0 2px 3px #19394d30); }
+.db-workspace button.sw-hospital-pin:hover:not(:disabled),.qs-workspace button.sw-hospital-pin:hover:not(:disabled) { background:transparent;border:0;z-index:3; }
+.sw-hospital-pin:hover .sw-hospital-pin-symbol,.sw-hospital-pin:focus-visible .sw-hospital-pin-symbol { animation-play-state:paused; }
+.sw-hospital-pin[data-selected='true'] { z-index:2; }
+.sw-hospital-pin[data-selected='true'] img { filter:brightness(1.14) drop-shadow(0 3px 4px #19394d60); }
+.sw-hospital-pin:focus-visible { outline:2px solid #18796f;outline-offset:4px; }
+.sw-hospital-pin-label { position:absolute;z-index:5;left:50%;bottom:calc(100% + 10px);width:max-content;max-width:230px;padding:9px 12px;border:1px solid #c5d8d0;border-radius:6px;background:#fbfdf9;color:#234e50;font:400 11px/1.65 'DM Sans',sans-serif;text-align:left;box-shadow:0 4px 14px #19394d12;opacity:0;visibility:hidden;pointer-events:none;transform:translate(-50%,3px);transition:opacity 150ms ease,transform 150ms ease; }
+.sw-hospital-pin:hover .sw-hospital-pin-label,.sw-hospital-pin:focus-visible .sw-hospital-pin-label { opacity:1;visibility:visible;transform:translate(-50%,0); }
+@keyframes sw-hospital-breathe { 0%,100% { transform:scale(.97);opacity:.9; } 50% { transform:scale(1.045);opacity:1; } }
+.sw-hospital-pin[data-reduced-motion='true'] .sw-hospital-pin-symbol { animation:none; }
+@media(prefers-reduced-motion:reduce) { .sw-hospital-pin-symbol { animation:none; }.sw-hospital-pin-label { transition:none; } }

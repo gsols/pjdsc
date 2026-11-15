@@ -1,7 +1,135 @@
 # Simulation session handoff
 
-Updated 2026-11-16 00:06:56 +08:00 (Asia/Manila). Read root/scoped AGENTS.md first.
+Updated 2026-11-16 02:39:53 +08:00 (Asia/Manila). Read root/scoped AGENTS.md first.
 Preserve existing working-tree edits; do not restart the application or replace data.
+
+## Current continuation — shared loading, stable opening and no extra lines
+
+The newest user feedback supersedes earlier hover/selected-source guides below.
+Added `WorkspaceLoader`: the real SurgeWise logo centered on Home's #eaf1f3
+background, subtle pulse, accessible hidden status and reduced-motion support.
+It covers main content only; the app rail stays available. Home pauses its model,
+labels, arrows and float while inert. After a 320ms minimum/bounded font wait and
+200ms logo exit, content and the original animation timelines start. Map and App
+Router fallbacks reuse the logo. Dashboard waits for initial camera/map idle;
+Simulation waits for its first prepared scene. Bounded presentation deadlines
+retain existing failure paths. See `docs/workspace-loading-design.md`.
+
+Refresh bug reproduced in the real browser: markers moved about 141px. The first
+fit now uses official QC geometry, resizes synchronously and precedes marker
+layout; engine context no longer triggers an opening refit. Markers are hidden
+until initial offsets are assigned, with a one-time cohort fade. Latest browser
+recording measured zero movement over 77 visible startup frames. Selection still
+uses the smooth 850ms network focus; playback does not recenter the camera.
+
+All overlap-guide lines/sources are removed, including on selection. Hover/focus
+only shows labels/pauses pulses. Intended proximity, nearest-ranked context and
+saved placement connections remain, with the optional all-connections view now
+using the same SVG renderer and marker-centered endpoints. No duplicate static
+line pipeline. Shared `SIMULATION_LINES` drives legend/renderer styles; legend
+adds holding, provisional pin-dot and unranked symbols and gates placement/ring
+entries by actual scene state. Unranked selected markers remain green/unranked.
+Source coordinates and backend calculations are unchanged.
+
+Final verification: all 80 frontend tests, standalone lint and TypeScript passed
+without warnings/errors. The final production build succeeded (11 routes); diff
+whitespace checks passed. A final regression test also confirms initial map errors
+dismiss the logo surface and leave the existing unavailable/result-table fallback
+usable, rather than obscuring it indefinitely.
+Local software-graphics browser QA passed: centered logo, Home paused until
+reveal, Dashboard/Simulation ready transitions, 46 pins on both pages, zero
+startup movement, no hover links, correct clicked hospital/barangay links, three
+saved final-day placements, legend colors/styles, mobile 390x774 content loading
+area, no horizontal overflow and reduced motion. No browser exceptions. Visually
+inspected /tmp/surgewise-brand-opening.png and
+/tmp/surgewise-final-map-legend.png. Prior fullscreen/3D coverage remains limited.
+User subsequently requested committing and pushing this UI work on
+`feat/ui-changes`, using conventional message
+`feat(web): redesign simulation workspace and unify loading`. GitHub identity is
+verified as personal `aquaryasss` (ID 171597477). Preserve the four unrelated
+processed forecasting artifact edits and the untracked discussion sketch outside
+the commit. Consult Git history/upstream for the resulting commit and push state.
+
+## Current continuation — directional links and selection camera
+
+Latest feedback fixes circular barangay symbols (the grid track shrank the inner
+circle from 29x29 to about 7x29) and absolute MapLibre positioning (relative
+positioning detached pins from guides). The live browser probe reproduced both
+styles and confirmed the corrected square/circle dimensions. Shared hospital
+markers also retain absolute positioning. Unrelated forecasting artifact edits
+remain untouched; an external manifest edit appeared during this turn.
+
+Only hovered/inspected icons show source anchors and overlap guides. Explicit
+barangay/hospital inspection reveals directional SVG connections terminating at
+visual marker centers, including overlap offsets. All arrows go barangay to
+hospital; hospital inspection shows incoming saved placements, not reversed
+referrals. Three-nearest and inside-barangay proximity comes from engine context.
+Saved-day placements are positive-only, separate in style, and supersede proximity
+decoration on the same pair. Small unnumbered origin symbols appear for linked
+barangays outside the annual top ten. No fabricated source observations or
+placements. Optional all-connections display is retained. The reveal/chevrons
+respect reduced motion and clean up frames/listeners. The inspection counter
+replays the reveal when the same place is clicked; playback retains the clock.
+
+User then requested smooth selection zoom from wide views. Explicit inspection
+now frames all connected endpoints plus the selected barangay's source polygon,
+with overlay padding, max zoom 14.5 and an 850ms transition (zero with reduced
+motion). A new selection interrupts the old camera movement. The camera effect
+excludes snapshot/day dependencies so playback does not recenter the map. The
+existing Reset map view control remains. All geometry and calculation inputs are
+unchanged. See `docs/simulation-workspace-design.md` and the latest request log.
+
+Final verification: all 72 frontend tests passed, standalone lint and TypeScript
+passed without errors/warnings, the production build succeeded (11 routes), and
+diff whitespace checks passed. Coverage includes the actual map-camera effect,
+full-boundary extent, stale-click cancellation and no playback-triggered focus.
+The original browser CSS probe reproduced the bug (about 7x29 inner symbol) and
+confirmed 29x29 after the fix. Software-graphics Brave on port 9224 renders the
+actual map. Local QA verified all 46 hospital pins, ten round rank markers,
+initial empty connection overlay, both inspection modes, moving arrows, smooth
+wide-to-close camera movement, endpoints within the available map, three saved
+final-day placement links, no mobile horizontal overflow, and all three inspected
+mobile links inside the 390x232 map area. No browser exceptions. Screenshots were
+visually inspected at /tmp/surgewise-simulation-barangay.png,
+/tmp/surgewise-simulation-mobile.png and
+/tmp/surgewise-simulation-mobile-selection.png. Fullscreen/3D camera and all-device
+visual coverage were not part of this focused browser check. No new commit/push
+requested. No backend/API/raw/reference changes by this work.
+
+## Current continuation — simulation redesign and latest inspector/marker feedback
+
+The last committed UI checkpoint is `c038429` on `feat/ui-changes`, authored and
+committed as personal `aquaryasss`. The user then authorized simulation redesign;
+these additional frontend changes are local and uncommitted. See
+`docs/simulation-workspace-design.md` and the timestamped change-request log.
+Preserve the four unrelated processed forecasting artifact edits and the earlier
+untracked `work/simulation-layout-concept.html` discussion sketch.
+
+The simulation now uses dashboard cartography, one optional contextual panel,
+compact playback and three readouts. All modes, numeric controls, date windows,
+assumptions, charts, tables, comparison and export remain. Day-zero hiding,
+request cancellation, stale-result invalidation and independent form restoration
+are tested. Fullscreen excludes the rail and retains timeline/inspection. General
+methods remain available on demand; only duplicate visible UI was consolidated.
+
+Latest feedback reorganizes inspection into aligned definition lists and clear
+action rows, with expandable nearby hospital details. Dashboard and Simulation
+share the same provisional cross pin renderer/style/SVG. Outer pin white borders
+and visible duplicate source circles are removed. Tiny neutral source anchors
+remain for displaced icons. Pins and annual-rank markers have cosmetic pulses
+which pause on hover/focus and respect OS/manual reduced motion. Selected polygon
+outlines are 1.2px with a small decorative lift. No live-status or measured-height
+meaning. Color changes do not change numeric case bands or backend forecasts.
+
+Final verification: all 63 frontend tests, standalone lint and TypeScript, the
+production build, and diff whitespace checks passed. Coverage includes shared
+provisional pin semantics and inspection actions separated from explanatory
+paragraphs while preserving both occupancy denominators and capacity facts.
+Browser inspection has repeatedly been interrupted during feedback and blocked
+by localhost sandbox access. No final browser screenshot or responsive/fullscreen
+visual QA is claimed. Do not silently substitute a fabricated scenario to make
+model errors disappear. No backend/API/raw/reference/data/model changes or new
+dependencies. No additional commit/push was requested.
 
 ## Current continuation — map-first dashboard and latest feedback
 

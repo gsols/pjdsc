@@ -17,7 +17,7 @@ function harness() {
     useRef(initial) { return refs[refCursor++] ??= { current: initial }; },
     useState(initial) { const i = stateCursor++; if (!(i in states)) states[i] = initial;
       return [states[i], update => { states[i] = typeof update === 'function' ? update(states[i]) : update; }]; },
-  } : require(name);
+  } : name.endsWith('.css') ? {} : require(name);
   loaded._compile(ts.transpileModule(readFileSync(filename, 'utf8'), { compilerOptions: {
     module: ts.ModuleKind.CommonJS, target: ts.ScriptTarget.ES2022, jsx: ts.JsxEmit.ReactJSX,
   } }).outputText, filename);

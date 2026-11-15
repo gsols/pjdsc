@@ -8,10 +8,11 @@ import type { Facility } from '@/lib/types';
 import { loadFacilities, FACILITY_DATASET_ID } from '@/lib/facilities';
 import { areaLabel, type DashboardMapController, type DashboardMapStatus } from '@/lib/dashboard-map';
 import WorkspaceSelect from '@/components/workspace-select';
+import WorkspaceLoader from '@/components/workspace-loader';
 import './dashboard.css';
 
 const NCRMap = dynamic(() => import('@/components/ncr-map'), {
-  ssr: false, loading: () => <div className="db-map-loading">Loading geographic map…</div>,
+  ssr: false,
 });
 type View = 'hospitals' | 'details' | 'layers' | 'evidence';
 
@@ -154,7 +155,7 @@ export default function Dashboard() {
             <button className="text-button" type="button" onClick={() => setView('evidence')}>Source details <ArrowUpRight size={12} /></button>
           </div>
         </details>
-        {mapStatus === 'loading' && <span className="db-loading-status" role="status">Loading map…</span>}
+        <WorkspaceLoader active={mapStatus === 'loading'} label="Preparing dashboard map" />
       </section>
 
       {view && <aside id="db-explorer" className="db-explorer" aria-labelledby="db-explorer-title">

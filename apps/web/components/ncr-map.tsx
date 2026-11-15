@@ -5,6 +5,7 @@ import 'maplibre-gl/dist/maplibre-gl.css';
 import type { Facility, ScenarioResult } from '@/lib/types';
 import { areaBounds, type DashboardMapController, type DashboardMapStatus } from '@/lib/dashboard-map';
 import { dashboardLayerPaint } from '@/lib/dashboard-map-style';
+import { hospitalMarker } from '@/lib/hospital-marker';
 
 type Props = {
   selectedArea: string;
@@ -53,6 +54,7 @@ export default function NCRMap({ selectedArea, onAreaSelect, facilities, onFacil
     map.addControl(new maplibregl.ScaleControl({ maxWidth: 95, unit: 'metric' }), 'bottom-left');
     const abort = new AbortController();
     let disposed = false;
+    let openingTimeout = 0;
     const duration = () => window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 0 : 650;
     function focusArea(area: string) {
       const bounds = areaBounds(boundaries.current, area);
@@ -110,13 +112,20 @@ export default function NCRMap({ selectedArea, onAreaSelect, facilities, onFacil
         map.on('mouseenter', 'ncr-fill', () => { map.getCanvas().style.cursor = 'pointer'; });
         map.on('mouseleave', 'ncr-fill', () => { map.getCanvas().style.cursor = ''; });
         focusArea(selection.current.selectedArea);
-        callbacks.current.onStatus?.('ready');
+        let revealed = false;
+        const reveal = () => {
+          if (disposed || revealed) return;
+          revealed = true; window.clearTimeout(openingTimeout); map.off('idle', reveal);
+          callbacks.current.onStatus?.('ready');
+        };
+        map.once('idle', reveal);
+        openingTimeout = window.setTimeout(reveal, 8000);
       } catch {
         if (!disposed) callbacks.current.onStatus?.('partial');
       }
     });
     return () => {
-      disposed = true; abort.abort(); window.clearTimeout(timeout); observer.disconnect();
+      disposed = true; abort.abort(); window.clearTimeout(timeout); window.clearTimeout(openingTimeout); observer.disconnect();
       callbacks.current.onReady?.(null);
       markers.current.forEach(marker => marker.remove()); markers.current = [];
       applyAppearance.current = null; map.remove(); mapRef.current = null; boundaries.current = null;
@@ -152,17 +161,7 @@ export default function NCRMap({ selectedArea, onAreaSelect, facilities, onFacil
     for (const f of facilities) {
       if (f.longitude === null || f.latitude === null || !Number.isFinite(f.longitude) || !Number.isFinite(f.latitude)) continue;
       const selected = f.id === selectedFacilityId;
-      const element = document.createElement('button');
-      element.type = 'button'; element.className = 'map-marker db-hospital-marker';
-      element.dataset.selected = String(selected);
-      element.setAttribute('aria-label', `${f.name}, provisional point, unverified entrance`);
-      element.setAttribute('aria-pressed', String(selected));
-      const pin = document.createElement('img');
-      pin.src = '/brand/hospital-pin.svg'; pin.alt = ''; pin.width = 28; pin.height = 34; pin.draggable = false;
-      element.append(pin);
-      const label = document.createElement('span');
-      label.className = 'db-marker-label'; label.textContent = `${f.name} · Provisional point`;
-      label.setAttribute('aria-hidden', 'true'); element.append(label);
+      const element = hospitalMarker(f.name, selected);
       element.addEventListener('click', event => { event.stopPropagation(); callbacks.current.onFacilitySelect(f); });
       markers.current.push(new maplibregl.Marker({ element, anchor: 'bottom' }).setLngLat([f.longitude, f.latitude]).addTo(map));
     }

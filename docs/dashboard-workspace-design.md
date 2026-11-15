@@ -1,5 +1,7 @@
 # Dashboard workspace
 
+Latest user revision (2026-11-16): Dashboard uses the shared centered SurgeWise-logo loading surface while its initial map and camera settle. The rail remains available; the surface fades on readiness and existing error/explorer states remain. See `workspace-loading-design.md`.
+
 Updated 2026-11-16 00:06:56 +08:00 (Asia/Manila). Presentation scope only;
 simulation, forecasting, source observations and APIs are unchanged.
 
@@ -21,6 +23,12 @@ panel navigation remain visible while the hospital results region scrolls.
 The inventory table remains available when the geographic map fails.
 
 ## Cartography and markers
+
+2026-11-16 refinement: both pages now share `lib/hospital-marker.ts`, global
+`app/map-markers.css` and the same hospital SVG. Pins have no outer white border
+and a subtle cosmetic pulse; hover/focus pauses it and reduced motion disables
+it. This motion does not signify live activity or capacity. See
+`docs/simulation-workspace-design.md`.
 
 OpenFreeMap provides the OpenStreetMap/OpenMapTiles street and building context.
 `lib/dashboard-map-style.ts` applies the SurgeWise palette to water, land use,

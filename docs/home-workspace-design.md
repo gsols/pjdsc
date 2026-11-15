@@ -1,5 +1,7 @@
 # SurgeWise Home workspace
 
+Latest user revision (2026-11-16): Home now uses the shared centered SurgeWise-logo opening. Its content is inert and all assembly/label/connector/floating timelines stay paused until the brief logo screen clears. Existing navigation and hover/reduced-motion behavior remain. See `workspace-loading-design.md`.
+
 Scope agreed 2026-11-15 (Asia/Manila). This is a presentation and navigation
 change; forecasting, simulation, source data, and existing workspace controls are
 outside its scope.
