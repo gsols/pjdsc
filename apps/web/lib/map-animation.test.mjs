@@ -60,7 +60,7 @@ test('real map paint interpolates forecast colors, keeps non-candidates neutral 
     frames.shift()(400);
     assert.equal(color()[color().indexOf('A') + 1], caseColor(4, 50));
     assert.ok(!color().includes('B'));
-    assert.equal(paints.filter(p => p.layer === 'selected-raised' && p.name === 'fill-extrusion-color').at(-1).value, '#20394c');
+    assert.equal(paints.filter(p => p.layer === 'selected-raised' && p.name === 'fill-extrusion-color').at(-1).value, '#e1f3ea');
     cleanup();
     render({ ...props, reducedMotion: true });
     assert.equal(frames.length, 0);

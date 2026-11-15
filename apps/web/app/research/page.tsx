@@ -98,7 +98,7 @@ export default function Research() {
     finally { if (token === generation.current) setLoading(false); }
   }
   const snapshot = result?.days[day];
-  const cell = { padding: 8, textAlign: 'left' as const, borderBottom: '1px solid #284155' };
+  const cell = { padding: 8, textAlign: 'left' as const, borderBottom: '1px solid var(--sw-border)' };
   return <main style={{ maxWidth: 1200, margin: 'auto', padding: 24 }}>
     <p><a href="/dashboard">← Hospital dashboard</a>{' · '}<a href="/outbreak-response">Open animated hotspot & hospital simulation →</a></p>
     <h1>UPRI-NOAH historical research workspace</h1>

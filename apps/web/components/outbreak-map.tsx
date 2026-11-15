@@ -15,9 +15,16 @@ type Props = { context: MovieContext | null; snapshot: MovieDay | null; maximum:
   caseMetric?: 'daily' | 'cumulative';
   caseColorMaximum?: number; animationDurationMs?: number;
   view?: 'qc' | 'philippines' };
+// Fill for barangays that are not high-burden candidates (and before values are shown).
+// Keep in sync with the literal in the 'barangays' layer (layer objects are validated as plain literals).
+const NEUTRAL_FILL = '#e1f3ea';
 const empty = (): FeatureCollection => ({ type: 'FeatureCollection', features: [] });
 // Floating page panels drawn over the map (marked data-map-overlay) are kept free of map icons.
-const overlayElements = (mapRoot: HTMLElement | null) => [...(mapRoot?.parentElement?.querySelectorAll<HTMLElement>('[data-map-overlay]') ?? [])];
+const overlayElements = (mapRoot: HTMLElement | null) => {
+  const container =
+    mapRoot?.closest('[data-map-fullscreen]') ?? mapRoot?.parentElement;
+  return [...(container?.querySelectorAll<HTMLElement>('[data-map-overlay]') ?? [])];
+};
 const overlayRects = (mapRoot: HTMLElement | null) => {
   const origin = mapRoot?.getBoundingClientRect();
   if (!origin) return [];
@@ -39,7 +46,7 @@ export default function OutbreakMap({ context, snapshot, selected, selectedHospi
     let instance: maplibregl.Map;
     try {
       instance = new maplibregl.Map({ container: root.current, center: [121.055, 14.675], zoom: 11.25, pitch: 30,
-        style: { version: 8, sources: {}, layers: [{ id: 'background', type: 'background', paint: { 'background-color': '#0b1c2b' } }] } });
+        style: { version: 8, sources: {}, layers: [{ id: 'background', type: 'background', paint: { 'background-color': '#d4ecea' } }] } });
     } catch { setError('Map unavailable. Use hotspot and hospital tables.'); return; }
     map.current = instance;
     const resizeObserver = new ResizeObserver(() => instance.resize());
@@ -60,30 +67,30 @@ export default function OutbreakMap({ context, snapshot, selected, selectedHospi
         const country = await countryResponse.json();
         if (controller.signal.aborted) return;
         instance.addSource('country-context', { type: 'geojson', data: country });
-        instance.addLayer({ id: 'country-land', type: 'fill', source: 'country-context', paint: { 'fill-color': '#244b55', 'fill-opacity': .65 } });
-        instance.addLayer({ id: 'country-outline', type: 'line', source: 'country-context', paint: { 'line-color': '#638d91', 'line-width': .65 } });
+        instance.addLayer({ id: 'country-land', type: 'fill', source: 'country-context', paint: { 'fill-color': '#f8fdf7', 'fill-opacity': 1 } });
+        instance.addLayer({ id: 'country-outline', type: 'line', source: 'country-context', paint: { 'line-color': '#a4c1ca', 'line-width': .65 } });
         instance.addSource('qc', { type: 'geojson', data, promoteId: 'ADM4_PCODE' });
-        instance.addLayer({ id: 'barangays', type: 'fill', source: 'qc', paint: { 'fill-color': '#20394c', 'fill-opacity': .88, 'fill-color-transition': { duration: 300 } } });
-        instance.addLayer({ id: 'boundaries', type: 'line', source: 'qc', paint: { 'line-color': '#65899c', 'line-width': .7, 'line-opacity': .65 } });
-        instance.addLayer({ id: 'selected-shadow', type: 'fill', source: 'qc', filter: ['==', 'ADM4_PCODE', ''], paint: { 'fill-color': '#000000', 'fill-opacity': .55, 'fill-translate': [5, 9] } });
-        instance.addLayer({ id: 'selected-raised', type: 'fill-extrusion', source: 'qc', filter: ['==', 'ADM4_PCODE', ''], paint: { 'fill-extrusion-color': '#e89a5c', 'fill-extrusion-height': 160, 'fill-extrusion-base': 20, 'fill-extrusion-opacity': .95 } });
-        instance.addLayer({ id: 'selected-outline', type: 'line', source: 'qc', filter: ['==', 'ADM4_PCODE', ''], paint: { 'line-color': '#fff4cf', 'line-width': 4, 'line-translate': [0, -3] } });
+        instance.addLayer({ id: 'barangays', type: 'fill', source: 'qc', paint: { 'fill-color': '#e1f3ea', 'fill-opacity': .88, 'fill-color-transition': { duration: 300 } } });
+        instance.addLayer({ id: 'boundaries', type: 'line', source: 'qc', paint: { 'line-color': '#a4c1ca', 'line-width': .7, 'line-opacity': .65 } });
+        instance.addLayer({ id: 'selected-shadow', type: 'fill', source: 'qc', filter: ['==', 'ADM4_PCODE', ''], paint: { 'fill-color': '#1d3557', 'fill-opacity': .18, 'fill-translate': [5, 9] } });
+        instance.addLayer({ id: 'selected-raised', type: 'fill-extrusion', source: 'qc', filter: ['==', 'ADM4_PCODE', ''], paint: { 'fill-extrusion-color': '#e63946', 'fill-extrusion-height': 160, 'fill-extrusion-base': 20, 'fill-extrusion-opacity': .95 } });
+        instance.addLayer({ id: 'selected-outline', type: 'line', source: 'qc', filter: ['==', 'ADM4_PCODE', ''], paint: { 'line-color': '#1d3557', 'line-width': 4, 'line-translate': [0, -3] } });
         for (const id of ['front', 'proximity', 'placements', 'hospital-link', 'hospitals', 'hotspots', 'particles', 'marker-leaders']) instance.addSource(id, { type: 'geojson', data: empty() });
-        instance.addLayer({ id: 'marker-leader-line', type: 'line', source: 'marker-leaders', paint: { 'line-color': '#b8c9ce', 'line-width': 1, 'line-opacity': .65 } });
-        instance.addLayer({ id: 'front-line', type: 'line', source: 'front', paint: { 'line-color': '#ffac68', 'line-width': 2, 'line-opacity': .65, 'line-dasharray': [3, 3] } });
-        instance.addLayer({ id: 'proximity-casing', type: 'line', source: 'proximity', paint: { 'line-color': '#08131f', 'line-width': ['case', ['get', 'selected'], 9, 5], 'line-opacity': .9 } });
-        instance.addLayer({ id: 'placement-casing', type: 'line', source: 'placements', paint: { 'line-color': '#071822', 'line-width': ['case', ['get', 'selected'], 10, 6], 'line-opacity': .85 } });
+        instance.addLayer({ id: 'marker-leader-line', type: 'line', source: 'marker-leaders', paint: { 'line-color': '#2f5577', 'line-width': 1, 'line-opacity': .65 } });
+        instance.addLayer({ id: 'front-line', type: 'line', source: 'front', paint: { 'line-color': '#f4a6ac', 'line-width': 2, 'line-opacity': .65, 'line-dasharray': [3, 3] } });
+        instance.addLayer({ id: 'proximity-casing', type: 'line', source: 'proximity', paint: { 'line-color': '#f9fdf8', 'line-width': ['case', ['get', 'selected'], 9, 5], 'line-opacity': .9 } });
+        instance.addLayer({ id: 'placement-casing', type: 'line', source: 'placements', paint: { 'line-color': '#f9fdf8', 'line-width': ['case', ['get', 'selected'], 10, 6], 'line-opacity': .85 } });
         instance.addLayer({ id: 'placement-line', type: 'line', source: 'placements', paint: {
-          'line-color': ['case', ['>', ['get', 'holding'], 0], '#ffb068', '#52e0d2'],
+          'line-color': ['case', ['>', ['get', 'holding'], 0], '#e63946', '#1d3557'],
           'line-width': ['+', ['case', ['get', 'selected'], 3, 0], ['interpolate', ['linear'], ['get', 'patients'], 0, 2, 10, 4, 40, 7]], 'line-opacity': .9 } });
-        instance.addLayer({ id: 'proximity-line', type: 'line', source: 'proximity', paint: { 'line-color': '#c9b4ff', 'line-width': ['case', ['get', 'selected'], 5, 2.5], 'line-dasharray': [2, 1.4], 'line-opacity': ['case', ['get', 'selected'], 1, .7] } });
-        instance.addLayer({ id: 'hospital-link-casing', type: 'line', source: 'hospital-link', paint: { 'line-color': '#101820', 'line-width': 10 } });
-        instance.addLayer({ id: 'hospital-link-line', type: 'line', source: 'hospital-link', paint: { 'line-color': '#ffe09a', 'line-width': 5, 'line-dasharray': [1, 1] } });
-        instance.addLayer({ id: 'hotspot-halo', type: 'circle', source: 'hotspots', paint: { 'circle-radius': ['interpolate', ['linear'], ['get', 'cases'], 0, 15, 10, 20, 100, 30], 'circle-color': '#ff8d52', 'circle-opacity': .3 } });
-        instance.addLayer({ id: 'hotspot-dot', type: 'circle', source: 'hotspots', paint: { 'circle-radius': 8, 'circle-color': '#ff8d52', 'circle-stroke-width': 2, 'circle-stroke-color': '#fff3dd' } });
+        instance.addLayer({ id: 'proximity-line', type: 'line', source: 'proximity', paint: { 'line-color': '#457b9d', 'line-width': ['case', ['get', 'selected'], 5, 2.5], 'line-dasharray': [2, 1.4], 'line-opacity': ['case', ['get', 'selected'], 1, .7] } });
+        instance.addLayer({ id: 'hospital-link-casing', type: 'line', source: 'hospital-link', paint: { 'line-color': '#f9fdf8', 'line-width': 10 } });
+        instance.addLayer({ id: 'hospital-link-line', type: 'line', source: 'hospital-link', paint: { 'line-color': '#e63946', 'line-width': 5, 'line-dasharray': [1, 1] } });
+        instance.addLayer({ id: 'hotspot-halo', type: 'circle', source: 'hotspots', paint: { 'circle-radius': ['interpolate', ['linear'], ['get', 'cases'], 0, 15, 10, 20, 100, 30], 'circle-color': '#e63946', 'circle-opacity': .25 } });
+        instance.addLayer({ id: 'hotspot-dot', type: 'circle', source: 'hotspots', paint: { 'circle-radius': 8, 'circle-color': '#e63946', 'circle-stroke-width': 2, 'circle-stroke-color': '#1d3557' } });
         instance.addLayer({ id: 'hospital-halo', type: 'circle', source: 'hospitals', paint: { 'circle-radius': ['case', ['get', 'selected'], 18, 10], 'circle-color': ['get', 'color'], 'circle-opacity': .3 } });
-        instance.addLayer({ id: 'hospital-dot', type: 'circle', source: 'hospitals', paint: { 'circle-radius': ['case', ['get', 'selected'], 8, 6], 'circle-color': ['get', 'color'], 'circle-stroke-color': '#edf7ff', 'circle-stroke-width': ['case', ['get', 'selected'], 3, 1.5] } });
-        instance.addLayer({ id: 'moving-demand', type: 'circle', source: 'particles', paint: { 'circle-color': '#dffff8', 'circle-radius': 3, 'circle-opacity': .9 } });
+        instance.addLayer({ id: 'hospital-dot', type: 'circle', source: 'hospitals', paint: { 'circle-radius': ['case', ['get', 'selected'], 8, 6], 'circle-color': ['get', 'color'], 'circle-stroke-color': '#1d3557', 'circle-stroke-width': ['case', ['get', 'selected'], 3, 1.5] } });
+        instance.addLayer({ id: 'moving-demand', type: 'circle', source: 'particles', paint: { 'circle-color': '#457b9d', 'circle-radius': 3, 'circle-opacity': .9 } });
         instance.on('click', event => {
           const features = instance.queryRenderedFeatures(event.point, { layers: ['hospital-dot', 'hotspot-dot', 'selected-raised', 'barangays'] });
           const selection = mapSelection(features);
@@ -108,20 +115,20 @@ export default function OutbreakMap({ context, snapshot, selected, selectedHospi
     if (!context) {
       for (const id of ['front', 'proximity', 'placements', 'hospital-link', 'hospitals', 'hotspots', 'particles', 'marker-leaders']) set(id, empty());
       for (const id of ['selected-shadow', 'selected-raised', 'selected-outline']) instance.setFilter(id, ['==', 'ADM4_PCODE', '']);
-      instance.setPaintProperty('barangays', 'fill-color', '#20394c');
+      instance.setPaintProperty('barangays', 'fill-color', NEUTRAL_FILL);
       return;
     }
     const values = new Map(snapshot?.barangays.map(b => [b.barangayId, caseMetric === 'daily' ? b.expectedCases : b.cumulativeCases]) ?? []);
     for (const id of ['selected-shadow', 'selected-raised', 'selected-outline']) instance.setFilter(id, ['==', 'ADM4_PCODE', selected]);
     instance.setPaintProperty('boundaries', 'line-width', ['case', ['==', ['get', 'ADM4_PCODE'], selected], 3, .7]);
-    instance.setPaintProperty('boundaries', 'line-color', ['case', ['==', ['get', 'ADM4_PCODE'], selected], '#fff3da', '#65899c']);
+    instance.setPaintProperty('boundaries', 'line-color', ['case', ['==', ['get', 'ADM4_PCODE'], selected], '#1d3557', '#a4c1ca']);
     const hospitalMap = new Map(context.hospitals.map(h => [h.id, h]));
     const barangayMap = new Map(context.barangays.map(b => [b.id, b]));
     const facilityStats = new Map(snapshot?.facilities.map(h => [h.facilityId, h]) ?? []);
     set('hospitals', { type: 'FeatureCollection', features: context.hospitals.map(h => {
       const stat = facilityStats.get(h.id);
       return { type: 'Feature', geometry: { type: 'Point', coordinates: h.coordinates }, properties: { id: h.id, selected: h.id === selectedHospital,
-        color: stat ? stat.holdingCensus > 0 ? '#ff825c' : stat.normalOccupancyPct > 100 ? '#ffc06a' : '#50d7ca' : '#71879a' } };
+        color: stat ? stat.holdingCensus > 0 ? '#e63946' : stat.normalOccupancyPct > 100 ? '#f4a6ac' : '#457b9d' : '#adbbbe' } };
     }) });
     const rankedIds = [...new Set(hotspotIds ?? snapshot?.hotspotIds ?? [])].filter(id => barangayMap.has(id));
     set('hotspots', { type: 'FeatureCollection', features: rankedIds.map(id => ({ type: 'Feature',
@@ -165,16 +172,16 @@ export default function OutbreakMap({ context, snapshot, selected, selectedHospi
     const draw = (fraction: number) => {
       const values = interpolateCaseValues(start, target, fraction);
       displayedCases.current = values;
-      const colors: unknown[] = ['match', ['get', 'ADM4_PCODE'], '__none__', '#20394c'];
+      const colors: unknown[] = ['match', ['get', 'ADM4_PCODE'], '__none__', NEUTRAL_FILL];
       const radii: unknown[] = ['match', ['get', 'id'], '__none__', 15];
       for (const id of active) {
         const value = values.get(id) ?? 0;
-        colors.push(id, snapshot ? caseColor(value, caseColorMaximum) : '#20394c');
+        colors.push(id, snapshot ? caseColor(value, caseColorMaximum) : NEUTRAL_FILL);
         radii.push(id, 15 + 15 * Math.sqrt(Math.min(1, value / caseColorMaximum)));
       }
-      colors.push('#20394c'); radii.push(15);
+      colors.push(NEUTRAL_FILL); radii.push(15);
       instance.setPaintProperty('barangays', 'fill-color', colors as maplibregl.ExpressionSpecification);
-      instance.setPaintProperty('selected-raised', 'fill-extrusion-color', snapshot && active.has(selected) ? caseColor(values.get(selected) ?? 0, caseColorMaximum) : '#20394c');
+      instance.setPaintProperty('selected-raised', 'fill-extrusion-color', snapshot && active.has(selected) ? caseColor(values.get(selected) ?? 0, caseColorMaximum) : NEUTRAL_FILL);
       instance.setPaintProperty('hotspot-halo', 'circle-radius', radii as maplibregl.ExpressionSpecification);
     };
     if (!context || !snapshot || !duration) { draw(1); return; }
@@ -270,8 +277,13 @@ export default function OutbreakMap({ context, snapshot, selected, selectedHospi
     ] : [[121.0, 14.585], [121.153, 14.782]];
     // Fit QC to the area right of the floating playback panel so it is not hidden underneath.
     const leftPanel = Math.max(0, ...overlayRects(root.current).map(rect => rect.left + rect.width));
+    // Reserve 70 px on the right and at least 50 px of map on narrow screens.
+    const leftPadding = Math.min(
+      Math.max(50, leftPanel + 20),
+      Math.max(0, (root.current?.clientWidth ?? 320) - 120),
+    );
     map.current.fitBounds(view === 'philippines' ? [[116.8, 4.3], [126.8, 21.2]] : bounds,
-      { padding: view === 'philippines' ? 30 : { top: 50, bottom: 50, right: 70, left: Math.max(50, leftPanel + 20) }, pitch: view === 'philippines' ? 0 : 30, duration: reducedMotion ? 0 : 650 });
+      { padding: view === 'philippines' ? 30 : { top: 50, bottom: 50, right: 70, left: leftPadding }, pitch: view === 'philippines' ? 0 : 30, duration: reducedMotion ? 0 : 650 });
   }, [view, ready, reducedMotion, context]);
   return <div className="outbreak-map" ref={root} aria-label="QC dated place-forecast allocations and hospital demand map">
     {error && <div className="movie-map-error" role="status">{error}</div>}
