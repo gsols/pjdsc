@@ -21,11 +21,11 @@ Mobile labels appear in a stacked list below the drawing. The drawing encodes no
 real facility, coordinates, clinical capabilities, measured cases, or occupancy.
 
 The default Home appearance uses cool light surfaces, navy text, and muted teal,
-blue, and sand accents. A Home-only light/dark toggle changes the current visit's
-appearance. Per the 20:24:49 revision, Home always starts light on a fresh mount
-or reload and ignores older saved dark preferences. Its descriptions appear on pointer hover or
-keyboard-visible focus, rather than persisting after a mouse click. The existing
-analytical workspaces retain their existing light palette and controls.
+blue, and sand accents. During the dashboard revision the user removed the
+Home-only light/dark toggle because the other workspaces do not share that theme.
+Home and the shared rail now use the light palette without browser theme storage
+or an initializer. This supersedes the earlier explicit-choice persistence
+request. See `docs/dashboard-workspace-design.md` for the dashboard styling.
 
 The model floats 18 CSS pixels over a five-second repeating cycle. Hovering or
 focusing the model stops it at its current position; leaving resumes it. There
@@ -46,11 +46,11 @@ surveillance/bed availability. The scenario horizon comes from checked
 - `app/page.tsx`, `components/home-workspace.tsx`, `components/landing-hero-art.tsx`,
   `app/landing.css`: Home presentation, appearance, navigation illustration, motion.
 - `lib/landing-navigation.test.mjs`: server-rendered destinations, accessible
-  route identity, source/claim boundaries, and light default/theme affordance.
+  route identity, source/claim boundaries, and shared light appearance without an isolated theme toggle.
 - Existing engine-startup tests isolate the new navigation import while retaining
   their original health-check, retry, cancellation, and failure assertions.
 
-No new dependencies, API changes, source/model changes, commits, or deployments.
+No new dependencies, API changes, source/model changes, or deployments.
 Use existing frontend checks; do not run npm ci against the running dev server.
 The four modified processed forecasting artifacts predate this UI task and must
 be preserved.
@@ -58,8 +58,7 @@ be preserved.
 ## Background texture
 
 Approved 2026-11-15 20:14:59 +08:00. A sparse static dot field sits behind the
-model, fading near copy and screen edges. Separate light/dark contrast tokens and
-a narrower-screen mask keep it understated. The decorative layer ignores pointer
+model, fading near copy and screen edges. Light-palette contrast tokens and a narrower-screen mask keep it understated. The decorative layer ignores pointer
 input and adds no semantic content. No city blocks or street plan; the soft radial atmosphere remains underneath.
 
 Revision 2026-11-15 20:21:14 +08:00: the user requested more visible dots and a
@@ -72,3 +71,27 @@ queued work. The overlay is decorative, hidden from assistive technology, and
 never captures pointer input. Touch/coarse pointers and reduced-motion settings
 retain the static background. `lib/home-dot-field.test.mjs` covers coalescing,
 relative coordinates, pointer exit, cleanup, and input/motion exclusions.
+
+## Assembly entrance
+
+User extension and clarification, 2026-11-15 22:23:34 +08:00: on Home load,
+layers enter from opposite sides and assemble at the model's center. Per the 22:27:55 revision, the three research sheets travel together as one
+stack. That stack, the catchment, and the hospital enter in that order, alternating
+left/right with a small vertical settling offset. Each entrance lasts 1000ms;
+the final hospital settles at 1.9 seconds and floating starts at 2 seconds.
+Entrance transforms live on inner SVG groups; the existing linked regions own
+hover/focus transforms independently. Shared navigation remains available throughout. Per the 22:31:14 revision,
+model labels fade in with a 7px upward settle as each part arrives: Research at
+720ms, Dashboard at 1280ms, Simulation at 1580ms, each over 620ms. Keyboard focus
+reveals a destination immediately without restarting the entrance timeline;
+reduced motion shows labels immediately. No animation state is stored, so it plays once per Home
+mount, not on theme changes or hover. System reduced-motion preference shows the
+fully assembled static model immediately. No backend or source-data changes.
+
+Connector lines and label arrows now share the Research/Dashboard/Simulation
+reveal timing variables (22:34:01 revision). Each connector's origin fades in and
+its normalized path draws toward the label over 620ms, starting 100ms before the
+label reveal. Arrow icons glide 5px diagonally into their resting positions over
+650ms, starting 80ms after label reveal begins. The existing hover/focus arrow
+nudge remains independent. Reduced motion shows complete lines and static arrows
+immediately; no new repeating motion is introduced.

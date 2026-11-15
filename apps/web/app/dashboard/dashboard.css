@@ -1,71 +1,198 @@
-.dashboard-map-layout {
-  display: block;
-  position: relative;
-  height: calc(100vh - 68px);
-  height: calc(100dvh - 68px);
-  min-height: 440px;
-  overflow: hidden;
+/* Dashboard-specific surfaces: consistent with Home, without changing the
+   simulation workspace's palette or any source/model semantics. */
+.db-workspace {
+  --db-bg: #f4f8f8; --db-paper: #fbfdfd; --db-ink: #19394d;
+  --db-muted: #597485; --db-line: #d5e1e5; --db-accent: #187f78; --db-selected: #dcefeb; --db-data: #286d69; --db-amber: #a37020;
+  display: flex; width: 100%; height: 100vh; height: 100dvh; min-height: 0;
+  overflow: hidden; background: #eaf1f3; color: var(--db-ink); color-scheme: light;
+  font-family: 'DM Sans', sans-serif; font-size: 13px;
 }
-.dashboard-map-layout > .map-section { width: 100%; height: 100%; min-height: 0; }
-.dashboard-floating-panel {
-  position: absolute;
-  z-index: 5;
-  top: 18px;
-  right: 18px;
-  display: flex;
-  flex-direction: column;
-  width: min(352px, calc(100% - 32px));
-  max-height: calc(100% - 36px);
-  overflow: hidden;
-  border: 1px solid var(--sw-border);
-  border-radius: 14px;
-  background: color-mix(in srgb, var(--sw-panel) 96%, transparent);
-  box-shadow: 0 12px 40px rgb(11 28 30 / 0.12);
-  backdrop-filter: blur(12px);
+.db-workspace a { color: var(--db-accent); text-decoration: none; }
+.db-workspace a:hover { text-decoration: underline; text-underline-offset: 4px; }
+.db-workspace button:focus-visible, .db-workspace a:focus-visible, .db-workspace select:focus-visible,
+.db-workspace summary:focus-visible, .db-workspace input:focus-visible, .db-hospital-list:focus-visible { outline: 2px solid var(--db-accent); outline-offset: 3px; }
+.db-sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; border: 0; }
+.db-map-viewport { position: relative; isolation: isolate; flex: 1; min-width: 0; min-height: 0; overflow: hidden; }
+.db-map { width: 100%; height: 100%; background: #eaf1f3; }
+.db-map-loading { position: absolute; inset: 0; display: grid; place-items: center; color: var(--db-muted); }
+.db-top-controls { position: absolute; z-index: 4; top: 18px; left: 18px; right: 18px; display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; pointer-events: none; }
+.db-top-controls > * { pointer-events: auto; }
+.ws-select { position: relative; min-width: 0; }
+.ws-select-trigger.text-button { display: flex; align-items: center; gap: 9px; width: 100%; min-height: 43px; padding: 0 12px; border: 1px solid var(--db-line); border-radius: 7px; background: var(--db-paper); color: var(--db-ink); text-align: left; font-size: 12px; }
+.ws-select-trigger > span { flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.ws-select-trigger > svg { flex-shrink: 0; color: var(--db-accent); }
+.ws-select-trigger:hover, .ws-select-trigger[aria-expanded='true'] { border-color: var(--db-accent); background: #f0faf7; }
+.ws-select-options { position: absolute; z-index: 12; top: calc(100% + 7px); left: 0; width: max-content; min-width: 100%; max-width: min(290px, 80vw); max-height: 220px; overflow: auto; list-style: none; padding: 5px; margin: 0; border: 1px solid #b8d3d0; border-radius: 8px; background: #fbfdfd; box-shadow: 0 10px 28px #19394d1c; overscroll-behavior: contain; }
+.ws-select-options li { display: flex; justify-content: space-between; align-items: center; gap: 20px; padding: 11px 10px; min-height: 40px; border-radius: 5px; color: var(--db-ink); font-size: 12px; line-height: 1.6; cursor: pointer; }
+.ws-select-options li[data-active='true'] { background: #e6f3ee; }
+.ws-select-options li[aria-selected='true'] { color: #12685f; font-weight: 500; }
+.db-scope { max-width: calc(100% - 70px); }
+.db-scope .ws-select-trigger { min-height: 44px; box-shadow: 0 3px 14px #19394d0d; font-size: 13px; }
+.db-explore-toggle.text-button { display: inline-flex; align-items: center; gap: 9px; min-height: 44px; border: 1px solid #187f78; border-radius: 8px; background: #187f78; color: #fff; box-shadow: 0 3px 14px #19394d0d; }
+.db-explore-toggle.text-button { padding: 0 15px; font-size: 12px; font-weight: 500; }
+.db-explore-toggle.text-button:hover, .db-explore-toggle[aria-expanded='true'] { border-color: #136962; background: #136962; color: white; }
+.db-workspace:not([data-panel='none']) .db-explore-toggle span { display: none; }
+.db-workspace:not([data-panel='none']) .db-explore-toggle.text-button { padding: 0; width: 44px; justify-content: center; }
+.db-map-controls { position: absolute; z-index: 4; right: 18px; bottom: 58px; display: flex; flex-direction: column; padding: 3px; gap: 2px; border: 1px solid var(--db-line); border-radius: 9px; background: var(--db-paper); box-shadow: 0 3px 14px #19394d0d; }
+.db-map-button.text-button { position: relative; display: grid; place-items: center; width: 40px; min-height: 40px; padding: 0; border: 0; border-radius: 6px; color: var(--db-muted); background: transparent; }
+.db-map-button.text-button:hover, .db-map-button[aria-pressed='true'] { background: var(--db-selected); color: var(--db-accent); }
+.db-map-button:disabled { opacity: 0.4; cursor: default; }
+.db-control-divider { height: 1px; background: var(--db-line); margin: 3px 5px; }
+.db-control-tooltip { position: absolute; right: calc(100% + 13px); top: 50%; transform: translateY(-50%); width: max-content; max-width: 220px; padding: 8px 11px; border: 1px solid var(--db-line); border-radius: 6px; background: var(--db-paper); color: var(--db-ink); font-size: 11px; line-height: 1.6; box-shadow: 0 3px 12px #19394d0d; opacity: 0; visibility: hidden; pointer-events: none; transition: opacity 150ms ease; }
+.db-map-button:hover:not(:disabled) .db-control-tooltip, .db-map-button:focus-visible .db-control-tooltip { opacity: 1; visibility: visible; }
+.db-workspace .maplibregl-ctrl-bottom-left { left: 18px; bottom: 10px; }
+.db-workspace .maplibregl-ctrl-scale { box-sizing: border-box; height: 18px; margin: 0; padding: 0 5px; border-color: #577486; font-size: 10px; line-height: 14px; background: #fbfdfde8; }
+.db-legend { position: absolute; z-index: 4; left: 18px; bottom: 44px; max-width: calc(100% - 96px); border: 1px solid var(--db-line); border-radius: 7px; background: var(--db-paper); box-shadow: 0 3px 12px #19394d09; }
+.db-legend summary { display: flex; align-items: center; gap: 9px; min-height: 38px; padding: 0 12px; list-style: none; color: var(--db-muted); font-size: 11px; cursor: pointer; }
+.db-legend summary::-webkit-details-marker { display: none; }
+.db-legend-key { color: var(--db-data); }
+.db-legend-body { display: flex; flex-direction: column; gap: 9px; padding: 3px 14px 13px; font-size: 11px; line-height: 1.6; }
+.db-legend-body > span { display: flex; align-items: center; gap: 9px; }
+.db-area-swatch { display: inline-block; width: 12px; height: 12px; flex-shrink: 0; border: 1px solid #248e86; background: #32a69a29; }
+.db-hospital-swatch { width: 16px; height: 20px; flex-shrink: 0; background: url(/brand/hospital-pin.svg) center / contain no-repeat; }
+.db-legend-body p { margin: 0; color: var(--db-muted); }
+.db-legend-body button { display: inline-flex; align-items: center; gap: 7px; color: var(--db-accent); font-size: 11px; min-height: 28px; }
+.db-loading-status { position: absolute; bottom: 75px; left: 18px; color: var(--db-muted); font-size: 11px; background: var(--db-paper); padding: 6px 9px; border-radius: 5px; }
+.db-map-message { position: absolute; z-index: 4; top: 78px; left: 18px; right: 82px; display: flex; align-items: center; gap: 9px; max-width: 540px; padding: 11px 13px; border: 1px solid var(--db-line); border-radius: 7px; background: var(--db-paper); color: var(--db-muted); font-size: 11px; line-height: 1.6; }
+.db-map-message > svg { flex-shrink: 0; }
+.db-map-message button { color: var(--db-accent); font-size: 11px; white-space: nowrap; }
+.db-workspace .db-hospital-marker { position: relative; width: 28px; height: 34px; padding: 0; border: 0; border-radius: 50%; background: transparent; cursor: pointer; }
+.db-hospital-marker img { display: block; width: 28px; height: 34px; filter: drop-shadow(0 2px 3px #19394d40); transform-origin: 50% 100%; transition: transform 160ms ease, filter 160ms ease; }
+.db-hospital-marker::before { content: ''; position: absolute; inset: -5px; }
+.db-workspace .db-hospital-marker:hover img { transform: translateY(-3px) scale(1.14); }
+.db-workspace .db-hospital-marker[data-selected='true'] { z-index: 2; }
+.db-workspace .db-hospital-marker[data-selected='true'] img { transform: scale(1.2); filter: drop-shadow(0 0 4px #225d61) drop-shadow(0 2px 3px #fff); }
+.db-3d-icon { font: 600 12px/1 'Space Grotesk', sans-serif; letter-spacing: -0.04em; }
+.db-explorer { display: flex; flex-direction: column; flex: 0 0 clamp(310px, 26vw, 370px); width: clamp(310px, 26vw, 370px); min-width: 0; min-height: 0; border-left: 1px solid var(--db-line); background: var(--db-bg); }
+.db-explorer-heading { border-top: 3px solid #187f78; display: flex; justify-content: space-between; align-items: center; gap: 15px; padding: 24px 22px 19px; }
+.db-eyebrow { display: block; color: var(--db-muted); font-size: 10px; line-height: 1.7; letter-spacing: 0.08em; text-transform: uppercase; }
+.db-explorer h2 { margin: 6px 0 0; color: var(--db-ink); font: 500 22px/1.25 'Space Grotesk', sans-serif; letter-spacing: -0.04em; }
+.db-explorer h2:focus { outline: none; }
+.db-close.text-button { display: grid; place-items: center; flex-shrink: 0; width: 38px; min-height: 38px; padding: 0; border-radius: 6px; color: var(--db-muted); }
+.db-close:hover { background: var(--db-selected); }
+.db-explorer-sections { display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px; margin: 0 22px; padding-bottom: 12px; border-bottom: 1px solid var(--db-line); }
+.db-explorer-sections button.text-button { display: inline-flex; justify-content: center; align-items: center; gap: 6px; min-height: 38px; padding: 0 7px; border-radius: 5px; color: var(--db-muted); background: transparent; font-size: 11px; }
+.db-explorer-sections button[aria-pressed='true'] { color: var(--db-accent); background: var(--db-selected); }
+.db-explorer-body { flex: 1; min-height: 0; padding: 21px 22px 26px; overflow-y: auto; overscroll-behavior: contain; }
+.db-inventory-summary { padding-bottom: 13px; margin-bottom: 14px; border-bottom: 1px solid var(--db-line); }
+.db-inventory-numbers { display: flex; flex-wrap: wrap; gap: 20px 30px; margin-top: 10px; }
+.db-inventory-numbers > span { display: flex; flex-direction: column; gap: 5px; color: var(--db-muted); font-size: 11px; }
+.db-inventory-numbers strong { color: var(--db-data); font: 500 27px/1.1 'Space Grotesk', sans-serif; letter-spacing: -0.04em; }
+.db-inventory-summary p { margin: 10px 0 0; color: var(--db-muted); font-size: 11px; line-height: 1.7; }
+.db-search-field { display: flex; align-items: center; gap: 8px; padding: 0 11px; min-height: 43px; border: 1px solid var(--db-line); border-radius: 6px; background: var(--db-paper); color: var(--db-muted); }
+.db-search-field > svg { flex-shrink: 0; }
+.db-search-field:focus-within { border-color: var(--db-accent); box-shadow: 0 0 0 3px #187f781c; }
+.db-workspace .db-search-field input:focus, .db-workspace .db-search-field input:focus-visible { outline: none; box-shadow: none; border: 0; }
+.db-search-field input { min-width: 0; width: 100%; min-height: 40px; padding: 0; border: 0; background: transparent; color: var(--db-ink); font-size: 13px; border-radius: 0; }
+.db-hospitals-body { display: flex; flex-direction: column; overflow: hidden; padding-bottom: 0; }
+.db-hospitals-body > :not(.db-hospital-list) { flex-shrink: 0; }
+.db-hospital-filters { display: grid; gap: 9px; }
+.db-hospital-list { flex: 1; min-height: 0; overflow: auto; overscroll-behavior: contain; scrollbar-width: thin; scrollbar-color: #9cbabb transparent; padding: 0 4px 8px 0; }
+.db-hospital-list:focus-visible { outline-offset: -2px; }
+.db-results-count { margin: 12px 0 10px; color: var(--db-muted); font-size: 11px; }
+.db-hospital-table { width: 100%; border-collapse: collapse; table-layout: fixed; }
+.db-hospital-table th { position: sticky; top: 0; z-index: 1; background: var(--db-bg); padding: 8px 0 9px; color: var(--db-muted); text-align: left; font-size: 10px; font-weight: 400; line-height: 1.5; }
+.db-hospital-table td { padding: 14px 0; border-top: 1px solid var(--db-line); vertical-align: top; font-size: 12px; }
+.db-hospital-table th:last-child, .db-hospital-table td:last-child { width: 68px; text-align: right; font-variant-numeric: tabular-nums; }
+.db-hospital-name.text-button { display: inline; padding: 0; color: var(--db-ink); text-align: left; font-size: 12px; line-height: 1.6; }
+.db-hospital-name > svg { display: inline; margin-left: 5px; vertical-align: middle; color: var(--db-muted); }
+.db-hospital-name:hover { color: var(--db-accent); text-decoration: underline; text-underline-offset: 3px; }
+.db-hospital-table td > span { display: block; margin-top: 4px; color: var(--db-muted); font-size: 10px; line-height: 1.6; }
+.db-hospital-table tr[data-selected='true'] .db-hospital-name { color: var(--db-accent); }
+.db-error, .db-inline-note { padding: 11px 12px; border-radius: 5px; background: #e7eff0; color: #3c5e70; font-size: 11px; line-height: 1.8; }
+.db-error { background: #f5e6e3; color: #854c40; }
+.db-retry.text-button { display: block; margin-top: 8px; min-height: 34px; color: var(--db-accent); font-size: 12px; }
+.db-empty { padding: 25px 0; color: var(--db-muted); }
+.db-empty h3 { color: var(--db-ink); font-size: 15px; font-weight: 500; }
+.db-empty p { font-size: 12px; line-height: 1.7; }
+.db-empty button { color: var(--db-accent); min-height: 35px; }
+.db-back.text-button { display: flex; align-items: center; gap: 8px; margin-bottom: 24px; color: var(--db-muted); min-height: 32px; font-size: 12px; }
+.db-provisional { border: 1px solid #e2c992; display: inline-flex; align-items: center; gap: 6px; color: #805714; background: #fcf0d7; border-radius: 4px; padding: 5px 8px; font-size: 10px; }
+.db-facility-title { margin: 16px 0 10px; color: var(--db-ink); font: 500 22px/1.25 'Space Grotesk', sans-serif; letter-spacing: -0.03em; }
+.db-address { color: var(--db-muted); font-size: 12px; line-height: 1.8; }
+.db-bed-fact { display: flex; align-items: center; gap: 16px; padding: 20px 0; margin: 14px 0 2px; border-top: 1px solid var(--db-line); border-bottom: 1px solid var(--db-line); }
+.db-bed-fact > strong { color: var(--db-data); font: 500 38px/1 'Space Grotesk', sans-serif; letter-spacing: -0.045em; }
+.db-bed-fact > span { color: var(--db-ink); font-size: 12px; }
+.db-bed-fact small { display: block; margin-top: 5px; color: var(--db-muted); font-size: 10px; }
+.db-facts { margin: 0 0 16px; }
+.db-facts > div { padding: 14px 0; border-bottom: 1px solid var(--db-line); }
+.db-facts dt { color: var(--db-muted); font-size: 11px; margin-bottom: 6px; }
+.db-facts dd { margin: 0; color: var(--db-ink); font-size: 12px; line-height: 1.7; }
+.db-disclosure { margin: 16px 0 0; padding: 13px 0; border-top: 1px solid var(--db-line); color: var(--db-muted); font-size: 12px; line-height: 1.8; }
+.db-disclosure summary { color: var(--db-ink); cursor: pointer; font-size: 12px; }
+.db-disclosure p { margin: 13px 0 0; font-size: 11px; }
+.db-dataset-id { overflow-wrap: anywhere; }
+.db-source-links { display: flex; flex-direction: column; gap: 12px; margin-top: 16px; }
+.db-source-links a, .db-research-link { display: inline-flex; align-items: center; gap: 8px; font-size: 12px; min-height: 30px; }
+.db-panel-intro { margin: 0 0 20px; color: var(--db-muted); font-size: 13px; line-height: 1.8; }
+.db-overlay-heading { margin-top: 24px; }
+.db-basemap-note { color: var(--db-muted); font-size: 11px; line-height: 1.8; margin: 10px 0; }
+.db-layer { position: relative; display: flex; align-items: center; justify-content: space-between; gap: 12px; min-height: 80px; padding: 15px 0; border-bottom: 1px solid var(--db-line); cursor: pointer; }
+.db-layer > span:first-child { display: flex; align-items: center; gap: 12px; }
+.db-layer strong { display: block; color: var(--db-ink); font-size: 12px; font-weight: 500; }
+.db-layer small { display: block; margin-top: 5px; color: var(--db-muted); font-size: 10px; line-height: 1.7; }
+.db-layer input { position: absolute; right: 0; width: 36px; height: 24px; opacity: 0; }
+.db-switch { display: inline-grid; place-items: center; flex-shrink: 0; width: 32px; height: 20px; border: 1px solid #9aafb9; border-radius: 4px; background: var(--db-paper); color: #fff; }
+.db-layer input:checked + .db-switch { background: var(--db-accent); border-color: var(--db-accent); }
+.db-layer input:focus-visible + .db-switch { outline: 2px solid var(--db-accent); outline-offset: 4px; }
+.db-layer-context { margin-top: 26px; font-size: 12px; line-height: 1.9; color: var(--db-muted); }
+.db-layer-context a { display: inline-flex; align-items: center; gap: 7px; font-size: 12px; }
+.db-legacy-field { display: block; margin-top: 15px; font-size: 11px; }
+.db-legacy-field strong { float: right; font-weight: 500; }
+.db-legacy-field input { display: block; width: 100%; margin: 8px 0; }
+.db-disclosure .btn { margin-top: 15px; }
+.db-explorer-footer { flex-shrink: 0; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px; padding: 16px 22px; border-top: 1px solid var(--db-line); background: #eef4f4; font-size: 10px; line-height: 1.7; color: var(--db-muted); }
+.db-explorer-footer a { display: inline-flex; align-items: center; gap: 5px; }
+.sw-app-content .db-workspace[data-expanded='true'], .sw-app-content .db-workspace:fullscreen { position: fixed; inset: 0; z-index: 100; width: 100vw; height: 100dvh; max-width: none; max-height: none; }
+@media (max-width: 700px) {
+  .sw-app-content .db-workspace { height: calc(100dvh - 70px - env(safe-area-inset-bottom, 0px)); flex-direction: column; }
+  .db-explorer { flex: 0 0 59%; width: 100%; max-height: 63%; border-left: 0; border-top: 1px solid var(--db-line); }
+  .db-explorer-heading { padding: 13px 18px 12px; }
+  .db-explorer h2 { font-size: 19px; }
+  .db-explorer-heading .db-eyebrow { display: none; }
+  .db-explorer-sections { margin: 0 18px; padding-bottom: 8px; }
+  .db-explorer-body { padding: 12px 18px 16px; }
+  .db-hospitals-body { padding-bottom: 0; }
+  .db-inventory-summary { padding-bottom: 8px; margin-bottom: 9px; }
+  .db-inventory-summary > .db-eyebrow { display: none; }
+  .db-inventory-numbers { margin-top: 0; gap: 25px; }
+  .db-inventory-numbers > span { flex-direction: row; align-items: baseline; gap: 7px; font-size: 10px; }
+  .db-inventory-numbers strong { font-size: 22px; }
+  .db-inventory-summary p { margin-top: 7px; font-size: 10px; }
+  .db-inventory-summary p br { display: none; }
+  .db-hospital-filters { grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); gap: 8px; }
+  .db-hospital-filters .ws-select-options { left: auto; right: 0; }
+  .db-search-field input { font-size: 12px; }
+  .db-results-count { margin: 9px 0 3px; }
+  .db-explorer-footer { padding: 10px 18px; }
+  .db-top-controls { top: 12px; left: 12px; right: 12px; }
+  .db-scope .ws-select-trigger { font-size: 12px; padding: 0 10px; gap: 7px; }
+  .db-explore-toggle.text-button { padding: 0 11px; }
+  .db-map-controls { right: 12px; bottom: 50px; }
+  .db-map-button.text-button { width: 38px; min-height: 40px; }
+  .db-workspace .maplibregl-ctrl-bottom-left { left: 12px; }
+  .db-workspace:not([data-panel='none']) .db-map-controls { top: 70px; bottom: auto; }
+  .db-workspace:not([data-panel='none']) .db-map-controls .db-control-divider,
+  .db-workspace:not([data-panel='none']) .db-map-controls button[aria-label='Zoom in'],
+  .db-workspace:not([data-panel='none']) .db-map-controls button[aria-label='Zoom out'] { display: none; }
+  .db-legend { left: 12px; bottom: 44px; }
+  .db-map-message { top: 68px; left: 12px; right: 70px; flex-wrap: wrap; font-size: 11px; }
+  .db-control-tooltip { max-width: 190px; }
+  .sw-app-content .db-workspace[data-expanded='true'], .sw-app-content .db-workspace:fullscreen { height: 100dvh; }
 }
-.dashboard-panel-bar { display: flex; align-items: center; gap: 8px; padding: 8px; border-bottom: 1px solid var(--border); }
-.dashboard-panel-bar button { display: inline-flex; align-items: center; gap: 8px; border: 0; border-radius: 7px; background: transparent; color: var(--sw-text); padding: 8px; }
-.dashboard-panel-bar button:focus-visible { outline-offset: -2px; }
-.dashboard-panel-drag { flex: 1; min-width: 0; cursor: grab; touch-action: none; user-select: none; text-align: left; font-size: 12px; }
-.dashboard-panel-drag svg { color: var(--sw-muted); flex-shrink: 0; }
-.dashboard-panel-bar .dashboard-panel-toggle { background: var(--sw-hover); cursor: pointer; }
-.dashboard-panel-toggle:hover { color: var(--sw-link); }
-.dashboard-panel-content { min-height: 0; overflow-y: auto; overscroll-behavior: contain; }
-.dashboard-panel-content > .panel { background: transparent; border: 0; padding: 18px; overflow: visible; }
-.dashboard-floating-panel[data-collapsed=true] { width: 210px; }
-.dashboard-floating-panel[data-collapsed=true] .dashboard-panel-bar { border-bottom: 0; }
-.dashboard-floating-panel[data-dragging=true]::after { content: ''; position: fixed; inset: -100vh -100vw; z-index: 10; cursor: grabbing; user-select: none; }
-.dashboard-simulation-launch {
-  position: absolute;
-  z-index: 2;
-  left: 70px;
-  bottom: 24px;
-  width: min(360px, calc(100% - 94px));
-  padding: 20px;
-  border: 1px solid var(--sw-border);
-  border-radius: 14px;
-  background: color-mix(in srgb, var(--sw-panel) 93%, transparent);
-  box-shadow: 0 10px 32px rgb(11 28 30 / 0.08);
-  backdrop-filter: blur(12px);
+@media (max-height: 600px) and (min-width: 701px) {
+  .db-hospitals-body .db-inventory-summary { display: none; }
+  .db-explorer-heading { padding-top: 12px; padding-bottom: 10px; }
 }
-.dashboard-simulation-launch > span { color: var(--sw-link); font-size: 10px; letter-spacing: .12em; text-transform: uppercase; }
-.dashboard-simulation-launch h2 { margin: 9px 0; font-size: 22px; line-height: 1.2; }
-.dashboard-simulation-launch p { margin: 0 0 15px; font-size: 12px; color: var(--sw-text); }
-.dashboard-simulation-launch a { display: flex; justify-content: space-between; align-items: center; gap: 10px; padding: 13px 15px; background: var(--sw-primary); color: var(--sw-on-primary); border-radius: 8px; text-decoration: none; font-size: 14px; font-weight: 700; }
-.dashboard-simulation-launch a:hover { background: var(--sw-primary-hover); }
-.dashboard-simulation-launch a:focus-visible { outline: 2px solid var(--sw-text-strong); outline-offset: 3px; }
-.dashboard-simulation-launch a > span { display: flex; align-items: center; gap: 8px; }
-.dashboard-simulation-launch small { display: block; margin-top: 10px; color: var(--sw-muted); font-size: 10px; line-height: 1.5; }
-.dashboard-map-layout .timeline { bottom: 245px; right: auto; max-width: calc(100% - 40px); }
-@media (max-width: 850px) {
-  .dashboard-header { gap: 12px; }
-  .dashboard-header .brand { font-size: 13px; }
-  .dashboard-header .subtle { font-size: 10px; }
-  .dashboard-header .pill { max-width: 110px; flex-shrink: 0; text-align: center; }
-  .dashboard-map-layout .map-toolbar { top: 12px; left: 12px; padding: 10px 12px; max-width: calc(100% - 24px); }
-  .dashboard-map-layout .legend { gap: 6px 12px; font-size: 10px; }
-  .dashboard-floating-panel { top: 140px; right: 12px; max-height: calc(100% - 370px); }
-  .dashboard-simulation-launch { left: 58px; bottom: 24px; width: min(340px, calc(100% - 74px)); padding: 14px; }
-  .dashboard-simulation-launch h2 { font-size: 19px; }
-  .dashboard-simulation-launch p { margin-bottom: 10px; }
+@media (max-height: 500px) {
+  .db-map-controls { flex-direction: row; bottom: 38px; }
+  .db-control-divider { width: 1px; height: 28px; margin: 6px 3px; }
+  .db-control-tooltip { top: auto; bottom: calc(100% + 10px); right: 0; transform: none; }
 }
+@media (prefers-reduced-motion: reduce) {
+  .db-workspace *, .db-workspace *::before { transition: none !important; }
+}
+
+.db-workspace .db-hospital-marker:hover, .db-workspace .db-hospital-marker:focus-visible { z-index: 3; }
+.db-marker-label { position: absolute; left: 50%; bottom: calc(100% + 10px); width: max-content; max-width: 230px; padding: 9px 12px; border: 1px solid #bcd1cb; border-radius: 6px; background: #fbfdf9; color: #234e50; font: 400 11px/1.6 'DM Sans', sans-serif; text-align: left; box-shadow: 0 4px 16px #19394d16; opacity: 0; visibility: hidden; pointer-events: none; transform: translate(-50%, 3px); transition: opacity 150ms ease, transform 150ms ease; }
+.db-hospital-marker:hover .db-marker-label, .db-hospital-marker:focus-visible .db-marker-label { opacity: 1; visibility: visible; transform: translate(-50%, 0); }

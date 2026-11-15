@@ -1,5 +1,68 @@
 # User-requested extensions
 
+## 2026-11-16 00:06:56 +08:00 — dashboard refinement and imagery deferral
+
+Latest user revision: use a pin silhouette with a thick rounded medical cross
+for hospitals; remove satellite and regional imagery while retaining 3D. Explain
+the item behind the map key: it was the metric distance scale. Reserve separate
+space below the key so both remain legible. These revisions supersede the
+experimental imagery options added during the dashboard iteration.
+
+The accepted dashboard direction removes the redundant header, prioritizes the
+map and uses one optional explorer for Hospitals/Layers/Evidence and inspection.
+Fullscreen hides the global rail. Custom dropdowns replace native geography and
+ownership selectors; focus styling belongs to the complete search field; hospital
+results scroll independently of source totals and filters. Palette and markers
+follow Home's light surfaces and teal accents, with custom street cartography.
+The Home-only dark mode was removed at the user's request because it was not
+shared across workspaces. Home model/dot/label animations remain intact.
+
+Scoped specification: `docs/dashboard-workspace-design.md`. Backend behavior,
+datasets and simulation features remain unchanged. All hospital positions remain
+provisional and accredited beds remain distinct from unknown operational beds.
+
+## 2026-11-15 22:38:20 +08:00 — retain explicitly selected appearance
+
+User clarified that selecting dark mode should survive refresh. Restore the
+explicit light/dark choice from browser storage and save only user toggles.
+Light remains the default with no valid saved preference or unavailable storage.
+This supersedes the earlier always-light-on-refresh revision; Home-only scope
+and all animation/navigation behavior are unchanged.
+
+## 2026-11-15 22:34:01 +08:00 — coordinated label-arrow movement
+
+User requested movement in label arrows to coordinate the entrance. Connector
+lines now draw from each model part toward its label, starting 100ms before the
+label fade. The label's arrow glides diagonally into place 80ms after that fade
+begins, then retains its hover/focus nudge. Shared timing variables keep all three
+parts aligned. All connector and arrow entrances run once per mount and respect
+reduced motion. No additional background loops or changes to navigation/data.
+
+## 2026-11-15 22:31:14 +08:00 — labels fade in as the model settles
+
+User requested fading labels during the assembly. Research, Dashboard, then
+Simulation labels fade and gently rise into place, timed to their corresponding
+model groups. Each reveal lasts 620ms, starting at 720/1280/1580ms. Keyboard focus
+reveals a label immediately without resetting the animation; reduced-motion
+users see all labels immediately. Shared navigation is always available.
+
+## 2026-11-15 22:27:55 +08:00 — grouped research entrance and slower assembly
+
+User requested that the research sheets enter together, not individually, and
+that the assembly be slightly slower. Use one entrance group for all research
+sheets; increase each entrance from 850ms to 1000ms. Catchment starts at 600ms,
+hospital at 900ms, and floating begins at the 2s mark, after the last arrival.
+All existing navigation, hover/focus, and reduced-motion behavior remains.
+
+## 2026-11-15 22:23:34 +08:00 — opposing-side hospital assembly
+
+User requested an entrance that stacks the model's layers on first load, then
+clarified that pieces should arrive from two sides and stack at the center.
+Animate three evidence sheets, catchment and hospital in alternating left/right
+entries, then begin the existing float after assembly. Preserve immediate
+navigation, independent hover/focus emphasis, light default and reduced motion.
+Scope: [Home workspace design](home-workspace-design.md#assembly-entrance).
+
 ## 2026-11-15 20:33:39 +08:00 — sync and publish the UI branch
 
 User requested fetching/integrating main before committing and pushing the

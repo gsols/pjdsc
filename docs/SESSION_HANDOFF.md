@@ -1,7 +1,54 @@
 # Simulation session handoff
 
-Updated 2026-11-15 20:34 +08:00 (Asia/Manila). Read root/scoped AGENTS.md first.
+Updated 2026-11-16 00:06:56 +08:00 (Asia/Manila). Read root/scoped AGENTS.md first.
 Preserve existing working-tree edits; do not restart the application or replace data.
+
+## Current continuation — map-first dashboard and latest feedback
+
+See `docs/dashboard-workspace-design.md`. The dashboard now has a full-map
+initial view, one optional docked explorer, a dedicated hospital-results scroll
+region, custom accessible geography/ownership selectors, source/empty/retry
+states, hospital inspection and fullscreen with a fallback. Its map is initialized
+once; resize, callbacks and camera selection preserve the existing validated QC
+hospital source and geography. Home-only dark mode is removed per user feedback;
+there is no theme storage/initializer. Existing Home assembly, label/connector
+entrances, floating motion and dot interactions remain.
+
+Latest revision uses teal pin silhouettes with thick rounded medical crosses and
+an amber provisional dot. Custom street colors cover land, water, roads, labels
+and buildings. 3D uses generalized provider buildings, not verified facility
+models. Satellite/regional imagery and their optional configuration were removed
+at the user's request. The object behind the map key was the distance scale;
+explicit bottom offsets now separate the two by 16px.
+
+The latest test suite passes 60 tests; lint, TypeScript and the production build
+passed after the final imagery removal. Browser QA was interrupted repeatedly during user
+feedback; do not claim final visual/mobile/fullscreen checks. No dependencies
+were installed. No backend/API/source datasets were changed. Preserve the four
+unrelated processed artifact edits. The user requested a commit of this UI checkpoint before simulation work, using
+`feat(web): redesign map dashboard and refine home motion`. Consult Git history
+for its commit ID. The four unrelated processed artifacts remain outside that
+commit. No push or simulation redesign is part of this checkpoint request.
+
+## Current continuation — opposing-side model assembly
+
+Latest user request: layers should enter from two sides and stack at the center.
+Added three inner SVG assembly groups: research sheets together as one stack,
+catchment, then hospital. CSS alternates left/right travel with a small settling
+offset. Latest revision slows each entrance to 1000ms; last arrival finishes at
+1.9s and the existing float starts at 2s. These
+animations run once per Home mount and do not reset on hover or theme changes.
+Hover/focus transforms remain on outer navigation links. Labels now fade/rise
+in as corresponding parts settle (Research, Dashboard, Simulation). Keyboard
+focus reveals labels immediately; shared navigation stays visible throughout.
+Connectors now draw outward just before each matching label fades in, and arrow
+icons glide diagonally into place afterward. Shared CSS reveal variables keep
+these effects synchronized; hover/focus nudges remain independent.
+Existing reduced-motion CSS disables entrance and float and displays the complete
+model immediately. No backend/data changes. The previous UI commit is pushed as
+`65ca14f`; this additional assembly change is local and uncommitted. All 51
+frontend tests, lint, TypeScript, production build and diff checks passed. Browser
+inspection of the new entrance was interrupted; do not claim visual timing QA.
 
 ## Current continuation — Home workspace and shared navigation
 
@@ -10,13 +57,13 @@ See `docs/home-workspace-design.md` and the timestamped change-request log.
 clickable architectural hospital derived from the teammate's original model.
 The catchment, building, and evidence sheets link to Dashboard, Simulation, and
 Research. The existing pages, engine startup, APIs, and controls remain in place.
-Home always starts light on mount/reload; its theme toggle supports dark for the
-current visit only. Older saved theme preferences are no longer read or written.
+Home uses the light appearance. The latest dashboard feedback removed its
+isolated dark/light toggle; earlier preference persistence is superseded.
 The model floats 18px over five seconds, pauses on hover/focus, and honors reduced
 motion. No pause button, geographic rail caption, model-index heading, or visible
 conceptual-facility caption remains. Historical/hypothetical/live-data boundaries
 remain in the in-app status strip. The user approved a localized static dot
-background: light/dark tokens, desktop/mobile fade masks, and pointer-safe CSS.
+background: light-palette tokens, desktop/mobile fade masks, and pointer-safe CSS.
 Latest dot revision makes the base pattern more visible and adds a local
 pointer highlight via `home-dot-field.tsx`. It uses a single queued animation
 frame, cleans up on exit/unmount, and excludes touch/coarse/reduced-motion input.

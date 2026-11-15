@@ -70,9 +70,9 @@ test('persistent navigation identifies each current route including the simulati
   }
 });
 
-test('Home defaults to light appearance with an accessible theme control', () => {
-  assert.match(html, /data-theme="light"/);
-  assert.match(html, /aria-label="Use dark Home theme"/);
+test('Home uses the shared light appearance without an isolated theme control', () => {
+  assert.ok(!html.includes('Home theme'));
+  assert.ok(!html.includes('data-theme="dark"'));
   assert.ok(!html.includes('Pause model animation'));
   assert.ok(!html.includes('home-model-index'));
   assert.ok(!html.includes('Conceptual model · Not a real facility'));

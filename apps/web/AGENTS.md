@@ -21,8 +21,11 @@ Keep `/dashboard` as overview and add routes as needed, preferably:
 - `/validation` and `/sources`: backtest details, caveats, bibliography, and dataset provenance.
 `/` is Home inside the shared application navigation (user revision 2026-11-15;
 see `docs/home-workspace-design.md` and `docs/change-request-log.md`). Preserve its
-clickable hospital model, icons-only rail/custom hover labels, light default,
-Home theme toggle, and hover/focus-paused floating motion with reduced motion.
+clickable hospital model, icons-only rail/custom hover labels, light appearance,
+and hover/focus-paused floating motion with reduced motion. The user removed the
+Home-only theme toggle during the dashboard revision. See
+`docs/dashboard-workspace-design.md` for the map-first dashboard, custom selectors,
+independent hospital-results scrolling, 3D context and removed imagery options.
 `/dashboard` remains the map overview. Landing figures must come from
 `lib/landing-facts.ts` and stay covered by its data-consistency test. Preserve
 existing workspace controls and backend behavior when evolving the UI.

@@ -59,72 +59,86 @@ export default function HospitalNavigationModel() {
 
         <Link href="/research" prefetch={false} className={`home-model-part hm-evidence${active === 'research' ? ' is-active' : ''}`}
           aria-label="Research: explore the evidence foundation" {...events('research')}>
-          <polygon className="hm-evidence-bottom" points={flat(0, 14, 0, 12, -2.3)} />
-          <polygon className="hm-evidence-middle" points={flat(0, 14, 0, 12, -1.75)} />
-          <polygon className="hm-evidence-top" points={flat(0, 14, 0, 12, -1.2)} />
-          <g className="hm-document-lines" aria-hidden="true">
-            {[8.7, 9.25, 9.8, 10.35].map(y => <polygon key={y} points={flat(8.7, 12.4, y, y + 0.035, -1.19)} />)}
-            <polygon points={flat(10.9, 12.4, 10.9, 11.3, -1.19)} />
+          <g className="hm-assembly-layer hm-assembly-evidence">
+            <polygon className="hm-evidence-bottom" points={flat(0, 14, 0, 12, -2.3)} />
+            <polygon className="hm-evidence-middle" points={flat(0, 14, 0, 12, -1.75)} />
+            <polygon className="hm-evidence-top" points={flat(0, 14, 0, 12, -1.2)} />
+            <g className="hm-document-lines" aria-hidden="true">
+              {[8.7, 9.25, 9.8, 10.35].map(y => <polygon key={y} points={flat(8.7, 12.4, y, y + 0.035, -1.19)} />)}
+              <polygon points={flat(10.9, 12.4, 10.9, 11.3, -1.19)} />
+            </g>
           </g>
         </Link>
 
         <Link href="/dashboard" prefetch={false} className={`home-model-part hm-catchment${active === 'dashboard' ? ' is-active' : ''}`}
           aria-label="Dashboard: explore the catchment and historical patterns" {...events('dashboard')}>
-          <polygon className="hm-site-edge" points={wallY(12, 0, 14, -0.38, 0)} />
-          <polygon className="hm-site-edge" points={wallX(14, 0, 12, -0.38, 0)} />
-          <polygon className="hm-site" points={flat(0, 14, 0, 12)} />
-          <g className="hm-site-lines" aria-hidden="true">
-            <polygon points={flat(0.6, 13.4, 0.6, 11.4)} />
-            <polygon points={flat(2.8, 12.5, 1.3, 7.4)} />
-            <polygon points={flat(0.8, 2.2, 1.4, 4.8)} />
-            <polygon points={flat(0.8, 2.2, 5.5, 8.2)} />
-            <polygon points={flat(3, 6, 9.1, 10.8)} />
-            <polygon points={flat(6.5, 9.7, 9.1, 10.8)} />
-            <path d={`M${iso(1.5, 6.7).join(' ')}L${iso(2.7, 8.1).join(' ')}L${iso(9.4, 8.1).join(' ')}L${iso(9.4, 6.5).join(' ')}`} />
-          </g>
-          <g className="hm-site-nodes" aria-hidden="true">
-            {[[1.5, 6.7], [4.5, 9.9], [8.1, 9.9]].map(([x, y]) => {
-              const [cx, cy] = iso(x, y);
-              return <g key={x}><ellipse cx={cx} cy={cy} rx={10} ry={5.8} /><circle cx={cx} cy={cy} r={2} /></g>;
-            })}
+          <g className="hm-assembly-layer hm-assembly-site">
+            <polygon className="hm-site-edge" points={wallY(12, 0, 14, -0.38, 0)} />
+            <polygon className="hm-site-edge" points={wallX(14, 0, 12, -0.38, 0)} />
+            <polygon className="hm-site" points={flat(0, 14, 0, 12)} />
+            <g className="hm-site-lines" aria-hidden="true">
+              <polygon points={flat(0.6, 13.4, 0.6, 11.4)} />
+              <polygon points={flat(2.8, 12.5, 1.3, 7.4)} />
+              <polygon points={flat(0.8, 2.2, 1.4, 4.8)} />
+              <polygon points={flat(0.8, 2.2, 5.5, 8.2)} />
+              <polygon points={flat(3, 6, 9.1, 10.8)} />
+              <polygon points={flat(6.5, 9.7, 9.1, 10.8)} />
+              <path d={`M${iso(1.5, 6.7).join(' ')}L${iso(2.7, 8.1).join(' ')}L${iso(9.4, 8.1).join(' ')}L${iso(9.4, 6.5).join(' ')}`} />
+            </g>
+            <g className="hm-site-nodes" aria-hidden="true">
+              {[[1.5, 6.7], [4.5, 9.9], [8.1, 9.9]].map(([x, y]) => {
+                const [cx, cy] = iso(x, y);
+                return <g key={x}><ellipse cx={cx} cy={cy} rx={10} ry={5.8} /><circle cx={cx} cy={cy} r={2} /></g>;
+              })}
+            </g>
           </g>
         </Link>
 
         <Link href="/outbreak-response" prefetch={false} className={`home-model-part hm-hospital${active === 'simulation' ? ' is-active' : ''}`}
           aria-label="Simulation: explore hospital demand and capacity scenarios" {...events('simulation')}>
-          <Volume x={[3.5, 8.1]} y={[2, 6.5]} z={[0, 7.1]} />
-          <g className="hm-facade" aria-hidden="true">
-            {[0.8, 2, 3.2, 4.4].map(z => <g key={z}>
-              <polygon points={wallY(6.5, 3.85, 7.75, z, z + 0.7)} />
-              <polygon points={wallX(8.1, 2.3, 6.2, z, z + 0.7)} />
-            </g>)}
+          <g className="hm-assembly-layer hm-assembly-building">
+            <Volume x={[3.5, 8.1]} y={[2, 6.5]} z={[0, 7.1]} />
+            <g className="hm-facade" aria-hidden="true">
+              {[0.8, 2, 3.2, 4.4].map(z => <g key={z}>
+                <polygon points={wallY(6.5, 3.85, 7.75, z, z + 0.7)} />
+                <polygon points={wallX(8.1, 2.3, 6.2, z, z + 0.7)} />
+              </g>)}
+            </g>
+            <g className="hm-fins" aria-hidden="true">
+              {[4.8, 5.8, 6.8].map(x => <polygon key={x} points={wallY(6.51, x, x + 0.055, 0.7, 5.2)} />)}
+              {[3.25, 4.25, 5.25].map(y => <polygon key={y} points={wallX(8.11, y, y + 0.055, 0.7, 5.2)} />)}
+            </g>
+            <polygon className="hm-roof-inset" points={flat(3.8, 7.8, 2.3, 6.2, 7.11)} />
+            <polygon className="hm-roof-seam" points={flat(4.1, 7.5, 2.6, 5.9, 7.12)} />
+            <polygon className="hm-sign" points={wallY(6.52, 5.1, 6.5, 5.5, 6.6)} />
+            <polygon className="hm-cross" points={wallY(6.53, 5.64, 5.96, 5.68, 6.42)} />
+            <polygon className="hm-cross" points={wallY(6.54, 5.34, 6.26, 5.9, 6.2)} />
+            <Volume x={[8.1, 11.5]} y={[3.2, 6.5]} z={[0, 3.4]} />
+            <polygon className="hm-roof-inset" points={flat(8.35, 11.25, 3.45, 6.25, 3.41)} />
+            <g className="hm-facade" aria-hidden="true">
+              {[0.5, 1.85].map(z => <polygon key={z} points={wallX(11.5, 3.5, 6.2, z, z + 0.8)} />)}
+              <polygon points={wallY(6.51, 8.45, 11.15, 1.9, 2.65)} />
+              <polygon points={wallY(6.52, 9.1, 10.5, 0, 1.4)} />
+            </g>
+            <Volume x={[8.75, 10.85]} y={[6.5, 7.7]} z={[1.4, 1.55]} />
+            <polygon className="hm-canopy-leg" points={wallY(7.6, 8.9, 9, 0, 1.4)} />
+            <polygon className="hm-canopy-leg" points={wallY(7.6, 10.55, 10.65, 0, 1.4)} />
           </g>
-          <g className="hm-fins" aria-hidden="true">
-            {[4.8, 5.8, 6.8].map(x => <polygon key={x} points={wallY(6.51, x, x + 0.055, 0.7, 5.2)} />)}
-            {[3.25, 4.25, 5.25].map(y => <polygon key={y} points={wallX(8.11, y, y + 0.055, 0.7, 5.2)} />)}
-          </g>
-          <polygon className="hm-roof-inset" points={flat(3.8, 7.8, 2.3, 6.2, 7.11)} />
-          <polygon className="hm-roof-seam" points={flat(4.1, 7.5, 2.6, 5.9, 7.12)} />
-          <polygon className="hm-sign" points={wallY(6.52, 5.1, 6.5, 5.5, 6.6)} />
-          <polygon className="hm-cross" points={wallY(6.53, 5.64, 5.96, 5.68, 6.42)} />
-          <polygon className="hm-cross" points={wallY(6.54, 5.34, 6.26, 5.9, 6.2)} />
-          <Volume x={[8.1, 11.5]} y={[3.2, 6.5]} z={[0, 3.4]} />
-          <polygon className="hm-roof-inset" points={flat(8.35, 11.25, 3.45, 6.25, 3.41)} />
-          <g className="hm-facade" aria-hidden="true">
-            {[0.5, 1.85].map(z => <polygon key={z} points={wallX(11.5, 3.5, 6.2, z, z + 0.8)} />)}
-            <polygon points={wallY(6.51, 8.45, 11.15, 1.9, 2.65)} />
-            <polygon points={wallY(6.52, 9.1, 10.5, 0, 1.4)} />
-          </g>
-          <Volume x={[8.75, 10.85]} y={[6.5, 7.7]} z={[1.4, 1.55]} />
-          <polygon className="hm-canopy-leg" points={wallY(7.6, 8.9, 9, 0, 1.4)} />
-          <polygon className="hm-canopy-leg" points={wallY(7.6, 10.55, 10.65, 0, 1.4)} />
         </Link>
 
         <g className="hm-leaders" aria-hidden="true">
-          <path className={active === 'dashboard' ? 'is-active' : ''} d="M365 424L303 465V482" />
-          <path className={active === 'simulation' ? 'is-active' : ''} d="M689 248L802 182H824" />
-          <path className={active === 'research' ? 'is-active' : ''} d="M670 630L747 675H772" />
-          <circle cx={365} cy={424} r={3} /><circle cx={689} cy={248} r={3} /><circle cx={670} cy={630} r={3} />
+          <g className="hm-leader hm-leader-dashboard">
+            <path pathLength={1} className={active === 'dashboard' ? 'is-active' : ''} d="M365 424L303 465V482" />
+            <circle cx={365} cy={424} r={3} />
+          </g>
+          <g className="hm-leader hm-leader-simulation">
+            <path pathLength={1} className={active === 'simulation' ? 'is-active' : ''} d="M689 248L802 182H824" />
+            <circle cx={689} cy={248} r={3} />
+          </g>
+          <g className="hm-leader hm-leader-research">
+            <path pathLength={1} className={active === 'research' ? 'is-active' : ''} d="M670 630L747 675H772" />
+            <circle cx={670} cy={630} r={3} />
+          </g>
         </g>
       </svg>
 

@@ -7,14 +7,9 @@
   --rail-tooltip-text: #23465b; --rail-tooltip-muted: #577486;
   min-height: 100svh;
 }
-.sw-app-shell:has(.sw-home[data-theme='dark']) {
-  --rail-bg: #0b1d2d; --rail-line: #254050; --rail-text: #9bb3c2;
-  --rail-hover: #183247; --rail-active: #203d51; --rail-active-text: #d9efef;
-  --rail-focus: #a8dadc; --rail-tooltip: #153046; --rail-tooltip-text: #eef7f8; --rail-tooltip-muted: #afc6d1;
-}
+
 .sw-app-content { min-width: 0; margin-left: var(--sw-rail-width); }
 .sw-app-shell:has(.sw-home) .sw-app-content { background: #eaf1f3; }
-.sw-app-shell:has(.sw-home[data-theme='dark']) .sw-app-content { background: #142d41; }
 .sw-app-skip { position: fixed; z-index: 100; left: 92px; top: 12px; padding: 12px 18px; background: #dceff0; color: #142d41; border-radius: 5px; transform: translateY(-180%); }
 .sw-app-skip:focus { transform: translateY(0); }
 .sw-app-rail {
@@ -58,7 +53,7 @@
   .sw-app-rail .sw-nav-link { gap: 3px; margin: 5px 7px; min-height: 58px; border-radius: 8px; }
   .sw-nav-link[aria-current='page']::before { left: calc(50% - 10px); top: -6px; width: 20px; height: 2px; border-radius: 0 0 3px 3px; }
   .sw-nav-tooltip { display: none; }
-  .sw-app-content .dashboard-map-layout { height: calc(100dvh - 138px - env(safe-area-inset-bottom, 0px)); }
+  .sw-app-content .dashboard-map-layout { height: calc(100dvh - 70px - env(safe-area-inset-bottom, 0px)); }
   .sw-app-content .qc-workspace { min-height: calc(100svh - 70px); }
   .sw-app-content { padding-bottom: calc(70px + env(safe-area-inset-bottom, 0px)); }
 }

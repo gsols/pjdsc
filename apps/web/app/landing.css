@@ -18,21 +18,7 @@
   overflow-x: clip; background: var(--home-bg); color: var(--home-text);
   font-family: 'DM Sans', sans-serif; -webkit-font-smoothing: antialiased;
 }
-.sw-home[data-theme='dark'] {
-  --home-bg: #142d41; --home-text: #e5eef1; --home-muted: #a4bac8;
-  --home-line: #345166; --home-teal: #91c8c4; --home-blue: #c4dce9; --home-sand: #d5bf9a;
-  --model-lit-start: #a4bac5; --model-lit-end: #7d9cab;
-  --model-shade-start: #52748a; --model-shade-end: #34576c;
-  --model-roof-start: #d3e1e7; --model-roof-end: #aac0cd;
-  --model-glass-start: #3b687f; --model-glass-end: #173a51;
-  --model-site-start: #284e61; --model-site-end: #1b3c50;
-  --model-evidence-bottom: #3a4b53; --model-evidence-middle: #576767; --model-evidence-top: #7b8c88;
-  --model-site-edge: #1c3a4c; --model-site-stroke: #7dabb7;
-  --model-recess: #7998a8; --model-rim: #c0d3dd;
-  --model-shadow: #071725; --model-highlight: #ecf7fb; --model-detail: #779aa9;
-  --home-atmosphere: #2c506341;
-  --home-dot: #95b8c96b; --home-dot-highlight: #b1e2eac7;
-}
+
 .sw-home a { color: inherit; text-decoration: none; }
 .sw-home a:focus-visible { outline: 2px solid var(--home-teal); outline-offset: 7px; border-radius: 3px; }
 .home-app-bar { display: flex; align-items: center; justify-content: space-between; gap: 24px; min-height: 74px; padding: 17px 42px; border-bottom: 1px solid var(--home-line); }
@@ -64,11 +50,25 @@
 .home-eyebrow { margin: 0 0 17px; color: var(--home-teal); font-size: 10px; line-height: 1.6; letter-spacing: 0.12em; text-transform: uppercase; }
 .sw-home h1 { margin: 0; color: var(--home-text); font: 500 clamp(27px, 2.7vw, 42px)/1.15 'Space Grotesk', sans-serif; letter-spacing: -0.045em; }
 .home-intro > p:last-child { margin: 19px 0 0; color: var(--home-muted); font-size: 13px; line-height: 1.8; }
-.home-model-wrap { position: relative; width: min(calc(100% - 24px), 1180px); aspect-ratio: 1100 / 720; }
-.home-model { display: block; width: 100%; height: auto; overflow: visible; animation: home-model-float 5s ease-in-out infinite; }
+.home-model-wrap {
+  --research-reveal: 720ms; --dashboard-reveal: 1280ms; --simulation-reveal: 1580ms;
+  position: relative; width: min(calc(100% - 24px), 1180px); aspect-ratio: 1100 / 720;
+}
+.home-model { display: block; width: 100%; height: auto; overflow: visible; animation: home-model-float 5s ease-in-out 2s infinite; }
 .home-model-wrap:has(.home-model-part:hover, .home-model-label:hover) .home-model,
 .home-model-wrap:focus-within .home-model { animation-play-state: paused; }
 @keyframes home-model-float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-18px); } }
+/* Assemble once per Home mount. Inner groups own the entrance transform so
+   outer navigation links retain their independent hover/focus emphasis. */
+.hm-assembly-layer { animation: home-layer-settle 1000ms cubic-bezier(.22, .72, .25, 1) both; }
+.hm-assembly-evidence { --assembly-x: -300px; animation-delay: 40ms; }
+.hm-assembly-site { --assembly-x: 340px; animation-delay: 600ms; }
+.hm-assembly-building { --assembly-x: -360px; animation-delay: 900ms; }
+@keyframes home-layer-settle {
+  from { opacity: 0; transform: translate(var(--assembly-x), -18px); }
+  65% { opacity: 1; }
+  to { opacity: 1; transform: translate(0, 0); }
+}
 .hm-reference { fill: none; stroke: var(--model-detail); stroke-width: 0.65; opacity: 0.28; pointer-events: none; }
 .home-model-part { cursor: pointer; transition: translate 300ms cubic-bezier(.2,.65,.3,1), filter 300ms ease; }
 .home-model-part polygon { stroke-linejoin: round; stroke-width: 0.8; transition: stroke 250ms ease; }
@@ -99,21 +99,44 @@
 .home-model-wrap[data-active='research'] .hm-evidence { translate: 15px 12px; filter: drop-shadow(-6px 3px 8px #081a2770); }
 .home-model-wrap[data-active='research'] .hm-evidence-top { stroke: var(--home-sand); stroke-width: 1.8; }
 .hm-leaders { fill: var(--home-bg); stroke: var(--home-muted); stroke-width: 0.8; pointer-events: none; }
-.hm-leaders path { fill: none; transition: stroke 200ms ease; }
+.hm-leader { animation: home-connector-reveal 250ms ease-out var(--leader-delay) both; }
+.hm-leader-dashboard { --leader-delay: calc(var(--dashboard-reveal) - 100ms); }
+.hm-leader-simulation { --leader-delay: calc(var(--simulation-reveal) - 100ms); }
+.hm-leader-research { --leader-delay: calc(var(--research-reveal) - 100ms); }
+.hm-leaders path {
+  fill: none; stroke-dasharray: 1; stroke-dashoffset: 0;
+  animation: home-connector-draw 620ms cubic-bezier(.22, .72, .25, 1) var(--leader-delay) both;
+  transition: stroke 200ms ease;
+}
+@keyframes home-connector-reveal { from { opacity: 0; } to { opacity: 1; } }
+@keyframes home-connector-draw { from { stroke-dashoffset: 1; } to { stroke-dashoffset: 0; } }
 .hm-leaders path.is-active { stroke: var(--home-teal); stroke-width: 1.5; }
 .home-model-label {
   position: absolute; z-index: 3; display: flex; flex-direction: column; align-items: flex-start;
   gap: 8px; min-height: 78px; padding: 8px 0 12px; width: 230px;
   background: linear-gradient(90deg, var(--home-bg), color-mix(in srgb, var(--home-bg) 90%, transparent) 82%, transparent);
   color: var(--home-text); transition: translate 250ms ease;
+  animation: home-label-reveal 620ms ease-out var(--label-delay) both;
 }
-.home-label-dashboard { left: 5.2%; top: 65.5%; --home-label-color: var(--home-teal); }
-.home-label-simulation { left: 76%; top: 16%; --home-label-color: var(--home-blue); }
-.home-label-research { left: 72%; top: 86.5%; --home-label-color: var(--home-sand); }
+.home-label-dashboard { left: 5.2%; top: 65.5%; --home-label-color: var(--home-teal); --label-delay: var(--dashboard-reveal); }
+.home-label-simulation { left: 76%; top: 16%; --home-label-color: var(--home-blue); --label-delay: var(--simulation-reveal); }
+.home-label-research { left: 72%; top: 86.5%; --home-label-color: var(--home-sand); --label-delay: var(--research-reveal); }
+@keyframes home-label-reveal {
+  from { opacity: 0; transform: translateY(7px); pointer-events: none; }
+  to { opacity: 1; transform: translateY(0); pointer-events: auto; }
+}
+/* Keyboard users can reveal and open a destination without waiting; overriding
+   properties leaves the one-shot animation timeline intact when focus moves. */
+.home-model-label:focus-visible { opacity: 1 !important; transform: none !important; pointer-events: auto !important; }
 .home-label-kicker { display: flex; align-items: center; gap: 12px; color: var(--home-muted); font-size: 9px; line-height: 1.6; letter-spacing: 0.1em; text-transform: uppercase; }
 .home-label-kicker > span { color: var(--home-label-color); font-variant-numeric: tabular-nums; }
 .home-label-title { display: flex; align-items: center; gap: 10px; color: var(--home-label-color); font: 500 22px/1.3 'Space Grotesk', sans-serif; letter-spacing: -0.025em; }
-.home-label-title svg:last-child { margin-left: 6px; opacity: 0.55; transition: translate 200ms ease, opacity 200ms ease; }
+.home-label-title svg:last-child {
+  margin-left: 6px; opacity: 0.55;
+  animation: home-arrow-arrive 650ms cubic-bezier(.22, .72, .25, 1) calc(var(--label-delay) + 80ms) both;
+  transition: translate 280ms cubic-bezier(.22, .72, .25, 1), opacity 200ms ease;
+}
+@keyframes home-arrow-arrive { from { transform: translate(-5px, 5px); } to { transform: translate(0, 0); } }
 .home-label-description { color: var(--home-muted); font-size: 11px; line-height: 1.7; }
 .home-model-label::after { content: ''; width: 30px; height: 1px; margin-top: 3px; background: var(--home-label-color); opacity: 0.35; transition: width 250ms ease, opacity 250ms ease; }
 .home-model-label.is-active::after { width: 75px; opacity: 1; }
@@ -186,15 +209,7 @@
 
 .home-app-tools { display: flex; align-items: center; gap: 8px; }
 .home-app-tools .home-scope { margin-right: 17px; }
-.home-tool { position: relative; }
-.home-canvas-control.text-button { display: grid; place-items: center; width: 38px; min-height: 38px; padding: 0; border: 1px solid transparent; border-radius: 7px; background: transparent; color: var(--home-muted); }
-.home-canvas-control.text-button:hover { background: color-mix(in srgb, var(--home-teal) 9%, var(--home-bg)); border-color: var(--home-line); color: var(--home-text); }
-.home-canvas-control:focus-visible { outline: 2px solid var(--home-teal); outline-offset: 3px; }
-.home-canvas-control:disabled { opacity: 0.5; cursor: default; }
-.home-tool-label { position: absolute; z-index: 10; right: 0; top: calc(100% + 9px); width: max-content; max-width: 225px; padding: 9px 12px; border: 1px solid var(--home-line); border-radius: 6px; background: var(--home-bg); color: var(--home-text); font-size: 11px; line-height: 1.6; box-shadow: 0 6px 16px #19354b12; opacity: 0; visibility: hidden; pointer-events: none; }
-.home-tool:hover .home-tool-label, .home-tool button:focus-visible + .home-tool-label { opacity: 1; visibility: visible; }
 @media (max-width: 700px) {
   .home-app-tools { margin-left: auto; }
   .home-app-tools .home-scope { display: none; }
-  .home-canvas-control.text-button { width: 40px; min-height: 44px; }
 }
