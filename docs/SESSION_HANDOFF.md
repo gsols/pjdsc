@@ -1,7 +1,42 @@
 # Simulation session handoff
 
-Updated 2026-10-27 06:57 +08:00 (Asia/Manila). Read root/scoped AGENTS.md first.
+Updated 2026-11-15 20:34 +08:00 (Asia/Manila). Read root/scoped AGENTS.md first.
 Preserve existing working-tree edits; do not restart the application or replace data.
+
+## Current continuation — Home workspace and shared navigation
+
+See `docs/home-workspace-design.md` and the timestamped change-request log.
+`/` is now a Home view inside a shared icons-only navigation frame, with a
+clickable architectural hospital derived from the teammate's original model.
+The catchment, building, and evidence sheets link to Dashboard, Simulation, and
+Research. The existing pages, engine startup, APIs, and controls remain in place.
+Home always starts light on mount/reload; its theme toggle supports dark for the
+current visit only. Older saved theme preferences are no longer read or written.
+The model floats 18px over five seconds, pauses on hover/focus, and honors reduced
+motion. No pause button, geographic rail caption, model-index heading, or visible
+conceptual-facility caption remains. Historical/hypothetical/live-data boundaries
+remain in the in-app status strip. The user approved a localized static dot
+background: light/dark tokens, desktop/mobile fade masks, and pointer-safe CSS.
+Latest dot revision makes the base pattern more visible and adds a local
+pointer highlight via `home-dot-field.tsx`. It uses a single queued animation
+frame, cleans up on exit/unmount, and excludes touch/coarse/reduced-motion input.
+
+Latest frontend tests: 51 passed; standalone lint and TypeScript passed. Final
+production build and diff whitespace checks passed. Earlier browser inspection covered the dark
+model and mobile layouts, but the final light/theme/animation/tooltip revision
+has not completed browser verification: browser checks were interrupted during
+the iterative feedback. Do not claim final browser coverage without rerunning it.
+No npm install was needed with the existing dev server/dependencies.
+
+No backend/raw/source data was edited. Four processed forecasting artifacts were
+already modified at the start and are preserved outside the UI commit scope.
+User requested committing/pushing `feat/ui-changes`. Authenticated GitHub API
+verification confirms personal `aquaryasss` (ID 171597477). SSH authentication is
+unavailable; use HTTPS with the authenticated gh credential helper. Fetching main
+confirmed it equals the branch's pre-UI base (`286fffb`), with no merge required.
+Git commit identity must be explicitly personal: `aquaryasss` and
+`171597477+aquaryasss@users.noreply.github.com`; the inherited default is a work
+identity. Check Git history/upstream for commit/push completion. No deployment.
 
 ## Current continuation — wake the engine from the landing dashboard
 

@@ -1,5 +1,54 @@
 # User-requested extensions
 
+## 2026-11-15 20:33:39 +08:00 — sync and publish the UI branch
+
+User requested fetching/integrating main before committing and pushing the
+current branch, `feat/ui-changes`. Fresh authenticated fetch confirms no new
+main commits. Personal GitHub account `aquaryasss` is verified through the API;
+use personal noreply author/committer identity and authenticated HTTPS because
+SSH is unavailable. Keep the four pre-existing processed forecasting-artifact
+edits local and outside this UI commit. No backend/source-data changes or deployment.
+
+## 2026-11-15 20:24:49 +08:00 — always open Home in light mode
+
+User requested light mode as the default. Remove restoration/persistence of the
+Home theme so an older dark preference cannot override the light initial state.
+Keep the current-visit light/dark toggle. Fresh mounts/reloads start light.
+No other page, backend, source data, or simulation behavior changes.
+
+## 2026-11-15 20:21:14 +08:00 — stronger dots and pointer response
+
+User found the background dots nearly invisible and requested a subtle hover
+effect. Increase dot size, contrast and faded coverage in both Home themes.
+A separate, aligned dot layer softly enlarges/brightens the dots within 150px
+of a fine pointer. Passive canvas listeners update presentation-only CSS
+coordinates once per animation frame; pointer exit/cancel removes the highlight.
+The layer never handles clicks. Coarse/touch pointers and reduced-motion users
+retain the static field. No calculations, source data, or workspace features
+change. See [Home workspace design](home-workspace-design.md).
+
+## 2026-11-15 20:14:59 +08:00 — localized Home background dots
+
+User accepted the sparse static dot-field recommendation. Add theme-aware dots
+around the hospital with a soft mask fading near text/edges; adjust the mask for
+narrow screens. Keep the decorative layer non-interactive and preserve the
+hospital as the moving element. See [Home workspace design](home-workspace-design.md).
+
+## 2026-11-15 20:12:16 +08:00 — Home inside the application
+
+User replaced the standalone landing direction with a Home view in the shared
+application frame. Retain the teammate's hospital motif, redesigned as clickable
+architectural regions for Dashboard, Simulation, and Research. Use icons-only
+navigation with custom hover/focus descriptions and visible current-page state.
+Default to a refined light palette, with a Home light/dark toggle. Remove the
+model heading, visible conceptual-facility caption, and sidebar QC/PH caption.
+The hospital floats more visibly and stops on hover/focus; remove the pause
+button. Tooltips must clear when the pointer leaves, including after theme clicks.
+Respect reduced motion and preserve all backend behavior and existing features.
+Git actions must use personal `aquaryasss`, never the work identity; no commit or
+push has been performed. Scope: [Home workspace design](home-workspace-design.md).
+Sparse background dots were approved in the subsequent entry above.
+
 ## 2026-11-15 00:38:57 +08:00 — public landing page
 
 User requested a landing page inspired by a supplied isometric hospital-on-map
