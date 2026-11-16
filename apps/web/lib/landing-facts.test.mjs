@@ -26,9 +26,9 @@ test('landing barangay figures match the observed annual burden file', () => {
   assert.equal(LANDING_FACTS.lastYear, Math.max(...years));
 });
 
-test('landing page renders figures from the checked facts, not hard-coded copies', () => {
+test('landing page never hard-codes copies of the checked figures', () => {
+  // Home shows no figures at the moment; if it does again, they must come from LANDING_FACTS.
   const page = readFileSync(new URL('../app/page.tsx', import.meta.url), 'utf8');
-  assert.match(page, /LANDING_FACTS/);
   for (const literal of ['9,389', '9389', '>46<', '>142<']) assert.ok(!page.includes(literal), `hard-coded ${literal}`);
   assert.equal(formatCount(LANDING_FACTS.accreditedBeds), '9,389');
 });

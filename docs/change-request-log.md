@@ -1,5 +1,197 @@
 # User-requested extensions
 
+## 2026-11-16 22:05 +08:00 — arrival order: hospital first
+
+User asked for the hospital first again. Each piece still rises out of the dark teal tile;
+the order is now the hospital with its platform, then the top, middle and bottom bands, with
+the Dashboard, Simulation and Research labels appearing in that order.
+
+## 2026-11-16 21:48:57 +08:00 — arrival slowed, then rebuilt as a bottom-up stack; document lines removed
+
+Arrival slowed by 50%, then changed after a user-supplied Pinterest video (0:01-0:03,
+frames captured in a local browser): the stack builds from the bottom up, each layer
+rising out of the dark teal tile with a small settle, bottom band first, then middle,
+top, platform and hospital; a soft glow gathers on the tile. A "twisting books" variant
+was tried and reverted at the user's request. The decorative document lines and tab on
+the top band were removed.
+
+## 2026-11-16 21:23:25 +08:00 — layer hovers, sprouting arrival, Quezon City tile, header and hint removed
+
+User requests in sequence:
+- Hovering Dashboard, Simulation or Research animates the band its leader points to
+  (top, middle, bottom): it slides out up-left, takes its label's text colour (teal,
+  blue, sand) and casts a shadow. The model's earlier whole-part lifts are off here.
+- Arrival: the parts sprout up out of the dark teal tile instead of sliding in from the
+  sides: the hospital with its platform, then the top, middle and bottom bands; labels
+  appear as their band arrives; the float starts afterwards.
+- Quezon City's outline moved from the platform onto the dark teal tile, with diagonal
+  stripes inside it and a "QUEZON CITY" label lying on the tile.
+- Hovered map tiles rise half as much (15 px) and no longer brighten; light-grey stripes
+  in the outline colour fill the inside of their city outline instead.
+- The Home header bar and the "Hover or focus to explore" hint were removed; the intro
+  words moved down by half their height and are 10% larger; Research label moved further
+  (42% right, 60% down of its size).
+
+## 2026-11-16 20:52:45 +08:00 — label positions and leader lines
+
+User repositioned the model's labels: Dashboard onto the tile up-left of the hospital,
+clear of the dark teal tile; Simulation and Research nudged by shares of their own size
+(Simulation 15% right and 70% up, Research 35% right and 30% down, CSS `translate`
+inside `.home-map-overlay`). Leader lines now start on the three thin layers under the
+platform: the top layer for Dashboard, the middle for Simulation, the bottom for Research
+(`components/landing-hero-art.tsx`).
+
+## 2026-11-16 20:34:53 +08:00 — close-up field, real city outlines, single-tile hover, restored hospital model
+
+User requests in sequence: a close-up of the field (tiles about 2.4x larger); tile
+patterns based on real cities (only Metro Manila city boundaries ship with the project,
+so the 16 other than Quezon City are used, simplified onto a 12 x 12 grid and traced in
+the blocky style); only the hovered tile rises; tile patterns in the tile-border grey;
+the earlier hospital navigation model brought back with its animation, its Dashboard,
+Simulation and Research parts and labels, and the intro words; Quezon City's outline on
+the platform under the hospital; the illustrative note removed. The user then asked to
+keep the hospital where it was at tile scale: the model is placed by the map over the
+dark teal Quezon City tile at the same size and float height as the canvas hospital it
+replaces. Other Luzon cities (Angeles, San Fernando, Antipolo, Calamba) would need
+boundary data the project does not have.
+
+## 2026-11-16 19:28:23 +08:00 — four tiles light up on hover; the building floats too
+
+User asked for the hover to look like a Pinterest pin (only its preview frame was
+retrievable: pale tiles with single tiles raised and lit warm white from inside), with
+four tiles for now, and for the hospital to float. Hovering now lights the hovered tile
+and three nearby tiles in quick succession, raised slightly and glowing warm white with
+light spilling around them. The building additionally floats above its platform with a
+soft shadow. Details: [Home workspace](home-workspace-design.md).
+
+## 2026-11-16 19:18:58 +08:00 — the hospital platform floats
+
+User asked for the hospital tile to animate as if floating. The platform and hospital
+bob 5 px up and down on a 3.2 s sine cycle above the dark teal tile, whose soft shadow
+fades as the platform rises. Still under reduced motion. While no tile is raised, the
+static field is cached so each frame only redraws the hospital. Details:
+[Home workspace](home-workspace-design.md).
+
+## 2026-11-16 19:08:02 +08:00 — hospital moved one tile right; a mini-map on every tile
+
+User asked to move the hospital onto the tile they pointed at (one tile to the right on
+screen) and for every tile to carry its own invented map inspired by a blocky world-map
+reference, without its colours. The hospital tile moved via `cityStep` with the grid
+anchored in place; each tile now has stepped landmasses with cut corners and small
+islands. Details: [Home workspace](home-workspace-design.md).
+
+## 2026-11-16 18:53:03 +08:00 — isometric line-art field, hospital on a floating platform
+
+User asked for the tiles at an isometric angle, then for a look like a supplied
+reference (pale diamond tiles with map-like line-art, the hospital on a layered platform
+above a dark tile), keeping the interactive hover. Home now draws an isometric field of
+invented line-art tiles; tiles near the cursor rise and glow terracotta; the hospital
+floats on its layered platform above the dark teal Quezon City tile and still zooms into
+the simulation when clicked. Details: [Home workspace](home-workspace-design.md).
+
+## 2026-11-16 14:35:45 +08:00 — tiled field returns, with the hospital and the simulation palette
+
+User asked to bring back the tiled-field format while keeping the cursor-bump hover,
+to place the earlier isometric hospital on the darkest (Quezon City) tile, to match the
+landing page's colours to the simulation page, to remove the Home status bar for now,
+and then made the hospital smaller. The field is drawn on a canvas in the simulation
+palette; every tile rises and glows terracotta around the cursor; the hospital stands
+on the dark teal Quezon City tile at about the tile's width, and clicking it zooms into
+the simulation. The southern Luzon cube grid and its generator were removed. Details:
+[Home workspace](home-workspace-design.md).
+
+## 2026-11-16 14:25:24 +08:00 — every cube interactive; cubes the size of the first blocks
+
+User asked for all cubes to respond to hover, not only the white land cubes, and for
+cubes the size of the first cube design (the 90 px tiled-field blocks). Water and the
+Quezon City cube now rise and glow too (Quezon City only partly, to stay recognisable);
+the grid is 16 × 10 cubes of 90 px, with the hover radius and lift scaled to match.
+Shadows are now drawn as shading on cube tops beside taller neighbours. Details:
+[Home workspace](home-workspace-design.md).
+
+## 2026-11-16 13:44:18 +08:00 — southern Luzon as a cube map with a cursor glow
+
+User changed direction: render their regional map of southern Luzon as cubes like a
+voxel reference image (cubes about three times larger), with the hover animation of a
+Pinterest pin. Only the pin's title was retrievable, so the hover follows the reference
+image: land cubes rise in a smooth bump around the cursor and glow warm. The grid comes
+from the shipped boundaries via `scripts/generate-home-map.py`; Quezon City's navy cubes
+zoom into the simulation when clicked. Drawn on a canvas for performance. Hospital
+pop-ups were dropped. Details: [Home workspace](home-workspace-design.md).
+
+## 2026-11-16 13:29:56 +08:00 — sections become a tiled field of soft blocks
+
+User changed direction and supplied a tiled 3D-block poster as inspiration for the
+sections (not copied: no text, chevrons or orange). Home is now a grid of square
+tiles split by a stepped edge into a honeydew zone and a powder-blue zone, with some
+tiles resting raised as soft blocks with long shadows and a few dot patterns. Hovering
+a flat tile raises it into a block and pops up illustrative hospital buildings; the
+resting raised blocks are decoration and do not respond (user request). The navy
+Quezon City tile near the centre zooms into the simulation when clicked. The field is
+built in code from a fixed seed (`lib/home-city-map.ts`); the Python generator and
+generated data file were removed. Details: [Home workspace](home-workspace-design.md).
+
+## 2026-11-16 13:11:59 +08:00 — invented city plan; Quezon City district zooms into the simulation
+
+User feedback in sequence: zoom out further; sections were too small, then too
+uniform and "game like" (asked for cleaner, more varied blocks after a city-plan
+reference); hospitals should pop up in the surrounding sections, not in Quezon City;
+remove the hover hint chips and the Quezon City label; Quezon City need not be its
+real shape, because its purpose is the transition: opening the simulation from Home
+zooms into the small Quezon City district first.
+
+Home now shows an invented, angled city plan (mixed street spacing, diagonal avenues,
+a curved road, blocks subdivided into lots). Hovering a lot raises it and pops up
+illustrative hospital buildings there only. A small unlabeled Quezon City district
+near the centre pulses softly; clicking it zooms the map into it (900 ms, centred via
+`zoomOrigin`) and then opens `/outbreak-response`; reduced motion navigates at once.
+The page notes that the map, sections and buildings are invented. The real-data
+version below (barangay sections, PhilHealth buildings) is superseded.
+
+## 2026-11-16 12:55:44 +08:00 — angled city map; hospitals pop up only on hover
+
+User supplied an angled illustrated city map as a style reference (not to be
+copied) and asked that only Quezon City be real, with larger sections, and that
+hovering a section pop up hospital buildings only there; no arrows or lines for
+now; then zoomed out 30%. Home now shows an angled map: Quezon City's real outline
+in 14 sections of grouped real barangays, invented blocks, roads and trees around
+it, and on hover the section rises and its PhilHealth-accredited hospitals (all 46,
+provisional points, height by accredited beds) pop up as small buildings. This
+replaces the Manila Bay mosaic below. Details: [Home workspace](home-workspace-design.md).
+No data, models or engine behaviour changed.
+
+## 2026-11-16 12:38:34 +08:00 — Home becomes an abstract, hoverable map
+
+User asked for a map on Home where hovering highlights and raises the area under
+the cursor and its nearest hospitals appear along connecting lines, as on the
+simulation map. A first attempt followed the user's design reference too closely
+(centered two-line headline with the logo inline, single centered button, route
+line and street line-art); the user rejected the copying and the large headline,
+and asked for an abstract version of a regional map around Manila Bay instead.
+
+Home is now an abstract mosaic map of the Manila Bay area generated from the
+shipped boundary files, with Quezon City's real boundary dashed as the study area.
+Tiles raise on hover/tap and link their three nearest invented hospital pins; the
+map is labeled illustrative and hidden from assistive technology. The hospital
+navigation model, dot field and their tests were removed; there is no headline or
+call to action yet. Details: [Home workspace](home-workspace-design.md). No data,
+models or engine behaviour changed.
+
+## 2026-11-16 11:45:48 +08:00 — new SurgeWise logo on the landing-page-improvements branch
+
+User asked for a `feat/landing-page-improvements` branch based on
+`feat/ui-changes`, carrying the new logo they supplied on 2026-11-15 (navy "S"
+and teal "W" ribbon, red line from a hotspot dot to a medical cross). Brought
+over the transparent PNGs from `feat/new-logo`: `public/brand/surgewise-mark.png`,
+`surgewise-mark-on-dark.png`, `surgewise-logo.png` and `app/icon.png`; removed
+the old wave-mark SVGs and `app/icon.svg` (`hospital-pin.svg` stays).
+`components/surgewise-mark.tsx` keeps its props and now renders the PNG
+(`on-light` default; `on-dark`/`badge` use the light-S variant). The application
+rail shows it at 28 px high (47 px wide) to fit the 54 px brand slot; the shared
+loader shows it at 88 px. CSS that recoloured the old SVG's paths in the rail
+and loader was removed, and `workspace-opening.test.mjs` now checks for the PNG.
+No data, models or engine behaviour changed.
+
 ## 2026-11-16 02:30:23 +08:00 — shared brand loading and stable, clean map opening
 
 User reported marker repositioning during refresh, hover-triggered lines and
