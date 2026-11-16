@@ -62,5 +62,3 @@
   .sw-nav-link:hover .sw-nav-icon { translate: none; }
 }
 
-.sw-rail-brand svg > g > path { stroke: var(--rail-active-text); }
-.sw-rail-brand svg > g > g { fill: var(--rail-text); }

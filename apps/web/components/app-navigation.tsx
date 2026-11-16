@@ -25,7 +25,7 @@ export default function AppNavigation() {
   return (
     <aside className="sw-app-rail" aria-label="SurgeWise workspace navigation">
       <Link href="/" className="sw-rail-brand" aria-label="SurgeWise home" prefetch={false}>
-        <SurgeWiseMark size={36} variant="on-light" />
+        <SurgeWiseMark size={28} variant="on-light" />
       </Link>
       <nav className="sw-app-nav" aria-label="Main navigation" data-dismissed={dismissed}>
         {DESTINATIONS.map(({ href, label, description, Icon }) => {

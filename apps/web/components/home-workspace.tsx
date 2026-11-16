@@ -22,12 +22,7 @@ export default function HomeWorkspace({ children }: { children: ReactNode }) {
     <main className="sw-home" id="home-main" aria-busy={!entered}>
       <WorkspaceLoader active={phase === 'loading'} label="Opening SurgeWise" />
       <div className="home-reveal-content" data-ready={entered} inert={!entered || undefined} aria-hidden={!entered || undefined}>
-      <div className="home-app-bar">
-        <div className="home-wordmark">SurgeWise <span>/ Home</span></div>
-        <div className="home-app-tools">
-          <span className="home-scope">Quezon City <span aria-hidden="true">/</span> Research prototype</span>
-        </div>
-      </div>
+      {/* The Home header bar was removed at the user's request; the navigation rail stays. */}
       {children}
       </div>
     </main>
