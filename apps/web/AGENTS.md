@@ -19,9 +19,31 @@ Keep `/dashboard` as overview and add routes as needed, preferably:
 - `/simulate`: 28-day hospital scenario workspace with admitted, surge, holding, unresolved demand, and methods/provenance.
 - `/outbreak-response`: dedicated unexpected/off-season outbreak lab with day 0–28 slider and days 7/14/28 shortcuts, interventions and side-by-side scenarios.
 - `/validation` and `/sources`: backtest details, caveats, bibliography, and dataset provenance.
-`/` is the public landing page (user request 2026-11-15, see `docs/change-request-log.md`); `/dashboard` remains the map overview. Landing figures must come from `lib/landing-facts.ts` and stay covered by its data-consistency test. Add navigational affordances without a disruptive rewrite.
+`/` is Home inside the shared application navigation (user revision 2026-11-15;
+see `docs/home-workspace-design.md` and `docs/change-request-log.md`). Preserve its
+clickable hospital model, icons-only rail/custom hover labels, light appearance,
+and hover/focus-paused floating motion with reduced motion. The user removed the
+Home-only theme toggle during the dashboard revision. See
+`docs/dashboard-workspace-design.md` for the map-first dashboard, custom selectors,
+independent hospital-results scrolling, 3D context and removed imagery options.
+`/dashboard` remains the map overview. Landing figures must come from
+`lib/landing-facts.ts` and stay covered by its data-consistency test. Preserve
+existing workspace controls and backend behavior when evolving the UI.
 
 ## Functional UI contract
+
+User revision 2026-11-16: `docs/simulation-workspace-design.md` supersedes the
+older left/right/bottom placement requirements below. Preserve both modes,
+independent forms, every assumption/control, day-zero gating and all results;
+use one optional contextual panel and a persistent bottom timeline. Hospital
+pins share their renderer and style with Dashboard. Marker pulses are cosmetic,
+respect reduced motion, and never indicate verified live availability. Explicit
+selection reveals directional barangay-to-hospital links and smoothly frames the
+selected network and boundary. Playback must not automatically recenter the map;
+source coordinates and saved placement direction remain unchanged. Shared logo
+loading and animation sequencing follow `docs/workspace-loading-design.md`.
+Overlap-guide lines are removed; hovering only reveals labels. Keep the legend
+consistent with the renderer through the shared line-style definitions.
 
 User extension 2026-10-24 21:19:03 +08:00: preserve the left-sidebar Historical
 replay/Future surge forecast tabs, independent controls, arbitrary 1–28-day

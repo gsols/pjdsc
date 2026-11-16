@@ -1,5 +1,185 @@
 # User-requested extensions
 
+## 2026-11-16 02:30:23 +08:00 — shared brand loading and stable, clean map opening
+
+User reported marker repositioning during refresh, hover-triggered lines and
+legend inconsistencies, then requested smooth opening comparable with Dashboard.
+The first camera/layout ordering and synchronous resize are corrected. Official
+QC geometry controls the initial extent independently of scenario response timing.
+
+Additional request: reuse a Facebook-style centered SurgeWise-logo loading screen
+in the main content area, with Home's background and a restrained pulse. Home
+shows it briefly before its existing animations start; maps use it while preparing.
+Keep the application rail available. Preserve reduced motion, readiness/error
+states and all backend features/data. Relevant specifications:
+`docs/workspace-loading-design.md`, `docs/home-workspace-design.md`,
+`docs/dashboard-workspace-design.md`, `docs/simulation-workspace-design.md`.
+
+Latest revision removes overlap-guide lines entirely, including on click, while
+preserving the intended proximity/context/saved-placement links. The optional
+all-connections view now uses the same marker-centered renderer as inspection.
+The legend shares line styles with the renderer and covers rank, provisional
+hospital dot, unranked linked barangays, neutral/selected polygons, holding and
+conditional expansion boundaries. Older hover/selection-guide requirements below
+are superseded. No coordinates, forecasts, admissions or capacity definitions change.
+
+## 2026-11-16 01:49:53 +08:00 — selection links, circular markers and smooth camera focus
+
+User reported stretched barangay markers and detached guide lines. Fix the marker
+layout rather than changing its data: MapLibre owns absolute geographic
+positioning, and the circular inner symbol must fill its square container.
+Only hovered/inspected icons reveal their overlap guide and coordinate anchor.
+
+Clicking a barangay reveals links to the engine-ranked three nearest hospitals
+and mapped hospitals inside it. Clicking a hospital shows incoming connections
+and saved modeled placements involving that hospital. Direction stays barangay
+to hospital, including hospital inspection; cosmetic chevrons do not imply live
+patient movement, verified travel routes or referral advice. Proximity, modeled
+placements and nearest-ranked context retain separate styles. Day zero has no
+invented placements. Repeated selection retriggers the reveal; reduced motion
+shows static links. The optional all-connections layer remains available.
+
+Additional request: clicking a place from a wide map view should smoothly focus
+the selected network, then move directly to another selected network. Frame all
+linked endpoints and the selected barangay's official boundary, account for the
+inspector and map overlays, cap close zoom, and avoid camera jumps during playback.
+
+Scoped specification: `docs/simulation-workspace-design.md`. No backend or
+scientific-model changes; all source coordinates remain unchanged.
+
+## 2026-11-16 01:16:42 +08:00 — simulation redesign and inspector/marker refinement
+
+User authorized the map-first simulation redesign while preserving important
+features and information. Use Dashboard cartography and styling, one optional
+contextual panel and a compact timeline. Consolidate redundant inspection and
+export controls; preserve the complete modes/forms, 1–28-day windows, comparison,
+charts/tables, assumptions, validation, sources and reproducible export.
+
+Subsequent feedback: organize place/hospital inspection with aligned facts and
+separate actions; remove thick marker outlines, unify hospital pins between pages,
+add subtle pulses and reduce selected polygon outline thickness. The empty
+red/green circles were duplicate underlying point/halo layers, not a new category.
+Visible duplicate halos are removed, with tiny neutral coordinate anchors retained
+for displaced icons. Pulses do not encode live status; reduced motion disables
+them. Both pages use the same provisional hospital symbol without its outer white
+border. Case colors use a darker ordered green/ochre/orange scale; rank numbers
+remain annual burden ranks, not case counts or confirmed outbreaks.
+
+Scoped specification: `docs/simulation-workspace-design.md`. No engine, API,
+source dataset, capacity definition or simulation calculation changes.
+
+## 2026-11-16 00:06:56 +08:00 — dashboard refinement and imagery deferral
+
+Latest user revision: use a pin silhouette with a thick rounded medical cross
+for hospitals; remove satellite and regional imagery while retaining 3D. Explain
+the item behind the map key: it was the metric distance scale. Reserve separate
+space below the key so both remain legible. These revisions supersede the
+experimental imagery options added during the dashboard iteration.
+
+The accepted dashboard direction removes the redundant header, prioritizes the
+map and uses one optional explorer for Hospitals/Layers/Evidence and inspection.
+Fullscreen hides the global rail. Custom dropdowns replace native geography and
+ownership selectors; focus styling belongs to the complete search field; hospital
+results scroll independently of source totals and filters. Palette and markers
+follow Home's light surfaces and teal accents, with custom street cartography.
+The Home-only dark mode was removed at the user's request because it was not
+shared across workspaces. Home model/dot/label animations remain intact.
+
+Scoped specification: `docs/dashboard-workspace-design.md`. Backend behavior,
+datasets and simulation features remain unchanged. All hospital positions remain
+provisional and accredited beds remain distinct from unknown operational beds.
+
+## 2026-11-15 22:38:20 +08:00 — retain explicitly selected appearance
+
+User clarified that selecting dark mode should survive refresh. Restore the
+explicit light/dark choice from browser storage and save only user toggles.
+Light remains the default with no valid saved preference or unavailable storage.
+This supersedes the earlier always-light-on-refresh revision; Home-only scope
+and all animation/navigation behavior are unchanged.
+
+## 2026-11-15 22:34:01 +08:00 — coordinated label-arrow movement
+
+User requested movement in label arrows to coordinate the entrance. Connector
+lines now draw from each model part toward its label, starting 100ms before the
+label fade. The label's arrow glides diagonally into place 80ms after that fade
+begins, then retains its hover/focus nudge. Shared timing variables keep all three
+parts aligned. All connector and arrow entrances run once per mount and respect
+reduced motion. No additional background loops or changes to navigation/data.
+
+## 2026-11-15 22:31:14 +08:00 — labels fade in as the model settles
+
+User requested fading labels during the assembly. Research, Dashboard, then
+Simulation labels fade and gently rise into place, timed to their corresponding
+model groups. Each reveal lasts 620ms, starting at 720/1280/1580ms. Keyboard focus
+reveals a label immediately without resetting the animation; reduced-motion
+users see all labels immediately. Shared navigation is always available.
+
+## 2026-11-15 22:27:55 +08:00 — grouped research entrance and slower assembly
+
+User requested that the research sheets enter together, not individually, and
+that the assembly be slightly slower. Use one entrance group for all research
+sheets; increase each entrance from 850ms to 1000ms. Catchment starts at 600ms,
+hospital at 900ms, and floating begins at the 2s mark, after the last arrival.
+All existing navigation, hover/focus, and reduced-motion behavior remains.
+
+## 2026-11-15 22:23:34 +08:00 — opposing-side hospital assembly
+
+User requested an entrance that stacks the model's layers on first load, then
+clarified that pieces should arrive from two sides and stack at the center.
+Animate three evidence sheets, catchment and hospital in alternating left/right
+entries, then begin the existing float after assembly. Preserve immediate
+navigation, independent hover/focus emphasis, light default and reduced motion.
+Scope: [Home workspace design](home-workspace-design.md#assembly-entrance).
+
+## 2026-11-15 20:33:39 +08:00 — sync and publish the UI branch
+
+User requested fetching/integrating main before committing and pushing the
+current branch, `feat/ui-changes`. Fresh authenticated fetch confirms no new
+main commits. Personal GitHub account `aquaryasss` is verified through the API;
+use personal noreply author/committer identity and authenticated HTTPS because
+SSH is unavailable. Keep the four pre-existing processed forecasting-artifact
+edits local and outside this UI commit. No backend/source-data changes or deployment.
+
+## 2026-11-15 20:24:49 +08:00 — always open Home in light mode
+
+User requested light mode as the default. Remove restoration/persistence of the
+Home theme so an older dark preference cannot override the light initial state.
+Keep the current-visit light/dark toggle. Fresh mounts/reloads start light.
+No other page, backend, source data, or simulation behavior changes.
+
+## 2026-11-15 20:21:14 +08:00 — stronger dots and pointer response
+
+User found the background dots nearly invisible and requested a subtle hover
+effect. Increase dot size, contrast and faded coverage in both Home themes.
+A separate, aligned dot layer softly enlarges/brightens the dots within 150px
+of a fine pointer. Passive canvas listeners update presentation-only CSS
+coordinates once per animation frame; pointer exit/cancel removes the highlight.
+The layer never handles clicks. Coarse/touch pointers and reduced-motion users
+retain the static field. No calculations, source data, or workspace features
+change. See [Home workspace design](home-workspace-design.md).
+
+## 2026-11-15 20:14:59 +08:00 — localized Home background dots
+
+User accepted the sparse static dot-field recommendation. Add theme-aware dots
+around the hospital with a soft mask fading near text/edges; adjust the mask for
+narrow screens. Keep the decorative layer non-interactive and preserve the
+hospital as the moving element. See [Home workspace design](home-workspace-design.md).
+
+## 2026-11-15 20:12:16 +08:00 — Home inside the application
+
+User replaced the standalone landing direction with a Home view in the shared
+application frame. Retain the teammate's hospital motif, redesigned as clickable
+architectural regions for Dashboard, Simulation, and Research. Use icons-only
+navigation with custom hover/focus descriptions and visible current-page state.
+Default to a refined light palette, with a Home light/dark toggle. Remove the
+model heading, visible conceptual-facility caption, and sidebar QC/PH caption.
+The hospital floats more visibly and stops on hover/focus; remove the pause
+button. Tooltips must clear when the pointer leaves, including after theme clicks.
+Respect reduced motion and preserve all backend behavior and existing features.
+Git actions must use personal `aquaryasss`, never the work identity; no commit or
+push has been performed. Scope: [Home workspace design](home-workspace-design.md).
+Sparse background dots were approved in the subsequent entry above.
+
 ## 2026-11-15 00:38:57 +08:00 — public landing page
 
 User requested a landing page inspired by a supplied isometric hospital-on-map

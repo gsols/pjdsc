@@ -1,6 +1,10 @@
 import type { Metadata } from 'next';
 import EngineStartup from '@/components/engine-startup';
+import AppNavigation from '@/components/app-navigation';
 import './globals.css';
+import './app-shell.css';
+import './map-markers.css';
+import './workspace-loading.css';
 export const metadata: Metadata = {
   title: 'SurgeWise',
   description:
@@ -13,7 +17,14 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body><EngineStartup />{children}</body>
+      <body>
+        <EngineStartup />
+        <div className="sw-app-shell">
+          <a className="sw-app-skip" href="#sw-app-content">Skip to workspace</a>
+          <AppNavigation />
+          <div className="sw-app-content" id="sw-app-content" tabIndex={-1}>{children}</div>
+        </div>
+      </body>
     </html>
   );
 }

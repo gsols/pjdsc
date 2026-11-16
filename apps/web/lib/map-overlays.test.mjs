@@ -23,7 +23,8 @@ loaded.paths = require.resolve.paths('react');
 const nativeRequire = loaded.require.bind(loaded);
 loaded.require = (name) => {
   if (name === 'maplibre-gl') return { default: {} };
-  if (name.endsWith('.css')) return {};
+  if (name === '@/components/workspace-loader') return { default: () => null };
+    if (name.endsWith('.css')) return {};
   if (name.startsWith('@/lib/'))
     return require(`./${name.slice('@/lib/'.length)}.ts`);
   return nativeRequire(name);
@@ -73,7 +74,7 @@ test('fitting a narrow map leaves room beside floating controls', () => {
     getBoundingClientRect: () => ({ left: 0, top: 0, width: 320, height: 640 }),
     closest: () => ({ querySelectorAll: () => [panel] }),
   };
-  const map = { fitBounds: (bounds, options) => fits.push(options) };
+  const map = { fitBounds: (bounds, options) => fits.push(options), resize() {} };
   let ref = 0;
   let state = 0;
   const component = new Module(filename);
@@ -105,7 +106,7 @@ test('fitting a narrow map leaves room beside floating controls', () => {
   effects
     .find(
       (effect) =>
-        effect.dependencies?.length === 4 && effect.dependencies.includes('qc')
+        effect.dependencies?.length === 3 && effect.dependencies.includes('qc')
     )
     .callback();
   assert.equal(fits.length, 1);

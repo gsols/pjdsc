@@ -22,11 +22,14 @@ The existing README and `docs/data-sources.md` describe an older empty scaffold;
 
 ### Dashboard presentation
 
-`/dashboard` uses a full-width map with a draggable, collapsible explorer overlay
-for the existing geography, hospital inventory and source controls. The map's
-simulation launch card links to `/outbreak-response`; it does not run the guarded
-legacy simulation endpoint or transfer NCR demand to the QC simulation. The
-launch copy explicitly labels historical forecasts and assumed capacity.
+`/dashboard` uses a map-first viewport with one optional docked explorer for
+hospital inventory/details, layers and evidence. Search and source totals stay
+visible while hospital results scroll independently. Fullscreen excludes the
+shared application rail. Street and optional generalized 3D building context use
+custom cartography; satellite/regional imagery were removed by user request.
+See `docs/dashboard-workspace-design.md`. The explorer links to the existing
+`/outbreak-response` workspace; it does not run the guarded legacy endpoint or
+transfer NCR demand to QC simulation.
 
 1. `scripts/` ingests immutable, dated originals, applies QA and records a provenance manifest.
 2. `services/engine/domain/forecast...` or equivalent loads **historical** QC/NCR sources, trains/evaluates at strict issue dates, saves run artifacts and scorecards.

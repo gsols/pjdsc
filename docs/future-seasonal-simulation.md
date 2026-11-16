@@ -2,6 +2,11 @@
 
 User extension recorded 2026-10-24 21:19:03 +08:00 (Asia/Manila).
 
+The 2026-11-16 presentation revision moves both modes and their independent
+controls into one contextual Scenario panel. See
+[simulation workspace design](simulation-workspace-design.md). The statistical
+and capacity boundaries below remain unchanged.
+
 The left sidebar at `/outbreak-response` (also reached from `/simulate`) has
 Historical replay and Future surge forecast tabs. Each retains its own controls.
 Both support whole-day horizons from 1 through 28, with 2/7/12/14/28 shortcuts.

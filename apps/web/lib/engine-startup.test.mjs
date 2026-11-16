@@ -29,6 +29,7 @@ function harness(waitForEngine = connection.waitForEngine) {
       };
       if (name === '@/lib/engine-connection') return { ...connection, waitForEngine };
       if (name === '@/components/engine-startup') return { default: Startup };
+      if (name === '@/components/app-navigation') return { default: () => null };
       if (name.endsWith('.css')) return {};
       return nativeRequire(name);
     };
