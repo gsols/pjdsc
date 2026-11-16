@@ -1,5 +1,11 @@
 # User-requested extensions
 
+## 2026-11-16 22:05 +08:00 — arrival order: hospital first
+
+User asked for the hospital first again. Each piece still rises out of the dark teal tile;
+the order is now the hospital with its platform, then the top, middle and bottom bands, with
+the Dashboard, Simulation and Research labels appearing in that order.
+
 ## 2026-11-16 21:48:57 +08:00 — arrival slowed, then rebuilt as a bottom-up stack; document lines removed
 
 Arrival slowed by 50%, then changed after a user-supplied Pinterest video (0:01-0:03,

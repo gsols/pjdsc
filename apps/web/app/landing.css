@@ -253,14 +253,13 @@
   .home-map-overlay .home-model-wrap[data-active] .hm-evidence-bottom { translate: none; }
 }
 
-/* Arrival, after the user's reference video (Pinterest pin, 0:01 to 0:03): the stack builds
-   from the bottom up, each slab emerging upward out of the dark teal tile and settling with
-   a small bounce (user request: rise from below, not drop from above); the hospital rises
-   last. Order: bottom band, middle band, top
-   band, the platform, the hospital. A soft glow gathers on the dark teal tile as the first
-   slab lands. Each label and leader appears as its band lands; the float starts after the
-   hospital lands. Kept at the slower pace the user asked for earlier. */
-.home-map-overlay .home-model-wrap { --research-reveal: 820ms; --simulation-reveal: 1270ms; --dashboard-reveal: 1720ms; }
+/* Arrival, after the user's reference video (Pinterest pin, 0:01 to 0:03): each piece
+   emerges upward out of the dark teal tile and settles with a small bounce (user request:
+   rise from below, not drop from above). Order (user request): the hospital with its
+   platform first, then the top band, the middle band and the bottom band. A soft glow
+   gathers on the dark teal tile. Each label and leader appears as its band lands; the
+   float starts after the last band lands. Kept at the slower pace asked for earlier. */
+.home-map-overlay .home-model-wrap { --dashboard-reveal: 1270ms; --simulation-reveal: 1720ms; --research-reveal: 2170ms; }
 .home-map-overlay .hm-assembly-evidence { animation: none; }
 .home-map-overlay .hm-assembly-building,
 .home-map-overlay .hm-assembly-site,
@@ -269,11 +268,11 @@
 .home-map-overlay .hm-evidence-bottom {
   animation: home-stack-drop 900ms cubic-bezier(.3,.7,.35,1) var(--drop-delay, 0ms) both;
 }
-.home-map-overlay .hm-evidence-bottom { --drop-delay: 150ms; }
-.home-map-overlay .hm-evidence-middle { --drop-delay: 600ms; }
-.home-map-overlay .hm-evidence-top { --drop-delay: 1050ms; }
-.home-map-overlay .hm-assembly-site { --drop-delay: 1500ms; }
-.home-map-overlay .hm-assembly-building { --drop-delay: 1950ms; }
+.home-map-overlay .hm-evidence-bottom { --drop-delay: 1500ms; }
+.home-map-overlay .hm-evidence-middle { --drop-delay: 1050ms; }
+.home-map-overlay .hm-evidence-top { --drop-delay: 600ms; }
+.home-map-overlay .hm-assembly-site { --drop-delay: 150ms; }
+.home-map-overlay .hm-assembly-building { --drop-delay: 150ms; }
 @keyframes home-stack-drop {
   0% { opacity: 0; transform: translateY(70px); }
   45% { opacity: 1; }
@@ -284,7 +283,7 @@
 /* The glow on the dark teal tile under the stack. */
 .home-map-overlay .hm-reference ellipse { animation: home-stack-glow 1400ms ease-out 250ms both; }
 @keyframes home-stack-glow { 0% { opacity: 0; } 40% { opacity: 0.7; } 100% { opacity: 0.4; } }
-.home-map-overlay .home-model { animation-delay: 3s; }
+.home-map-overlay .home-model { animation-delay: 2.5s; }
 /* Intro text moved down by half its own height (user request). */
 .home-intro { translate: 0 50%; }
 @media (max-width: 900px) { .home-intro { translate: none; } }
