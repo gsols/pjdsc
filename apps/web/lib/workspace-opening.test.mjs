@@ -44,7 +44,7 @@ function harness(fontsReady = Promise.resolve()) {
 test('Home starts with the real brand mark and waits until the logo has faded before enabling its animations',async()=>{
   const h=harness();
   try{
-    const initial=h.render();assert.match(initial,/sw-loading-mark/);assert.match(initial,/viewBox="0 0 128 128"/);
+    const initial=h.render();assert.match(initial,/sw-loading-mark/);assert.ok(initial.includes('src="/brand/surgewise-mark.png"'),'loader shows the PNG brand mark');
     assert.match(initial,/data-ready="false" inert=""/);assert.match(initial,/aria-busy="true"/);
     const cleanup=h.effects[0]();await h.advance(319);assert.deepEqual(h.updates,[]);
     await h.advance(1);assert.deepEqual(h.updates,['revealing']);

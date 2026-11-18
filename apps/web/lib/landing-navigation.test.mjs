@@ -21,7 +21,7 @@ function load(relative) {
       void prefetch;
       return React.createElement('a', props, children);
     } };
-    if (name === 'next/navigation') return { usePathname: () => activePath };
+    if (name === 'next/navigation') return { usePathname: () => activePath, useRouter: () => ({ push() {}, prefetch() {} }) };
     if (name.endsWith('.css')) return {};
     if (name.startsWith('@/')) return load(`../${name.slice(2)}${name.startsWith('@/lib/') ? '.ts' : '.tsx'}`);
     return require(name);
@@ -37,24 +37,32 @@ const Home = load('../app/page.tsx').default;
 const Navigation = load('../components/app-navigation.tsx').default;
 const html = renderToStaticMarkup(React.createElement(Home));
 
-test('home has labeled model destinations before client code or engine readiness', () => {
+test('home has its headline and the labeled model destinations before client code', () => {
+  assert.equal((html.match(/<h1\b/g) ?? []).length, 1);
+  assert.match(html, /Dengue preparedness, connected\./);
+  assert.match(html, /What would a surge<br\/>ask of our hospitals\?/);
+  assert.match(html, /Explore the model\./);
   for (const [route, name] of [['/dashboard', 'Dashboard'], ['/outbreak-response', 'Simulation'], ['/research', 'Research']]) {
     assert.ok(html.includes(`href="${route}"`));
     assert.ok(html.includes(name));
   }
-  assert.equal((html.match(/<h1\b/g) ?? []).length, 1);
   assert.match(html, /aria-label="Explore SurgeWise workspaces"/);
   assert.equal((html.match(/class="home-model-part /g) ?? []).length, 3);
+  assert.match(html, /An architectural illustration/);
   assert.ok(!html.includes('<footer'), 'Home is an app view, without a marketing footer');
 });
 
-test('conceptual navigation model cannot be mistaken for observed facility or occupancy data', () => {
-  assert.match(html, /An architectural illustration/);
-  assert.match(html, /Hypothetical scenarios/);
-  assert.match(html, /No live surveillance or hospital bed availability/);
+test('the tile map sits behind the model and stays out of the accessibility tree', () => {
+  assert.match(html, /<canvas class="home-map" aria-hidden="true"/);
+  assert.match(html, /data-zooming="false"/);
+  assert.ok(!html.includes('Hover or focus to explore'), 'hint removed at the user’s request');
+  assert.ok(!html.includes('Illustrative:'), 'illustrative note removed at the user\u2019s request');
+  assert.ok(!html.includes('home-status-bar'), "status bar removed for now, at the user's request");
   assert.ok(!html.includes('Over capacity'));
-  assert.ok(!html.includes('<canvas'), 'Home does not require a geographic map');
-  assert.ok(!html.includes('lp-city-'));
+});
+
+test('Quezon City’s outline is on the dark teal tile, not on the platform', () => {
+  assert.ok(!html.includes('hm-site-city'), 'drawn on the canvas tile instead');
 });
 
 test('persistent navigation identifies each current route including the simulation alias', () => {

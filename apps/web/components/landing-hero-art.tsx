@@ -63,10 +63,6 @@ export default function HospitalNavigationModel() {
             <polygon className="hm-evidence-bottom" points={flat(0, 14, 0, 12, -2.3)} />
             <polygon className="hm-evidence-middle" points={flat(0, 14, 0, 12, -1.75)} />
             <polygon className="hm-evidence-top" points={flat(0, 14, 0, 12, -1.2)} />
-            <g className="hm-document-lines" aria-hidden="true">
-              {[8.7, 9.25, 9.8, 10.35].map(y => <polygon key={y} points={flat(8.7, 12.4, y, y + 0.035, -1.19)} />)}
-              <polygon points={flat(10.9, 12.4, 10.9, 11.3, -1.19)} />
-            </g>
           </g>
         </Link>
 
@@ -77,13 +73,7 @@ export default function HospitalNavigationModel() {
             <polygon className="hm-site-edge" points={wallX(14, 0, 12, -0.38, 0)} />
             <polygon className="hm-site" points={flat(0, 14, 0, 12)} />
             <g className="hm-site-lines" aria-hidden="true">
-              <polygon points={flat(0.6, 13.4, 0.6, 11.4)} />
-              <polygon points={flat(2.8, 12.5, 1.3, 7.4)} />
-              <polygon points={flat(0.8, 2.2, 1.4, 4.8)} />
-              <polygon points={flat(0.8, 2.2, 5.5, 8.2)} />
-              <polygon points={flat(3, 6, 9.1, 10.8)} />
-              <polygon points={flat(6.5, 9.7, 9.1, 10.8)} />
-              <path d={`M${iso(1.5, 6.7).join(' ')}L${iso(2.7, 8.1).join(' ')}L${iso(9.4, 8.1).join(' ')}L${iso(9.4, 6.5).join(' ')}`} />
+              <polygon points={flat(0.3, 13.7, 0.2, 11.8)} />
             </g>
             <g className="hm-site-nodes" aria-hidden="true">
               {[[1.5, 6.7], [4.5, 9.9], [8.1, 9.9]].map(([x, y]) => {
@@ -126,18 +116,20 @@ export default function HospitalNavigationModel() {
           </g>
         </Link>
 
+        {/* Leaders start on the three thin layers under the platform (user request): the top
+            layer for Dashboard, the middle for Simulation, the bottom for Research. */}
         <g className="hm-leaders" aria-hidden="true">
           <g className="hm-leader hm-leader-dashboard">
-            <path pathLength={1} className={active === 'dashboard' ? 'is-active' : ''} d="M365 424L303 465V482" />
-            <circle cx={365} cy={424} r={3} />
+            <path pathLength={1} className={active === 'dashboard' ? 'is-active' : ''} d="M370 501L268 346H130" />
+            <circle cx={370} cy={501} r={3} />
           </g>
           <g className="hm-leader hm-leader-simulation">
-            <path pathLength={1} className={active === 'simulation' ? 'is-active' : ''} d="M689 248L802 182H824" />
-            <circle cx={689} cy={248} r={3} />
+            <path pathLength={1} className={active === 'simulation' ? 'is-active' : ''} d="M835 529L880 484V110" />
+            <circle cx={835} cy={529} r={3} />
           </g>
           <g className="hm-leader hm-leader-research">
-            <path pathLength={1} className={active === 'research' ? 'is-active' : ''} d="M670 630L747 675H772" />
-            <circle cx={670} cy={630} r={3} />
+            <path pathLength={1} className={active === 'research' ? 'is-active' : ''} d="M685 632L905 748H931" />
+            <circle cx={685} cy={632} r={3} />
           </g>
         </g>
       </svg>
