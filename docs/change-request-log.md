@@ -1,5 +1,41 @@
 # User-requested extensions
 
+## 2026-11-18 18:05 +08:00 — Research page redesign (presentation only)
+
+User asked for a well-structured, clean and easy-to-follow Research page that
+matches Dashboard and Simulation. They explicitly kept section 5, the
+single-hospital capacity replay. `/research` now has a plain header (the
+Dashboard/Simulation shortcut cards were removed at the user's request, because
+the application rail already links both) and a sticky "On this page" list that highlights the
+current section; below 1080 px the list becomes a scrollable chip bar. The page
+has five numbered sections: 1 Data & labels (sources, known gaps, and a key for
+the Observed / Forecast / Modeled estimate / Assumption / Unavailable labels),
+2 Historical forecasts (forecast-vs-observed chart plus table), 3 Forecast
+accuracy (MAE bars per method for a chosen horizon, plus a full table),
+4 Barangay burden, and 5 Hospital capacity replay (a three-step form, a list of
+reasons the Run button is disabled, and result cards). The styles reuse the
+Dashboard palette and typography (`app/research/research.css`). The chart is
+`app/research/forecast-chart.tsx`. `components/barangay-map.tsx` gained a
+gradient legend and barangay names; modeled values are now drawn in teal instead
+of red. Every value still comes from the same engine endpoints and files. Request
+payloads, the validation, the stale-result reset and the disabled conditions are
+unchanged. No data, models or engine behaviour changed.
+
+## 2026-11-18 17:14:06 +08:00 — replacement SurgeWise logo (research-page branch)
+
+On `feat/research-page-improvements` (from `origin/dev`), the user supplied new
+logo artwork: a teal ribbon wave turning into a light-blue medical cross over a
+second teal cross, glowing on black. They asked for it to replace the app logo.
+The mark was cut out of the black background into transparent PNGs at the
+existing paths, so no consumer changed. The paths are `public/brand/surgewise-mark.png`
+(flat, no glow; `on-light`) and `surgewise-mark-on-dark.png` (with the original
+glow; `on-dark`/`badge`). `surgewise-logo.png` is the mark above a two-tone
+"SurgeWise" wordmark set in Segoe UI Bold. `app/icon.png` is the mark centred
+on a 512 px transparent square. `components/surgewise-mark.tsx` now uses the new
+artwork ratio (668 × 384), so the rail mark is 28 px high and 49 px wide and fits
+the 54 px brand slot. `hospital-pin.svg` is unchanged. No data, models or engine
+behaviour changed.
+
 ## 2026-11-16 22:05 +08:00 — arrival order: hospital first
 
 User asked for the hospital first again. Each piece still rises out of the dark teal tile;
