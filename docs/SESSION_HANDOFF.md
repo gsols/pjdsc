@@ -1,7 +1,256 @@
 # Simulation session handoff
 
-Updated 2026-10-26 15:39:47 +08:00 (Asia/Manila). Read root/scoped AGENTS.md first.
+Updated 2026-11-16 02:39:53 +08:00 (Asia/Manila). Read root/scoped AGENTS.md first.
 Preserve existing working-tree edits; do not restart the application or replace data.
+
+## Current continuation — shared loading, stable opening and no extra lines
+
+The newest user feedback supersedes earlier hover/selected-source guides below.
+Added `WorkspaceLoader`: the real SurgeWise logo centered on Home's #eaf1f3
+background, subtle pulse, accessible hidden status and reduced-motion support.
+It covers main content only; the app rail stays available. Home pauses its model,
+labels, arrows and float while inert. After a 320ms minimum/bounded font wait and
+200ms logo exit, content and the original animation timelines start. Map and App
+Router fallbacks reuse the logo. Dashboard waits for initial camera/map idle;
+Simulation waits for its first prepared scene. Bounded presentation deadlines
+retain existing failure paths. See `docs/workspace-loading-design.md`.
+
+Refresh bug reproduced in the real browser: markers moved about 141px. The first
+fit now uses official QC geometry, resizes synchronously and precedes marker
+layout; engine context no longer triggers an opening refit. Markers are hidden
+until initial offsets are assigned, with a one-time cohort fade. Latest browser
+recording measured zero movement over 77 visible startup frames. Selection still
+uses the smooth 850ms network focus; playback does not recenter the camera.
+
+All overlap-guide lines/sources are removed, including on selection. Hover/focus
+only shows labels/pauses pulses. Intended proximity, nearest-ranked context and
+saved placement connections remain, with the optional all-connections view now
+using the same SVG renderer and marker-centered endpoints. No duplicate static
+line pipeline. Shared `SIMULATION_LINES` drives legend/renderer styles; legend
+adds holding, provisional pin-dot and unranked symbols and gates placement/ring
+entries by actual scene state. Unranked selected markers remain green/unranked.
+Source coordinates and backend calculations are unchanged.
+
+Final verification: all 80 frontend tests, standalone lint and TypeScript passed
+without warnings/errors. The final production build succeeded (11 routes); diff
+whitespace checks passed. A final regression test also confirms initial map errors
+dismiss the logo surface and leave the existing unavailable/result-table fallback
+usable, rather than obscuring it indefinitely.
+Local software-graphics browser QA passed: centered logo, Home paused until
+reveal, Dashboard/Simulation ready transitions, 46 pins on both pages, zero
+startup movement, no hover links, correct clicked hospital/barangay links, three
+saved final-day placements, legend colors/styles, mobile 390x774 content loading
+area, no horizontal overflow and reduced motion. No browser exceptions. Visually
+inspected /tmp/surgewise-brand-opening.png and
+/tmp/surgewise-final-map-legend.png. Prior fullscreen/3D coverage remains limited.
+User subsequently requested committing and pushing this UI work on
+`feat/ui-changes`, using conventional message
+`feat(web): redesign simulation workspace and unify loading`. GitHub identity is
+verified as personal `aquaryasss` (ID 171597477). Preserve the four unrelated
+processed forecasting artifact edits and the untracked discussion sketch outside
+the commit. Consult Git history/upstream for the resulting commit and push state.
+
+## Current continuation — directional links and selection camera
+
+Latest feedback fixes circular barangay symbols (the grid track shrank the inner
+circle from 29x29 to about 7x29) and absolute MapLibre positioning (relative
+positioning detached pins from guides). The live browser probe reproduced both
+styles and confirmed the corrected square/circle dimensions. Shared hospital
+markers also retain absolute positioning. Unrelated forecasting artifact edits
+remain untouched; an external manifest edit appeared during this turn.
+
+Only hovered/inspected icons show source anchors and overlap guides. Explicit
+barangay/hospital inspection reveals directional SVG connections terminating at
+visual marker centers, including overlap offsets. All arrows go barangay to
+hospital; hospital inspection shows incoming saved placements, not reversed
+referrals. Three-nearest and inside-barangay proximity comes from engine context.
+Saved-day placements are positive-only, separate in style, and supersede proximity
+decoration on the same pair. Small unnumbered origin symbols appear for linked
+barangays outside the annual top ten. No fabricated source observations or
+placements. Optional all-connections display is retained. The reveal/chevrons
+respect reduced motion and clean up frames/listeners. The inspection counter
+replays the reveal when the same place is clicked; playback retains the clock.
+
+User then requested smooth selection zoom from wide views. Explicit inspection
+now frames all connected endpoints plus the selected barangay's source polygon,
+with overlay padding, max zoom 14.5 and an 850ms transition (zero with reduced
+motion). A new selection interrupts the old camera movement. The camera effect
+excludes snapshot/day dependencies so playback does not recenter the map. The
+existing Reset map view control remains. All geometry and calculation inputs are
+unchanged. See `docs/simulation-workspace-design.md` and the latest request log.
+
+Final verification: all 72 frontend tests passed, standalone lint and TypeScript
+passed without errors/warnings, the production build succeeded (11 routes), and
+diff whitespace checks passed. Coverage includes the actual map-camera effect,
+full-boundary extent, stale-click cancellation and no playback-triggered focus.
+The original browser CSS probe reproduced the bug (about 7x29 inner symbol) and
+confirmed 29x29 after the fix. Software-graphics Brave on port 9224 renders the
+actual map. Local QA verified all 46 hospital pins, ten round rank markers,
+initial empty connection overlay, both inspection modes, moving arrows, smooth
+wide-to-close camera movement, endpoints within the available map, three saved
+final-day placement links, no mobile horizontal overflow, and all three inspected
+mobile links inside the 390x232 map area. No browser exceptions. Screenshots were
+visually inspected at /tmp/surgewise-simulation-barangay.png,
+/tmp/surgewise-simulation-mobile.png and
+/tmp/surgewise-simulation-mobile-selection.png. Fullscreen/3D camera and all-device
+visual coverage were not part of this focused browser check. No new commit/push
+requested. No backend/API/raw/reference changes by this work.
+
+## Current continuation — simulation redesign and latest inspector/marker feedback
+
+The last committed UI checkpoint is `c038429` on `feat/ui-changes`, authored and
+committed as personal `aquaryasss`. The user then authorized simulation redesign;
+these additional frontend changes are local and uncommitted. See
+`docs/simulation-workspace-design.md` and the timestamped change-request log.
+Preserve the four unrelated processed forecasting artifact edits and the earlier
+untracked `work/simulation-layout-concept.html` discussion sketch.
+
+The simulation now uses dashboard cartography, one optional contextual panel,
+compact playback and three readouts. All modes, numeric controls, date windows,
+assumptions, charts, tables, comparison and export remain. Day-zero hiding,
+request cancellation, stale-result invalidation and independent form restoration
+are tested. Fullscreen excludes the rail and retains timeline/inspection. General
+methods remain available on demand; only duplicate visible UI was consolidated.
+
+Latest feedback reorganizes inspection into aligned definition lists and clear
+action rows, with expandable nearby hospital details. Dashboard and Simulation
+share the same provisional cross pin renderer/style/SVG. Outer pin white borders
+and visible duplicate source circles are removed. Tiny neutral source anchors
+remain for displaced icons. Pins and annual-rank markers have cosmetic pulses
+which pause on hover/focus and respect OS/manual reduced motion. Selected polygon
+outlines are 1.2px with a small decorative lift. No live-status or measured-height
+meaning. Color changes do not change numeric case bands or backend forecasts.
+
+Final verification: all 63 frontend tests, standalone lint and TypeScript, the
+production build, and diff whitespace checks passed. Coverage includes shared
+provisional pin semantics and inspection actions separated from explanatory
+paragraphs while preserving both occupancy denominators and capacity facts.
+Browser inspection has repeatedly been interrupted during feedback and blocked
+by localhost sandbox access. No final browser screenshot or responsive/fullscreen
+visual QA is claimed. Do not silently substitute a fabricated scenario to make
+model errors disappear. No backend/API/raw/reference/data/model changes or new
+dependencies. No additional commit/push was requested.
+
+## Current continuation — map-first dashboard and latest feedback
+
+See `docs/dashboard-workspace-design.md`. The dashboard now has a full-map
+initial view, one optional docked explorer, a dedicated hospital-results scroll
+region, custom accessible geography/ownership selectors, source/empty/retry
+states, hospital inspection and fullscreen with a fallback. Its map is initialized
+once; resize, callbacks and camera selection preserve the existing validated QC
+hospital source and geography. Home-only dark mode is removed per user feedback;
+there is no theme storage/initializer. Existing Home assembly, label/connector
+entrances, floating motion and dot interactions remain.
+
+Latest revision uses teal pin silhouettes with thick rounded medical crosses and
+an amber provisional dot. Custom street colors cover land, water, roads, labels
+and buildings. 3D uses generalized provider buildings, not verified facility
+models. Satellite/regional imagery and their optional configuration were removed
+at the user's request. The object behind the map key was the distance scale;
+explicit bottom offsets now separate the two by 16px.
+
+The latest test suite passes 60 tests; lint, TypeScript and the production build
+passed after the final imagery removal. Browser QA was interrupted repeatedly during user
+feedback; do not claim final visual/mobile/fullscreen checks. No dependencies
+were installed. No backend/API/source datasets were changed. Preserve the four
+unrelated processed artifact edits. The user requested a commit of this UI checkpoint before simulation work, using
+`feat(web): redesign map dashboard and refine home motion`. Consult Git history
+for its commit ID. The four unrelated processed artifacts remain outside that
+commit. No push or simulation redesign is part of this checkpoint request.
+
+## Current continuation — opposing-side model assembly
+
+Latest user request: layers should enter from two sides and stack at the center.
+Added three inner SVG assembly groups: research sheets together as one stack,
+catchment, then hospital. CSS alternates left/right travel with a small settling
+offset. Latest revision slows each entrance to 1000ms; last arrival finishes at
+1.9s and the existing float starts at 2s. These
+animations run once per Home mount and do not reset on hover or theme changes.
+Hover/focus transforms remain on outer navigation links. Labels now fade/rise
+in as corresponding parts settle (Research, Dashboard, Simulation). Keyboard
+focus reveals labels immediately; shared navigation stays visible throughout.
+Connectors now draw outward just before each matching label fades in, and arrow
+icons glide diagonally into place afterward. Shared CSS reveal variables keep
+these effects synchronized; hover/focus nudges remain independent.
+Existing reduced-motion CSS disables entrance and float and displays the complete
+model immediately. No backend/data changes. The previous UI commit is pushed as
+`65ca14f`; this additional assembly change is local and uncommitted. All 51
+frontend tests, lint, TypeScript, production build and diff checks passed. Browser
+inspection of the new entrance was interrupted; do not claim visual timing QA.
+
+## Current continuation — Home workspace and shared navigation
+
+See `docs/home-workspace-design.md` and the timestamped change-request log.
+`/` is now a Home view inside a shared icons-only navigation frame, with a
+clickable architectural hospital derived from the teammate's original model.
+The catchment, building, and evidence sheets link to Dashboard, Simulation, and
+Research. The existing pages, engine startup, APIs, and controls remain in place.
+Home uses the light appearance. The latest dashboard feedback removed its
+isolated dark/light toggle; earlier preference persistence is superseded.
+The model floats 18px over five seconds, pauses on hover/focus, and honors reduced
+motion. No pause button, geographic rail caption, model-index heading, or visible
+conceptual-facility caption remains. Historical/hypothetical/live-data boundaries
+remain in the in-app status strip. The user approved a localized static dot
+background: light-palette tokens, desktop/mobile fade masks, and pointer-safe CSS.
+Latest dot revision makes the base pattern more visible and adds a local
+pointer highlight via `home-dot-field.tsx`. It uses a single queued animation
+frame, cleans up on exit/unmount, and excludes touch/coarse/reduced-motion input.
+
+Latest frontend tests: 51 passed; standalone lint and TypeScript passed. Final
+production build and diff whitespace checks passed. Earlier browser inspection covered the dark
+model and mobile layouts, but the final light/theme/animation/tooltip revision
+has not completed browser verification: browser checks were interrupted during
+the iterative feedback. Do not claim final browser coverage without rerunning it.
+No npm install was needed with the existing dev server/dependencies.
+
+No backend/raw/source data was edited. Four processed forecasting artifacts were
+already modified at the start and are preserved outside the UI commit scope.
+User requested committing/pushing `feat/ui-changes`. Authenticated GitHub API
+verification confirms personal `aquaryasss` (ID 171597477). SSH authentication is
+unavailable; use HTTPS with the authenticated gh credential helper. Fetching main
+confirmed it equals the branch's pre-UI base (`286fffb`), with no merge required.
+Git commit identity must be explicitly personal: `aquaryasss` and
+`171597477+aquaryasss@users.noreply.github.com`; the inherited default is a work
+identity. Check Git history/upstream for commit/push completion. No deployment.
+
+## Current continuation — wake the engine from the landing dashboard
+
+User reports the separately deployed `https://surgewise.onrender.com` engine still
+does not wake when opening the frontend, despite `ENGINE_BASE_URL`. Verified `/`
+redirects to `/dashboard`, which reads static files and never called the existing
+wake helper. Added a client `EngineStartup` in the shared root layout: mount calls
+the existing bounded health polling, shows connection/startup status, hides on
+success, offers retry on failure and aborts on unmount. Research/simulation gates
+remain intact and still check liveness before their requests.
+
+Only `.env.example` exists in this checkout; the current shell has no
+`ENGINE_BASE_URL`. This does not establish the state of the deployed frontend.
+Requested its URL asynchronously; none was supplied during this work. Direct
+outbound Python HTTP requests fail with Windows socket permission errors, and
+the web tool could not retrieve engine `/health` or `/readiness`. No live Render
+health, deployment settings, logs or cold-start success has been verified.
+
+Both required trained `.joblib` models are Git-ignored and absent locally.
+Documented engine build-time training of seasonal and barangay artifacts, plus
+environment placement and endpoint diagnosis in `docs/render-deployment.md`.
+Dependency installation alone cannot supply those models on a fresh checkout.
+
+Tests also found a pre-existing Windows checkout newline conversion in the
+canonical hospital JSON: working SHA-256 `23bd4ba1...` differed from approved
+`929cbeb9...`. Confirmed the committed Git blob equals the approved hash and
+the working bytes differ only by CRLF. Restored the exact committed bytes and
+added a `.gitattributes -text` rule for this file. No hospital records, hashes,
+scientific validation or raw/reference inputs were changed.
+
+Verification: offline `npm.cmd ci --offline --no-audit --no-fund` succeeded;
+32 frontend tests, lint, standalone TypeScript and production build passed.
+Six Python facility/API tests and compileall passed. A temporary production Next
+server against a constructed local upstream verified startup markup, runtime
+`ENGINE_BASE_URL` forwarding to `/health`, HTML startup/503 recovery, sanitized
+uncached health success and preserved model-error responses. Both temporary
+servers were stopped. This is not deployed Render or browser interaction QA.
+Restored `next-env.d.ts` to its original `.next-dev` type reference after build.
+No model training, external deployment or commit was performed.
 
 ## Current continuation — Render engine startup
 

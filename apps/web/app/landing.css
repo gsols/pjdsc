@@ -1,0 +1,293 @@
+/* Home is a workspace canvas, not a marketing page: a flat field of square tiles fills
+   it (a honeydew zone, a stepped steel-blue zone, accent tiles, dot patterns). Tiles rise
+   into cubes and glow warm around the cursor; the navy Quezon City tile zooms into the
+   simulation when clicked. Everything on it is decorative. */
+.sw-home {
+  position:relative;
+  --home-bg: #f1f6f4; --home-text: #203f4b; --home-muted: #5a747d;
+  --home-line: #d3e1db; --home-teal: #18796f;
+  /* Hospital navigation model (restored from feat/ui-changes). */
+  --home-blue: #335e7c; --home-sand: #82613c;
+  --model-lit-start: #edf4f5; --model-lit-end: #c5d8e0;
+  --model-shade-start: #aec6d1; --model-shade-end: #7a9aac;
+  --model-roof-start: #f8fcfc; --model-roof-end: #d9e7ed;
+  --model-glass-start: #7ba3b6; --model-glass-end: #345e79;
+  --model-site-start: #d0e3e4; --model-site-end: #adcbd1;
+  --model-evidence-bottom: #9caca9; --model-evidence-middle: #c1cfbf; --model-evidence-top: #dce5d7;
+  --model-site-edge: #9fbec7; --model-site-stroke: #7498a6;
+  --model-recess: #a8c1ce; --model-rim: #7394a5;
+  --model-shadow: #607f8b; --model-highlight: #376d87; --model-detail: #6c929f;
+  display: flex; flex-direction: column; min-height: 100vh; min-height: 100svh;
+  overflow-x: clip; background: var(--home-bg); color: var(--home-text);
+  font-family: 'DM Sans', sans-serif; -webkit-font-smoothing: antialiased;
+}
+.home-reveal-content { display:flex;flex:1;flex-direction:column;min-height:inherit;opacity:1;transition:opacity 200ms ease; }
+.home-reveal-content[data-ready='false'] { opacity:0;visibility:hidden; }
+.home-reveal-content[data-ready='false'] * { animation-play-state:paused!important; }
+.sw-home > .sw-workspace-loader { position:fixed;left:var(--sw-rail-width,72px); }
+@media(max-width:700px) { .sw-home > .sw-workspace-loader { left:0;bottom:calc(70px + env(safe-area-inset-bottom,0px)); } }
+@media(prefers-reduced-motion:reduce) { .home-reveal-content { transition:none; } }
+
+.sw-home a { color: inherit; text-decoration: none; }
+.sw-home a:focus-visible { outline: 2px solid var(--home-teal); outline-offset: 7px; border-radius: 3px; }
+
+/* Canvas: the angled map fills it. */
+.home-canvas { position: relative; isolation: isolate; flex: 1; min-height: 620px; overflow: hidden; background: #e3e7e5; }
+.home-map { position: absolute; inset: 0; z-index: 0; width: 100%; height: 100%; display: block; }
+.home-title-hidden { position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+
+/* The tiled field is drawn on the canvas (colours in components/home-area-map.tsx). */
+/* Opening the simulation: the field zooms into the Quezon City tile (origin set inline). */
+.home-map[data-zooming='true'] { transform: scale(var(--zoom-scale, 9)); transition: transform var(--zoom-ms, 900ms) cubic-bezier(.55,0,.25,1); pointer-events: none; }
+.home-map[data-zooming='true'] + .home-canvas-notes { opacity: 0; transition: opacity 200ms ease; }
+
+
+.home-canvas-notes { position: absolute; z-index: 2; bottom: 19px; left: 42px; right: 42px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; color: var(--home-muted); font-size: 10px; line-height: 1.6; pointer-events: none; }
+.home-canvas-notes > span { padding: 4px 10px; border-radius: 999px; background: rgb(243 247 248 / 0.9); }
+.home-status-bar { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px 24px; min-height: 48px; padding: 14px 42px; border-top: 1px solid var(--home-line); color: var(--home-muted); font-size: 10px; line-height: 1.7; }
+.home-status-bar > span:first-child { display: flex; flex-wrap: wrap; gap: 10px; }
+.home-status-bar > span > span { color: var(--home-muted); }
+
+@media (max-width: 1100px) and (min-width: 901px) {
+  .home-canvas-notes { left: 28px; right: 28px; }
+  .home-status-bar { padding-left: 28px; padding-right: 28px; }
+}
+@media (max-width: 900px) {
+  .home-canvas { min-height: 520px; }
+  .home-canvas-notes { left: 24px; right: 24px; bottom: 14px; font-size: 10px; }
+  .home-status-bar { padding: 16px 24px; gap: 8px; font-size: 11px; }
+  .home-status-bar > span:first-child { gap: 6px; }
+}
+@media (max-width: 700px) {
+  .sw-home { min-height: calc(100svh - 70px); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .sw-home *, .sw-home *::after { animation: none !important; transition: none !important; }
+}
+
+
+/* ---- Hospital navigation model, its parts, leader lines, labels and the intro text,
+   restored from feat/ui-changes (user request 2026-11-16) and laid over the tile map. ---- */
+.home-canvas { display: grid; place-items: center; }
+/* The model and the intro sit over the tile map; only the model's parts and labels take
+   the pointer, so tiles around them still respond to hover. */
+.home-intro, .home-model-wrap { position: relative; z-index: 1; pointer-events: none; }
+.home-intro { position: absolute; z-index: 2; }
+.home-model-part, .home-model-label { pointer-events: auto; }
+.home-intro h1, .home-intro p { text-shadow: 0 0 12px var(--home-bg), 0 0 4px var(--home-bg); }
+.home-intro { position: absolute; z-index: 2; left: clamp(28px, 3.5vw, 58px); top: 38px; max-width: 460px; }
+.home-eyebrow { margin: 0 0 17px; color: var(--home-teal); font-size: 10px; line-height: 1.6; letter-spacing: 0.12em; text-transform: uppercase; }
+.sw-home h1 { margin: 0; color: var(--home-text); font: 500 clamp(27px, 2.7vw, 42px)/1.15 'Space Grotesk', sans-serif; letter-spacing: -0.045em; }
+.home-intro > p:last-child { margin: 19px 0 0; color: var(--home-muted); font-size: 13px; line-height: 1.8; }
+.home-model-wrap {
+  --research-reveal: 720ms; --dashboard-reveal: 1280ms; --simulation-reveal: 1580ms;
+  position: relative; width: min(calc(100% - 24px), 1180px); aspect-ratio: 1100 / 720;
+}
+.home-model { display: block; width: 100%; height: auto; overflow: visible; animation: home-model-float 5s ease-in-out 2s infinite; }
+.home-model-wrap:has(.home-model-part:hover, .home-model-label:hover) .home-model,
+.home-model-wrap:focus-within .home-model { animation-play-state: paused; }
+@keyframes home-model-float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-18px); } }
+/* Assemble once per Home mount. Inner groups own the entrance transform so
+   outer navigation links retain their independent hover/focus emphasis. */
+.hm-assembly-layer { animation: home-layer-settle 1000ms cubic-bezier(.22, .72, .25, 1) both; }
+.hm-assembly-evidence { --assembly-x: -300px; animation-delay: 40ms; }
+.hm-assembly-site { --assembly-x: 340px; animation-delay: 600ms; }
+.hm-assembly-building { --assembly-x: -360px; animation-delay: 900ms; }
+@keyframes home-layer-settle {
+  from { opacity: 0; transform: translate(var(--assembly-x), -18px); }
+  65% { opacity: 1; }
+  to { opacity: 1; transform: translate(0, 0); }
+}
+.hm-reference { fill: none; stroke: var(--model-detail); stroke-width: 0.65; opacity: 0.28; pointer-events: none; }
+.home-model-part { cursor: pointer; transition: translate 300ms cubic-bezier(.2,.65,.3,1), filter 300ms ease; }
+.home-model-part polygon { stroke-linejoin: round; stroke-width: 0.8; transition: stroke 250ms ease; }
+.hm-evidence-bottom { fill: var(--model-evidence-bottom); stroke: var(--model-detail); }
+.hm-evidence-middle { fill: var(--model-evidence-middle); stroke: var(--model-detail); }
+.hm-evidence-top { fill: var(--model-evidence-top); stroke: var(--model-detail); }
+.hm-site-edge { fill: var(--model-site-edge); stroke: var(--model-site-stroke); }
+.hm-site { fill: url(#hm-site); stroke: var(--model-site-stroke); }
+.hm-site-lines { fill: none; stroke: var(--model-detail); stroke-width: 0.8; opacity: 0.7; }
+.hm-site-lines path { stroke-dasharray: 3 5; }
+.hm-site-nodes { fill: var(--model-site-start); stroke: var(--home-teal); stroke-width: 0.8; }
+.hm-site-nodes circle { fill: var(--home-teal); stroke: none; }
+.hm-wall-lit { fill: url(#hm-lit); stroke: var(--model-rim); }
+.hm-wall-shade { fill: url(#hm-shade); stroke: var(--model-rim); }
+.hm-roof { fill: url(#hm-top); stroke: var(--model-rim); }
+.hm-roof-inset { fill: var(--model-recess); stroke: var(--model-rim); }
+.hm-roof-seam { fill: none; stroke: var(--model-rim); stroke-width: 0.7; }
+.hm-facade { fill: url(#hm-glass); stroke: #719caf; stroke-width: 0.6; }
+.hm-fins { fill: var(--model-roof-end); opacity: 0.9; }
+.hm-sign { fill: #2e5368; stroke: #bed2dc; }
+.hm-cross { fill: #deedef; stroke: none; }
+.hm-canopy-leg { fill: #a6bdc9; stroke: #a6bdc9; }
+.home-model-wrap[data-active='dashboard'] .hm-catchment { translate: 0 -8px; filter: drop-shadow(0 9px 7px #081a2760); }
+.home-model-wrap[data-active='dashboard'] .hm-site { stroke: var(--home-teal); stroke-width: 1.8; }
+.home-model-wrap[data-active='simulation'] .hm-hospital { translate: 0 -15px; filter: drop-shadow(0 10px 8px #081a2780); }
+.home-model-wrap[data-active='simulation'] .hm-volume > polygon { stroke: var(--model-highlight); stroke-width: 1.5; }
+.home-model-wrap[data-active='research'] .hm-evidence { translate: 15px 12px; filter: drop-shadow(-6px 3px 8px #081a2770); }
+.home-model-wrap[data-active='research'] .hm-evidence-top { stroke: var(--home-sand); stroke-width: 1.8; }
+.hm-leaders { fill: var(--home-bg); stroke: var(--home-muted); stroke-width: 0.8; pointer-events: none; }
+.hm-leader { animation: home-connector-reveal 250ms ease-out var(--leader-delay) both; }
+.hm-leader-dashboard { --leader-delay: calc(var(--dashboard-reveal) - 100ms); }
+.hm-leader-simulation { --leader-delay: calc(var(--simulation-reveal) - 100ms); }
+.hm-leader-research { --leader-delay: calc(var(--research-reveal) - 100ms); }
+.hm-leaders path {
+  fill: none; stroke-dasharray: 1; stroke-dashoffset: 0;
+  animation: home-connector-draw 620ms cubic-bezier(.22, .72, .25, 1) var(--leader-delay) both;
+  transition: stroke 200ms ease;
+}
+@keyframes home-connector-reveal { from { opacity: 0; } to { opacity: 1; } }
+@keyframes home-connector-draw { from { stroke-dashoffset: 1; } to { stroke-dashoffset: 0; } }
+.hm-leaders path.is-active { stroke: var(--home-teal); stroke-width: 1.5; }
+.home-model-label {
+  position: absolute; z-index: 3; display: flex; flex-direction: column; align-items: flex-start;
+  gap: 8px; min-height: 78px; padding: 8px 0 12px; width: 230px;
+  background: linear-gradient(90deg, var(--home-bg), color-mix(in srgb, var(--home-bg) 90%, transparent) 82%, transparent);
+  color: var(--home-text); transition: translate 250ms ease;
+  animation: home-label-reveal 620ms ease-out var(--label-delay) both;
+}
+.home-label-dashboard { left: 5.2%; top: 65.5%; --home-label-color: var(--home-teal); --label-delay: var(--dashboard-reveal); }
+.home-label-simulation { left: 76%; top: 16%; --home-label-color: var(--home-blue); --label-delay: var(--simulation-reveal); }
+.home-label-research { left: 72%; top: 86.5%; --home-label-color: var(--home-sand); --label-delay: var(--research-reveal); }
+@keyframes home-label-reveal {
+  from { opacity: 0; transform: translateY(7px); pointer-events: none; }
+  to { opacity: 1; transform: translateY(0); pointer-events: auto; }
+}
+/* Keyboard users can reveal and open a destination without waiting; overriding
+   properties leaves the one-shot animation timeline intact when focus moves. */
+.home-model-label:focus-visible { opacity: 1 !important; transform: none !important; pointer-events: auto !important; }
+.home-label-kicker { display: flex; align-items: center; gap: 12px; color: var(--home-muted); font-size: 9px; line-height: 1.6; letter-spacing: 0.1em; text-transform: uppercase; }
+.home-label-kicker > span { color: var(--home-label-color); font-variant-numeric: tabular-nums; }
+.home-label-title { display: flex; align-items: center; gap: 10px; color: var(--home-label-color); font: 500 22px/1.3 'Space Grotesk', sans-serif; letter-spacing: -0.025em; }
+.home-label-title svg:last-child {
+  margin-left: 6px; opacity: 0.55;
+  animation: home-arrow-arrive 650ms cubic-bezier(.22, .72, .25, 1) calc(var(--label-delay) + 80ms) both;
+  transition: translate 280ms cubic-bezier(.22, .72, .25, 1), opacity 200ms ease;
+}
+@keyframes home-arrow-arrive { from { transform: translate(-5px, 5px); } to { transform: translate(0, 0); } }
+.home-label-description { color: var(--home-muted); font-size: 11px; line-height: 1.7; }
+.home-model-label::after { content: ''; width: 30px; height: 1px; margin-top: 3px; background: var(--home-label-color); opacity: 0.35; transition: width 250ms ease, opacity 250ms ease; }
+.home-model-label.is-active::after { width: 75px; opacity: 1; }
+.home-model-label.is-active .home-label-title svg:last-child { translate: 2px -2px; opacity: 1; }
+@media (min-width: 1700px) {
+  .home-intro { top: 65px; }
+  .home-model-wrap { width: min(calc(100% - 60px), 1330px); }
+}
+@media (max-width: 1100px) and (min-width: 901px) {
+  .home-intro { left: 28px; top: 30px; }
+  .sw-home h1 { font-size: 29px; }
+  .home-model-label { width: 190px; }
+  .home-label-title { font-size: 19px; }
+  .home-label-description { font-size: 10px; }
+  .home-label-simulation { left: 76%; top: 14%; }
+  .home-label-research { left: 73%; top: 85%; }
+}
+@media (max-width: 900px) {
+  .home-canvas { display: flex; flex-direction: column; min-height: 0; align-items: stretch; }
+  .home-intro { position: relative; top: auto; left: auto; margin: 27px 24px 0; }
+  .home-eyebrow { font-size: 10px; margin-bottom: 14px; }
+  .sw-home h1 { font-size: clamp(27px, 6vw, 35px); }
+  .home-intro > p:last-child { margin-top: 14px; font-size: 12px; }
+  .home-intro > p:last-child br { display: none; }
+  .home-model-wrap { width: 100%; aspect-ratio: auto; margin-top: -26px; overflow: clip; }
+  .hm-leaders { display: none; }
+  .home-model-labels { position: relative; display: grid; grid-template-columns: 1fr; gap: 0; margin: -4px 24px 12px; }
+  .home-model-label { position: relative; inset: auto; width: 100%; min-height: 84px; padding: 16px 0; gap: 7px; background: none; border-top: 1px solid var(--home-line); }
+  .home-label-kicker { font-size: 10px; }
+  .home-label-title { font-size: 21px; width: 100%; }
+  .home-label-title svg:last-child { margin-left: auto; opacity: 1; }
+  .home-label-description { padding-left: 27px; font-size: 12px; }
+  .home-model-label::after { display: none; }
+}
+@media (max-width: 700px) {
+  .home-model { width: 150%; max-width: none; margin-left: -25%; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .home-model-wrap[data-active] .home-model-part { translate: none; filter: none; }
+  .home-model-label.is-active .home-label-title svg:last-child { translate: none; }
+}
+/* The model is placed over the Quezon City tile by the map (left/top/width set inline),
+   at the size of the hospital the map drew there before. Hidden until placed. */
+.home-map-overlay { position: absolute; z-index: 1; pointer-events: none; visibility: hidden; }
+.home-map-overlay[data-placed='true'] { visibility: visible; }
+.home-map-overlay .home-model-wrap { width: 100%; }
+@media (min-width: 1700px) { .home-map-overlay .home-model-wrap { width: 100%; } }
+/* Over the tile map, labels drop their background box; a soft halo keeps text legible. */
+.home-map-overlay .home-model-label { background: none; }
+.home-map-overlay .home-model-label span { text-shadow: 0 0 10px #ffffff, 0 0 4px #ffffff, 0 0 2px #ffffff; }
+/* Dashboard label on the tile up-left of the hospital, clear of the teal tile (user request). */
+.home-map-overlay .home-label-dashboard { left: -14%; top: 37%; }
+/* Research label moved right 42% and down 60% of its own size (user requests). */
+.home-map-overlay .home-label-research { translate: 42% 60%; }
+/* Simulation label moved right 15% and up 70% of its own size (user requests). */
+.home-map-overlay .home-label-simulation { translate: 15% -70%; }
+
+/* Hovering or focusing a destination animates the layer its leader points to (user
+   request): Dashboard the top band, Simulation the middle band, Research the bottom band.
+   Each layer slides out the same way (up-left), takes its label's text colour (Dashboard
+   teal, Simulation blue, Research sand) and casts a shadow.
+   The model's earlier whole-part lifts are switched off here. */
+.home-map-overlay .home-model-wrap[data-active] .hm-catchment,
+.home-map-overlay .home-model-wrap[data-active] .hm-hospital,
+.home-map-overlay .home-model-wrap[data-active] .hm-evidence { translate: none; filter: none; }
+.home-map-overlay .home-model-wrap[data-active='research'] .hm-evidence-top { stroke: var(--model-detail); stroke-width: 0.8; }
+.home-map-overlay .hm-evidence-top, .home-map-overlay .hm-evidence-middle, .home-map-overlay .hm-evidence-bottom {
+  transition: translate 340ms cubic-bezier(.2,.65,.3,1), fill 260ms ease, stroke 260ms ease, filter 300ms ease;
+}
+.home-map-overlay .home-model-wrap[data-active='dashboard'] .hm-evidence-top { translate: -20px -7px; }
+.home-map-overlay .home-model-wrap[data-active='dashboard'] .hm-evidence-top {
+  fill: var(--home-teal); stroke: color-mix(in srgb, var(--home-teal) 70%, #000); stroke-width: 1.6;
+  filter: drop-shadow(-6px 6px 6px #081a2740);
+}
+.home-map-overlay .home-model-wrap[data-active='simulation'] .hm-evidence-middle {
+  translate: -20px -7px; fill: var(--home-blue); stroke: color-mix(in srgb, var(--home-blue) 70%, #000); stroke-width: 1.6;
+  filter: drop-shadow(-6px 6px 6px #081a2740);
+}
+.home-map-overlay .home-model-wrap[data-active='research'] .hm-evidence-bottom {
+  translate: -20px -7px; fill: var(--home-sand); stroke: color-mix(in srgb, var(--home-sand) 70%, #000); stroke-width: 1.6;
+  filter: drop-shadow(-6px 6px 6px #081a2740);
+}
+@media (prefers-reduced-motion: reduce) {
+  .home-map-overlay .home-model-wrap[data-active] .hm-evidence-top,
+  .home-map-overlay .home-model-wrap[data-active] .hm-evidence-middle,
+  .home-map-overlay .home-model-wrap[data-active] .hm-evidence-bottom { translate: none; }
+}
+
+/* Arrival, after the user's reference video (Pinterest pin, 0:01 to 0:03): each piece
+   emerges upward out of the dark teal tile and settles with a small bounce (user request:
+   rise from below, not drop from above). Order (user request): the hospital with its
+   platform first, then the top band, the middle band and the bottom band. A soft glow
+   gathers on the dark teal tile. Each label and leader appears as its band lands; the
+   float starts after the last band lands. Kept at the slower pace asked for earlier. */
+.home-map-overlay .home-model-wrap { --dashboard-reveal: 1270ms; --simulation-reveal: 1720ms; --research-reveal: 2170ms; }
+.home-map-overlay .hm-assembly-evidence { animation: none; }
+.home-map-overlay .hm-assembly-building,
+.home-map-overlay .hm-assembly-site,
+.home-map-overlay .hm-evidence-top,
+.home-map-overlay .hm-evidence-middle,
+.home-map-overlay .hm-evidence-bottom {
+  animation: home-stack-drop 900ms cubic-bezier(.3,.7,.35,1) var(--drop-delay, 0ms) both;
+}
+.home-map-overlay .hm-evidence-bottom { --drop-delay: 1500ms; }
+.home-map-overlay .hm-evidence-middle { --drop-delay: 1050ms; }
+.home-map-overlay .hm-evidence-top { --drop-delay: 600ms; }
+.home-map-overlay .hm-assembly-site { --drop-delay: 150ms; }
+.home-map-overlay .hm-assembly-building { --drop-delay: 150ms; }
+@keyframes home-stack-drop {
+  0% { opacity: 0; transform: translateY(70px); }
+  45% { opacity: 1; }
+  70% { transform: translateY(-5px); }
+  85% { transform: translateY(2px); }
+  100% { opacity: 1; transform: none; }
+}
+/* The glow on the dark teal tile under the stack. */
+.home-map-overlay .hm-reference ellipse { animation: home-stack-glow 1400ms ease-out 250ms both; }
+@keyframes home-stack-glow { 0% { opacity: 0; } 40% { opacity: 0.7; } 100% { opacity: 0.4; } }
+.home-map-overlay .home-model { animation-delay: 2.5s; }
+/* Intro text moved down by half its own height (user request). */
+.home-intro { translate: 0 50%; }
+@media (max-width: 900px) { .home-intro { translate: none; } }
+/* Intro words 10% larger (user request). */
+.home-intro .home-eyebrow { font-size: 11px; }
+.sw-home .home-intro h1 { font-size: clamp(29.7px, 2.97vw, 46.2px); }
+.home-intro > p:last-child { font-size: 14.3px; }

@@ -4,14 +4,14 @@ import { useEffect, useId, useRef, useState } from 'react';
 import type { CSSProperties, KeyboardEvent, PointerEvent, ReactNode } from 'react';
 import { PanelLeftClose, PanelLeftOpen, PanelRightClose, PanelRightOpen } from 'lucide-react';
 
-type Props = { side: 'left' | 'right'; label: string; children: ReactNode; revealKey?: number };
+type Props = { side: 'left' | 'right'; label: string; children: ReactNode; revealKey?: number; defaultCollapsed?: boolean };
 
-export default function QCWorkspaceSidebar({ side, label, children, revealKey }: Props) {
+export default function QCWorkspaceSidebar({ side, label, children, revealKey, defaultCollapsed = false }: Props) {
   const id = useId();
   const shell = useRef<HTMLDivElement>(null);
   const drag = useRef<{ x: number; width: number } | null>(null);
   const [width, setWidth] = useState<number | null>(null);
-  const [collapsed, setCollapsed] = useState(false);
+  const [collapsed, setCollapsed] = useState(defaultCollapsed);
   const [resizing, setResizing] = useState(false);
   const [measuredWidth, setMeasuredWidth] = useState(side === 'left' ? 265 : 330);
   const [maximum, setMaximum] = useState(420);

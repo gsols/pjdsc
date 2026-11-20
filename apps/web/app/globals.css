@@ -1,12 +1,63 @@
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap');
 :root {
-  color-scheme: dark;
-  --bg: #091522;
-  --panel: #101f2d;
-  --border: #284155;
-  --text: #ebf6fb;
-  --muted: #9cb0bf;
-  --accent: #51d0bb;
+  color-scheme: light;
+  /* Palette: red #e63946, honeydew #f1faee, powder blue #a8dadc, steel blue #457b9d, prussian navy #1d3557.
+     Every token below is one of these or a tint/shade mixed from them. */
+  --sw-bg: #f1faee;              /* app background, top bar */
+  --sw-panel: #eaf7ec;           /* control rail, side panels */
+  --sw-card: #f9fdf8;            /* cards, inputs, drawers */
+  --sw-border: #c9e8e4;          /* borders, dividers */
+  --sw-border-strong: #457b9d;   /* stronger borders, handles */
+  --sw-hover: #d0ece6;           /* hover; "Out of date" badge background */
+  --sw-selected: #a8dadc;        /* pressed / selected surfaces */
+  --sw-text-strong: #1d3557;     /* headings, KPI numbers */
+  --sw-text: #1d3557;            /* body text */
+  --sw-muted: #2f5577;           /* labels, source dates, attribution */
+  --sw-disabled: #adbbbe;        /* disabled, e.g. "City forecast unavailable" */
+  --sw-primary: #1d3557;         /* primary buttons */
+  --sw-primary-hover: #274769;   /* hover / pressed */
+  --sw-on-primary: #f1faee;      /* text on blue buttons */
+  --sw-link: #2f5577;            /* links, slider, focus ring, selected scope */
+  --sw-selected-stroke: #1d3557; /* selected boundary / item outline */
+  --sw-forecast: #457b9d;        /* forecast central estimate (15% for intervals) */
+  --sw-hotspot: #e63946;         /* high-burden candidate markers */
+  --sw-hotspot-hover: #ea575e;
+  --sw-hospital: #457b9d;        /* hospital markers (honeydew cross) */
+  --sw-on-accent: #f1faee;       /* text/symbols on steel, red and navy fills */
+  --sw-emphasis: #f9fdf8;        /* input fields and selected surfaces */
+  /* Buttons: one uniform colour everywhere (navy, honeydew text). */
+  --sw-button-bg: #1d3557;
+  --sw-button-hover: #274769;
+  --sw-button-text: #f1faee;
+  --sw-button-border: #1d3557;    
+  --sw-button-selected: #3b6a8c;   /* selected toggles/tabs: a lighter navy-steel (honeydew text 5.5:1) */
+  --sw-spare: #457b9d;           /* spare capacity > 20% */
+  --sw-low: #f4a6ac;             /* spare capacity 1–20%, cautions */
+  --sw-deficit: #e63946;         /* capacity deficit */
+  --sw-missing: #adbbbe;         /* missing capacity */
+  --sw-spare-text: #2f5577;
+  --sw-low-text: #ae384b;
+  --sw-deficit-text: #ae384b;
+  --sw-alert-bg: #fce7e9;        /* high-priority cards (deficit text + left border) */
+  --sw-caution-bg: #fce7e9;      /* "Draft for human review" */
+  --sw-caution-text: #ae384b;
+  --sw-sim-bg: #d0ece6;          /* "Simulation only; not real-time availability" */
+  --sw-sim-text: #1d3557;
+  /* Map surfaces (used by the MapLibre styles): water, land, other boundaries. */
+  --sw-map-water: #d4ecea;
+  --sw-map-land: #f8fdf7;
+  --sw-map-boundary: #a4c1ca;
+  /* Map line meanings (legend + map): nearest hospitals, modeled placement, hospital's nearest hotspot. */
+  --sw-line-nearest: #457b9d;
+  --sw-line-placement: #1d3557;
+  --sw-line-inspected: #e63946;
+  /* Older names used across the app, now pointing at the light palette. */
+  --bg: var(--sw-bg);
+  --panel: var(--sw-panel);
+  --border: var(--sw-border);
+  --text: var(--sw-text-strong);
+  --muted: var(--sw-muted);
+  --accent: var(--sw-link);
 }
 * {
   box-sizing: border-box;
@@ -25,6 +76,31 @@ input {
 button {
   cursor: pointer;
 }
+.engine-startup {
+  position: fixed;
+  bottom: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1000;
+  width: max-content;
+  max-width: calc(100% - 32px);
+  padding: 12px 16px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: var(--panel);
+  color: var(--text);
+  box-shadow: 0 4px 20px rgb(11 28 30 / 0.12);
+  font-size: 13px;
+}
+.engine-startup button {
+  display: block;
+  margin-top: 8px;
+  border: 1px solid var(--accent);
+  border-radius: 6px;
+  padding: 6px 10px;
+  color: var(--text);
+  background: var(--bg);
+}
 button:focus-visible,
 select:focus-visible,
 input:focus-visible {
@@ -38,7 +114,7 @@ input:focus-visible {
   align-items: center;
   padding: 0 24px;
   border-bottom: 1px solid var(--border);
-  background: #101f2d;
+  background: var(--sw-panel);
 }
 .brand {
   font:
@@ -60,7 +136,7 @@ input:focus-visible {
 .map-section {
   position: relative;
   min-width: 0;
-  background: #122532;
+  background: var(--sw-card);
 }
 .map {
   height: 100%;
@@ -71,7 +147,7 @@ input:focus-visible {
   top: 18px;
   left: 18px;
   z-index: 2;
-  background: #101f2dea;
+  background: color-mix(in srgb, var(--sw-panel) 92%, transparent);
   border: 1px solid var(--border);
   border-radius: 12px;
   padding: 13px 15px;
@@ -133,7 +209,7 @@ input[type='range'] {
   width: 100%;
 }
 select {
-  background: #172b3c;
+  background: var(--sw-card);
   color: var(--text);
   border: 1px solid var(--border);
   border-radius: 8px;
@@ -151,7 +227,7 @@ select {
 .metric {
   flex: 1;
   border: 1px solid var(--border);
-  background: #172b3c;
+  background: var(--sw-card);
   padding: 12px;
   border-radius: 10px;
 }
@@ -165,8 +241,8 @@ select {
   border: 0;
   border-radius: 10px;
   padding: 13px;
-  background: var(--accent);
-  color: #08202a;
+  background: var(--sw-primary);
+  color: var(--sw-on-primary);
   font-weight: 700;
   margin-top: 20px;
 }
@@ -177,17 +253,17 @@ select {
 .pill {
   display: inline-block;
   padding: 5px 9px;
-  background: #233b48;
+  background: var(--sw-hover);
   border-radius: 999px;
-  color: #bceadc;
+  color: var(--sw-link);
   font-size: 11px;
 }
 .notice {
   padding: 12px;
-  border: 1px solid #557188;
+  border: 1px solid var(--sw-border);
   border-radius: 10px;
-  background: #172b3c;
-  color: #d4e2eb;
+  background: var(--sw-card);
+  color: var(--sw-text-strong);
   font-size: 12px;
   margin-top: 15px;
   line-height: 1.5;
@@ -197,7 +273,7 @@ select {
   padding: 13px;
   border: 1px solid var(--border);
   border-radius: 10px;
-  background: #172b3c;
+  background: var(--sw-card);
 }
 .facility h3 {
   font-size: 14px;
@@ -208,25 +284,25 @@ select {
   left: 20px;
   right: 20px;
   border: 1px solid var(--border);
-  background: #101f2de9;
+  background: color-mix(in srgb, var(--sw-panel) 91%, transparent);
   padding: 14px;
   border-radius: 12px;
   z-index: 2;
 }
 .timeline button {
-  background: #223c4e;
-  color: white;
-  border: 1px solid #406175;
+  background: var(--sw-hover);
+  color: var(--sw-text-strong);
+  border: 1px solid var(--sw-border);
   border-radius: 8px;
   padding: 7px 12px;
   margin: 4px;
 }
 .timeline button.active {
-  background: #51d0bb;
-  color: #06242a;
+  background: var(--sw-primary);
+  color: var(--sw-on-primary);
 }
 .error {
-  color: #fda4af;
+  color: var(--sw-deficit-text);
 }
 @media (max-width: 850px) {
   .layout {
@@ -255,5 +331,89 @@ table { border-collapse: collapse; width: 100%; text-align: left; }
 th, td { padding: 8px 4px; border-bottom: 1px solid var(--border); vertical-align: top; }
 caption { text-align: left; margin-bottom: 8px; }
 .text-button { padding: 0; background: none; border: 0; color: var(--accent); text-align: left; font-size: 12px; }
-input[type='search'] { width: 100%; padding: 8px; color: var(--text); background: #172b3c; border: 1px solid var(--border); border-radius: 6px; }
+input[type='search'] { width: 100%; padding: 8px; color: var(--text); background: var(--sw-card); border: 1px solid var(--border); border-radius: 6px; }
 a { color: var(--accent); }
+/* Palette roles:
+   - honeydew #f1faee: page background, cards (light and calm);
+   - prussian navy #1d3557: text, the header and every button (one uniform button colour);
+   - powder blue #a8dadc: panels that sit on or beside the map (darker than the map, easy to read on);
+   - steel blue #457b9d: quiet accents (hospital markers, map lines, spare capacity, reference forecast, focus);
+   - red #e63946: danger and attention only (hotspots, deficit, alerts, assumed surge).
+   Containers below re-point the shared variables, so everything inside follows. */
+
+/* Header: navy bar with honeydew text and powder-blue links. */
+.qc-header,
+.header {
+  --sw-panel: #1d3557;
+  --sw-text-strong: #f1faee;
+  --sw-text: #f1faee;
+  --sw-muted: #a8dadc;
+  --sw-link: #a8dadc;
+  --sw-hover: #2b4e70;
+  --sw-selected: #2b4e70;
+  --sw-border: transparent;
+  --sw-border-strong: transparent;
+  --border: transparent;
+  --panel: var(--sw-panel);
+  --text: var(--sw-text-strong);
+  --muted: var(--sw-muted);
+  --accent: var(--sw-link);
+  color: var(--sw-text-strong);
+}
+
+/* Panels on or beside the map: powder blue, flat (no outlines), honeydew cards and fields. */
+.map-panel-surface,
+.qc-side-panel,
+.qc-sidebar-shell,
+.qc-playback-card,
+.qc-map-help,
+.qc-scroll-hint,
+.qc-map-toast:not(.stale),
+.dashboard-floating-panel,
+.dashboard-simulation-launch,
+.map-toolbar,
+.timeline,
+.engine-startup {
+  --sw-panel: #a8dadc;
+  --sw-muted: #254365;
+  --sw-link: #1d3557;
+  /* No outlines on panels or the cards inside them; form fields keep an edge via --sw-field-border. */
+  --sw-border: transparent;
+  --sw-border-strong: transparent;
+  --sw-field-border: #457b9d;
+  --sw-card: #f1faee;
+  --sw-selected: #f1faee;
+  --sw-hover: #c3e6e4;
+  --border: var(--sw-border);
+  --panel: var(--sw-panel);
+  --text: var(--sw-text-strong);
+  --muted: var(--sw-muted);
+  --accent: var(--sw-link);
+}
+/* Inside outline-free panels: keep edges only where they help (form fields, table rows). */
+.dashboard-floating-panel input, .dashboard-floating-panel select, .map-toolbar select { border-color: var(--sw-field-border); background: var(--sw-emphasis); }
+.dashboard-floating-panel th, .dashboard-floating-panel td { border-bottom-color: color-mix(in srgb, var(--sw-text-strong) 18%, transparent); }
+/* Uniform buttons: every button has the same colour (navy with honeydew text) on any background.
+   !important is deliberate so page-specific button styles cannot drift from this one colour.
+   Not buttons in the visual sense, so excluded: map markers, MapLibre map controls, name links
+   in tables/headings, link-style .text-button and the dashboard panel's drag handle.
+   Selected toggles/tabs use a lighter blue (#3b6a8c) with bold text instead of an outline. */
+button:not(.text-button, .map-marker, .movie-hotspot-icon, .movie-hospital-icon, .dashboard-panel-drag, [class*="maplibregl-"], td > button, h3 > button) {
+  background: var(--sw-button-bg) !important;
+  color: var(--sw-button-text) !important;
+  border: 1px solid var(--sw-button-border) !important;
+}
+button:not(.text-button, .map-marker, .movie-hotspot-icon, .movie-hospital-icon, .dashboard-panel-drag, [class*="maplibregl-"], td > button, h3 > button):hover:not(:disabled) {
+  background: var(--sw-button-hover) !important;
+}
+button:not(.text-button, .map-marker, .movie-hotspot-icon, .movie-hospital-icon, .dashboard-panel-drag, [class*="maplibregl-"], td > button, h3 > button):is([aria-pressed='true'], [aria-selected='true'], .active),
+button:not(.text-button, .map-marker, .movie-hotspot-icon, .movie-hospital-icon, .dashboard-panel-drag, [class*="maplibregl-"], td > button, h3 > button):is([aria-pressed='true'], [aria-selected='true'], .active):hover {
+  background: var(--sw-button-selected) !important;
+  border-color: var(--sw-button-selected) !important;
+  font-weight: 700;
+}
+/* Link styled as a button (dashboard "Open QC simulation") follows the same colour. */
+.dashboard-simulation-launch a { background: var(--sw-button-bg); color: var(--sw-button-text); border: 1px solid var(--sw-button-border); }
+.dashboard-simulation-launch a:hover { background: var(--sw-button-hover); }
+/* Wordmark with the SurgeWise logo mark beside it. */
+.brand { display: flex; align-items: center; gap: 10px; }

@@ -85,9 +85,11 @@ python -m uvicorn services.engine.main:app --reload --port 8000
 The dashboard currently loads version-pinned public inventory directly and does not require the engine to browse hospitals. Check http://localhost:8000/readiness for engine blockers.
 
 On Render, set the frontend service's server-only `ENGINE_BASE_URL` to the engine's
-actual base URL and redeploy. Simulation/research pages automatically check and
-wake a sleeping engine for up to two minutes before fetching data; users do not
-need to open its URL separately. See [Render deployment](docs/render-deployment.md)
+actual base URL and redeploy. Opening any page, including the landing dashboard,
+automatically checks and wakes a sleeping engine for up to two minutes.
+Simulation/research requests also check before fetching data. The engine build
+must generate the two trained model files excluded from Git; dependency
+installation alone is insufficient. See [Render deployment](docs/render-deployment.md)
 for configuration, startup behavior and troubleshooting.
 
 The map-movie engine additionally uses declared Shapely 2.2.0 / pyproj 3.8.0

@@ -29,6 +29,7 @@ test('real map paint interpolates forecast colors, keeps non-candidates neutral 
       useEffect: (callback, dependencies) => effects.push({ callback, dependencies }),
     };
     if (name === 'maplibre-gl') return { default: {} };
+    if (name === '@/components/workspace-loader') return { default: () => null };
     if (name.endsWith('.css')) return {};
     if (name.startsWith('@/lib/')) return require(`./${name.slice('@/lib/'.length)}.ts`);
     return native(name);
@@ -60,7 +61,7 @@ test('real map paint interpolates forecast colors, keeps non-candidates neutral 
     frames.shift()(400);
     assert.equal(color()[color().indexOf('A') + 1], caseColor(4, 50));
     assert.ok(!color().includes('B'));
-    assert.equal(paints.filter(p => p.layer === 'selected-raised' && p.name === 'fill-extrusion-color').at(-1).value, '#20394c');
+    assert.equal(paints.filter(p => p.layer === 'selected-raised' && p.name === 'fill-extrusion-color').at(-1).value, '#edf1ee');
     cleanup();
     render({ ...props, reducedMotion: true });
     assert.equal(frames.length, 0);

@@ -1,5 +1,11 @@
 # Automatic QC forecasting and capacity workspace
 
+Current UI revision (2026-11-16): see
+[simulation workspace design](simulation-workspace-design.md). One optional
+contextual panel replaces the former simultaneous sidebars, and playback stays
+in a bottom dock. The older panel-placement and red-marker descriptions below
+are historical. All simulation inputs, results and scientific boundaries remain.
+
 Extension 2026-10-24 21:19:03 +08:00: the sidebar now has Historical replay and
 Future surge forecast tabs, arbitrary 1–28-day horizons, future-season controls
 and case-to-bed demand projections. Historical methods below remain applicable

@@ -1,0 +1,9 @@
+/* Shared with Home; loading occupies the workspace, never the application rail. */
+.sw-workspace-loader { position:absolute;z-index:20;inset:0;display:grid;place-content:center;background:#eaf1f3;opacity:1;visibility:visible;transition:opacity 200ms ease,visibility 0s; }
+.sw-workspace-loader[data-active='false'] { opacity:0;visibility:hidden;pointer-events:none;transition:opacity 200ms ease,visibility 0s 200ms; }
+.sw-loading-mark { display:block;animation:sw-loading-pulse 1100ms ease-in-out infinite; }
+.sw-loading-label { position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap; }
+@keyframes sw-loading-pulse { 0%,100% { opacity:.48;transform:scale(.97); } 50% { opacity:1;transform:scale(1.025); } }
+.sw-route-loading { position:relative;min-height:100svh;background:#eaf1f3; }
+@media(max-width:700px) { .sw-route-loading { min-height:calc(100svh - 70px - env(safe-area-inset-bottom,0px)); } }
+@media(prefers-reduced-motion:reduce) { .sw-loading-mark { animation:none; }.sw-workspace-loader { transition:none; } }
